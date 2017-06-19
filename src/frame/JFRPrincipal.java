@@ -13,7 +13,7 @@ import javax.swing.table.JTableHeader;
  */
 public final class JFRPrincipal extends javax.swing.JFrame {
 
-    boolean ventas, compras, productos, proveedores;
+    boolean ventas, compras, productos, proveedores, administradores;
     boolean apagado, principal;
     int x,y;
     JTableHeader tHeadVentas,tHeadCompras,tHeadProductos,tHeadCompra,tHeadProveedores,tHeadDetalleCompra;
@@ -32,7 +32,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnVentas.setBorder(null);
         btnCompras.setBorder(null);
         btnProductos.setBorder(null);
-        btnProveedores.setBorder(null);
+        btnAdministacion.setBorder(null);
         apagado2();
         Principal(true);
         Compras(false);
@@ -131,7 +131,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnCompras = new javax.swing.JButton();
         btnProductos = new javax.swing.JButton();
         btnVentas = new javax.swing.JButton();
-        btnProveedores = new javax.swing.JButton();
+        btnAdministacion = new javax.swing.JButton();
+        btnProveedores1 = new javax.swing.JButton();
         btnHome = new javax.swing.JLabel();
         jpnPrincipal = new javax.swing.JPanel();
         jpnPrimero = new javax.swing.JPanel();
@@ -449,22 +450,37 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnSubMenu.add(btnVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(-126, 70, 180, 40));
 
-        btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/proveedores.png"))); // NOI18N
-        btnProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAdministacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/configuraciones.png"))); // NOI18N
+        btnAdministacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdministacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnProveedoresMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnProveedoresMouseEntered(evt);
+                btnAdministacionMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnProveedoresMouseExited(evt);
+                btnAdministacionMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAdministacionMouseEntered(evt);
             }
         });
-        jpnSubMenu.add(btnProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(-126, 170, 180, 40));
+        jpnSubMenu.add(btnAdministacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(-130, 220, 180, 40));
 
-        jpnBarraMenu.add(jpnSubMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 77, 190, 230));
+        btnProveedores1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/proveedores.png"))); // NOI18N
+        btnProveedores1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProveedores1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnProveedores1MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnProveedores1MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnProveedores1MouseEntered(evt);
+            }
+        });
+        jpnSubMenu.add(btnProveedores1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-126, 170, 180, 40));
+
+        jpnBarraMenu.add(jpnSubMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 77, 190, 280));
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Home48.png"))); // NOI18N
         btnHome.setToolTipText("Inicio");
@@ -489,13 +505,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         lbl4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lbl4.setForeground(new java.awt.Color(255, 255, 255));
-        lbl4.setText("iShop");
-        jpnPrimero.add(lbl4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, 50, -1));
+        lbl4.setText("Tienda ABC");
+        jpnPrimero.add(lbl4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 120, -1));
 
         lbl7.setBackground(new java.awt.Color(153, 153, 153));
         lbl7.setForeground(new java.awt.Color(102, 102, 102));
-        lbl7.setText("Versión 1.0");
-        jpnPrimero.add(lbl7, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 570, 70, -1));
+        lbl7.setText("Versión 2.0");
+        jpnPrimero.add(lbl7, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 570, 100, -1));
 
         lbl5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl5.setForeground(new java.awt.Color(102, 102, 102));
@@ -1654,26 +1670,26 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             Productos(false);
     }//GEN-LAST:event_btnProductosMouseExited
 
-    private void btnProveedoresMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProveedoresMouseEntered
-        if(!proveedores)
-            Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnProveedores);   
+    private void btnAdministacionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdministacionMouseEntered
+        if(!administradores)
+            Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnAdministacion);   
             Principal(false);
             Proveedores(true);
-    }//GEN-LAST:event_btnProveedoresMouseEntered
+    }//GEN-LAST:event_btnAdministacionMouseEntered
 
-    private void btnProveedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProveedoresMouseExited
-        if(!proveedores)
-            Animacion.Animacion.mover_izquierda(0, -126, 1, 2, btnProveedores); 
+    private void btnAdministacionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdministacionMouseExited
+        if(!administradores)
+            Animacion.Animacion.mover_izquierda(0, -126, 1, 2, btnAdministacion); 
             Principal(true);
             Proveedores(false);         
-    }//GEN-LAST:event_btnProveedoresMouseExited
+    }//GEN-LAST:event_btnAdministacionMouseExited
 
-    private void btnProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProveedoresMouseClicked
+    private void btnAdministacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdministacionMouseClicked
         apagado();
-        Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnProveedores);  
+        Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnAdministacion);  
         apagado2();
-        jpnProveedores.setVisible(true); 
-    }//GEN-LAST:event_btnProveedoresMouseClicked
+        //jpnProveedores.setVisible(true); 
+    }//GEN-LAST:event_btnAdministacionMouseClicked
 
     /*  ---- Acción de botones, cambiar de pantallas (Paneles) ----  */
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
@@ -1947,6 +1963,35 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnProveedores.setVisible(false);
         jpnModificarProveedor.setVisible(true);
     }//GEN-LAST:event_btnModificarProveedorMouseClicked
+
+    private void btnProveedores1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProveedores1MouseClicked
+                                                    
+        apagado();
+        Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnProveedores1);  
+        apagado2();
+        jpnProveedores.setVisible(true); 
+    }//GEN-LAST:event_btnProveedores1MouseClicked
+
+    private void btnProveedores1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProveedores1MouseEntered
+                                                      
+        if(!proveedores)
+            Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnProveedores1);   
+            Principal(false);
+            Proveedores(true);
+                  
+
+    
+    }//GEN-LAST:event_btnProveedores1MouseEntered
+
+    private void btnProveedores1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProveedores1MouseExited
+       
+                                                
+        if(!proveedores)
+            Animacion.Animacion.mover_izquierda(0, -126, 1, 2, btnProveedores1); 
+            Principal(true);
+            Proveedores(false);         
+                                 
+    }//GEN-LAST:event_btnProveedores1MouseExited
                                                                                                                                                                                                                               
     /**
      * @param args the command line arguments
@@ -1984,6 +2029,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdministacion;
     private javax.swing.JButton btnAgregarCompra;
     private javax.swing.JButton btnAgregarNuevoProducto;
     private javax.swing.JButton btnAgregarProductoVenta;
@@ -2006,7 +2052,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnModificarProveedor;
     private javax.swing.JButton btnNuevoProducto;
     private javax.swing.JButton btnProductos;
-    private javax.swing.JButton btnProveedores;
+    private javax.swing.JButton btnProveedores1;
     private javax.swing.JButton btnSalirProductos;
     private javax.swing.JButton btnVender;
     private javax.swing.JButton btnVentas;
