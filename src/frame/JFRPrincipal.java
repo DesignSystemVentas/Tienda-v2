@@ -352,6 +352,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtPrecioProductos2 = new javax.swing.JTextField();
         txtTotal2 = new javax.swing.JTextField();
         btnAtrasDetalleCompra = new javax.swing.JButton();
+        jpnAdministracion = new javax.swing.JPanel();
+        jPanel50 = new javax.swing.JPanel();
+        jSeparator47 = new javax.swing.JSeparator();
+        lblProveedores8 = new javax.swing.JLabel();
+        tpnlAdministracion = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/iconos/lanzador.png")).getImage());
@@ -1617,6 +1625,30 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(jpnDetalleCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
+        jpnAdministracion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel50.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel50.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jSeparator47.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel50.add(jSeparator47, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 20, 50));
+
+        lblProveedores8.setBackground(new java.awt.Color(255, 255, 255));
+        lblProveedores8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblProveedores8.setForeground(new java.awt.Color(255, 255, 255));
+        lblProveedores8.setText("administracion");
+        jPanel50.add(lblProveedores8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 180, 30));
+
+        jpnAdministracion.add(jPanel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 740, 50));
+
+        tpnlAdministracion.addTab("Parametros", jPanel1);
+        tpnlAdministracion.addTab("Tipos de precio", jPanel2);
+        tpnlAdministracion.addTab("Sucursales", jPanel3);
+
+        jpnAdministracion.add(tpnlAdministracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 730, 470));
+
+        getContentPane().add(jpnAdministracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -1688,7 +1720,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         apagado();
         Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnAdministacion);  
         apagado2();
-        //jpnProveedores.setVisible(true); 
+        jpnAdministracion.setVisible(true); 
     }//GEN-LAST:event_btnAdministacionMouseClicked
 
     /*  ---- Acción de botones, cambiar de pantallas (Paneles) ----  */
@@ -2096,6 +2128,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel42;
@@ -2105,6 +2140,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel46;
     private javax.swing.JPanel jPanel47;
     private javax.swing.JPanel jPanel48;
+    private javax.swing.JPanel jPanel50;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2148,11 +2184,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator41;
     private javax.swing.JSeparator jSeparator42;
     private javax.swing.JSeparator jSeparator43;
+    private javax.swing.JSeparator jSeparator47;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JPanel jpnAdministracion;
     private javax.swing.JPanel jpnAgregarProv;
     private javax.swing.JPanel jpnBarraMenu;
     private javax.swing.JPanel jpnBarraSuperior;
@@ -2217,12 +2255,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblProveedores4;
     private javax.swing.JLabel lblProveedores5;
     private javax.swing.JLabel lblProveedores6;
+    private javax.swing.JLabel lblProveedores8;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JTable tblCompra;
     private javax.swing.JTable tblCompras;
     private javax.swing.JTable tblDetalleCompra;
     private javax.swing.JTable tblProductosVender;
     private javax.swing.JTable tblProveedores;
+    private javax.swing.JTabbedPane tpnlAdministracion;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCantidadVender;
     private javax.swing.JTextField txtClienteVenta;
