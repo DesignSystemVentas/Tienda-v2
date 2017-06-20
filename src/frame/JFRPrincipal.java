@@ -357,9 +357,21 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jSeparator47 = new javax.swing.JSeparator();
         lblProveedores8 = new javax.swing.JLabel();
         tpnlAdministracion = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        tjpnlTipoPrecio = new javax.swing.JPanel();
+        jscpTipoDePrecio = new javax.swing.JScrollPane();
+        jtblTipoDePrecio = new javax.swing.JTable();
+        btnNuevoTipoPrecio = new javax.swing.JButton();
+        btnEliminarTipoPrecio = new javax.swing.JButton();
+        tjpnlSucursales = new javax.swing.JPanel();
+        jscpSucursales = new javax.swing.JScrollPane();
+        jtblSucursales = new javax.swing.JTable();
+        btnNuevoSucursales = new javax.swing.JButton();
+        btnEliminarSucursales = new javax.swing.JButton();
+        tjpnlParametros = new javax.swing.JPanel();
+        jscpTablaParametros = new javax.swing.JScrollPane();
+        jtblParametros = new javax.swing.JTable();
+        btnEliminarParametros = new javax.swing.JButton();
+        btnNuevoParametros = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/iconos/lanzador.png")).getImage());
@@ -394,13 +406,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblLogo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblLogo.setForeground(new java.awt.Color(255, 255, 255));
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lanzador.png"))); // NOI18N
-        lblLogo.setText("iShop");
+        lblLogo.setText("Tienda ABC");
         lblLogo.setToolTipText("");
-        jpnBarraSuperior.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 110, 50));
+        jpnBarraSuperior.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 180, 50));
 
         getContentPane().add(jpnBarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 55));
 
-        jpnBarraMenu.setBackground(new java.awt.Color(102, 0, 0));
+        jpnBarraMenu.setBackground(new java.awt.Color(176, 6, 6));
         jpnBarraMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblMenu.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
@@ -486,6 +498,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnProveedores1MouseEntered(evt);
             }
         });
+        btnProveedores1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProveedores1ActionPerformed(evt);
+            }
+        });
         jpnSubMenu.add(btnProveedores1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-126, 170, 180, 40));
 
         jpnBarraMenu.add(jpnSubMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 77, 190, 280));
@@ -558,7 +575,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lbl14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl14.setForeground(new java.awt.Color(102, 102, 102));
         lbl14.setText("Usa esta opción para manejar");
-        jpnSegundo.add(lbl14, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 190, -1));
+        jpnSegundo.add(lbl14, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 230, -1));
 
         lbl15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl15.setForeground(new java.awt.Color(102, 102, 102));
@@ -592,7 +609,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lbl24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl24.setForeground(new java.awt.Color(102, 102, 102));
         lbl24.setText("Usa esta opción y maneja");
-        jpnTercero.add(lbl24, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, 160, -1));
+        jpnTercero.add(lbl24, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, 200, -1));
 
         lbl25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl25.setForeground(new java.awt.Color(102, 102, 102));
@@ -617,22 +634,22 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lbl32.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl32.setForeground(new java.awt.Color(102, 102, 102));
         lbl32.setText("Podrás manejar los productos");
-        jpnCuarto.add(lbl32, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 190, -1));
+        jpnCuarto.add(lbl32, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 220, -1));
 
         lbl33.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl33.setForeground(new java.awt.Color(102, 102, 102));
         lbl33.setText("de tu sistema de Tienda.");
-        jpnCuarto.add(lbl33, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, 30));
+        jpnCuarto.add(lbl33, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 260, 190, 30));
 
         lbl34.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl34.setForeground(new java.awt.Color(102, 102, 102));
         lbl34.setText("Usa esta opción para modificar,");
-        jpnCuarto.add(lbl34, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 200, -1));
+        jpnCuarto.add(lbl34, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 240, -1));
 
         lbl35.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl35.setForeground(new java.awt.Color(102, 102, 102));
         lbl35.setText("agregar o eliminar Productos.");
-        jpnCuarto.add(lbl35, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 190, 30));
+        jpnCuarto.add(lbl35, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 220, 30));
 
         lblMitad4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mitad4.jpg"))); // NOI18N
         jpnCuarto.add(lblMitad4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 360, 600));
@@ -661,7 +678,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lbl44.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl44.setForeground(new java.awt.Color(102, 102, 102));
         lbl44.setText("Usa esta opción y agrega");
-        jpnQuinto.add(lbl44, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 160, -1));
+        jpnQuinto.add(lbl44, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 200, -1));
 
         lbl45.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl45.setForeground(new java.awt.Color(102, 102, 102));
@@ -1384,11 +1401,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnNuevoProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo3.png"))); // NOI18N
         btnNuevoProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNuevoProducto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnNuevoProductoMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnNuevoProductoMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnNuevoProductoMouseEntered(evt);
             }
         });
         btnNuevoProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -1427,11 +1444,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
         btnEliminarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEliminarProductoMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnEliminarProductoMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarProductoMouseEntered(evt);
             }
         });
         jpnProductos.add(btnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 510, 110, 30));
@@ -1641,13 +1658,153 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         jpnAdministracion.add(jPanel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 740, 50));
 
-        tpnlAdministracion.addTab("Parametros", jPanel1);
-        tpnlAdministracion.addTab("Tipos de precio", jPanel2);
-        tpnlAdministracion.addTab("Sucursales", jPanel3);
+        tjpnlTipoPrecio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jpnAdministracion.add(tpnlAdministracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 730, 470));
+        jtblTipoDePrecio.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jscpTipoDePrecio.setViewportView(jtblTipoDePrecio);
 
-        getContentPane().add(jpnAdministracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        tjpnlTipoPrecio.add(jscpTipoDePrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 690, 220));
+
+        btnNuevoTipoPrecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo3.png"))); // NOI18N
+        btnNuevoTipoPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnNuevoTipoPrecioMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnNuevoTipoPrecioMouseEntered(evt);
+            }
+        });
+        tjpnlTipoPrecio.add(btnNuevoTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 100, 30));
+
+        btnEliminarTipoPrecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
+        btnEliminarTipoPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarTipoPrecioMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarTipoPrecioMouseEntered(evt);
+            }
+        });
+        btnEliminarTipoPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarTipoPrecioActionPerformed(evt);
+            }
+        });
+        tjpnlTipoPrecio.add(btnEliminarTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 100, 30));
+
+        tpnlAdministracion.addTab("Tipos de precio", tjpnlTipoPrecio);
+
+        tjpnlSucursales.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jtblSucursales.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jscpSucursales.setViewportView(jtblSucursales);
+
+        tjpnlSucursales.add(jscpSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 690, 220));
+
+        btnNuevoSucursales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo3.png"))); // NOI18N
+        btnNuevoSucursales.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnNuevoSucursalesMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnNuevoSucursalesMouseEntered(evt);
+            }
+        });
+        tjpnlSucursales.add(btnNuevoSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 100, 30));
+
+        btnEliminarSucursales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
+        btnEliminarSucursales.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarSucursalesMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarSucursalesMouseEntered(evt);
+            }
+        });
+        tjpnlSucursales.add(btnEliminarSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 100, 30));
+
+        tpnlAdministracion.addTab("Sucursales", tjpnlSucursales);
+
+        tjpnlParametros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jtblParametros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jscpTablaParametros.setViewportView(jtblParametros);
+
+        tjpnlParametros.add(jscpTablaParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 230));
+
+        btnEliminarParametros.setBackground(new java.awt.Color(0, 0, 0));
+        btnEliminarParametros.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarParametros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
+        btnEliminarParametros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarParametros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarParametrosMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarParametrosMouseEntered(evt);
+            }
+        });
+        btnEliminarParametros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarParametrosActionPerformed(evt);
+            }
+        });
+        tjpnlParametros.add(btnEliminarParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 100, 30));
+
+        btnNuevoParametros.setBackground(new java.awt.Color(0, 0, 0));
+        btnNuevoParametros.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevoParametros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo3.png"))); // NOI18N
+        btnNuevoParametros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevoParametros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnNuevoParametrosMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnNuevoParametrosMouseEntered(evt);
+            }
+        });
+        btnNuevoParametros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoParametrosActionPerformed(evt);
+            }
+        });
+        tjpnlParametros.add(btnNuevoParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 100, 30));
+
+        tpnlAdministracion.addTab("Parametros", tjpnlParametros);
+
+        jpnAdministracion.add(tpnlAdministracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 720, 520));
+
+        getContentPane().add(jpnAdministracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 650));
 
         pack();
         setLocationRelativeTo(null);
@@ -1705,8 +1862,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private void btnAdministacionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdministacionMouseEntered
         if(!administradores)
             Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnAdministacion);   
-            Principal(false);
-            Proveedores(true);
+            Principal(true);
+           // Proveedores(true);
     }//GEN-LAST:event_btnAdministacionMouseEntered
 
     private void btnAdministacionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdministacionMouseExited
@@ -2024,6 +2181,70 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             Proveedores(false);         
                                  
     }//GEN-LAST:event_btnProveedores1MouseExited
+
+    private void btnProveedores1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedores1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProveedores1ActionPerformed
+
+    private void btnEliminarParametrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarParametrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarParametrosActionPerformed
+
+    private void btnEliminarParametrosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarParametrosMouseEntered
+         btnEliminarParametros.setIcon(new ImageIcon(getClass().getResource("/iconos/eliminarB.png")));
+    }//GEN-LAST:event_btnEliminarParametrosMouseEntered
+
+    private void btnEliminarParametrosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarParametrosMouseExited
+        btnEliminarParametros.setIcon(new ImageIcon(getClass().getResource("/iconos/eliminar.png")));
+    }//GEN-LAST:event_btnEliminarParametrosMouseExited
+
+    private void btnNuevoParametrosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoParametrosMouseExited
+        btnNuevoParametros.setIcon(new ImageIcon(getClass().getResource("/iconos/nuevo3.png")));
+    }//GEN-LAST:event_btnNuevoParametrosMouseExited
+
+    private void btnNuevoParametrosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoParametrosMouseEntered
+        btnNuevoParametros.setIcon(new ImageIcon(getClass().getResource("/iconos/nuevo3B.png")));
+    }//GEN-LAST:event_btnNuevoParametrosMouseEntered
+
+    private void btnNuevoParametrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoParametrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNuevoParametrosActionPerformed
+
+    private void btnEliminarTipoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTipoPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarTipoPrecioActionPerformed
+
+    private void btnNuevoTipoPrecioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoTipoPrecioMouseEntered
+         btnNuevoTipoPrecio.setIcon(new ImageIcon(getClass().getResource("/iconos/nuevo3B.png")));
+    }//GEN-LAST:event_btnNuevoTipoPrecioMouseEntered
+
+    private void btnNuevoTipoPrecioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoTipoPrecioMouseExited
+        btnNuevoTipoPrecio.setIcon(new ImageIcon(getClass().getResource("/iconos/nuevo3.png")));
+    }//GEN-LAST:event_btnNuevoTipoPrecioMouseExited
+
+    private void btnEliminarTipoPrecioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarTipoPrecioMouseEntered
+        btnEliminarTipoPrecio.setIcon(new ImageIcon(getClass().getResource("/iconos/eliminarB.png")));
+    }//GEN-LAST:event_btnEliminarTipoPrecioMouseEntered
+
+    private void btnEliminarTipoPrecioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarTipoPrecioMouseExited
+        btnNuevoTipoPrecio.setIcon(new ImageIcon(getClass().getResource("/iconos/eliminar.png")));
+    }//GEN-LAST:event_btnEliminarTipoPrecioMouseExited
+
+    private void btnNuevoSucursalesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoSucursalesMouseEntered
+         btnNuevoSucursales.setIcon(new ImageIcon(getClass().getResource("/iconos/nuevo3B.png")));
+    }//GEN-LAST:event_btnNuevoSucursalesMouseEntered
+
+    private void btnNuevoSucursalesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoSucursalesMouseExited
+        btnNuevoSucursales.setIcon(new ImageIcon(getClass().getResource("/iconos/nuevo3.png")));
+    }//GEN-LAST:event_btnNuevoSucursalesMouseExited
+
+    private void btnEliminarSucursalesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarSucursalesMouseEntered
+        btnEliminarSucursales.setIcon(new ImageIcon(getClass().getResource("/iconos/eliminarB.png")));
+    }//GEN-LAST:event_btnEliminarSucursalesMouseEntered
+
+    private void btnEliminarSucursalesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarSucursalesMouseExited
+       btnEliminarSucursales.setIcon(new ImageIcon(getClass().getResource("/iconos/eliminar.png")));
+    }//GEN-LAST:event_btnEliminarSucursalesMouseExited
                                                                                                                                                                                                                               
     /**
      * @param args the command line arguments
@@ -2073,16 +2294,22 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarProductoVenta;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCompras;
+    private javax.swing.JButton btnEliminarParametros;
     private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JButton btnEliminarProductoVenta;
     private javax.swing.JButton btnEliminarProveedor;
+    private javax.swing.JButton btnEliminarSucursales;
+    private javax.swing.JButton btnEliminarTipoPrecio;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnGuardarModificarProveedor;
     private javax.swing.JButton btnGuardarProveedor;
     private javax.swing.JLabel btnHome;
     private javax.swing.JButton btnModificarProducto;
     private javax.swing.JButton btnModificarProveedor;
+    private javax.swing.JButton btnNuevoParametros;
     private javax.swing.JButton btnNuevoProducto;
+    private javax.swing.JButton btnNuevoSucursales;
+    private javax.swing.JButton btnNuevoTipoPrecio;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnProveedores1;
     private javax.swing.JButton btnSalirProductos;
@@ -2128,9 +2355,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel42;
@@ -2209,7 +2433,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jpnSubMenu;
     private javax.swing.JPanel jpnTercero;
     private javax.swing.JPanel jpnVentas;
+    private javax.swing.JScrollPane jscpSucursales;
+    private javax.swing.JScrollPane jscpTablaParametros;
+    private javax.swing.JScrollPane jscpTipoDePrecio;
+    private javax.swing.JTable jtblParametros;
     private javax.swing.JTable jtblProductos;
+    private javax.swing.JTable jtblSucursales;
+    private javax.swing.JTable jtblTipoDePrecio;
     private javax.swing.JLabel lbl11;
     private javax.swing.JLabel lbl12;
     private javax.swing.JLabel lbl13;
@@ -2262,6 +2492,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable tblDetalleCompra;
     private javax.swing.JTable tblProductosVender;
     private javax.swing.JTable tblProveedores;
+    private javax.swing.JPanel tjpnlParametros;
+    private javax.swing.JPanel tjpnlSucursales;
+    private javax.swing.JPanel tjpnlTipoPrecio;
     private javax.swing.JTabbedPane tpnlAdministracion;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCantidadVender;
