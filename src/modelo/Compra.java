@@ -109,5 +109,40 @@ public class Compra {
     }
     
     
+    //MËTODOS
+    
+    public void CalcularTotal(){//Calcula el monto a pagar por una compra realizada
+        
+      
+        
+        
+    }
+    
+
+    /*public void AgregarItem(DetalleCompra){//Agrega un artículo con sus detalles a través de un objeto 
+                                           //DetalleCompra a la lista de 
+                                           //objetos de tipo DetalleCompra de la 
+                                           //Compra en proceso.
+     
+    }
+    */
+    
+    
+    public void CalcularIva(){//Calcula el monto total de impuesto IVA que 
+                              //se pagará por una compra realizada.
+        
+        
+    }
+    
+    
+    public void CalcularPercepcion(){//Calcula el monto total de impuesto de 
+                                     //percepción que se pagará por una compra realizada.
+        
+        
+    }
+    
+    
+    
+    
     
 }
