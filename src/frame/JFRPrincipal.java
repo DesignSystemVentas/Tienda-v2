@@ -1,8 +1,15 @@
 
 package frame;
 
+import controlador.ControladorProveedor;
+import controlador.ControladorSucursal;
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -23,6 +30,15 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     DefaultTableModel modeloCompra = new DefaultTableModel();
     DefaultTableModel modeloAddCompra = new DefaultTableModel();
     DefaultTableModel modeloDetalleCompra = new DefaultTableModel();
+    
+   
+    //****** COMPRAS *******
+    boolean cargarSucursalesC=false;
+    boolean cargarProveedoresC=false;
+    ResultSet rsProveedorC = null;
+    ResultSet rsSucursalC = null;
+    DefaultComboBoxModel modeloProveedorC = new DefaultComboBoxModel();
+    DefaultComboBoxModel  modeloSucursalC = new DefaultComboBoxModel();
     
     public JFRPrincipal() {
         initComponents();
@@ -317,9 +333,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbSucursalCompra = new javax.swing.JComboBox<>();
         lblFecha = new javax.swing.JLabel();
         lbltxtFechaCompra = new javax.swing.JLabel();
+        lblFecha1 = new javax.swing.JLabel();
         lblIdCompra = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
         lblProveedor = new javax.swing.JLabel();
@@ -341,7 +358,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtPercepcionCompra = new javax.swing.JTextField();
         txtSubtotalCompra = new javax.swing.JTextField();
         txtTipoCompra = new javax.swing.JTextField();
-        cmbTipoPrecio = new javax.swing.JComboBox<>();
+        lblTotal1 = new javax.swing.JLabel();
         jpnProductos = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jtblProductos = new javax.swing.JTable();
@@ -1226,11 +1243,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnAgregarCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/agregar.png"))); // NOI18N
         btnAgregarCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAgregarCompra.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAgregarCompraMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAgregarCompraMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgregarCompraMouseEntered(evt);
             }
         });
         btnAgregarCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -1305,9 +1322,20 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnRegistroCompra.add(btnCancelarCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 540, 110, 30));
 
+        txtIdCompra.setEditable(false);
         txtIdCompra.setText("001");
         jpnRegistroCompra.add(txtIdCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 60, 30));
 
+        cmbProveedorCompra.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbProveedorCompraItemStateChanged(evt);
+            }
+        });
+        cmbProveedorCompra.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cmbProveedorCompraFocusGained(evt);
+            }
+        });
         jpnRegistroCompra.add(cmbProveedorCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, 180, 30));
 
         tblCompra =new javax.swing.JTable(){
@@ -1331,18 +1359,38 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 660, 210));
 
         txtTotalCompra.setText("$");
+        txtTotalCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalCompraActionPerformed(evt);
+            }
+        });
         jpnRegistroCompra.add(txtTotalCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 560, 100, 40));
 
         jPanel39.setBackground(new java.awt.Color(0, 0, 0));
         jPanel39.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel39.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 160, -1));
+        cmbSucursalCompra.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbSucursalCompraItemStateChanged(evt);
+            }
+        });
+        cmbSucursalCompra.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cmbSucursalCompraFocusGained(evt);
+            }
+        });
+        jPanel39.add(cmbSucursalCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 160, 30));
 
         lblFecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblFecha.setForeground(new java.awt.Color(254, 254, 254));
-        lblFecha.setText("Fecha:");
-        jPanel39.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 60, 30));
+        lblFecha.setText("Sucursal:");
+        jPanel39.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 70, 30));
         jPanel39.add(lbltxtFechaCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 100, 20));
+
+        lblFecha1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblFecha1.setForeground(new java.awt.Color(254, 254, 254));
+        lblFecha1.setText("Fecha:");
+        jPanel39.add(lblFecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 60, 30));
 
         jpnRegistroCompra.add(jPanel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 50));
 
@@ -1356,8 +1404,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.add(lblProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 90, 30));
 
         lblTotal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblTotal.setText("TOTAL:");
-        jpnRegistroCompra.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, 50, 40));
+        lblTotal.setText("SubTotal:");
+        jpnRegistroCompra.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 510, -1, 40));
         jpnRegistroCompra.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 580, 50, 40));
 
         lblCodBarraProd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1405,10 +1453,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.add(txtPercepcionCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 560, 80, -1));
 
         txtSubtotalCompra.setText("$");
-        jpnRegistroCompra.add(txtSubtotalCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 510, 90, -1));
-        jpnRegistroCompra.add(txtTipoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 160, -1));
+        jpnRegistroCompra.add(txtSubtotalCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 520, 90, -1));
+        jpnRegistroCompra.add(txtTipoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 160, -1));
 
-        jpnRegistroCompra.add(cmbTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 120, -1));
+        lblTotal1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTotal1.setText("TOTAL:");
+        jpnRegistroCompra.add(lblTotal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, 50, 40));
 
         getContentPane().add(jpnRegistroCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -1981,7 +2031,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProductosMouseClicked
 
     private void btnAgregarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCompraActionPerformed
-        
+        cargarProveedoresC=true;
+        cargarSucursalesC = true;
+        cmbSucursalCompra.requestFocus(); 
         //Aca escribo para elegir antes el tipo de compra
         //Daniel-Inicio
         String[] list = {"Factura", "Crédito fiscal", "Libre"};
@@ -2344,6 +2396,68 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private void btnEliminarSucursalesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarSucursalesMouseExited
        btnEliminarSucursales.setIcon(new ImageIcon(getClass().getResource("/iconos/eliminar.png")));
     }//GEN-LAST:event_btnEliminarSucursalesMouseExited
+
+    private void cmbProveedorCompraItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbProveedorCompraItemStateChanged
+    int posicionProv=cmbProveedorCompra.getSelectedIndex();
+    
+    }//GEN-LAST:event_cmbProveedorCompraItemStateChanged
+
+    private void cmbProveedorCompraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbProveedorCompraFocusGained
+        if (cargarProveedoresC==true){
+        ControladorProveedor p = new ControladorProveedor();
+        modeloProveedorC.removeAllElements();
+        
+                 //Llenando el cmbCargos mediante un modelo
+            try{
+            rsProveedorC = p.Obtener();
+            while (rsProveedorC.next()) {
+                modeloProveedorC.addElement(rsProveedorC.getString(2));
+                
+            }
+            cmbProveedorCompra.setModel(modeloProveedorC);
+           // lblCargo.setText(String.valueOf(modeloCargos.getElementAt(0)));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        } catch (Exception ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        cargarProveedoresC=false;    
+   
+        //}
+    }//GEN-LAST:event_cmbProveedorCompraFocusGained
+
+    private void cmbSucursalCompraItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSucursalCompraItemStateChanged
+        int posicionSucur=cmbSucursalCompra.getSelectedIndex();
+    }//GEN-LAST:event_cmbSucursalCompraItemStateChanged
+
+    private void cmbSucursalCompraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbSucursalCompraFocusGained
+       if (cargarSucursalesC==true){
+       cmbProveedorCompra.requestFocus(); 
+       ControladorSucursal p = new ControladorSucursal();
+       modeloSucursalC.removeAllElements();
+        
+        //Llenando el cmbCargos mediante un modelo
+            try{
+            rsSucursalC = p.Obtener();
+            while (rsSucursalC.next()) {
+                modeloSucursalC.addElement(rsSucursalC.getString(2));
+                
+            }
+            cmbSucursalCompra.setModel(modeloSucursalC);
+           // lblCargo.setText(String.valueOf(modeloCargos.getElementAt(0)));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }  catch (Exception ex) {  
+               Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+           }  
+       }   
+        cargarSucursalesC=false;
+    }//GEN-LAST:event_cmbSucursalCompraFocusGained
+
+    private void txtTotalCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalCompraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalCompraActionPerformed
                                                                                                                                                                                                                               
     /**
      * @param args the command line arguments
@@ -2417,8 +2531,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnVerDetalle;
     private javax.swing.ButtonGroup btngFiltroProductos;
     private javax.swing.JComboBox cmbProveedorCompra;
-    private javax.swing.JComboBox<String> cmbTipoPrecio;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cmbSucursalCompra;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -2567,6 +2680,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblCodBarraProd;
     private javax.swing.JLabel lblCostoProd;
     private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblFecha1;
     private javax.swing.JLabel lblIdCompra;
     private javax.swing.JLabel lblIvaCompra;
     private javax.swing.JLabel lblListadoCompras;
@@ -2586,6 +2700,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblProveedores6;
     private javax.swing.JLabel lblProveedores8;
     private javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel lblTotal1;
     private javax.swing.JLabel lbltxtFechaCompra;
     private javax.swing.JTable tblCompra;
     private javax.swing.JTable tblCompras;
