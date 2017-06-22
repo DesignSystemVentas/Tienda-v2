@@ -317,7 +317,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        lblSucursalCompra = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         lblFecha = new javax.swing.JLabel();
         lbltxtFechaCompra = new javax.swing.JLabel();
@@ -331,7 +330,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblNomProd = new javax.swing.JLabel();
         txtNombreProductoCompra = new javax.swing.JTextField();
         lblCantidad = new javax.swing.JLabel();
-        txtCantidadCompra = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator36 = new javax.swing.JSeparator();
         lblCostoProd = new javax.swing.JLabel();
@@ -340,13 +339,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblIvaCompra = new javax.swing.JLabel();
         lblPercepcionCompra = new javax.swing.JLabel();
         txtPercepcionCompra = new javax.swing.JTextField();
-        lblSubtotal = new javax.swing.JLabel();
         txtSubtotalCompra = new javax.swing.JTextField();
-        jSeparator44 = new javax.swing.JSeparator();
-        lblTipoCompra = new javax.swing.JLabel();
-        jSeparator45 = new javax.swing.JSeparator();
         txtTipoCompra = new javax.swing.JTextField();
-        lblTipoPrecioCompra = new javax.swing.JLabel();
         cmbTipoPrecio = new javax.swing.JComboBox<>();
         jpnProductos = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -1342,11 +1336,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jPanel39.setBackground(new java.awt.Color(0, 0, 0));
         jPanel39.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblSucursalCompra.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
-        lblSucursalCompra.setForeground(new java.awt.Color(254, 254, 254));
-        lblSucursalCompra.setText("Sucursal:");
-        jPanel39.add(lblSucursalCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, 20));
-
         jPanel39.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 160, -1));
 
         lblFecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1385,8 +1374,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblCantidad.setText("Cantidad:");
         jpnRegistroCompra.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 70, 30));
 
-        txtCantidadCompra.setText("  1");
-        jpnRegistroCompra.add(txtCantidadCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 40, 30));
+        txtCantidad.setText("  1");
+        jpnRegistroCompra.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 40, 30));
 
         jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
@@ -1415,23 +1404,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtPercepcionCompra.setText("$");
         jpnRegistroCompra.add(txtPercepcionCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 560, 80, -1));
 
-        lblSubtotal.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
-        lblSubtotal.setText("Subtotal:");
-        jpnRegistroCompra.add(lblSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 520, -1, -1));
-
         txtSubtotalCompra.setText("$");
         jpnRegistroCompra.add(txtSubtotalCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 510, 90, -1));
-        jpnRegistroCompra.add(jSeparator44, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 110, 20));
-
-        lblTipoCompra.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
-        lblTipoCompra.setText("Tipo de compra:");
-        jpnRegistroCompra.add(lblTipoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, -1, -1));
-        jpnRegistroCompra.add(jSeparator45, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 80, 20));
         jpnRegistroCompra.add(txtTipoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 160, -1));
-
-        lblTipoPrecioCompra.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
-        lblTipoPrecioCompra.setText("Tipo de precio:");
-        jpnRegistroCompra.add(lblTipoPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
 
         jpnRegistroCompra.add(cmbTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 120, -1));
 
@@ -2422,13 +2397,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JButton btnEliminarProductoVenta;
     private javax.swing.JButton btnEliminarProveedor;
-<<<<<<< HEAD
-    private javax.swing.JButton btnGuardarCompra;
-=======
     private javax.swing.JButton btnEliminarSucursales;
     private javax.swing.JButton btnEliminarTipoPrecio;
-    private javax.swing.JButton btnGuardar;
->>>>>>> 0a24bf9a19a9465e6ce98d61d55c048fd9d9a353
+    private javax.swing.JButton btnGuardarCompra;
     private javax.swing.JButton btnGuardarModificarProveedor;
     private javax.swing.JButton btnGuardarProveedor;
     private javax.swing.JLabel btnHome;
@@ -2537,20 +2508,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator41;
     private javax.swing.JSeparator jSeparator42;
     private javax.swing.JSeparator jSeparator43;
-<<<<<<< HEAD
-    private javax.swing.JSeparator jSeparator44;
-    private javax.swing.JSeparator jSeparator45;
-=======
     private javax.swing.JSeparator jSeparator47;
->>>>>>> 0a24bf9a19a9465e6ce98d61d55c048fd9d9a353
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator7;
-<<<<<<< HEAD
-=======
-    private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JPanel jpnAdministracion;
->>>>>>> 0a24bf9a19a9465e6ce98d61d55c048fd9d9a353
     private javax.swing.JPanel jpnAgregarProv;
     private javax.swing.JPanel jpnBarraMenu;
     private javax.swing.JPanel jpnBarraSuperior;
@@ -2623,14 +2584,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblProveedores4;
     private javax.swing.JLabel lblProveedores5;
     private javax.swing.JLabel lblProveedores6;
-<<<<<<< HEAD
-    private javax.swing.JLabel lblSubtotal;
-    private javax.swing.JLabel lblSucursalCompra;
-    private javax.swing.JLabel lblTipoCompra;
-    private javax.swing.JLabel lblTipoPrecioCompra;
-=======
     private javax.swing.JLabel lblProveedores8;
->>>>>>> 0a24bf9a19a9465e6ce98d61d55c048fd9d9a353
     private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lbltxtFechaCompra;
     private javax.swing.JTable tblCompra;
@@ -2638,15 +2592,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable tblDetalleCompra;
     private javax.swing.JTable tblProductosVender;
     private javax.swing.JTable tblProveedores;
-<<<<<<< HEAD
-    private javax.swing.JTextField txtCantidadCompra;
-=======
     private javax.swing.JPanel tjpnlParametros;
     private javax.swing.JPanel tjpnlSucursales;
     private javax.swing.JPanel tjpnlTipoPrecio;
     private javax.swing.JTabbedPane tpnlAdministracion;
     private javax.swing.JTextField txtCantidad;
->>>>>>> 0a24bf9a19a9465e6ce98d61d55c048fd9d9a353
     private javax.swing.JTextField txtCantidadVender;
     private javax.swing.JTextField txtClienteVenta;
     private javax.swing.JTextField txtCodBarraCompra;
