@@ -1,9 +1,19 @@
 package controlador;
 // @author Daniel Murillo
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Compra;
 
 public class ControladorCompra {
+    
+    
+  
    /* 
     public static void Agregar(Compra){
         
@@ -31,4 +41,7 @@ public class ControladorCompra {
     }
     
     */
+    
+   
+        
 }

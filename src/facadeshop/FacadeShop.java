@@ -5,7 +5,9 @@
  */
 package facadeshop;
 
+import controlador.ErrorTienda;
 import frame.JFRPrincipal;
+import java.sql.SQLException;
 //import frame.Splash;
 
 
@@ -18,7 +20,7 @@ public class FacadeShop {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ErrorTienda, SQLException, ClassNotFoundException {
         JFRPrincipal sp= new JFRPrincipal();
         sp.setVisible(true);
         //Splash sp = new Splash();
