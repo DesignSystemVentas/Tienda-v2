@@ -593,11 +593,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnProductosMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnProductosMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnProductosMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnProductosMouseEntered(evt);
             }
         });
         jpnSubMenu.add(btnProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(-126, 120, 180, 40));
@@ -1876,6 +1876,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnNuevoTipoPrecioMouseEntered(evt);
             }
         });
+        btnNuevoTipoPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoTipoPrecioActionPerformed(evt);
+            }
+        });
         tjpnlTipoPrecio.add(btnNuevoTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 100, 30));
 
         btnEliminarTipoPrecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
@@ -1913,6 +1918,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tjpnlTipoPrecio.add(txtUtilidadTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 250, -1));
 
         btnGuardarTipoPrecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardarprov.png"))); // NOI18N
+        btnGuardarTipoPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarTipoPrecioActionPerformed(evt);
+            }
+        });
         tjpnlTipoPrecio.add(btnGuardarTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 100, 30));
 
         btnModificarTipoPrecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
@@ -2730,6 +2740,60 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
             txtNombreParametro.setText(""+nombre);
             txtParametroParametro.setText(""+valor);
     }//GEN-LAST:event_btnModificarParametroActionPerformed
+
+    private void btnNuevoTipoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoTipoPrecioActionPerformed
+       modificarTipoPrecio=true;
+    }//GEN-LAST:event_btnNuevoTipoPrecioActionPerformed
+
+    private void btnGuardarTipoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarTipoPrecioActionPerformed
+        ControladorTipoPrecio ctp= new ControladorTipoPrecio();
+
+                String id = txtIdTipoPrecio.getText();
+                String nombre = txtNombreTipoPrecio.getText();
+                Double utilidad= Double.parseDouble(txtUtilidadTipoPrecio.getText());
+                
+                Object P[]={id,nombre,utilidad};
+         //       cpp.Agregar(P);
+       // Producto p= new Producto(id,inventario, costo, nombre);
+         
+            if(modificarTipoPrecio==true){
+                try {
+                    ctp.ModificarTipoPrecio(P);
+                } catch (Exception ex) {
+                    Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            txtIdTipoPrecio.setText("");
+            txtNombreTipoPrecio.setText("");
+            txtUtilidadTipoPrecio.setText("");
+            JOptionPane.showMessageDialog(null, "modificado con exito");
+            //jpnNuevoProducto.setVisible(false);
+            //jpnProductos.setVisible(true);
+            
+            
+            
+            }else{
+                try {
+                    ctp.AgregarTipoPrecio(P);
+                } catch (Exception ex) {
+                    Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            txtIdTipoPrecio.setText("");
+            txtNombreTipoPrecio.setText("");
+            txtUtilidadTipoPrecio.setText("");
+            JOptionPane.showMessageDialog(null, "agregado con exito");
+            //jpnNuevoProducto.setVisible(false);
+            //jpnProductos.setVisible(true);
+            
+            }
+             
+             
+            try {
+                llenarTipoPrecio();
+            } catch (Exception ex) {
+                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      
+    }//GEN-LAST:event_btnGuardarTipoPrecioActionPerformed
       
 //    public void llenarTablaProductoTyped(String codigo) throws SQLException{
 //        //clearTableCompra();

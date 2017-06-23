@@ -15,11 +15,11 @@ import modelo.TipoPrecio;
 public class ControladorTipoPrecio {
      Conexion cn=new Conexion();
      
-     public void AgregarTipoPrecio(TipoPrecio t) throws Exception{
+     public void AgregarTipoPrecio(Object t[]) throws Exception{
 
          try {
             cn.conectar();
-            cn.UID("INSERT into TipoPrecio(Nombre,Utilidad) Values("+t.getNombre()+","+t.getUtilidad()+");");
+            cn.UID("INSERT into TipoPrecio(Nombre,Utilidad) Values("+t[1]+","+t[2]+");");
             cn.desconectar();   
          } catch (Exception e) {
              throw new ErrorTienda("no logra ingresar tipoPrecio"); 
@@ -30,11 +30,11 @@ public class ControladorTipoPrecio {
      
      }
      
-     public void ModificarTipoPrecio(TipoPrecio t) throws Exception{
+     public void ModificarTipoPrecio(Object t[]) throws Exception{
          
          try {
          cn.conectar();
-         cn.UID("UPDATE TipoPrecio SET Nombre='" + t.getNombre() + "',Utilidad='" + t.getUtilidad()+"' WHERE IdTipoPrecio='" + t.getIdTipoPrecio() + "'");
+         cn.UID("UPDATE TipoPrecio SET Nombre='" + t[1] + "',Utilidad='" + t[2]+"' WHERE IdTipoPrecio='" + t[0] + "'");
          cn.desconectar();   
          } catch (Exception e) {
               throw new ErrorTienda("no logra actualizar tipoPrecio"); 
