@@ -79,4 +79,17 @@ public class ControladorProducto {
          }
          return d;
      }
+     public ResultSet Obtener() throws Exception{
+     ResultSet d=null;
+         try {
+         cn.conectar();
+         d=cn.getValores("SELECT * FROM Producto");    
+         } catch (Exception e) {
+             cn.desconectar();
+             throw new ErrorTienda("no logra obtener datos producto ");  
+         }finally{
+         
+         }
+         return d;
+     }
 }

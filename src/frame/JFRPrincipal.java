@@ -6,6 +6,7 @@ import controlador.ControladorProveedor;
 import controlador.ControladorSucursal;
 import controlador.ControladorTipoPrecio;
 import controlador.ErrorTienda;
+import controlador.Parametro;
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.ResultSet;
@@ -27,7 +28,7 @@ import javax.swing.table.JTableHeader;
 public final class JFRPrincipal extends javax.swing.JFrame {
 
     boolean ventas, compras, productos, proveedores, administradores;
-    boolean apagado, principal,modificarTipoPrecio;
+    boolean apagado, principal,modificarTipoPrecio,modificarSucursal,modificarParametro;
     int x,y;
     JTableHeader tHeadVentas,tHeadCompras,tHeadProductos,tHeadCompra,tHeadProveedores,tHeadDetalleCompra;  //agregar sigfid si es ncesario
     JTableHeader tHeadTipoPrecio,tHeadSucursal,tHeadParametro,tHeadProducto;  //agregar sigfid si es ncesario
@@ -483,6 +484,23 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnModificarTipoPrecio = new javax.swing.JButton();
         btnCancelarTipoPrecio = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        tjpnlParametros = new javax.swing.JPanel();
+        jscpTablaParametros = new javax.swing.JScrollPane();
+        jtblParametros = new javax.swing.JTable();
+        btnEliminarParametros = new javax.swing.JButton();
+        btnNuevoParametros = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        txtIdParametro = new javax.swing.JTextField();
+        txtNombreParametro = new javax.swing.JTextField();
+        txtParametroParametro = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        btnModificarParametro = new javax.swing.JButton();
+        btnCancelarParametro = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JSeparator();
         tjpnlSucursales = new javax.swing.JPanel();
         jscpSucursales = new javax.swing.JScrollPane();
         jtblSucursales = new javax.swing.JTable();
@@ -501,23 +519,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtNombreSucursal = new javax.swing.JTextField();
         txtDireccionSucursal = new javax.swing.JTextField();
         txtTelefonoSucursal = new javax.swing.JTextField();
-        tjpnlParametros = new javax.swing.JPanel();
-        jscpTablaParametros = new javax.swing.JScrollPane();
-        jtblParametros = new javax.swing.JTable();
-        btnEliminarParametros = new javax.swing.JButton();
-        btnNuevoParametros = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
-        txtIdParametro = new javax.swing.JTextField();
-        txtNombreParametro = new javax.swing.JTextField();
-        txtParametroParametro = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        btnModificarParametro = new javax.swing.JButton();
-        btnCancelarParametro = new javax.swing.JButton();
-        jSeparator6 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/iconos/lanzador.png")).getImage());
@@ -1897,13 +1898,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tjpnlTipoPrecio.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
 
         jLabel43.setText("IdTipoPrecio:");
-        tjpnlTipoPrecio.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
+        tjpnlTipoPrecio.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
         jLabel44.setText("Nombre:");
-        tjpnlTipoPrecio.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
+        tjpnlTipoPrecio.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, -1));
 
         jLabel45.setText("Utilidad:");
-        tjpnlTipoPrecio.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
+        tjpnlTipoPrecio.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
 
         txtIdTipoPrecio.setEditable(false);
         txtIdTipoPrecio.setFocusable(false);
@@ -1932,6 +1933,96 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tjpnlTipoPrecio.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 790, 10));
 
         tpnlAdministracion.addTab("Tipos de precio", tjpnlTipoPrecio);
+
+        tjpnlParametros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jtblParametros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jscpTablaParametros.setViewportView(jtblParametros);
+
+        tjpnlParametros.add(jscpTablaParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 170));
+
+        btnEliminarParametros.setBackground(new java.awt.Color(0, 0, 0));
+        btnEliminarParametros.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarParametros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
+        btnEliminarParametros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarParametros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarParametrosMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarParametrosMouseEntered(evt);
+            }
+        });
+        btnEliminarParametros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarParametrosActionPerformed(evt);
+            }
+        });
+        tjpnlParametros.add(btnEliminarParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 100, 30));
+
+        btnNuevoParametros.setBackground(new java.awt.Color(0, 0, 0));
+        btnNuevoParametros.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevoParametros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo3.png"))); // NOI18N
+        btnNuevoParametros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevoParametros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnNuevoParametrosMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnNuevoParametrosMouseEntered(evt);
+            }
+        });
+        btnNuevoParametros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoParametrosActionPerformed(evt);
+            }
+        });
+        tjpnlParametros.add(btnNuevoParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 100, 30));
+
+        jLabel1.setText("idParamatro:");
+        tjpnlParametros.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+        tjpnlParametros.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
+
+        jLabel33.setText("Nombre:");
+        tjpnlParametros.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
+
+        jLabel40.setText("Parametros de tienda.");
+        tjpnlParametros.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
+
+        jLabel41.setText("Parametro:");
+        tjpnlParametros.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
+
+        txtIdParametro.setEditable(false);
+        tjpnlParametros.add(txtIdParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 150, -1));
+        tjpnlParametros.add(txtNombreParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 150, -1));
+        tjpnlParametros.add(txtParametroParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 150, -1));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardarprov.png"))); // NOI18N
+        tjpnlParametros.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 100, 30));
+
+        btnModificarParametro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
+        btnModificarParametro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarParametroActionPerformed(evt);
+            }
+        });
+        tjpnlParametros.add(btnModificarParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 100, 30));
+
+        btnCancelarParametro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
+        tjpnlParametros.add(btnCancelarParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 100, 30));
+        tjpnlParametros.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 790, -1));
+
+        tpnlAdministracion.addTab("Parametros", tjpnlParametros);
 
         tjpnlSucursales.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -2001,101 +2092,20 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         btnCancelarSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
         tjpnlSucursales.add(btnCancelarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, 100, 40));
-        tjpnlSucursales.add(txtIdSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 230, -1));
-        tjpnlSucursales.add(txtNombreSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 230, -1));
+
+        txtIdSucursal.setEditable(false);
+        tjpnlSucursales.add(txtIdSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 350, -1));
+        tjpnlSucursales.add(txtNombreSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 350, -1));
 
         txtDireccionSucursal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDireccionSucursalActionPerformed(evt);
             }
         });
-        tjpnlSucursales.add(txtDireccionSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 230, -1));
-        tjpnlSucursales.add(txtTelefonoSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 230, -1));
+        tjpnlSucursales.add(txtDireccionSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 350, -1));
+        tjpnlSucursales.add(txtTelefonoSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 350, -1));
 
         tpnlAdministracion.addTab("Sucursales", tjpnlSucursales);
-
-        tjpnlParametros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jtblParametros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jscpTablaParametros.setViewportView(jtblParametros);
-
-        tjpnlParametros.add(jscpTablaParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 170));
-
-        btnEliminarParametros.setBackground(new java.awt.Color(0, 0, 0));
-        btnEliminarParametros.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminarParametros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
-        btnEliminarParametros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEliminarParametros.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnEliminarParametrosMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEliminarParametrosMouseEntered(evt);
-            }
-        });
-        btnEliminarParametros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarParametrosActionPerformed(evt);
-            }
-        });
-        tjpnlParametros.add(btnEliminarParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 100, 30));
-
-        btnNuevoParametros.setBackground(new java.awt.Color(0, 0, 0));
-        btnNuevoParametros.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuevoParametros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo3.png"))); // NOI18N
-        btnNuevoParametros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNuevoParametros.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnNuevoParametrosMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnNuevoParametrosMouseEntered(evt);
-            }
-        });
-        btnNuevoParametros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoParametrosActionPerformed(evt);
-            }
-        });
-        tjpnlParametros.add(btnNuevoParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 100, 30));
-
-        jLabel1.setText("idParamatro:");
-        tjpnlParametros.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
-        tjpnlParametros.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
-
-        jLabel33.setText("Nombre:");
-        tjpnlParametros.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
-
-        jLabel40.setText("Parametros de tienda.");
-        tjpnlParametros.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
-
-        jLabel41.setText("Parametro:");
-        tjpnlParametros.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
-        tjpnlParametros.add(txtIdParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 150, -1));
-        tjpnlParametros.add(txtNombreParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 150, -1));
-        tjpnlParametros.add(txtParametroParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 150, -1));
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardarprov.png"))); // NOI18N
-        tjpnlParametros.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 100, 30));
-
-        btnModificarParametro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
-        tjpnlParametros.add(btnModificarParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 100, 30));
-
-        btnCancelarParametro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
-        tjpnlParametros.add(btnCancelarParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 100, 30));
-        tjpnlParametros.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 790, -1));
-
-        tpnlAdministracion.addTab("Parametros", tjpnlParametros);
 
         jpnAdministracion.add(tpnlAdministracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 720, 520));
 
@@ -2177,7 +2187,19 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             llenarTipoPrecio();
         } catch (Exception ex) {
             Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("No logro poner el modelo");
+            System.out.println("No logro poner el modelo TP");
+        }
+        try {
+            llenarSucursal();
+        } catch (Exception ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("No logro poner el modelo S");
+        }
+        try {
+            llenarParametro();
+        } catch (Exception ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("No logro poner el modelo Parametro");
         }
     }//GEN-LAST:event_btnAdministacionMouseClicked
 
@@ -2224,6 +2246,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnProductos);  
         apagado2();
         jpnProductos.setVisible(true);
+         try {
+            llenarProducto();
+        } catch (Exception ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("No logro poner el modelo producto");
+        }
     }//GEN-LAST:event_btnProductosMouseClicked
 
     private void btnAgregarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCompraActionPerformed
@@ -2664,12 +2692,23 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDireccionSucursalActionPerformed
 
     private void btnModificarSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarSucursalActionPerformed
-        
+       ControladorTipoPrecio cp= new ControladorTipoPrecio();
+               modificarSucursal=true;
+                String id = modeloSucursal.getValueAt(jtblSucursales.getSelectedRow(), 0).toString();
+                String nombre = modeloSucursal.getValueAt(jtblSucursales.getSelectedRow(), 1).toString();
+                String direccion= modeloSucursal.getValueAt(jtblSucursales.getSelectedRow(), 2).toString();
+                String telefono= modeloSucursal.getValueAt(jtblSucursales.getSelectedRow(), 3).toString();
+                
+                
+            txtIdSucursal.setText(""+id);
+            txtNombreSucursal.setText(""+nombre);
+            txtDireccionSucursal.setText(""+direccion); 
+            txtTelefonoSucursal.setText(""+telefono); 
             
     }//GEN-LAST:event_btnModificarSucursalActionPerformed
 
     private void btnModificarTipoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarTipoPrecioActionPerformed
-       ControladorTipoPrecio cp= new ControladorTipoPrecio();
+ControladorTipoPrecio cp= new ControladorTipoPrecio();
                modificarTipoPrecio=true;
                 String id = modeloTipoPrecio.getValueAt(jtblTipoDePrecio.getSelectedRow(), 0).toString();
                 String nombre = modeloTipoPrecio.getValueAt(jtblTipoDePrecio.getSelectedRow(), 1).toString();
@@ -2677,8 +2716,20 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 
             txtIdTipoPrecio.setText(""+id);
             txtNombreTipoPrecio.setText(""+nombre);
-            txtUtilidadTipoPrecio.setText(""+utilidad);
+            txtUtilidadTipoPrecio.setText(""+utilidad);       
     }//GEN-LAST:event_btnModificarTipoPrecioActionPerformed
+
+    private void btnModificarParametroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarParametroActionPerformed
+        ControladorTipoPrecio cp= new ControladorTipoPrecio();
+               modificarParametro=true;
+                String id = modeloParametro.getValueAt(jtblParametros.getSelectedRow(), 0).toString();
+                String nombre = modeloParametro.getValueAt(jtblParametros.getSelectedRow(), 1).toString();
+                String valor= modeloParametro.getValueAt(jtblParametros.getSelectedRow(), 2).toString();
+                
+            txtIdParametro.setText(""+id);
+            txtNombreParametro.setText(""+nombre);
+            txtParametroParametro.setText(""+valor);
+    }//GEN-LAST:event_btnModificarParametroActionPerformed
       
 //    public void llenarTablaProductoTyped(String codigo) throws SQLException{
 //        //clearTableCompra();
@@ -2725,34 +2776,22 @@ public void llenarTipoPrecio() throws Exception{
     limpiarTablaTipoPrecio();
     ResultSet rs=null;
     rs=tp.ObtenerTipoPrecio();
-
     if (!rs.isBeforeFirst()) { 
-             System.out.println("No existe");
-    //JOptionPane.showMessageDialog(null, "El producto no existe"); 
-}    else{
-             
+             System.out.println("No existe");; 
+}    else{         
          try {
             while (rs.next()) {
                 String IdTipoPrecio = rs.getString("IdTipoPrecio");
                 String Nombre = rs.getString("Nombre");
                 String Utilidad = rs.getString("Utilidad");
-               
                 modeloTipoPrecio.addRow(new String[]{IdTipoPrecio,Nombre,Utilidad});
-                System.out.println("puso el modelo");
-                //modelo.addRow(rs.getString(1));
-               
-                
+                System.out.println("puso el modelo");       
             }
         } catch (Exception e) {
-            throw  new ErrorTienda("No logra poner el modelo");
+            throw  new ErrorTienda("No logra poner el modelo TP");
         }
-        
         jtblTipoDePrecio.setModel(modeloTipoPrecio);
-         
-         }
-        
-    
-    
+         }    
 }  
 
 public void limpiarTablaTipoPrecio(){
@@ -2762,7 +2801,96 @@ public void limpiarTablaTipoPrecio(){
        }
 }
     
-    
+public void llenarSucursal() throws Exception{
+    ControladorSucursal tp=new ControladorSucursal();
+    limpiarTablaSucursal();
+    ResultSet rs=null;
+    rs=tp.Obtener();
+    if (!rs.isBeforeFirst()) { 
+             System.out.println("No existe"); 
+}    else{
+         try {
+            while (rs.next()) {
+                String IdSucursal = rs.getString("IdSucursal");
+                String Nombre = rs.getString("Nombre");
+                String Direccion = rs.getString("Direccion");
+                String Telefono = rs.getString("Telefono");
+                modeloSucursal.addRow(new String[]{IdSucursal,Nombre,Direccion,Telefono});
+                System.out.println("puso el modelo S");       
+            }
+        } catch (Exception e) {
+            throw  new ErrorTienda("No logra poner el modelo S");
+        }
+        jtblSucursales.setModel(modeloSucursal);
+         }   
+}  
+
+public void limpiarTablaSucursal(){
+ for (int i = 0; i < jtblSucursales.getRowCount(); i++) {
+           modeloSucursal.removeRow(i);
+           i-=1;
+       }
+}
+
+public void llenarParametro() throws Exception{
+    Parametro tp=new Parametro();
+    limpiarTablaParametro();
+    ResultSet rs=null;
+    rs=tp.Obtener();
+    if (!rs.isBeforeFirst()) { 
+             System.out.println("No existe"); 
+}    else{
+         try {
+            while (rs.next()) {
+                String IdSucursal = rs.getString("IdParametro");
+                String Nombre = rs.getString("Nombre");
+                String Valor = rs.getString("Valor");
+                modeloParametro.addRow(new String[]{IdSucursal,Nombre,Valor});
+                System.out.println("puso el modelo Param");       
+            }
+        } catch (Exception e) {
+            throw  new ErrorTienda("No logra poner el modelo Param");
+        }
+        jtblParametros.setModel(modeloParametro);
+         }   
+}  
+
+public void limpiarTablaParametro(){
+ for (int i = 0; i < jtblParametros.getRowCount(); i++) {
+           modeloParametro.removeRow(i);
+           i-=1;
+       }
+}
+
+public void llenarProducto() throws Exception{
+    ControladorProducto tp=new ControladorProducto();
+    limpiarTablaProducto();
+    ResultSet rs=null;
+    rs=tp.Obtener();
+    if (!rs.isBeforeFirst()) { 
+             System.out.println("No existe"); 
+}    else{
+         try {
+            while (rs.next()) {
+                String CodBarra = rs.getString("CodBarra");
+                String Nombre = rs.getString("Nombre");
+                String Costo = rs.getString("Costo");
+                modeloProducto.addRow(new String[]{CodBarra,Nombre,Costo});
+                System.out.println("puso el modelo Producto");       
+            }
+        } catch (Exception e) {
+            throw  new ErrorTienda("No logra poner el modelo Producto");
+        }
+        jtblProductos.setModel(modeloProducto);
+         }   
+}  
+
+public void limpiarTablaProducto(){
+ for (int i = 0; i < jtblProductos.getRowCount(); i++) {
+           modeloProducto.removeRow(i);
+           i-=1;
+       }
+}
     
     
     
