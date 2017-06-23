@@ -3737,6 +3737,10 @@
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtIdTipoPrecio">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="focusable" type="boolean" value="false"/>
+                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="130" y="270" width="250" height="-1"/>
@@ -3775,9 +3779,12 @@
                       <Image iconType="3" name="/iconos/modificar.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarTipoPrecioActionPerformed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="150" y="390" width="110" height="30"/>
+                      <AbsoluteConstraints x="240" y="180" width="110" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -3792,7 +3799,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="280" y="390" width="110" height="30"/>
+                      <AbsoluteConstraints x="140" y="390" width="110" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -3948,9 +3955,12 @@
                       <Image iconType="3" name="/iconos/modificar.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarSucursalActionPerformed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="180" y="430" width="110" height="40"/>
+                      <AbsoluteConstraints x="230" y="180" width="100" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -3962,7 +3972,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="300" y="430" width="100" height="40"/>
+                      <AbsoluteConstraints x="190" y="430" width="100" height="40"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -4175,7 +4185,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="160" y="360" width="100" height="30"/>
+                      <AbsoluteConstraints x="230" y="180" width="100" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -4187,7 +4197,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="290" y="360" width="100" height="30"/>
+                      <AbsoluteConstraints x="170" y="360" width="100" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>

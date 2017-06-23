@@ -1,8 +1,11 @@
 
 package frame;
 
+import controlador.ControladorProducto;
 import controlador.ControladorProveedor;
 import controlador.ControladorSucursal;
+import controlador.ControladorTipoPrecio;
+import controlador.ErrorTienda;
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.ResultSet;
@@ -24,13 +27,18 @@ import javax.swing.table.JTableHeader;
 public final class JFRPrincipal extends javax.swing.JFrame {
 
     boolean ventas, compras, productos, proveedores, administradores;
-    boolean apagado, principal;
+    boolean apagado, principal,modificarTipoPrecio;
     int x,y;
-    JTableHeader tHeadVentas,tHeadCompras,tHeadProductos,tHeadCompra,tHeadProveedores,tHeadDetalleCompra;
+    JTableHeader tHeadVentas,tHeadCompras,tHeadProductos,tHeadCompra,tHeadProveedores,tHeadDetalleCompra;  //agregar sigfid si es ncesario
+    JTableHeader tHeadTipoPrecio,tHeadSucursal,tHeadParametro,tHeadProducto;  //agregar sigfid si es ncesario
     DefaultTableModel modeloCompra = new DefaultTableModel();
     DefaultTableModel modeloAddCompra = new DefaultTableModel();
     DefaultTableModel modeloDetalleCompra = new DefaultTableModel();
     
+    DefaultTableModel modeloTipoPrecio = new DefaultTableModel();
+    DefaultTableModel modeloSucursal = new DefaultTableModel();
+    DefaultTableModel modeloParametro = new DefaultTableModel();
+    DefaultTableModel modeloProducto = new DefaultTableModel();
    
     //****** COMPRAS *******
     boolean cargarSucursalesC=false;
@@ -48,6 +56,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tHeadCompra=tblCompra.getTableHeader();
         tHeadProveedores=tblProveedores.getTableHeader();
         tHeadDetalleCompra=tblDetalleCompra.getTableHeader();
+        tHeadTipoPrecio = jtblTipoDePrecio.getTableHeader();
+        tHeadParametro = jtblParametros.getTableHeader();
+        tHeadSucursal = jtblSucursales.getTableHeader();
+        tHeadProducto = jtblProductos.getTableHeader();
+        
         
         cabezera();
         ventas = compras = productos = proveedores = apagado = false;
@@ -82,12 +95,32 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         modeloDetalleCompra.addColumn("Cantidad");
         modeloDetalleCompra.addColumn("Costo");
         modeloDetalleCompra.addColumn("SubTotal");
+        //llenado de tabla parametro  
+        modeloParametro.addColumn("ID Parametro");
+        modeloParametro.addColumn("Nombre");
+        modeloParametro.addColumn("Valor");
+        //llenado de tabla tipoPrecio  
+        modeloTipoPrecio.addColumn("IDTipoPrecio");
+        modeloTipoPrecio.addColumn("Nombre");
+        modeloTipoPrecio.addColumn("Utilidad");
+        //llenado de tabla sucursal  
+        modeloSucursal.addColumn("ID Sucursal");
+        modeloSucursal.addColumn("Nombre");
+        modeloSucursal.addColumn("Direccion");
+        modeloSucursal.addColumn("Telefono");
+        //llenado de tabla producto  
+        modeloProducto.addColumn("CodBarra");
+        modeloProducto.addColumn("Nombre");
+        modeloProducto.addColumn("Costo");
+        
         
         tblCompra.setModel(modeloAddCompra);
         tblCompras.setModel(modeloCompra);
         tblDetalleCompra.setModel(modeloDetalleCompra);
-        
-        
+        jtblTipoDePrecio.setModel(modeloTipoPrecio);
+        jtblParametros.setModel(modeloParametro);
+        jtblSucursales.setModel(modeloSucursal);
+        jtblProductos.setModel(modeloProducto);
         
         
         
@@ -122,6 +155,23 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tHeadDetalleCompra.setBackground(jpnBarraMenu.getBackground());
         tHeadDetalleCompra.setForeground(Color.WHITE);
         tHeadDetalleCompra.setFont(fuente);
+        
+        tHeadTipoPrecio.setBackground(jpnBarraMenu.getBackground());
+        tHeadTipoPrecio.setForeground(Color.WHITE);
+        tHeadTipoPrecio.setFont(fuente);
+        
+        tHeadSucursal.setBackground(jpnBarraMenu.getBackground());
+        tHeadSucursal.setForeground(Color.WHITE);
+        tHeadSucursal.setFont(fuente);
+        
+        tHeadParametro.setBackground(jpnBarraMenu.getBackground());
+        tHeadParametro.setForeground(Color.WHITE);
+        tHeadParametro.setFont(fuente);
+        
+        tHeadProducto.setBackground(jpnBarraMenu.getBackground());
+        tHeadProducto.setForeground(Color.WHITE);
+        tHeadProducto.setFont(fuente);
+                
         
     }
  
@@ -1854,6 +1904,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         jLabel45.setText("Utilidad:");
         tjpnlTipoPrecio.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
+
+        txtIdTipoPrecio.setEditable(false);
+        txtIdTipoPrecio.setFocusable(false);
         tjpnlTipoPrecio.add(txtIdTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 250, -1));
         tjpnlTipoPrecio.add(txtNombreTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 250, -1));
         tjpnlTipoPrecio.add(txtUtilidadTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 250, -1));
@@ -1862,7 +1915,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tjpnlTipoPrecio.add(btnGuardarTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 100, 30));
 
         btnModificarTipoPrecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
-        tjpnlTipoPrecio.add(btnModificarTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 110, 30));
+        btnModificarTipoPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarTipoPrecioActionPerformed(evt);
+            }
+        });
+        tjpnlTipoPrecio.add(btnModificarTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 110, 30));
 
         btnCancelarTipoPrecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
         btnCancelarTipoPrecio.addActionListener(new java.awt.event.ActionListener() {
@@ -1870,7 +1928,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnCancelarTipoPrecioActionPerformed(evt);
             }
         });
-        tjpnlTipoPrecio.add(btnCancelarTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 390, 110, 30));
+        tjpnlTipoPrecio.add(btnCancelarTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 110, 30));
         tjpnlTipoPrecio.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 790, 10));
 
         tpnlAdministracion.addTab("Tipos de precio", tjpnlTipoPrecio);
@@ -1934,10 +1992,15 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tjpnlSucursales.add(btnGuardarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 110, 40));
 
         btnModificarSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
-        tjpnlSucursales.add(btnModificarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 110, 40));
+        btnModificarSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarSucursalActionPerformed(evt);
+            }
+        });
+        tjpnlSucursales.add(btnModificarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 100, 30));
 
         btnCancelarSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
-        tjpnlSucursales.add(btnCancelarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, 100, 40));
+        tjpnlSucursales.add(btnCancelarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, 100, 40));
         tjpnlSucursales.add(txtIdSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 230, -1));
         tjpnlSucursales.add(txtNombreSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 230, -1));
 
@@ -2026,10 +2089,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tjpnlParametros.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 100, 30));
 
         btnModificarParametro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
-        tjpnlParametros.add(btnModificarParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 100, 30));
+        tjpnlParametros.add(btnModificarParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 100, 30));
 
         btnCancelarParametro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
-        tjpnlParametros.add(btnCancelarParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 100, 30));
+        tjpnlParametros.add(btnCancelarParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 100, 30));
         tjpnlParametros.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 790, -1));
 
         tpnlAdministracion.addTab("Parametros", tjpnlParametros);
@@ -2110,6 +2173,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnAdministacion);  
         apagado2();
         jpnAdministracion.setVisible(true); 
+        try {
+            llenarTipoPrecio();
+        } catch (Exception ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("No logro poner el modelo");
+        }
     }//GEN-LAST:event_btnAdministacionMouseClicked
 
     /*  ---- Acción de botones, cambiar de pantallas (Paneles) ----  */
@@ -2505,7 +2574,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarTipoPrecioMouseEntered
 
     private void btnEliminarTipoPrecioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarTipoPrecioMouseExited
-        btnNuevoTipoPrecio.setIcon(new ImageIcon(getClass().getResource("/iconos/eliminar.png")));
+        btnEliminarTipoPrecio.setIcon(new ImageIcon(getClass().getResource("/iconos/eliminar.png")));
     }//GEN-LAST:event_btnEliminarTipoPrecioMouseExited
 
     private void btnNuevoSucursalesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoSucursalesMouseEntered
@@ -2593,7 +2662,122 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private void txtDireccionSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionSucursalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDireccionSucursalActionPerformed
-                                                                                                                                                                                                                              
+
+    private void btnModificarSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarSucursalActionPerformed
+        
+            
+    }//GEN-LAST:event_btnModificarSucursalActionPerformed
+
+    private void btnModificarTipoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarTipoPrecioActionPerformed
+       ControladorTipoPrecio cp= new ControladorTipoPrecio();
+               modificarTipoPrecio=true;
+                String id = modeloTipoPrecio.getValueAt(jtblTipoDePrecio.getSelectedRow(), 0).toString();
+                String nombre = modeloTipoPrecio.getValueAt(jtblTipoDePrecio.getSelectedRow(), 1).toString();
+                String utilidad= modeloTipoPrecio.getValueAt(jtblTipoDePrecio.getSelectedRow(), 2).toString();
+                
+            txtIdTipoPrecio.setText(""+id);
+            txtNombreTipoPrecio.setText(""+nombre);
+            txtUtilidadTipoPrecio.setText(""+utilidad);
+    }//GEN-LAST:event_btnModificarTipoPrecioActionPerformed
+      
+//    public void llenarTablaProductoTyped(String codigo) throws SQLException{
+//        //clearTableCompra();
+//        limpiarTablaBuscarProducto();
+//          rs=null;    
+//        rs = llenarTablaBuscarProductoSql(codigo);
+//         //String []encabezado={"Codigo","Nombre","Primer apellido","Segundo Apellido", "Edad", "Direccion", "Telefono"};
+//         if (!rs.isBeforeFirst()) { 
+//             lblMostrarErrorProductos.setText("No existe");
+//    //JOptionPane.showMessageDialog(null, "El producto no existe"); 
+//}    else{
+//             txtProductosBuscar.setText("");
+//         try {
+//            while (rs.next()) {
+//                String Codigo = rs.getString("CodBarra");
+//                String inventario = rs.getString("Inventario");
+//                String costo = rs.getString("Costo");
+//                String nombre = rs.getString("nombre");
+//                modeloBusquedaProductos.addRow(new String[]{Codigo,nombre,costo,inventario});
+//                System.out.println("puso el modelo");
+//                //modelo.addRow(rs.getString(1));
+//                txtNombreProductoVender.setText(nombre);
+//                lblMostrarErrorProductos.setText("");
+//            }
+//        } catch (Exception e) {
+//            lblMostrarErrorProductos.setText("No existe");
+//        }
+//        
+//        jtblProductos.setModel(modeloBusquedaProductos);
+//         
+//         }
+//        
+//    }
+//    public void limpiarTablaBuscarProducto(){
+//  
+//  for (int i = 0; i < jtblProductos.getRowCount(); i++) {
+//           modeloBusquedaProductos.removeRow(i);
+//           i-=1;
+//       }
+//  }
+    
+public void llenarTipoPrecio() throws Exception{
+    ControladorTipoPrecio tp=new ControladorTipoPrecio();
+    limpiarTablaTipoPrecio();
+    ResultSet rs=null;
+    rs=tp.ObtenerTipoPrecio();
+
+    if (!rs.isBeforeFirst()) { 
+             System.out.println("No existe");
+    //JOptionPane.showMessageDialog(null, "El producto no existe"); 
+}    else{
+             
+         try {
+            while (rs.next()) {
+                String IdTipoPrecio = rs.getString("IdTipoPrecio");
+                String Nombre = rs.getString("Nombre");
+                String Utilidad = rs.getString("Utilidad");
+               
+                modeloTipoPrecio.addRow(new String[]{IdTipoPrecio,Nombre,Utilidad});
+                System.out.println("puso el modelo");
+                //modelo.addRow(rs.getString(1));
+               
+                
+            }
+        } catch (Exception e) {
+            throw  new ErrorTienda("No logra poner el modelo");
+        }
+        
+        jtblTipoDePrecio.setModel(modeloTipoPrecio);
+         
+         }
+        
+    
+    
+}  
+
+public void limpiarTablaTipoPrecio(){
+ for (int i = 0; i < jtblTipoDePrecio.getRowCount(); i++) {
+           modeloTipoPrecio.removeRow(i);
+           i-=1;
+       }
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */

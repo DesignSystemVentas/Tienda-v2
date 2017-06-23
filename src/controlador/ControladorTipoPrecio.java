@@ -89,7 +89,7 @@ public class ControladorTipoPrecio {
          } catch (Exception e) {
              throw new ErrorTienda("no logra obtener datos de tipoPrecio"); 
          }finally{
-         cn.desconectar();
+         //cn.desconectar();
          }
          return d;
      }
