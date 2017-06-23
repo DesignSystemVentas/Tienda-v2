@@ -3,6 +3,8 @@ package frame;
 
 
 import controlador.Conexion;
+import controlador.ControladorCompra;
+import controlador.ErrorTienda;
 ;
 import java.awt.Color;
 import java.awt.Font;
@@ -30,6 +32,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     boolean ventas, compras, productos, proveedores, administradores;
     boolean apagado, principal;
     ResultSet rs = null;
+    String tipoCompra="";
     int x,y;
     JTableHeader tHeadVentas,tHeadCompras,tHeadProductos,tHeadCompra,tHeadProveedores,tHeadDetalleCompra;
     DefaultTableModel modeloCompra = new DefaultTableModel();
@@ -328,7 +331,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbSucursalCompra = new javax.swing.JComboBox<>();
         lblFecha = new javax.swing.JLabel();
         lbltxtFechaCompra = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -1296,11 +1299,16 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnGuardarCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardarprov.png"))); // NOI18N
         btnGuardarCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardarCompra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGuardarCompraMouseExited(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnGuardarCompraMouseEntered(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnGuardarCompraMouseExited(evt);
+        });
+        btnGuardarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarCompraActionPerformed(evt);
             }
         });
         jpnRegistroCompra.add(btnGuardarCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 540, 110, 30));
@@ -1349,7 +1357,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jPanel39.setBackground(new java.awt.Color(0, 0, 0));
         jPanel39.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel39.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 160, -1));
+        jPanel39.add(cmbSucursalCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 160, -1));
 
         lblFecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblFecha.setForeground(new java.awt.Color(254, 254, 254));
@@ -2022,13 +2030,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             jcb.setEditable(false);
             JOptionPane.showMessageDialog( null, jcb, "Selecciona el tipo de compra", JOptionPane.QUESTION_MESSAGE);
             int tipo= jcb.getSelectedIndex();
-            String tipoCompra="";
+            
             switch(tipo){
                 
                 case 0:
                     tipoCompra = "F" ;
-                    bloquearIvaPercepcion();
-                    bloqueartotalesCompra();
+                 //   bloquearIvaPercepcion();
+                  //  bloqueartotalesCompra();
                     txtTipoCompra.setText("Factura");
                     txtTipoCompra.setEditable(false);
                     break;
@@ -2039,9 +2047,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                     lblPercepcionCompra.setVisible(true);
                     lblIvaCompra.setVisible(true);
                     txtIvaCompra.setVisible(true);
-                    txtIvaCompra.setEditable(false);
+                    txtIvaCompra.setEditable(true);
                     txtPercepcionCompra.setVisible(true);
-                    txtPercepcionCompra.setEditable(false);
+                    txtPercepcionCompra.setEditable(true);
                     
                     txtTipoCompra.setText("Crédito Fiscal");
                     txtTipoCompra.setEditable(false);
@@ -2052,7 +2060,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                     bloqueartotalesCompra();
                     bloquearIvaPercepcion();
                     txtTipoCompra.setText("Libre");
-                    txtTipoCompra.setEditable(false);
+                    txtTipoCompra.setEditable(true);
                     break;
             }
             //Daniel-Fin
@@ -2061,42 +2069,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             lbltxtFechaCompra.setText(getDateTime());
        
             
-        Conexion cn = new Conexion();
-        cn.conectar();
-        rs = null;
-        rs =  cn.getValores("SELECT COUNT(IdCompra) FROM Compra");
-       
-        try {
-            while (rs.next()) {
-                int cantidad = rs.getInt(1);
-                if (cantidad != 0) {
-                    rs = null;
-              
-                    rs = cn.getValores("SELECT MAX(IdCompra) FROM Compra");
-                    while (rs.next()) {
-                       int mayor = rs.getInt(1) + 1;
-                        //recuerde que debe completar 2 digitos
-                        if (mayor < 10) {
-                            txtIdCompra.setText("0" + mayor);
-                        } 
-                         else {
-                             txtIdCompra.setText("" + mayor);
-                        }
-                    }
-                } else {
-                     txtIdCompra.setText("0"+1);
-                }
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);
-        }
-            
-            
-        
-        
-    }//GEN-LAST:event_btnAgregarCompraActionPerformed
-//        
-//        public void ObtenerIdCompra() throws SQLException, ClassNotFoundException, ErrorTienda {
 //        Conexion cn = new Conexion();
 //        cn.conectar();
 //        rs = null;
@@ -2110,10 +2082,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 //              
 //                    rs = cn.getValores("SELECT MAX(IdCompra) FROM Compra");
 //                    while (rs.next()) {
-//                        int mayor = rs.getInt(1) + 1;
+//                       int mayor = rs.getInt(1) + 1;
 //                        //recuerde que debe completar 2 digitos
 //                        if (mayor < 10) {
-//                           txtIdCompra.setText("0" + mayor);
+//                            txtIdCompra.setText("0" + mayor);
 //                        } 
 //                         else {
 //                             txtIdCompra.setText("" + mayor);
@@ -2124,14 +2096,18 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (SQLException ex) {
-//            throw new ErrorTienda("Obtener id de la compra" + ex.getMessage());
+//            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);
 //        }
-//     
-//        }
+//            
+//            
+//        
+        
+    }//GEN-LAST:event_btnAgregarCompraActionPerformed
+
             
             
     private String getDateTime() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
     }      
@@ -2462,6 +2438,55 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private void btnEliminarSucursalesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarSucursalesMouseExited
        btnEliminarSucursales.setIcon(new ImageIcon(getClass().getResource("/iconos/eliminar.png")));
     }//GEN-LAST:event_btnEliminarSucursalesMouseExited
+
+    private void btnGuardarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCompraActionPerformed
+    
+        
+        
+         ControladorCompra cpp= new ControladorCompra();
+
+        int idCompra  = Integer.parseInt(txtIdCompra.getText());
+        String fecha= lbltxtFechaCompra.getText();
+        int  idProveedor= 1;
+        int idSucursal = 1;//Esto esta mal 
+        String numDocumento = "15";
+        double subtotal = Double.parseDouble(txtSubtotalCompra.getText());
+        double iva = Double.parseDouble(txtIvaCompra.getText());
+        double percepcion = Double.parseDouble(txtPercepcionCompra.getText());
+        double total = Double.parseDouble(txtTotalCompra.getText());
+        
+        
+        
+        
+        
+        Object P[]={idCompra,fecha, idProveedor, idSucursal,tipoCompra, numDocumento, subtotal, iva, percepcion, total};
+       
+        try {
+            
+            cpp.Agregar(P);
+            txtIdCompra.setText("");
+            //Calcular la fecha y hora de nuevo
+            lbltxtFechaCompra.setText("");
+            txtTelefonoProveedor.setText("");
+            txtDireccionProveedor.setText("");
+            txtNIT.setText("");
+            JOptionPane.showMessageDialog(null, "agregado con exito");
+            jpnAgregarProv.setVisible(false);
+            jpnProveedores.setVisible(true);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ErrorTienda ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+
+        
+        
+        
+    }//GEN-LAST:event_btnGuardarCompraActionPerformed
                                                                                                                                                                                                                               
     /**
      * @param args the command line arguments
@@ -2537,8 +2562,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnVerDetalle;
     private javax.swing.ButtonGroup btngFiltroProductos;
     private javax.swing.JComboBox cmbProveedorCompra;
+    private javax.swing.JComboBox<String> cmbSucursalCompra;
     private javax.swing.JComboBox<String> cmbTipoPrecio;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

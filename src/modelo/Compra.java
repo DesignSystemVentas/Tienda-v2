@@ -13,7 +13,7 @@ public class Compra {
     private Proveedor PROVEEDOR;
     private int IdSucursal;
     private char TipoCompra;
-    private String NomDocumento;
+    private String NumDocumento;
     private double SubTotal;
     private double IVA;
     private double Percepcion;
@@ -60,12 +60,12 @@ public class Compra {
         this.TipoCompra = TipoCompra;
     }
 
-    public String getNomDocumento() {
-        return NomDocumento;
+    public String getNumDocumento() {
+        return NumDocumento;
     }
 
-    public void setNomDocumento(String NomDocumento) {
-        this.NomDocumento = NomDocumento;
+    public void setNumDocumento(String NumDocumento) {
+        this.NumDocumento = NumDocumento;
     }
 
     public double getSubTotal() {

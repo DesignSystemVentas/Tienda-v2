@@ -802,7 +802,7 @@ is divided into following sections:
             <attribute default="jvm" name="jvm"/>
             <element name="customize" optional="true"/>
             <sequential>
-                <java classname="@{classname}" dir="${work.dir}" failonerror="${java.failonerror}" fork="true">
+                    <java classname="@{classname}" dir="${work.dir}" failonerror="${java.failonerror}" fork="true">
                     <jvmarg line="${endorsed.classpath.cmd.line.arg}"/>
                     <jvmarg value="-Dfile.encoding=${runtime.encoding}"/>
                     <redirector errorencoding="${runtime.encoding}" inputencoding="${runtime.encoding}" outputencoding="${runtime.encoding}"/>
