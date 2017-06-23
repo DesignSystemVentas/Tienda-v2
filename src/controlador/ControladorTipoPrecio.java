@@ -1,0 +1,97 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controlador;
+
+import java.sql.ResultSet;
+import modelo.TipoPrecio;
+
+/**
+ *
+ * @author sigfrid
+ */
+public class ControladorTipoPrecio {
+     Conexion cn=new Conexion();
+     
+     public void AgregarTipoPrecio(TipoPrecio t) throws Exception{
+
+         try {
+            cn.conectar();
+            cn.UID("INSERT into TipoPrecio(Nombre,Utilidad) Values("+t.getNombre()+","+t.getUtilidad()+");");
+            cn.desconectar();   
+         } catch (Exception e) {
+             throw new ErrorTienda("no logra ingresar tipoPrecio"); 
+         }finally{
+         cn.desconectar();
+         } 
+         
+     
+     }
+     
+     public void ModificarTipoPrecio(TipoPrecio t) throws Exception{
+         
+         try {
+         cn.conectar();
+         cn.UID("UPDATE TipoPrecio SET Nombre='" + t.getNombre() + "',Utilidad='" + t.getUtilidad()+"' WHERE IdTipoPrecio='" + t.getIdTipoPrecio() + "'");
+         cn.desconectar();   
+         } catch (Exception e) {
+              throw new ErrorTienda("no logra actualizar tipoPrecio"); 
+         }finally{
+         cn.desconectar();
+         }
+     }
+     
+     public void EliminarTipoPrecio(TipoPrecio t) throws  Exception{
+         try {
+         cn.conectar();
+         cn.UID("DELETE FROM TipoPrecio WHERE IdTipoPrecio='" + t.getIdTipoPrecio() + "'");
+         cn.desconectar();   
+         } catch (Exception e) {
+            throw new ErrorTienda("no logra liminar tipoPrecio"); 
+         }finally{
+         cn.desconectar();
+         }
+     }
+     
+     public ResultSet Buscar(int t) throws Exception{
+         ResultSet d=null;
+         try {
+         cn.conectar();
+         d=cn.getValores("SELECT * FROM TipoPrecio WHERE IdTipoPrecio='"+t+"'");    
+         } catch (Exception e) {
+              throw new ErrorTienda("no logra obtener datos de tipoPrecio");   
+         }finally{
+         cn.desconectar();
+         }
+         return d;
+     }
+     
+     public ResultSet ObtenerTipoPrecio(int t) throws Exception{
+     ResultSet d=null;
+         try {
+         cn.conectar();
+         d=cn.getValores("SELECT * FROM TipoPrecio WHERE IdTipoPrecio='"+t+"'");    
+         } catch (Exception e) {
+              throw new ErrorTienda("no logra obtener dato de tipoPrecio");   
+         }finally{
+         cn.desconectar();
+         }
+         return d;
+     }
+     
+     public ResultSet ObtenerTipoPrecio() throws Exception{
+     ResultSet d=null;
+         try {
+         cn.conectar();
+         d=cn.getValores("SELECT * FROM TipoPrecio");    
+         } catch (Exception e) {
+             throw new ErrorTienda("no logra obtener datos de tipoPrecio"); 
+         }finally{
+         cn.desconectar();
+         }
+         return d;
+     }
+     
+}

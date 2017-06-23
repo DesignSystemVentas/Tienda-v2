@@ -422,16 +422,52 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jtblTipoDePrecio = new javax.swing.JTable();
         btnNuevoTipoPrecio = new javax.swing.JButton();
         btnEliminarTipoPrecio = new javax.swing.JButton();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        txtIdTipoPrecio = new javax.swing.JTextField();
+        txtNombreTipoPrecio = new javax.swing.JTextField();
+        txtUtilidadTipoPrecio = new javax.swing.JTextField();
+        btnGuardarTipoPrecio = new javax.swing.JButton();
+        btnModificarTipoPrecio = new javax.swing.JButton();
+        btnCancelarTipoPrecio = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         tjpnlSucursales = new javax.swing.JPanel();
         jscpSucursales = new javax.swing.JScrollPane();
         jtblSucursales = new javax.swing.JTable();
         btnNuevoSucursales = new javax.swing.JButton();
         btnEliminarSucursales = new javax.swing.JButton();
+        jSeparator8 = new javax.swing.JSeparator();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        btnGuardarSucursal = new javax.swing.JButton();
+        btnModificarSucursal = new javax.swing.JButton();
+        btnCancelarSucursal = new javax.swing.JButton();
+        txtIdSucursal = new javax.swing.JTextField();
+        txtNombreSucursal = new javax.swing.JTextField();
+        txtDireccionSucursal = new javax.swing.JTextField();
+        txtTelefonoSucursal = new javax.swing.JTextField();
         tjpnlParametros = new javax.swing.JPanel();
         jscpTablaParametros = new javax.swing.JScrollPane();
         jtblParametros = new javax.swing.JTable();
         btnEliminarParametros = new javax.swing.JButton();
         btnNuevoParametros = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        txtIdParametro = new javax.swing.JTextField();
+        txtNombreParametro = new javax.swing.JTextField();
+        txtParametroParametro = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        btnModificarParametro = new javax.swing.JButton();
+        btnCancelarParametro = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/iconos/lanzador.png")).getImage());
@@ -1778,7 +1814,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         ));
         jscpTipoDePrecio.setViewportView(jtblTipoDePrecio);
 
-        tjpnlTipoPrecio.add(jscpTipoDePrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 690, 220));
+        tjpnlTipoPrecio.add(jscpTipoDePrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 690, 160));
 
         btnNuevoTipoPrecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo3.png"))); // NOI18N
         btnNuevoTipoPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1789,7 +1825,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnNuevoTipoPrecioMouseEntered(evt);
             }
         });
-        tjpnlTipoPrecio.add(btnNuevoTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 100, 30));
+        tjpnlTipoPrecio.add(btnNuevoTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 100, 30));
 
         btnEliminarTipoPrecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
         btnEliminarTipoPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1805,7 +1841,37 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnEliminarTipoPrecioActionPerformed(evt);
             }
         });
-        tjpnlTipoPrecio.add(btnEliminarTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 100, 30));
+        tjpnlTipoPrecio.add(btnEliminarTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 100, 30));
+
+        jLabel42.setText("Tipos de precio Tienda-ABC");
+        tjpnlTipoPrecio.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
+
+        jLabel43.setText("IdTipoPrecio:");
+        tjpnlTipoPrecio.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
+
+        jLabel44.setText("Nombre:");
+        tjpnlTipoPrecio.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
+
+        jLabel45.setText("Utilidad:");
+        tjpnlTipoPrecio.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
+        tjpnlTipoPrecio.add(txtIdTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 250, -1));
+        tjpnlTipoPrecio.add(txtNombreTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 250, -1));
+        tjpnlTipoPrecio.add(txtUtilidadTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 250, -1));
+
+        btnGuardarTipoPrecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardarprov.png"))); // NOI18N
+        tjpnlTipoPrecio.add(btnGuardarTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 100, 30));
+
+        btnModificarTipoPrecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
+        tjpnlTipoPrecio.add(btnModificarTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 110, 30));
+
+        btnCancelarTipoPrecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
+        btnCancelarTipoPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarTipoPrecioActionPerformed(evt);
+            }
+        });
+        tjpnlTipoPrecio.add(btnCancelarTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 390, 110, 30));
+        tjpnlTipoPrecio.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 790, 10));
 
         tpnlAdministracion.addTab("Tipos de precio", tjpnlTipoPrecio);
 
@@ -1824,7 +1890,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         ));
         jscpSucursales.setViewportView(jtblSucursales);
 
-        tjpnlSucursales.add(jscpSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 690, 220));
+        tjpnlSucursales.add(jscpSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 690, 160));
 
         btnNuevoSucursales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo3.png"))); // NOI18N
         btnNuevoSucursales.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1835,7 +1901,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnNuevoSucursalesMouseEntered(evt);
             }
         });
-        tjpnlSucursales.add(btnNuevoSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 100, 30));
+        tjpnlSucursales.add(btnNuevoSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 100, 30));
 
         btnEliminarSucursales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
         btnEliminarSucursales.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1846,7 +1912,42 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnEliminarSucursalesMouseEntered(evt);
             }
         });
-        tjpnlSucursales.add(btnEliminarSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 100, 30));
+        tjpnlSucursales.add(btnEliminarSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 100, 30));
+        tjpnlSucursales.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 790, 10));
+
+        jLabel46.setText("Sucursales Tienda-ABC");
+        tjpnlSucursales.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, -1, -1));
+
+        jLabel47.setText("IdSucursal:");
+        tjpnlSucursales.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
+
+        jLabel48.setText("Nombre:");
+        tjpnlSucursales.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
+
+        jLabel49.setText("Direccion:");
+        tjpnlSucursales.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, -1));
+
+        jLabel50.setText("Telefono:");
+        tjpnlSucursales.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, -1, -1));
+
+        btnGuardarSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardarprov.png"))); // NOI18N
+        tjpnlSucursales.add(btnGuardarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 110, 40));
+
+        btnModificarSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
+        tjpnlSucursales.add(btnModificarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 110, 40));
+
+        btnCancelarSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
+        tjpnlSucursales.add(btnCancelarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, 100, 40));
+        tjpnlSucursales.add(txtIdSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 230, -1));
+        tjpnlSucursales.add(txtNombreSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 230, -1));
+
+        txtDireccionSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDireccionSucursalActionPerformed(evt);
+            }
+        });
+        tjpnlSucursales.add(txtDireccionSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 230, -1));
+        tjpnlSucursales.add(txtTelefonoSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 230, -1));
 
         tpnlAdministracion.addTab("Sucursales", tjpnlSucursales);
 
@@ -1865,7 +1966,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         ));
         jscpTablaParametros.setViewportView(jtblParametros);
 
-        tjpnlParametros.add(jscpTablaParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 230));
+        tjpnlParametros.add(jscpTablaParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 170));
 
         btnEliminarParametros.setBackground(new java.awt.Color(0, 0, 0));
         btnEliminarParametros.setForeground(new java.awt.Color(255, 255, 255));
@@ -1884,7 +1985,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnEliminarParametrosActionPerformed(evt);
             }
         });
-        tjpnlParametros.add(btnEliminarParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 100, 30));
+        tjpnlParametros.add(btnEliminarParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 100, 30));
 
         btnNuevoParametros.setBackground(new java.awt.Color(0, 0, 0));
         btnNuevoParametros.setForeground(new java.awt.Color(255, 255, 255));
@@ -1903,7 +2004,33 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnNuevoParametrosActionPerformed(evt);
             }
         });
-        tjpnlParametros.add(btnNuevoParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 100, 30));
+        tjpnlParametros.add(btnNuevoParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 100, 30));
+
+        jLabel1.setText("idParamatro:");
+        tjpnlParametros.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+        tjpnlParametros.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
+
+        jLabel33.setText("Nombre:");
+        tjpnlParametros.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
+
+        jLabel40.setText("Parametros de tienda.");
+        tjpnlParametros.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
+
+        jLabel41.setText("Parametro:");
+        tjpnlParametros.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
+        tjpnlParametros.add(txtIdParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 150, -1));
+        tjpnlParametros.add(txtNombreParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 150, -1));
+        tjpnlParametros.add(txtParametroParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 150, -1));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardarprov.png"))); // NOI18N
+        tjpnlParametros.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 100, 30));
+
+        btnModificarParametro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
+        tjpnlParametros.add(btnModificarParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 100, 30));
+
+        btnCancelarParametro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
+        tjpnlParametros.add(btnCancelarParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 100, 30));
+        tjpnlParametros.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 790, -1));
 
         tpnlAdministracion.addTab("Parametros", tjpnlParametros);
 
@@ -2458,6 +2585,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private void txtTotalCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalCompraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTotalCompraActionPerformed
+
+    private void btnCancelarTipoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarTipoPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarTipoPrecioActionPerformed
+
+    private void txtDireccionSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionSucursalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDireccionSucursalActionPerformed
                                                                                                                                                                                                                               
     /**
      * @param args the command line arguments
@@ -2506,6 +2641,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarProducto;
     private javax.swing.JButton btnBuscarProductoVenta;
     private javax.swing.JButton btnCancelarCompra;
+    private javax.swing.JButton btnCancelarParametro;
+    private javax.swing.JButton btnCancelarSucursal;
+    private javax.swing.JButton btnCancelarTipoPrecio;
     private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnEliminarParametros;
     private javax.swing.JButton btnEliminarProducto;
@@ -2516,9 +2654,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardarCompra;
     private javax.swing.JButton btnGuardarModificarProveedor;
     private javax.swing.JButton btnGuardarProveedor;
+    private javax.swing.JButton btnGuardarSucursal;
+    private javax.swing.JButton btnGuardarTipoPrecio;
     private javax.swing.JLabel btnHome;
+    private javax.swing.JButton btnModificarParametro;
     private javax.swing.JButton btnModificarProducto;
     private javax.swing.JButton btnModificarProveedor;
+    private javax.swing.JButton btnModificarSucursal;
+    private javax.swing.JButton btnModificarTipoPrecio;
     private javax.swing.JButton btnNuevoParametros;
     private javax.swing.JButton btnNuevoProducto;
     private javax.swing.JButton btnNuevoSucursales;
@@ -2532,6 +2675,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btngFiltroProductos;
     private javax.swing.JComboBox cmbProveedorCompra;
     private javax.swing.JComboBox<String> cmbSucursalCompra;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -2557,6 +2702,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
@@ -2564,7 +2710,19 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -2584,6 +2742,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
@@ -2623,7 +2782,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator43;
     private javax.swing.JSeparator jSeparator47;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JPanel jpnAdministracion;
     private javax.swing.JPanel jpnAgregarProv;
     private javax.swing.JPanel jpnBarraMenu;
@@ -2721,23 +2882,31 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtCostoProductoCompra;
     private javax.swing.JLabel txtDireccionActualProveedor;
     private javax.swing.JTextField txtDireccionProveedor;
+    private javax.swing.JTextField txtDireccionSucursal;
     private javax.swing.JTextField txtIDProveedor;
     private javax.swing.JTextField txtIDProveedor1;
     private javax.swing.JTextField txtIdCompra;
+    private javax.swing.JTextField txtIdParametro;
+    private javax.swing.JTextField txtIdSucursal;
+    private javax.swing.JTextField txtIdTipoPrecio;
     private javax.swing.JTextField txtIdVenta;
     private javax.swing.JTextField txtIvaCompra;
     private javax.swing.JTextField txtNIT;
     private javax.swing.JLabel txtNitActualProveedor;
     private javax.swing.JLabel txtNombreActualProveedor1;
+    private javax.swing.JTextField txtNombreParametro;
     private javax.swing.JTextField txtNombreProductoCompra;
     private javax.swing.JTextField txtNombreProductoVender;
     private javax.swing.JTextField txtNombreProductos;
     private javax.swing.JTextField txtNombreProductos1;
     private javax.swing.JTextField txtNombreProveedor;
+    private javax.swing.JTextField txtNombreSucursal;
+    private javax.swing.JTextField txtNombreTipoPrecio;
     private javax.swing.JTextField txtNuevoDireccionProveedor;
     private javax.swing.JTextField txtNuevoNIT;
     private javax.swing.JTextField txtNuevoNombreProveedor;
     private javax.swing.JTextField txtNuevoTelefonoProveedor;
+    private javax.swing.JTextField txtParametroParametro;
     private javax.swing.JTextField txtPercepcionCompra;
     private javax.swing.JTextField txtPrecioProductos;
     private javax.swing.JTextField txtPrecioProductos2;
@@ -2747,10 +2916,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtSubtotalCompra;
     private javax.swing.JLabel txtTelefonoActualProveedor;
     private javax.swing.JTextField txtTelefonoProveedor;
+    private javax.swing.JTextField txtTelefonoSucursal;
     private javax.swing.JTextField txtTipoCompra;
     private javax.swing.JTextField txtTotal2;
     private javax.swing.JTextField txtTotalCompra;
     private javax.swing.JTextField txtTotalventa;
+    private javax.swing.JTextField txtUtilidadTipoPrecio;
     // End of variables declaration//GEN-END:variables
 
     private void setVisible(JPopupMenu MenuEmergente) {
