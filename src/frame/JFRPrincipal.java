@@ -271,6 +271,34 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnCompras.setVisible(false);
         jpnDetalleCompra.setVisible(false);
     }
+    //VIZCARRA//
+    public void saberCodigoVenta(){
+        int cantidad, mayor=0;           
+        try {
+            rstControladorVenta = controladorventa.ObtenerIdVenta();
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} 
+        
+        try {                    
+           while (rstControladorVenta.next()) {
+                cantidad = rstControladorVenta.getInt(1);
+                if (cantidad != 0) {
+                    rstControladorVenta = null;
+                    try {
+                        //método en clase ventas
+                        rstControladorVenta = controladorventa.ObtenerIdVenta();
+                    } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}                    
+                    while (rstControladorVenta.next()) {
+                        mayor = rstControladorVenta.getInt(1) + 1;                                                     
+                        txtIdVenta.setText(""+mayor);                        
+                    }
+                } else if (cantidad == 0) {
+                    txtIdVenta.setText("1");
+                }
+            }
+        } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
+    }
+    //VIZCARRA//    
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
