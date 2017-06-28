@@ -36,7 +36,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     Calendar calendar1 = Calendar.getInstance();
     Calendar calendar2 = new GregorianCalendar();       
     Calendar calendar = Calendar.getInstance();  
-    int dia, mes, anio, fila=0, venta=0, sucursal, tipoventa, nitVenta, giroVenta, nDocumentoVenta;
+    
+    int dia, mes, anio, fila=0, venta=0, sucursal, tipoventa, nitVenta, giroVenta, nDocumentoVenta, sabercmbUtilidadVenta, sabercmbIdSucursal, sabercmbTipoFactura;
     double Punitario = 0, TotalGravadoVenta=0, TotalVenta=0, SubTotalVenta;   
     boolean encontrar;
     ResultSet rstControladorVenta = null;
@@ -271,6 +272,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.setVisible(false);
         jpnCompras.setVisible(false);
         jpnDetalleCompra.setVisible(false);
+        jpnRegistrarVenta.setVisible(false);
+        jpnAdministracion.setVisible(false);
+
     }
     //VIZCARRA//
     public void saberCodigoVenta(){
@@ -605,7 +609,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel56 = new javax.swing.JLabel();
         txtCodigoBarraVender = new javax.swing.JTextField();
         lblNRCventa = new javax.swing.JLabel();
-        cmbTipoFactura = new javax.swing.JComboBox();
+        cmbTipoFacturaVenta = new javax.swing.JComboBox();
         cmbSucursal = new javax.swing.JComboBox();
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
@@ -623,6 +627,16 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblGiroVenta = new javax.swing.JLabel();
         lblNITventa = new javax.swing.JLabel();
         jLabel62 = new javax.swing.JLabel();
+        txtSaberIdTipoPrecio = new javax.swing.JTextField();
+        txtSaberIdSucursal = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jpnReporteVentas = new javax.swing.JPanel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tblReporteVentas = new javax.swing.JTable();
+        jPanel51 = new javax.swing.JPanel();
+        lblProveedores9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/iconos/lanzador.png")).getImage());
@@ -2270,14 +2284,19 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblNRCventa.setText("NRC");
         jpnRegistrarVenta.add(lblNRCventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
-        cmbTipoFactura.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CONSUMIDOR FINAL", "CREDITO FISCAL", "LIBRE" }));
-        cmbTipoFactura.addItemListener(new java.awt.event.ItemListener() {
+        cmbTipoFacturaVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FACTURA", "CREDITO FISCAL", "LIBRE" }));
+        cmbTipoFacturaVenta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbTipoFacturaItemStateChanged(evt);
+                cmbTipoFacturaVentaItemStateChanged(evt);
             }
         });
-        jpnRegistrarVenta.add(cmbTipoFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, 140, 30));
+        jpnRegistrarVenta.add(cmbTipoFacturaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, 140, 30));
 
+        cmbSucursal.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbSucursalItemStateChanged(evt);
+            }
+        });
         cmbSucursal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbSucursalActionPerformed(evt);
@@ -2312,6 +2331,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel60.setText("Sucursal");
         jpnRegistrarVenta.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
+        cmbUtilidad.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbUtilidadItemStateChanged(evt);
+            }
+        });
         jpnRegistrarVenta.add(cmbUtilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 120, 30));
         jpnRegistrarVenta.add(txtGiroVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 90, 30));
         jpnRegistrarVenta.add(txtNRCventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 80, 30));
@@ -2332,8 +2356,48 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel62.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel62.setText("SUMAS");
         jpnRegistrarVenta.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 510, -1, -1));
+        jpnRegistrarVenta.add(txtSaberIdTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 530, 90, 40));
+        jpnRegistrarVenta.add(txtSaberIdSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 60, 40));
+
+        jLabel16.setText("sucursal");
+        jpnRegistrarVenta.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, -1, -1));
+
+        jLabel19.setText("tipoprecio");
+        jpnRegistrarVenta.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, 60, -1));
 
         getContentPane().add(jpnRegistrarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
+
+        jpnReporteVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+        jpnReporteVentas.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 750, 10));
+
+        tblReporteVentas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblReporteVentas.getTableHeader().setReorderingAllowed(false);
+        jScrollPane8.setViewportView(tblReporteVentas);
+
+        jpnReporteVentas.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 740, 190));
+
+        jPanel51.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel51.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblProveedores9.setBackground(new java.awt.Color(255, 255, 255));
+        lblProveedores9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblProveedores9.setForeground(new java.awt.Color(255, 255, 255));
+        lblProveedores9.setText("REPORTE");
+        jPanel51.add(lblProveedores9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 110, 50));
+
+        jpnReporteVentas.add(jPanel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 70));
+
+        getContentPane().add(jpnReporteVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
         pack();
         setLocationRelativeTo(null);
@@ -3040,7 +3104,7 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
     }//GEN-LAST:event_btnHacerNuevaVentaMouseExited
 
     private void btnHacerNuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHacerNuevaVentaActionPerformed
-        if (cmbTipoFactura.getSelectedIndex()==1) {
+        if (cmbTipoFacturaVenta.getSelectedIndex()==1) {
             txtGiroVenta.setVisible(true);
             txtNITventa.setVisible(true);
             txtNRCventa.setVisible(true);
@@ -3106,25 +3170,25 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
     }//GEN-LAST:event_btnVenderMousePressed
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        //Agrega cada item de detalle compra
-        int sucursaldv = 1;
-        sucursaldv = sucursaldv + cmbSucursal.getSelectedIndex();
-        int IdventaAgregar = Integer.parseInt(txtIdVenta.getText());
-        sucursaldv = sucursaldv;
-        if (cmbTipoFactura.getSelectedIndex()==0) {
+        //Agrega cada item de detalle compra       
+        int IdventaAgregar = Integer.parseInt(txtIdVenta.getText());  
+        int IdTipoPrecio = sabercmbUtilidadVenta + 1;
+        int IdSucursal = sabercmbIdSucursal + 1;
+        
+        if (cmbTipoFacturaVenta.getSelectedIndex()==0) {
             for(int i=0;i < tblRegistrarVenta.getRowCount();i++){
                 Conexion cn = new Conexion();//
-                cn.UID("INSERT INTO detalleventa (IdVenta, CodBarra, Cantidad, PrecioUnitario, IdSucursal) VALUES ('" +IdventaAgregar+ "','" +tblRegistrarVenta.getValueAt(i, 0)+ "','"
-                    +tblRegistrarVenta.getValueAt(i, 2)+ "','" + (Double.parseDouble(tblRegistrarVenta.getValueAt(i, 3).toString() ))/1.13+ "','" + sucursaldv + "')");
-                cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblRegistrarVenta.getValueAt(i, 2)+ "'  WHERE CodBarra='" +tblRegistrarVenta.getValueAt(i, 0)+ "'");
+                cn.UID("INSERT INTO detalleventa (IdVenta, CodBarra, Cantidad, PrecioUnitario) VALUES ('" +IdventaAgregar+ "','" +tblRegistrarVenta.getValueAt(i, 0)+ "','"
+                    +tblRegistrarVenta.getValueAt(i, 2)+ "','" + (Double.parseDouble(tblRegistrarVenta.getValueAt(i, 3).toString() ))/1.13 + "')");
+                cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblRegistrarVenta.getValueAt(i, 2)+ "'  WHERE IdSucursal='" + IdSucursal + "'");
             }
         }else{
-            for(int i=0;i < tblRegistrarVenta.getRowCount();i++){
-                Conexion cn = new Conexion();//
-                cn.UID("INSERT INTO detalleventa (IdVenta, CodBarra, Cantidad, PrecioUnitario, IdSucursal) VALUES ('" +venta+ "','" +tblRegistrarVenta.getValueAt(i, 0)+ "','"
-                    +tblRegistrarVenta.getValueAt(i, 2)+ "','" +tblRegistrarVenta.getValueAt(i, 3)+ "','" + cmbSucursal.getSelectedIndex()+1 + "')");
-                cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblRegistrarVenta.getValueAt(i, 2)+ "'  WHERE CodBarra='" +tblRegistrarVenta.getValueAt(i, 0)+ "'");
-            }
+        for(int i=0;i < tblRegistrarVenta.getRowCount();i++){            
+            Conexion cn = new Conexion();//
+            cn.UID("INSERT INTO detalleventa (IdVenta, CodBarra, Cantidad, PrecioUnitario) VALUES ('" +venta+ "','" +tblRegistrarVenta.getValueAt(i, 0)+ "','"
+                +tblRegistrarVenta.getValueAt(i, 2)+ "','" +tblRegistrarVenta.getValueAt(i, 3)+  "')");
+            cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblRegistrarVenta.getValueAt(i, 2)+ "'  WHERE CodBarra='" +tblRegistrarVenta.getValueAt(i, 0)+ "'");                
+        }
         }
         //TERMINAR DE AGREGAR//
 
@@ -3134,11 +3198,12 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
         String NIT = "";
         String NRC = "";
         String TipoVenta = "";
+        
         int IdVenta = Integer.parseInt(txtIdVenta.getText());
-        int IdSucursal = sucursaldv;
-        int IdTipoPrecio = cmbUtilidad.getSelectedIndex() + 1;
+        
+        
         String Cliente = txtClienteVenta.getText();
-        int NDocumento = Integer.parseInt(txtNuDocumentoVenta.getText());
+        String NDocumento = txtNuDocumentoVenta.getText();
 
         int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
         double  TotalGravadoVenta = 0;
@@ -3146,32 +3211,36 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
             TotalGravadoVenta = TotalGravadoVenta + Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
             iteracion++;
         }
+        
         double IVA=0, TotalGravado=TotalGravadoVenta, Total=0;
-        if (cmbTipoFactura.getSelectedIndex()==0) {
+       
+        if (cmbTipoFacturaVenta.getSelectedIndex()==0) {
             TipoVenta = "FACTURA";
             double saberiva = TotalGravado/1.13;
             IVA = TotalGravado - saberiva;
             Total=saberiva;
 
-        } else if (cmbTipoFactura.getSelectedIndex()==1) {
+        } 
+        if (cmbTipoFacturaVenta.getSelectedIndex()==1) {
             Giro = txtGiroVenta.getText();
             NIT = txtNITventa.getText();
             NRC = txtNRCventa.getText();
-            TipoVenta = "CREDITOFISCAL";
+            TipoVenta = "CREDITO FISCAL";
             IVA = 0;
-            Total = TotalGravadoVenta;
-            txtGiroVenta.setText("");
-            txtNITventa.setText("");
-            txtNRCventa.setText(Giro);
-        }else if (cmbTipoFactura.getSelectedIndex()==2) {
+            Total = TotalGravadoVenta;            
+        }
+        
+        if (cmbTipoFacturaVenta.getSelectedIndex()==2) {
             TipoVenta = "LIBRE";
             IVA = 0;
             Total = TotalGravado;
 
         }
+        txtSaberIdTipoPrecio.setText("" +IdTipoPrecio);
+        txtSaberIdSucursal.setText("" +IdSucursal);
 
         try {
-            controladorventa.Agregar(IdVenta, IdSucursal, TipoVenta, IdTipoPrecio, Cliente, Fecha, IVA, TotalGravado, Total, Direcion, Giro, NIT, NRC, NDocumento);
+            controladorventa.Agregar(IdVenta, IdSucursal, IdTipoPrecio, TipoVenta, Cliente, Fecha, IVA, TotalGravado, Total, Direcion, Giro, NIT, NRC, NDocumento);
         } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
         //limpiar la tabla
         for(int i=0;i < mAgregarDVenta.getRowCount();i++){
@@ -3188,6 +3257,9 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
         txtTotalventaGravado.setText("");
         txtIdVenta.setText("");
         txtNuDocumentoVenta.setText("");
+        txtGiroVenta.setText("");
+            txtNITventa.setText("");
+            txtNRCventa.setText(Giro);
         saberCodigoVenta();
     }//GEN-LAST:event_btnVenderActionPerformed
 
@@ -3200,11 +3272,9 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
     }//GEN-LAST:event_btnAgregarProductoVentaMouseExited
 
     private void btnAgregarProductoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaActionPerformed
-        venta = Integer.parseInt(txtIdVenta.getText());
-        sucursal = cmbSucursal.getSelectedIndex();
-        tipoventa = cmbTipoFactura.getSelectedIndex();
+         tipoventa = cmbTipoFacturaVenta.getSelectedIndex();
         CodigoBarraVender = txtCodigoBarraVender.getText();
-        int posicioncmbTipoFactura=cmbTipoFactura.getSelectedIndex(), posicioncmbSucursal=cmbSucursal.getSelectedIndex();
+        int posicioncmbTipoFactura=cmbTipoFacturaVenta.getSelectedIndex(), posicioncmbUtilidad=cmbUtilidad.getSelectedIndex();
         //CON FACTURA//
         if (posicioncmbTipoFactura==0) {
             // para saber si se repite el producto
@@ -3217,16 +3287,15 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
             }
             //si no hay producTO repetido se realiza esta opcion//
             if (encontrar == false) {
-                if (posicioncmbSucursal==0) {
+                if (posicioncmbUtilidad==0) {
                     Punitario = (Punitario*1.13)/(1-0.25);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-
                     TotalVenta = TotalVenta +(SubTotalVenta);
-                } if (posicioncmbSucursal==1) {
+                } if (posicioncmbUtilidad==1) {
                     Punitario= (Punitario*1.13)/(1-0.12);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
                     TotalVenta = TotalVenta +(SubTotalVenta);
-                } if (posicioncmbSucursal==2) {
+                } if (posicioncmbUtilidad==2) {
                     Punitario= (Punitario*1.13)/(1-0.085);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
                     TotalVenta = TotalVenta +(SubTotalVenta);
@@ -3255,16 +3324,18 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                     j++;
                 }
                 CantidadActualizada = (Integer.parseInt(tblRegistrarVenta.getValueAt(j-1, 2).toString())) + (Integer.parseInt(txtCantidadVender.getText()));
-                if (posicioncmbSucursal==0) {
+                if (posicioncmbUtilidad==0) {
                     Punitario = (Punitario*1.13)/(1-0.25);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
                     TotalVenta = TotalVenta +(SubTotalVenta);
-                } if (posicioncmbSucursal==1) {
+                } if (posicioncmbUtilidad==1) {
                     Punitario= (Punitario*1.13)/(1-0.12);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                } if (posicioncmbSucursal==2) {
+                    TotalVenta = TotalVenta +(SubTotalVenta);
+                } if (posicioncmbUtilidad==2) {
                     Punitario= (Punitario*1.13)/(1-0.085);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                    TotalVenta = TotalVenta +(SubTotalVenta);
                 }
                 NuevoValor = (Punitario * Double.parseDouble(txtCantidadVender.getText())) + (Double.parseDouble(tblRegistrarVenta.getValueAt(j-1, 4).toString()));
                 tblRegistrarVenta.setValueAt(CantidadActualizada, j-1, 2);
@@ -3299,17 +3370,16 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
             }
             //si no hay producto repetido se realiza esta opcion//
             if (encontrar == false) {
-                if (posicioncmbSucursal==0) {
-                    Punitario = (Punitario*1.13)/(1-0.25);
+                if (posicioncmbUtilidad==0) {
+                    Punitario = Punitario /(1-0.25);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-
-                    TotalVenta = TotalVenta +(SubTotalVenta);
-                } if (posicioncmbSucursal==1) {
-                    Punitario= (Punitario*1.13)/(1-0.12);
+                    TotalVenta = TotalVenta +(SubTotalVenta);                    
+                } if (posicioncmbUtilidad==1) {
+                    Punitario= (Punitario)/(1-0.12);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
                     TotalVenta = TotalVenta +(SubTotalVenta);
-                } if (posicioncmbSucursal==2) {
-                    Punitario= (Punitario*1.13)/(1-0.085);
+                } if (posicioncmbUtilidad==2) {
+                    Punitario= (Punitario)/(1-0.085);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
                     TotalVenta = TotalVenta +(SubTotalVenta);
                 }
@@ -3336,16 +3406,18 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                     buscar = tblRegistrarVenta.getValueAt(j, 0).equals(CodigoBarraVender);
                     j++;
                 }
-                if (posicioncmbSucursal==0) {
-                    Punitario = (Punitario*1.13)/(1-0.25);
+                if (posicioncmbUtilidad==0) {
+                    Punitario = (Punitario)/(1-0.25);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
                     TotalVenta = TotalVenta +(SubTotalVenta);
-                } if (posicioncmbSucursal==1) {
-                    Punitario= (Punitario*1.13)/(1-0.12);
+                } if (posicioncmbUtilidad==1) {
+                    Punitario= (Punitario)/(1-0.12);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                } if (posicioncmbSucursal==2) {
-                    Punitario= (Punitario*1.13)/(1-0.085);
+                    TotalVenta = TotalVenta +(SubTotalVenta);
+                } if (posicioncmbUtilidad==2) {
+                    Punitario= (Punitario)/(1-0.085);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                    TotalVenta = TotalVenta +(SubTotalVenta);
                 }
                 CantidadActualizada = (Integer.parseInt(tblRegistrarVenta.getValueAt(j-1, 2).toString())) + (Integer.parseInt(txtCantidadVender.getText()));
                 NuevoValor = (Punitario * Double.parseDouble(txtCantidadVender.getText())) + (Double.parseDouble(tblRegistrarVenta.getValueAt(j-1, 4).toString()));
@@ -3358,6 +3430,7 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                 txtNombreProductoVender.setText("");
                 txtCantidadVender.setText("");
             }//finaliza la actualizacion de tupla
+            
             encontrar=false;
             int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
             double total=0;
@@ -3388,16 +3461,16 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
             }
             //si no hay produc repetido se realiza esta opcion//
             if (encontrar == false) {
-                if (posicioncmbSucursal==0) {
+                if (posicioncmbUtilidad==0) {
                     Punitario = (Punitario*1.13)/(1-0.25);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
 
                     TotalVenta = TotalVenta +(SubTotalVenta);
-                } if (posicioncmbSucursal==1) {
+                } if (posicioncmbUtilidad==1) {
                     Punitario= (Punitario*1.13)/(1-0.12);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
                     TotalVenta = TotalVenta +(SubTotalVenta);
-                } if (posicioncmbSucursal==2) {
+                } if (posicioncmbUtilidad==2) {
                     Punitario= (Punitario*1.13)/(1-0.085);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
                     TotalVenta = TotalVenta +(SubTotalVenta);
@@ -3424,6 +3497,19 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                 while (buscar == false) {
                     buscar = tblRegistrarVenta.getValueAt(j, 0).equals(CodigoBarraVender);
                     j++;
+                }
+                if (posicioncmbUtilidad==0) {
+                    Punitario = (Punitario)/(1-0.25);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                    TotalVenta = TotalVenta +(SubTotalVenta);
+                } if (posicioncmbUtilidad==1) {
+                    Punitario= (Punitario)/(1-0.12);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                    TotalVenta = TotalVenta +(SubTotalVenta);
+                } if (posicioncmbUtilidad==2) {
+                    Punitario= (Punitario)/(1-0.085);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                    TotalVenta = TotalVenta +(SubTotalVenta);
                 }
                 CantidadActualizada = (Integer.parseInt(tblRegistrarVenta.getValueAt(j-1, 2).toString())) + (Integer.parseInt(txtCantidadVender.getText()));
                 NuevoValor = (Punitario * Double.parseDouble(txtCantidadVender.getText())) + (Double.parseDouble(tblRegistrarVenta.getValueAt(j-1, 4).toString()));
@@ -3459,25 +3545,25 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
     }//GEN-LAST:event_lblFechaVentaMostrarActionPerformed
 
     private void txtCodigoBarraVenderKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoBarraVenderKeyPressed
-//        if (evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER){
-//            //busacado de nombre y precio//
-//            try {
-//                rstControladorProducto = cp.buscarNYP((String)txtCodigoBarraVender.getText());
-//            } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
-//            try {
-//                while (rstControladorProducto.next()){
-//                    //guardar en una variable en precio del producto buscado desde la base de datos
-//                    String PrecioUnitario = rstControladorProducto.getString("Costo");
-//                    Punitario = Double.parseDouble(PrecioUnitario);
-//                    txtNombreProductoVender.setText(rstControladorProducto.getString("Nombre"));
-//                }
-//            } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
-//            txtCantidadVender.requestFocus();
-//        }//finalizado (buscado de nombre y precio)//
+        if (evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER){
+            //busacado de nombre y precio//
+            try {
+                rstControladorProducto = cp.buscarNYP((String)txtCodigoBarraVender.getText());
+            } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
+            try {
+                while (rstControladorProducto.next()){
+                    //guardar en una variable en precio del producto buscado desde la base de datos
+                    String PrecioUnitario = rstControladorProducto.getString("Costo");
+                    Punitario = Double.parseDouble(PrecioUnitario);
+                    txtNombreProductoVender.setText(rstControladorProducto.getString("Nombre"));
+                }
+            } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
+            txtCantidadVender.requestFocus();
+        }//finalizado (buscado de nombre y precio)//
     }//GEN-LAST:event_txtCodigoBarraVenderKeyPressed
 
-    private void cmbTipoFacturaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTipoFacturaItemStateChanged
-        if (cmbTipoFactura.getSelectedIndex()==1) {
+    private void cmbTipoFacturaVentaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTipoFacturaVentaItemStateChanged
+        if (cmbTipoFacturaVenta.getSelectedIndex()==1) {
             txtGiroVenta.setVisible(true);
             txtNITventa.setVisible(true);
             txtNRCventa.setVisible(true);
@@ -3490,13 +3576,23 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
             txtNRCventa.setVisible(false);
             lblGiroVenta.setVisible(false);
             lblNITventa.setVisible(false);
-            lblNRCventa.setVisible(false);
+            lblNRCventa.setVisible(false);            
         }
-    }//GEN-LAST:event_cmbTipoFacturaItemStateChanged
+        sabercmbTipoFactura = cmbTipoFacturaVenta.getSelectedIndex();
+    }//GEN-LAST:event_cmbTipoFacturaVentaItemStateChanged
 
     private void cmbSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSucursalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbSucursalActionPerformed
+
+    private void cmbUtilidadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbUtilidadItemStateChanged
+        sabercmbUtilidadVenta = cmbUtilidad.getSelectedIndex();
+    }//GEN-LAST:event_cmbUtilidadItemStateChanged
+
+    private void cmbSucursalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSucursalItemStateChanged
+        
+        sabercmbIdSucursal = cmbSucursal.getSelectedIndex();
+    }//GEN-LAST:event_cmbSucursalItemStateChanged
       
 //    public void llenarTablaProductoTyped(String codigo) throws SQLException{
 //        //clearTableCompra();
@@ -3755,7 +3851,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JComboBox cmbSucursal;
     private javax.swing.JComboBox<String> cmbSucursalCompra;
     private javax.swing.JComboBox cmbSucursalMenuVenta;
-    private javax.swing.JComboBox cmbTipoFactura;
+    private javax.swing.JComboBox cmbTipoFacturaVenta;
     private javax.swing.JComboBox cmbUtilidad;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -3767,8 +3863,10 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -3827,6 +3925,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JPanel jPanel48;
     private javax.swing.JPanel jPanel49;
     private javax.swing.JPanel jPanel50;
+    private javax.swing.JPanel jPanel51;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -3834,6 +3933,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
@@ -3852,6 +3952,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JSeparator jSeparator27;
     private javax.swing.JSeparator jSeparator28;
     private javax.swing.JSeparator jSeparator29;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator30;
     private javax.swing.JSeparator jSeparator31;
     private javax.swing.JSeparator jSeparator32;
@@ -3891,6 +3992,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JPanel jpnQuinto;
     private javax.swing.JPanel jpnRegistrarVenta;
     private javax.swing.JPanel jpnRegistroCompra;
+    private javax.swing.JPanel jpnReporteVentas;
     private javax.swing.JPanel jpnSegundo;
     private javax.swing.JPanel jpnSubMenu;
     private javax.swing.JPanel jpnTercero;
@@ -3957,6 +4059,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel lblProveedores6;
     private javax.swing.JLabel lblProveedores7;
     private javax.swing.JLabel lblProveedores8;
+    private javax.swing.JLabel lblProveedores9;
     private javax.swing.JLabel lblSucursalMenuVenta;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lblTotal1;
@@ -3967,6 +4070,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JTable tblMenuVentas;
     private javax.swing.JTable tblProveedores;
     private javax.swing.JTable tblRegistrarVenta;
+    private javax.swing.JTable tblReporteVentas;
     private javax.swing.JPanel tjpnlParametros;
     private javax.swing.JPanel tjpnlSucursales;
     private javax.swing.JPanel tjpnlTipoPrecio;
@@ -4017,6 +4121,8 @@ public void limpiarTablaProducto(){
     private javax.swing.JTextField txtProductoInventario;
     private javax.swing.JTextField txtProductosBuscar;
     private javax.swing.JTextField txtProductosBuscar1;
+    private javax.swing.JTextField txtSaberIdSucursal;
+    private javax.swing.JTextField txtSaberIdTipoPrecio;
     private javax.swing.JTextField txtSubtotalCompra;
     private javax.swing.JTextField txtSumas;
     private javax.swing.JLabel txtTelefonoActualProveedor;

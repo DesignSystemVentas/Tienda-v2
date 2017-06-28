@@ -20,16 +20,12 @@ public class ControladorVenta {
         
     }
    
-   public void Agregar(int IdVenta, int IdSucursal, String TipoVenta, int IdTipoPrecio, String Cliente, 
-           String Fecha, double IVA, double TotalGravado, double Total, String Direccion, String Giro, 
-           String NIT, String NRC, int NDocumento) throws ErrorTienda{
+  public void Agregar(int IdVenta, int IdSucursal, int IdTipoPrecio, String TipoVenta, String Cliente, String Fecha, double IVA, double TotalGravado, double Total, String Direccion, String Giro, String NIT, String NRC, String NDocumento) throws ErrorTienda{
              try {         
              Conexion cn = new Conexion();
-         cn.UID("INSERT INTO venta(IdVenta,IdSucursal,TipoVenta,IdTipoPrecio,Cliente,Fecha,IVA,TotalGravado,Total,Direccion,Giro,NIT,NRC,NDocumento) "
-                + "VALUES('" + IdVenta + "','" + IdSucursal + "','" + TipoVenta + "','" + IdTipoPrecio + "','" + Cliente + "','" + Fecha + "','" + IVA + "','" + TotalGravado + "','" + Total + "','" + Direccion + "','" + Giro + "','" + NIT + "','" + NRC + "','" + NDocumento + "')");
-       } catch (ArithmeticException ex) {
-            throw new ErrorTienda("Error al insertar la venta realizada" + ex.getMessage());           
-        }
+         cn.UID("INSERT INTO venta(IdVenta, IdSucursal, IdTipoPrecio, TipoVenta,  Cliente, Fecha, IVA, TotalGravado, Total,Direccion, Giro, NIT, NRC, NDocumento) "
+                + "VALUES('" + IdVenta + "','" + IdSucursal + "','" + IdTipoPrecio + "','" + TipoVenta + "','" + Cliente + "','" + Fecha + "','" + IVA + "','" + TotalGravado + "','" + Total + "','" + Direccion + "','" + Giro + "','" + NIT + "','" + NRC + "','" + NDocumento + "')");
+       } catch (ArithmeticException ex) {throw new ErrorTienda("Error al insertar la venta realizada" + ex.getMessage());}
     }
     
   public ResultSet ObtenerIdVenta() throws ErrorTienda {        

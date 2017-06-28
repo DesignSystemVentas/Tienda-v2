@@ -92,4 +92,15 @@ public class ControladorProducto {
          }
          return d;
      }
+     //VIZCARRA//     
+     public ResultSet buscarNYP(String CodBarra) throws ErrorTienda {
+         Conexion cn = new Conexion();
+        try{
+            return (cn.getValores("SELECT * FROM producto WHERE CodBarra = '" + CodBarra + "'"));
+        } catch (Exception ex){
+            throw new ErrorTienda("Insertar" + ex.getMessage());
+        }        
+    }     
+     //VIZCARRA//
 }
+
