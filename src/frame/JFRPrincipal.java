@@ -3208,258 +3208,258 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
     }//GEN-LAST:event_btnAgregarProductoVentaMouseExited
 
     private void btnAgregarProductoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaActionPerformed
-//        venta = Integer.parseInt(txtIdVenta.getText());
-//        sucursal = cmbSucursal.getSelectedIndex();
-//        tipoventa = cmbTipoFactura.getSelectedIndex();
-//        CodigoBarraVender = txtCodigoBarraVender.getText();
-//        int posicioncmbTipoFactura=cmbTipoFactura.getSelectedIndex(), posicioncmbSucursal=cmbSucursal.getSelectedIndex();
-//        //CON FACTURA//
-//        if (posicioncmbTipoFactura==0) {
-//            // para saber si se repite el producto
-//            if (tblRegistrarVenta.getRowCount()>0) {
-//                int i = 0;
-//                while (encontrar==false&&i<tblRegistrarVenta.getRowCount()) {
-//                    encontrar = tblRegistrarVenta.getValueAt(i, 0).equals(CodigoBarraVender);
-//                    i=1+1;
-//                }
-//            }
-//            //si no hay producTO repetido se realiza esta opcion//
-//            if (encontrar == false) {
-//                if (posicioncmbSucursal==0) {
-//                    Punitario = (Punitario*1.13)/(1-0.25);
-//                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-//
-//                    TotalVenta = TotalVenta +(SubTotalVenta);
-//                } if (posicioncmbSucursal==1) {
-//                    Punitario= (Punitario*1.13)/(1-0.12);
-//                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-//                    TotalVenta = TotalVenta +(SubTotalVenta);
-//                } if (posicioncmbSucursal==2) {
-//                    Punitario= (Punitario*1.13)/(1-0.085);
-//                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-//                    TotalVenta = TotalVenta +(SubTotalVenta);
-//                }
-//                String AgregarDVenta[] = new String[5];
-//                AgregarDVenta[0] = txtCodigoBarraVender.getText();
-//                AgregarDVenta[1] = txtNombreProductoVender.getText();
-//                AgregarDVenta[2] = txtCantidadVender.getText();
-//                AgregarDVenta[3] = String.valueOf(Punitario);
-//                AgregarDVenta[4] = String.valueOf(SubTotalVenta);
-//                mAgregarDVenta.addRow(AgregarDVenta);
-//                TotalVenta = TotalVenta +(SubTotalVenta);
-//                //hacer que al dar clip se pase al txtCodigoBarraVender
-//                txtCodigoBarraVender.requestFocus();
-//                txtCodigoBarraVender.setText("");
-//                txtNombreProductoVender.setText("");
-//                txtCantidadVender.setText("");
-//            }
-//            //si el producto se repite hace esta opcion
-//            else {
-//                boolean buscar = false;
-//                int j=0, CantidadActualizada;
-//                double NuevoValor;
-//                while (buscar == false) {
-//                    buscar = tblRegistrarVenta.getValueAt(j, 0).equals(CodigoBarraVender);
-//                    j++;
-//                }
-//                CantidadActualizada = (Integer.parseInt(tblRegistrarVenta.getValueAt(j-1, 2).toString())) + (Integer.parseInt(txtCantidadVender.getText()));
-//                if (posicioncmbSucursal==0) {
-//                    Punitario = (Punitario*1.13)/(1-0.25);
-//                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-//                    TotalVenta = TotalVenta +(SubTotalVenta);
-//                } if (posicioncmbSucursal==1) {
-//                    Punitario= (Punitario*1.13)/(1-0.12);
-//                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-//                } if (posicioncmbSucursal==2) {
-//                    Punitario= (Punitario*1.13)/(1-0.085);
-//                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-//                }
-//                NuevoValor = (Punitario * Double.parseDouble(txtCantidadVender.getText())) + (Double.parseDouble(tblRegistrarVenta.getValueAt(j-1, 4).toString()));
-//                tblRegistrarVenta.setValueAt(CantidadActualizada, j-1, 2);
-//                tblRegistrarVenta.setValueAt(NuevoValor, j-1, 4);
-//                //hacer que al dar clip se pase al txtCodigoBarraVender
-//                txtCodigoBarraVender.requestFocus();
-//                txtCodigoBarraVender.setText("");
-//                txtNombreProductoVender.setText("");
-//                txtCantidadVender.setText("");
-//            }//finaliza la actualizacion de tupla
-//            encontrar=false;
-//            int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
-//            double total=0;
-//            while (iteracion<filas){
-//                total+=Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
-//                iteracion++;
-//            }
-//            txtSumas.setText("$"+total);
-//            txtTotalventaGravado.setText("$"+total);
-//        }
-//        //(TIPO FACTURA)//
-//        //***************************************************************************//
-//        //ICREDITO  FISCAL//
-//        if (posicioncmbTipoFactura==1) {
-//            // para saber si se repite el producto
-//            if (tblRegistrarVenta.getRowCount()>0) {
-//                int i = 0;
-//                while (encontrar==false&&i<tblRegistrarVenta.getRowCount()) {
-//                    encontrar = tblRegistrarVenta.getValueAt(i, 0).equals(CodigoBarraVender);
-//                    i=i+1;
-//                }
-//            }
-//            //si no hay producto repetido se realiza esta opcion//
-//            if (encontrar == false) {
-//                if (posicioncmbSucursal==0) {
-//                    Punitario = (Punitario*1.13)/(1-0.25);
-//                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-//
-//                    TotalVenta = TotalVenta +(SubTotalVenta);
-//                } if (posicioncmbSucursal==1) {
-//                    Punitario= (Punitario*1.13)/(1-0.12);
-//                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-//                    TotalVenta = TotalVenta +(SubTotalVenta);
-//                } if (posicioncmbSucursal==2) {
-//                    Punitario= (Punitario*1.13)/(1-0.085);
-//                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-//                    TotalVenta = TotalVenta +(SubTotalVenta);
-//                }
-//                String AgregarDVenta[] = new String[5];
-//                AgregarDVenta[0] = txtCodigoBarraVender.getText();
-//                AgregarDVenta[1] = txtNombreProductoVender.getText();
-//                AgregarDVenta[2] = txtCantidadVender.getText();
-//                AgregarDVenta[3] = String.valueOf(Punitario);
-//                AgregarDVenta[4] = String.valueOf(SubTotalVenta);
-//                mAgregarDVenta.addRow(AgregarDVenta);
-//                TotalVenta = TotalVenta +(SubTotalVenta);
-//                //hacer que al dar clip se pase al txtCodigoBarraVender
-//                txtCodigoBarraVender.requestFocus();
-//                txtCodigoBarraVender.setText("");
-//                txtNombreProductoVender.setText("");
-//                txtCantidadVender.setText("");
-//            }
-//            //si el producto se repite hace esta opcion
-//            else {
-//                boolean buscar = false;
-//                int j=0, CantidadActualizada;
-//                double NuevoValor;
-//                while (buscar == false) {
-//                    buscar = tblRegistrarVenta.getValueAt(j, 0).equals(CodigoBarraVender);
-//                    j++;
-//                }
-//                if (posicioncmbSucursal==0) {
-//                    Punitario = (Punitario*1.13)/(1-0.25);
-//                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-//                    TotalVenta = TotalVenta +(SubTotalVenta);
-//                } if (posicioncmbSucursal==1) {
-//                    Punitario= (Punitario*1.13)/(1-0.12);
-//                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-//                } if (posicioncmbSucursal==2) {
-//                    Punitario= (Punitario*1.13)/(1-0.085);
-//                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-//                }
-//                CantidadActualizada = (Integer.parseInt(tblRegistrarVenta.getValueAt(j-1, 2).toString())) + (Integer.parseInt(txtCantidadVender.getText()));
-//                NuevoValor = (Punitario * Double.parseDouble(txtCantidadVender.getText())) + (Double.parseDouble(tblRegistrarVenta.getValueAt(j-1, 4).toString()));
-//
-//                tblRegistrarVenta.setValueAt(CantidadActualizada, j-1, 2);
-//                tblRegistrarVenta.setValueAt(NuevoValor, j-1, 4);
-//                //hacer que al dar clip se pase al txtCodigoBarraVender
-//                txtCodigoBarraVender.requestFocus();
-//                txtCodigoBarraVender.setText("");
-//                txtNombreProductoVender.setText("");
-//                txtCantidadVender.setText("");
-//            }//finaliza la actualizacion de tupla
-//            encontrar=false;
-//            int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
-//            double total=0;
-//            while (iteracion<filas){
-//                total+=Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
-//                iteracion++;
-//            }
-//            double TotalGravadoFiscalIVA=0, TotalGravadoFiscalP=0;
-//            TotalGravadoFiscalP = total * 1.01;
-//            TotalGravadoFiscalP = TotalGravadoFiscalP - total;
-//            TotalGravadoFiscalIVA = total * 1.13;
-//            TotalGravadoFiscalIVA = TotalGravadoFiscalIVA - total;
-//            txtSumas.setText("$"+total);
-//            txtIVA.setText("$"+TotalGravadoFiscalIVA);
-//            txtTotalventaGravado.setText("$"+total);
-//        }
-//        //FINALIZADO (CREDITOFISCAL)//
-//        //*************************************************************************//\
-//        //INICIA LIBRE//
-//        if (posicioncmbTipoFactura==2) {
-//            // para saber si se repite el producto
-//            if (tblRegistrarVenta.getRowCount()>0) {
-//                int i = 0;
-//                while (encontrar==false&&i<tblRegistrarVenta.getRowCount()) {
-//                    encontrar = tblRegistrarVenta.getValueAt(i, 0).equals(CodigoBarraVender);
-//                    i=i+1;
-//                }
-//            }
-//            //si no hay produc repetido se realiza esta opcion//
-//            if (encontrar == false) {
-//                if (posicioncmbSucursal==0) {
-//                    Punitario = (Punitario*1.13)/(1-0.25);
-//                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-//
-//                    TotalVenta = TotalVenta +(SubTotalVenta);
-//                } if (posicioncmbSucursal==1) {
-//                    Punitario= (Punitario*1.13)/(1-0.12);
-//                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-//                    TotalVenta = TotalVenta +(SubTotalVenta);
-//                } if (posicioncmbSucursal==2) {
-//                    Punitario= (Punitario*1.13)/(1-0.085);
-//                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-//                    TotalVenta = TotalVenta +(SubTotalVenta);
-//                }
-//                String AgregarDVenta[] = new String[5];
-//                AgregarDVenta[0] = txtCodigoBarraVender.getText();
-//                AgregarDVenta[1] = txtNombreProductoVender.getText();
-//                AgregarDVenta[2] = txtCantidadVender.getText();
-//                AgregarDVenta[3] = String.valueOf(Punitario);
-//                AgregarDVenta[4] = String.valueOf(SubTotalVenta);
-//                mAgregarDVenta.addRow(AgregarDVenta);
-//                TotalVenta = TotalVenta +(SubTotalVenta);
-//                //hacer que al dar clip se pase al txtCodigoBarraVender
-//                txtCodigoBarraVender.requestFocus();
-//                txtCodigoBarraVender.setText("");
-//                txtNombreProductoVender.setText("");
-//                txtCantidadVender.setText("");
-//            }
-//            //si el producto se repite hace esta opcion
-//            else {
-//                boolean buscar = false;
-//                int j=0, CantidadActualizada;
-//                double NuevoValor;
-//                while (buscar == false) {
-//                    buscar = tblRegistrarVenta.getValueAt(j, 0).equals(CodigoBarraVender);
-//                    j++;
-//                }
-//                CantidadActualizada = (Integer.parseInt(tblRegistrarVenta.getValueAt(j-1, 2).toString())) + (Integer.parseInt(txtCantidadVender.getText()));
-//                NuevoValor = (Punitario * Double.parseDouble(txtCantidadVender.getText())) + (Double.parseDouble(tblRegistrarVenta.getValueAt(j-1, 4).toString()));
-//
-//                tblRegistrarVenta.setValueAt(CantidadActualizada, j-1, 2);
-//                tblRegistrarVenta.setValueAt(NuevoValor, j-1, 4);
-//                //hacer que al dar clip se pase al txtCodigoBarraVender
-//                txtCodigoBarraVender.requestFocus();
-//                txtCodigoBarraVender.setText("");
-//                txtNombreProductoVender.setText("");
-//                txtCantidadVender.setText("");
-//            }//finaliza la actualizacion de tupla
-//            encontrar=false;
-//            int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
-//            double total=0;
-//            while (iteracion<filas){
-//                total+=Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
-//                iteracion++;
-//            }
-//            double TotalGravadoFiscalIVA=0, TotalGravadoFiscalP=0;
-//            TotalGravadoFiscalP = total * 1.01;
-//            TotalGravadoFiscalP = TotalGravadoFiscalP - total;
-//            TotalGravadoFiscalIVA = total * 1.13;
-//            TotalGravadoFiscalIVA = TotalGravadoFiscalIVA - total;
-//            txtSumas.setText("$"+total);
-//            txtTotalventaGravado.setText("$"+total);
-//        }
-//        //FINALIZADO (LIBRE)//
+        venta = Integer.parseInt(txtIdVenta.getText());
+        sucursal = cmbSucursal.getSelectedIndex();
+        tipoventa = cmbTipoFactura.getSelectedIndex();
+        CodigoBarraVender = txtCodigoBarraVender.getText();
+        int posicioncmbTipoFactura=cmbTipoFactura.getSelectedIndex(), posicioncmbSucursal=cmbSucursal.getSelectedIndex();
+        //CON FACTURA//
+        if (posicioncmbTipoFactura==0) {
+            // para saber si se repite el producto
+            if (tblRegistrarVenta.getRowCount()>0) {
+                int i = 0;
+                while (encontrar==false&&i<tblRegistrarVenta.getRowCount()) {
+                    encontrar = tblRegistrarVenta.getValueAt(i, 0).equals(CodigoBarraVender);
+                    i=1+1;
+                }
+            }
+            //si no hay producTO repetido se realiza esta opcion//
+            if (encontrar == false) {
+                if (posicioncmbSucursal==0) {
+                    Punitario = (Punitario*1.13)/(1-0.25);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+
+                    TotalVenta = TotalVenta +(SubTotalVenta);
+                } if (posicioncmbSucursal==1) {
+                    Punitario= (Punitario*1.13)/(1-0.12);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                    TotalVenta = TotalVenta +(SubTotalVenta);
+                } if (posicioncmbSucursal==2) {
+                    Punitario= (Punitario*1.13)/(1-0.085);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                    TotalVenta = TotalVenta +(SubTotalVenta);
+                }
+                String AgregarDVenta[] = new String[5];
+                AgregarDVenta[0] = txtCodigoBarraVender.getText();
+                AgregarDVenta[1] = txtNombreProductoVender.getText();
+                AgregarDVenta[2] = txtCantidadVender.getText();
+                AgregarDVenta[3] = String.valueOf(Punitario);
+                AgregarDVenta[4] = String.valueOf(SubTotalVenta);
+                mAgregarDVenta.addRow(AgregarDVenta);
+                TotalVenta = TotalVenta +(SubTotalVenta);
+                //hacer que al dar clip se pase al txtCodigoBarraVender
+                txtCodigoBarraVender.requestFocus();
+                txtCodigoBarraVender.setText("");
+                txtNombreProductoVender.setText("");
+                txtCantidadVender.setText("");
+            }
+            //si el producto se repite hace esta opcion
+            else {
+                boolean buscar = false;
+                int j=0, CantidadActualizada;
+                double NuevoValor;
+                while (buscar == false) {
+                    buscar = tblRegistrarVenta.getValueAt(j, 0).equals(CodigoBarraVender);
+                    j++;
+                }
+                CantidadActualizada = (Integer.parseInt(tblRegistrarVenta.getValueAt(j-1, 2).toString())) + (Integer.parseInt(txtCantidadVender.getText()));
+                if (posicioncmbSucursal==0) {
+                    Punitario = (Punitario*1.13)/(1-0.25);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                    TotalVenta = TotalVenta +(SubTotalVenta);
+                } if (posicioncmbSucursal==1) {
+                    Punitario= (Punitario*1.13)/(1-0.12);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                } if (posicioncmbSucursal==2) {
+                    Punitario= (Punitario*1.13)/(1-0.085);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                }
+                NuevoValor = (Punitario * Double.parseDouble(txtCantidadVender.getText())) + (Double.parseDouble(tblRegistrarVenta.getValueAt(j-1, 4).toString()));
+                tblRegistrarVenta.setValueAt(CantidadActualizada, j-1, 2);
+                tblRegistrarVenta.setValueAt(NuevoValor, j-1, 4);
+                //hacer que al dar clip se pase al txtCodigoBarraVender
+                txtCodigoBarraVender.requestFocus();
+                txtCodigoBarraVender.setText("");
+                txtNombreProductoVender.setText("");
+                txtCantidadVender.setText("");
+            }//finaliza la actualizacion de tupla
+            encontrar=false;
+            int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
+            double total=0;
+            while (iteracion<filas){
+                total+=Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
+                iteracion++;
+            }
+            txtSumas.setText("$"+total);
+            txtTotalventaGravado.setText("$"+total);
+        }
+        //(TIPO FACTURA)//
+        //***************************************************************************//
+        //ICREDITO  FISCAL//
+        if (posicioncmbTipoFactura==1) {
+            // para saber si se repite el producto
+            if (tblRegistrarVenta.getRowCount()>0) {
+                int i = 0;
+                while (encontrar==false&&i<tblRegistrarVenta.getRowCount()) {
+                    encontrar = tblRegistrarVenta.getValueAt(i, 0).equals(CodigoBarraVender);
+                    i=i+1;
+                }
+            }
+            //si no hay producto repetido se realiza esta opcion//
+            if (encontrar == false) {
+                if (posicioncmbSucursal==0) {
+                    Punitario = (Punitario*1.13)/(1-0.25);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+
+                    TotalVenta = TotalVenta +(SubTotalVenta);
+                } if (posicioncmbSucursal==1) {
+                    Punitario= (Punitario*1.13)/(1-0.12);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                    TotalVenta = TotalVenta +(SubTotalVenta);
+                } if (posicioncmbSucursal==2) {
+                    Punitario= (Punitario*1.13)/(1-0.085);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                    TotalVenta = TotalVenta +(SubTotalVenta);
+                }
+                String AgregarDVenta[] = new String[5];
+                AgregarDVenta[0] = txtCodigoBarraVender.getText();
+                AgregarDVenta[1] = txtNombreProductoVender.getText();
+                AgregarDVenta[2] = txtCantidadVender.getText();
+                AgregarDVenta[3] = String.valueOf(Punitario);
+                AgregarDVenta[4] = String.valueOf(SubTotalVenta);
+                mAgregarDVenta.addRow(AgregarDVenta);
+                TotalVenta = TotalVenta +(SubTotalVenta);
+                //hacer que al dar clip se pase al txtCodigoBarraVender
+                txtCodigoBarraVender.requestFocus();
+                txtCodigoBarraVender.setText("");
+                txtNombreProductoVender.setText("");
+                txtCantidadVender.setText("");
+            }
+            //si el producto se repite hace esta opcion
+            else {
+                boolean buscar = false;
+                int j=0, CantidadActualizada;
+                double NuevoValor;
+                while (buscar == false) {
+                    buscar = tblRegistrarVenta.getValueAt(j, 0).equals(CodigoBarraVender);
+                    j++;
+                }
+                if (posicioncmbSucursal==0) {
+                    Punitario = (Punitario*1.13)/(1-0.25);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                    TotalVenta = TotalVenta +(SubTotalVenta);
+                } if (posicioncmbSucursal==1) {
+                    Punitario= (Punitario*1.13)/(1-0.12);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                } if (posicioncmbSucursal==2) {
+                    Punitario= (Punitario*1.13)/(1-0.085);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                }
+                CantidadActualizada = (Integer.parseInt(tblRegistrarVenta.getValueAt(j-1, 2).toString())) + (Integer.parseInt(txtCantidadVender.getText()));
+                NuevoValor = (Punitario * Double.parseDouble(txtCantidadVender.getText())) + (Double.parseDouble(tblRegistrarVenta.getValueAt(j-1, 4).toString()));
+
+                tblRegistrarVenta.setValueAt(CantidadActualizada, j-1, 2);
+                tblRegistrarVenta.setValueAt(NuevoValor, j-1, 4);
+                //hacer que al dar clip se pase al txtCodigoBarraVender
+                txtCodigoBarraVender.requestFocus();
+                txtCodigoBarraVender.setText("");
+                txtNombreProductoVender.setText("");
+                txtCantidadVender.setText("");
+            }//finaliza la actualizacion de tupla
+            encontrar=false;
+            int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
+            double total=0;
+            while (iteracion<filas){
+                total+=Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
+                iteracion++;
+            }
+            double TotalGravadoFiscalIVA=0, TotalGravadoFiscalP=0;
+            TotalGravadoFiscalP = total * 1.01;
+            TotalGravadoFiscalP = TotalGravadoFiscalP - total;
+            TotalGravadoFiscalIVA = total * 1.13;
+            TotalGravadoFiscalIVA = TotalGravadoFiscalIVA - total;
+            txtSumas.setText("$"+total);
+            txtIVA.setText("$"+TotalGravadoFiscalIVA);
+            txtTotalventaGravado.setText("$"+total);
+        }
+        //FINALIZADO (CREDITOFISCAL)//
+        //*************************************************************************//\
+        //INICIA LIBRE//
+        if (posicioncmbTipoFactura==2) {
+            // para saber si se repite el producto
+            if (tblRegistrarVenta.getRowCount()>0) {
+                int i = 0;
+                while (encontrar==false&&i<tblRegistrarVenta.getRowCount()) {
+                    encontrar = tblRegistrarVenta.getValueAt(i, 0).equals(CodigoBarraVender);
+                    i=i+1;
+                }
+            }
+            //si no hay produc repetido se realiza esta opcion//
+            if (encontrar == false) {
+                if (posicioncmbSucursal==0) {
+                    Punitario = (Punitario*1.13)/(1-0.25);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+
+                    TotalVenta = TotalVenta +(SubTotalVenta);
+                } if (posicioncmbSucursal==1) {
+                    Punitario= (Punitario*1.13)/(1-0.12);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                    TotalVenta = TotalVenta +(SubTotalVenta);
+                } if (posicioncmbSucursal==2) {
+                    Punitario= (Punitario*1.13)/(1-0.085);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+                    TotalVenta = TotalVenta +(SubTotalVenta);
+                }
+                String AgregarDVenta[] = new String[5];
+                AgregarDVenta[0] = txtCodigoBarraVender.getText();
+                AgregarDVenta[1] = txtNombreProductoVender.getText();
+                AgregarDVenta[2] = txtCantidadVender.getText();
+                AgregarDVenta[3] = String.valueOf(Punitario);
+                AgregarDVenta[4] = String.valueOf(SubTotalVenta);
+                mAgregarDVenta.addRow(AgregarDVenta);
+                TotalVenta = TotalVenta +(SubTotalVenta);
+                //hacer que al dar clip se pase al txtCodigoBarraVender
+                txtCodigoBarraVender.requestFocus();
+                txtCodigoBarraVender.setText("");
+                txtNombreProductoVender.setText("");
+                txtCantidadVender.setText("");
+            }
+            //si el producto se repite hace esta opcion
+            else {
+                boolean buscar = false;
+                int j=0, CantidadActualizada;
+                double NuevoValor;
+                while (buscar == false) {
+                    buscar = tblRegistrarVenta.getValueAt(j, 0).equals(CodigoBarraVender);
+                    j++;
+                }
+                CantidadActualizada = (Integer.parseInt(tblRegistrarVenta.getValueAt(j-1, 2).toString())) + (Integer.parseInt(txtCantidadVender.getText()));
+                NuevoValor = (Punitario * Double.parseDouble(txtCantidadVender.getText())) + (Double.parseDouble(tblRegistrarVenta.getValueAt(j-1, 4).toString()));
+
+                tblRegistrarVenta.setValueAt(CantidadActualizada, j-1, 2);
+                tblRegistrarVenta.setValueAt(NuevoValor, j-1, 4);
+                //hacer que al dar clip se pase al txtCodigoBarraVender
+                txtCodigoBarraVender.requestFocus();
+                txtCodigoBarraVender.setText("");
+                txtNombreProductoVender.setText("");
+                txtCantidadVender.setText("");
+            }//finaliza la actualizacion de tupla
+            encontrar=false;
+            int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
+            double total=0;
+            while (iteracion<filas){
+                total+=Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
+                iteracion++;
+            }
+            double TotalGravadoFiscalIVA=0, TotalGravadoFiscalP=0;
+            TotalGravadoFiscalP = total * 1.01;
+            TotalGravadoFiscalP = TotalGravadoFiscalP - total;
+            TotalGravadoFiscalIVA = total * 1.13;
+            TotalGravadoFiscalIVA = TotalGravadoFiscalIVA - total;
+            txtSumas.setText("$"+total);
+            txtTotalventaGravado.setText("$"+total);
+        }
+        //FINALIZADO (LIBRE)//
     }//GEN-LAST:event_btnAgregarProductoVentaActionPerformed
 
     private void lblFechaVentaMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblFechaVentaMostrarActionPerformed
