@@ -3048,54 +3048,53 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
     }//GEN-LAST:event_btnHacerNuevaVentaMouseExited
 
     private void btnHacerNuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHacerNuevaVentaActionPerformed
-//        if (cmbTipoFactura.getSelectedIndex()==1) {
-//            txtGiroVenta.setVisible(true);
-//            txtNITventa.setVisible(true);
-//            txtNRCventa.setVisible(true);
-//        }else{
-//            txtGiroVenta.setVisible(false);
-//            txtNITventa.setVisible(false);
-//            txtNRCventa.setVisible(false);
-//            lblGiroVenta.setVisible(false);
-//            lblNITventa.setVisible(false);
-//            lblNRCventa.setVisible(false);
-//        }
-//        saberCodigoVenta();
-//        dia = calendar.get(Calendar.DATE);
-//        mes = calendar.get(Calendar.MONTH)+1;
-//        anio = calendar.get(Calendar.YEAR);
-//        lblFechaVentaMostrar.setText(anio+"/"+mes+"/"+dia);
-//
-//        jpnMenuVentas.setVisible(false);
-//        jpnRegistrarVenta.setVisible(true);
-//        txtCodigoBarraVender.requestFocus();
+        if (cmbTipoFactura.getSelectedIndex()==1) {
+            txtGiroVenta.setVisible(true);
+            txtNITventa.setVisible(true);
+            txtNRCventa.setVisible(true);
+        }else{
+            txtGiroVenta.setVisible(false);
+            txtNITventa.setVisible(false);
+            txtNRCventa.setVisible(false);
+            lblGiroVenta.setVisible(false);
+            lblNITventa.setVisible(false);
+            lblNRCventa.setVisible(false);
+        }
+        saberCodigoVenta();
+        dia = calendar.get(Calendar.DATE);
+        mes = calendar.get(Calendar.MONTH)+1;
+        anio = calendar.get(Calendar.YEAR);
+        lblFechaVentaMostrar.setText(anio+"/"+mes+"/"+dia);
+
+        jpnMenuVentas.setVisible(false);
+        jpnRegistrarVenta.setVisible(true);
+        txtCodigoBarraVender.requestFocus();
     }//GEN-LAST:event_btnHacerNuevaVentaActionPerformed
 
     private void cmbSucursalMenuVentaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSucursalMenuVentaItemStateChanged
-//        rstControladorVenta = null;
-//        for(int i=0;i < MenuVenta.getRowCount();i++){
-//            MenuVenta.removeRow(i);
-//            i-=1;
-//        }
-//        int IdSucursal = cmbSucursalMenuVenta.getSelectedIndex() + 1;
-//        try {
-//            rstControladorVenta = controladorventa.llenarVenta(IdSucursal);
-//            txtM.setText(""+IdSucursal);
-//
-//        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
-//        try {
-//            while (rstControladorVenta.next()) {//tablas base de datos
-//                //tabla de compra
-//                datosVenta[0] = rstControladorVenta.getString(1);
-//                datosVenta[1] = rstControladorVenta.getString(3);
-//                datosVenta[2] = rstControladorVenta.getString(5);
-//                datosVenta[3] = rstControladorVenta.getString(6);
-//                datosVenta[4] = rstControladorVenta.getString(8);
-//                datosVenta[5] = rstControladorVenta.getString(10);
-//                datosVenta[6] = rstControladorVenta.getString(14);
-//                MenuVenta.addRow(datosVenta);
-//            }
-//        } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
+        rstControladorVenta = null;
+        for(int i=0;i < MenuVenta.getRowCount();i++){
+            MenuVenta.removeRow(i);
+            i-=1;
+        }
+        int IdSucursal = cmbSucursalMenuVenta.getSelectedIndex() + 1;
+        try {
+            rstControladorVenta = controladorventa.llenarVenta(IdSucursal);
+
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
+        try {
+            while (rstControladorVenta.next()) {//tablas base de datos
+                //tabla de compra
+                datosVenta[0] = rstControladorVenta.getString(1);
+                datosVenta[1] = rstControladorVenta.getString(3);
+                datosVenta[2] = rstControladorVenta.getString(5);
+                datosVenta[3] = rstControladorVenta.getString(6);
+                datosVenta[4] = rstControladorVenta.getString(8);
+                datosVenta[5] = rstControladorVenta.getString(10);
+                datosVenta[6] = rstControladorVenta.getString(14);
+                MenuVenta.addRow(datosVenta);
+            }
+        } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
     }//GEN-LAST:event_cmbSucursalMenuVentaItemStateChanged
 
     private void btnVenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVenderMouseClicked
