@@ -93,5 +93,15 @@ public class ControladorTipoPrecio {
          }
          return d;
      }
+     //vizcarra//
+    public ResultSet llenarUtilidad() throws ErrorTienda {
+         Conexion cn = new Conexion();
+         try{
+        return (cn.getValores("SELECT * FROM tipoprecio"));
+        } catch (Exception ex){
+            throw new ErrorTienda("Error al traer utilidad al combobox" + ex.getMessage());
+        }  
+    }
+    //vizcarra//
      
 }
