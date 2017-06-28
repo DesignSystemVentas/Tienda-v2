@@ -2458,9 +2458,63 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasProveedoresMouseClicked
 
     private void btnVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentasMouseClicked
-        apagado();
-        apagado2();
-        jpnMenuVentas.setVisible(true);
+                 for(int i=0;i < MenuVenta.getRowCount();i++){
+            MenuVenta.removeRow(i);
+            i-=1;
+        }
+        apagado();        apagado2();
+        jpnMenuVentas.setVisible(true); 
+        int IdSucursal = cmbSucursalMenuVenta.getSelectedIndex() + 1;                                 
+         try {  
+                rstControladorVenta = controladorventa.llenarVenta(1);                
+                
+            } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}            
+        try {
+            while (rstControladorVenta.next()) {//tablas base de datos
+                //tabla de compra
+                datosVenta[0] = rstControladorVenta.getString(1);
+                datosVenta[1] = rstControladorVenta.getString(3);
+                datosVenta[2] = rstControladorVenta.getString(5);
+                datosVenta[3] = rstControladorVenta.getString(6);                                                        
+                datosVenta[4] = rstControladorVenta.getString(8);
+                datosVenta[5] = rstControladorVenta.getString(10);
+                datosVenta[6] = rstControladorVenta.getString(14);                
+                MenuVenta.addRow(datosVenta);
+            }           
+        } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}  
+        txtCodigoBarraVender.setText("");
+        txtNombreProductoVender.setText("");
+        txtCantidadVender.setText("");
+        txtClienteVenta.setText("");
+        txtCodigoBarraVender.requestFocus();
+        txtSumas.setText("");
+        txtIVA.setText("");
+        txtTotalventaGravado.setText("");
+        txtIdVenta.setText("");
+        txtNuDocumentoVenta.setText("");
+        //llenar cmbSucursal y cmbUtilidad//  
+        mSucursal.removeAllElements();
+        mUtilidad.removeAllElements();
+         try {
+            rstCSucursal = cSucursal.llenarSucursal();
+            rstTipoPrecio = cTipoPrecio.llenarUtilidad();             
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}           
+        //iniciar recorrer//
+        try {
+            //Sucursal
+            while (rstCSucursal.next()) {
+                mSucursal.addElement(rstCSucursal.getString(2));     
+            }
+            cmbSucursal.setModel(mSucursal);
+            cmbSucursalMenuVenta.setModel(mSucursal); 
+            //Utilidad
+            while (rstTipoPrecio.next()) {
+                mUtilidad.addElement(rstTipoPrecio.getString(2));     
+            }
+            cmbUtilidad.setModel(mUtilidad);             
+        } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}//finalizado (recorrer)//
+        //finalizar()/llenado cmbSucursal, IdVenta y cmbUtilidad/         
+
     }//GEN-LAST:event_btnVentasMouseClicked
 
     private void btnNuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProductoActionPerformed
