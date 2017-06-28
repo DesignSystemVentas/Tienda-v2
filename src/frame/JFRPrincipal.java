@@ -5,12 +5,16 @@ import controlador.ControladorProducto;
 import controlador.ControladorProveedor;
 import controlador.ControladorSucursal;
 import controlador.ControladorTipoPrecio;
+import controlador.ControladorVenta;
 import controlador.ErrorTienda;
 import controlador.Parametro;
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -26,6 +30,24 @@ import javax.swing.table.JTableHeader;
  * @author Jose Lopez Garcia
  */
 public final class JFRPrincipal extends javax.swing.JFrame {
+        //vizcarra//
+    Date date = new Date();
+    Calendar calendar1 = Calendar.getInstance();
+    Calendar calendar2 = new GregorianCalendar();       
+    Calendar calendar = Calendar.getInstance();  
+    int dia, mes, anio, fila=0, venta=0, sucursal, tipoventa, nitVenta, giroVenta, nDocumentoVenta;
+    double Punitario = 0, TotalGravadoVenta=0, TotalVenta=0, SubTotalVenta;   
+    boolean encontrar;
+    ResultSet rstControladorVenta = null;
+    ResultSet rstControladorProducto = null;
+    ResultSet rstCSucursal = null;
+    ResultSet rstTipoPrecio = null;
+    ControladorVenta controladorventa = new ControladorVenta();
+    ControladorProducto cp = new ControladorProducto();
+    ControladorSucursal cSucursal = new ControladorSucursal();
+    ControladorTipoPrecio cTipoPrecio = new ControladorTipoPrecio();
+    String datosVenta[] = new String[7], CodigoBarraVender = "";;    
+    //vaizcarra//
 
     boolean ventas, compras, productos, proveedores, administradores;
     boolean apagado, principal,modificarTipoPrecio,modificarSucursal,modificarParametro;
@@ -48,6 +70,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     ResultSet rsSucursalC = null;
     DefaultComboBoxModel modeloProveedorC = new DefaultComboBoxModel();
     DefaultComboBoxModel  modeloSucursalC = new DefaultComboBoxModel();
+    
+    //vizcarra//
+    DefaultTableModel MenuVenta = new DefaultTableModel();
+    DefaultTableModel mAgregarDVenta = new DefaultTableModel();
+    DefaultComboBoxModel mSucursal = new DefaultComboBoxModel();
+    DefaultComboBoxModel mUtilidad = new DefaultComboBoxModel();    
+    //vizcarra//
+
     
     public JFRPrincipal() {
         initComponents();
@@ -76,7 +106,26 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         Productos(false);
         Proveedores(false);
         
-        
+                //VIZCARRA//
+         //llenado de tabla MenuVenta
+        MenuVenta.addColumn("IdVenta");        
+        MenuVenta.addColumn("TipoVenta");        
+        MenuVenta.addColumn("Cliente");
+        MenuVenta.addColumn("Fecha");        
+        MenuVenta.addColumn("TotalGravado");       
+        MenuVenta.addColumn("Direccion");
+        MenuVenta.addColumn("Documento");
+        tblMenuVentas.setModel(MenuVenta);
+        //finalizado "llenado de tabla MenuVenta"//
+        //llenado de tabla Registro Venta (detalleventa)
+        mAgregarDVenta.addColumn("Codigo Barra");
+        mAgregarDVenta.addColumn("Producto");
+        mAgregarDVenta.addColumn("Cantidad");
+        mAgregarDVenta.addColumn("Costo");
+        mAgregarDVenta.addColumn("SubTotal");        
+        tblRegistrarVenta.setModel(mAgregarDVenta);
+        //VIZCARRA//
+
         
         
         //llenado de tabla Compra  
