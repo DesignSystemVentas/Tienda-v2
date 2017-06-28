@@ -1,6 +1,7 @@
 
 package frame;
 
+import controlador.Conexion;
 import controlador.ControladorProducto;
 import controlador.ControladorProveedor;
 import controlador.ControladorSucursal;
@@ -621,7 +622,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel61 = new javax.swing.JLabel();
         lblGiroVenta = new javax.swing.JLabel();
         lblNITventa = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         jLabel62 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -2329,14 +2329,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblNITventa.setText("NIT");
         jpnRegistrarVenta.add(lblNITventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, -1, -1));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/trash.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jpnRegistrarVenta.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 541, 50, 30));
-
         jLabel62.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel62.setText("SUMAS");
         jpnRegistrarVenta.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 510, -1, -1));
@@ -3119,26 +3111,26 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
         sucursaldv = sucursaldv + cmbSucursal.getSelectedIndex();
         int IdventaAgregar = Integer.parseInt(txtIdVenta.getText());
         sucursaldv = sucursaldv;
-//        if (cmbTipoFactura.getSelectedIndex()==0) {
-//            for(int i=0;i < tblRegistrarVenta.getRowCount();i++){
-//                Conexion cn = new Conexion();//
-//                cn.UID("INSERT INTO detalleventa (IdVenta, CodBarra, Cantidad, PrecioUnitario, IdSucursal) VALUES ('" +IdventaAgregar+ "','" +tblRegistrarVenta.getValueAt(i, 0)+ "','"
-//                    +tblRegistrarVenta.getValueAt(i, 2)+ "','" + (Double.parseDouble(tblRegistrarVenta.getValueAt(i, 3).toString() ))/1.13+ "','" + sucursaldv + "')");
-//                cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblRegistrarVenta.getValueAt(i, 2)+ "'  WHERE CodBarra='" +tblRegistrarVenta.getValueAt(i, 0)+ "'");
-//            }
-//        }else{
-//            for(int i=0;i < tblRegistrarVenta.getRowCount();i++){
-//                Conexion cn = new Conexion();//
-//                cn.UID("INSERT INTO detalleventa (IdVenta, CodBarra, Cantidad, PrecioUnitario, IdSucursal) VALUES ('" +venta+ "','" +tblRegistrarVenta.getValueAt(i, 0)+ "','"
-//                    +tblRegistrarVenta.getValueAt(i, 2)+ "','" +tblRegistrarVenta.getValueAt(i, 3)+ "','" + cmbSucursal.getSelectedIndex()+1 + "')");
-//                cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblRegistrarVenta.getValueAt(i, 2)+ "'  WHERE CodBarra='" +tblRegistrarVenta.getValueAt(i, 0)+ "'");
-//            }
-//        }
-//        //TERMINAR DE AGREGAR//
-//
-//        String Fecha="", Direcion="";
-//        Fecha=anio+"-"+mes+"-"+dia;
-//        String Giro = "";
+        if (cmbTipoFactura.getSelectedIndex()==0) {
+            for(int i=0;i < tblRegistrarVenta.getRowCount();i++){
+                Conexion cn = new Conexion();//
+                cn.UID("INSERT INTO detalleventa (IdVenta, CodBarra, Cantidad, PrecioUnitario, IdSucursal) VALUES ('" +IdventaAgregar+ "','" +tblRegistrarVenta.getValueAt(i, 0)+ "','"
+                    +tblRegistrarVenta.getValueAt(i, 2)+ "','" + (Double.parseDouble(tblRegistrarVenta.getValueAt(i, 3).toString() ))/1.13+ "','" + sucursaldv + "')");
+                cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblRegistrarVenta.getValueAt(i, 2)+ "'  WHERE CodBarra='" +tblRegistrarVenta.getValueAt(i, 0)+ "'");
+            }
+        }else{
+            for(int i=0;i < tblRegistrarVenta.getRowCount();i++){
+                Conexion cn = new Conexion();//
+                cn.UID("INSERT INTO detalleventa (IdVenta, CodBarra, Cantidad, PrecioUnitario, IdSucursal) VALUES ('" +venta+ "','" +tblRegistrarVenta.getValueAt(i, 0)+ "','"
+                    +tblRegistrarVenta.getValueAt(i, 2)+ "','" +tblRegistrarVenta.getValueAt(i, 3)+ "','" + cmbSucursal.getSelectedIndex()+1 + "')");
+                cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblRegistrarVenta.getValueAt(i, 2)+ "'  WHERE CodBarra='" +tblRegistrarVenta.getValueAt(i, 0)+ "'");
+            }
+        }
+        //TERMINAR DE AGREGAR//
+
+        String Fecha="", Direcion="";
+        Fecha=anio+"-"+mes+"-"+dia;
+        String Giro = "";
         String NIT = "";
         String NRC = "";
         String TipoVenta = "";
@@ -3162,7 +3154,7 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
             Total=saberiva;
 
         } else if (cmbTipoFactura.getSelectedIndex()==1) {
-//            Giro = txtGiroVenta.getText();
+            Giro = txtGiroVenta.getText();
             NIT = txtNITventa.getText();
             NRC = txtNRCventa.getText();
             TipoVenta = "CREDITOFISCAL";
@@ -3170,7 +3162,7 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
             Total = TotalGravadoVenta;
             txtGiroVenta.setText("");
             txtNITventa.setText("");
-//            txtNRCventa.setText(Giro);
+            txtNRCventa.setText(Giro);
         }else if (cmbTipoFactura.getSelectedIndex()==2) {
             TipoVenta = "LIBRE";
             IVA = 0;
@@ -3178,14 +3170,14 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
 
         }
 
-//        try {
-//            controladorventa.Agregar(IdVenta, IdSucursal, TipoVenta, IdTipoPrecio, Cliente, Fecha, IVA, TotalGravado, Total, Direcion, Giro, NIT, NRC, NDocumento);
-//        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
-//        //limpiar la tabla
-//        for(int i=0;i < mAgregarDVenta.getRowCount();i++){
-//            mAgregarDVenta.removeRow(i);
-//            i-=1;
-//        }
+        try {
+            controladorventa.Agregar(IdVenta, IdSucursal, TipoVenta, IdTipoPrecio, Cliente, Fecha, IVA, TotalGravado, Total, Direcion, Giro, NIT, NRC, NDocumento);
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
+        //limpiar la tabla
+        for(int i=0;i < mAgregarDVenta.getRowCount();i++){
+            mAgregarDVenta.removeRow(i);
+            i-=1;
+        }
         txtCodigoBarraVender.setText("");
         txtNombreProductoVender.setText("");
         txtCantidadVender.setText("");
@@ -3196,7 +3188,7 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
         txtTotalventaGravado.setText("");
         txtIdVenta.setText("");
         txtNuDocumentoVenta.setText("");
-//        saberCodigoVenta();
+        saberCodigoVenta();
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnAgregarProductoVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaMouseEntered
@@ -3505,10 +3497,6 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
     private void cmbSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSucursalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbSucursalActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
       
 //    public void llenarTablaProductoTyped(String codigo) throws SQLException{
 //        //clearTableCompra();
@@ -3771,7 +3759,6 @@ public void limpiarTablaProducto(){
     private javax.swing.JComboBox cmbUtilidad;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
