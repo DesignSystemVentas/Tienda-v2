@@ -303,6 +303,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnDetalleCompra.setVisible(false);
         jpnRegistrarVenta.setVisible(false);
         jpnAdministracion.setVisible(false);
+        jpnRegistrarVenta.setVisible(false);
+         jpnReporteVentas.setVisible(false);
 
     }
     //VIZCARRA//
@@ -3741,9 +3743,9 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
         TotalReporteVentaIVA = TotalReporteVentaIVA - TotalReporteVentas;
         TotalReporteVentasGravadas = TotalReporteVentaIVA + TotalReporteVentas;
         
-        txtVentasNetas.setText(""+TotalReporteVentas);
-        txtImpuestosVentas.setText(""+TotalReporteVentaIVA);
-        txtVentasGravadas.setText(""+TotalReporteVentasGravadas);
+        txtVentasNetas.setText("$ "+(df.format(TotalReporteVentas)));
+        txtImpuestosVentas.setText("$ "+(df.format(TotalReporteVentaIVA)));
+        txtVentasGravadas.setText("$ "+(df.format(TotalReporteVentasGravadas)));
         jpnMenuVentas.setVisible(false);
         jpnReporteVentas.setVisible(true);
         
