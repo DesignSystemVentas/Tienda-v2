@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -50,6 +51,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     ControladorTipoPrecio cTipoPrecio = new ControladorTipoPrecio();
     String datosVenta[] = new String[7], CodigoBarraVender = "";
     String GReporteVenta[] = new String[5];
+    DecimalFormat df = new DecimalFormat("#.00");
     //vaizcarra//
 
     boolean ventas, compras, productos, proveedores, administradores;
@@ -3327,25 +3329,21 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                 if (posicioncmbUtilidad==0) {
                     Punitario = (Punitario*1.13)/(1-0.25);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);
                 } if (posicioncmbUtilidad==1) {
                     Punitario= (Punitario*1.13)/(1-0.12);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);
                 } if (posicioncmbUtilidad==2) {
                     Punitario= (Punitario*1.13)/(1-0.085);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);
                 }
                 String AgregarDVenta[] = new String[5];
                 AgregarDVenta[0] = txtCodigoBarraVender.getText();
                 AgregarDVenta[1] = txtNombreProductoVender.getText();
                 AgregarDVenta[2] = txtCantidadVender.getText();
-                AgregarDVenta[3] = String.valueOf(Punitario);
-                AgregarDVenta[4] = String.valueOf(SubTotalVenta);
+                AgregarDVenta[3] = String.valueOf((df.format(Punitario)));
+                AgregarDVenta[4] = String.valueOf((df.format(SubTotalVenta)));
                 mAgregarDVenta.addRow(AgregarDVenta);
-                TotalVenta = TotalVenta +(SubTotalVenta);
-                //hacer que al dar clip se pase al txtCodigoBarraVender
+
                 txtCodigoBarraVender.requestFocus();
                 txtCodigoBarraVender.setText("");
                 txtNombreProductoVender.setText("");
@@ -3364,20 +3362,17 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                 if (posicioncmbUtilidad==0) {
                     Punitario = (Punitario*1.13)/(1-0.25);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);
                 } if (posicioncmbUtilidad==1) {
                     Punitario= (Punitario*1.13)/(1-0.12);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);
                 } if (posicioncmbUtilidad==2) {
                     Punitario= (Punitario*1.13)/(1-0.085);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);
                 }
                 NuevoValor = (Punitario * Double.parseDouble(txtCantidadVender.getText())) + (Double.parseDouble(tblRegistrarVenta.getValueAt(j-1, 4).toString()));
                 tblRegistrarVenta.setValueAt(CantidadActualizada, j-1, 2);
                 tblRegistrarVenta.setValueAt(NuevoValor, j-1, 4);
-                //hacer que al dar clip se pase al txtCodigoBarraVender
+                                
                 txtCodigoBarraVender.requestFocus();
                 txtCodigoBarraVender.setText("");
                 txtNombreProductoVender.setText("");
@@ -3410,15 +3405,12 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                 if (posicioncmbUtilidad==0) {
                     Punitario = Punitario /(1-0.25);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);                    
                 } if (posicioncmbUtilidad==1) {
                     Punitario= (Punitario)/(1-0.12);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);
                 } if (posicioncmbUtilidad==2) {
                     Punitario= (Punitario)/(1-0.085);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);
                 }
                 String AgregarDVenta[] = new String[5];
                 AgregarDVenta[0] = txtCodigoBarraVender.getText();
@@ -3427,8 +3419,7 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                 AgregarDVenta[3] = String.valueOf(Punitario);
                 AgregarDVenta[4] = String.valueOf(SubTotalVenta);
                 mAgregarDVenta.addRow(AgregarDVenta);
-                TotalVenta = TotalVenta +(SubTotalVenta);
-                //hacer que al dar clip se pase al txtCodigoBarraVender
+                
                 txtCodigoBarraVender.requestFocus();
                 txtCodigoBarraVender.setText("");
                 txtNombreProductoVender.setText("");
@@ -3446,22 +3437,19 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                 if (posicioncmbUtilidad==0) {
                     Punitario = (Punitario)/(1-0.25);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);
                 } if (posicioncmbUtilidad==1) {
                     Punitario= (Punitario)/(1-0.12);
-                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);
+                    SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));                    
                 } if (posicioncmbUtilidad==2) {
                     Punitario= (Punitario)/(1-0.085);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);
                 }
                 CantidadActualizada = (Integer.parseInt(tblRegistrarVenta.getValueAt(j-1, 2).toString())) + (Integer.parseInt(txtCantidadVender.getText()));
                 NuevoValor = (Punitario * Double.parseDouble(txtCantidadVender.getText())) + (Double.parseDouble(tblRegistrarVenta.getValueAt(j-1, 4).toString()));
 
                 tblRegistrarVenta.setValueAt(CantidadActualizada, j-1, 2);
                 tblRegistrarVenta.setValueAt(NuevoValor, j-1, 4);
-                //hacer que al dar clip se pase al txtCodigoBarraVender
+                
                 txtCodigoBarraVender.requestFocus();
                 txtCodigoBarraVender.setText("");
                 txtNombreProductoVender.setText("");
@@ -3500,26 +3488,22 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                 if (posicioncmbUtilidad==0) {
                     Punitario = (Punitario)/(1-0.25);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-
-                    TotalVenta = TotalVenta +(SubTotalVenta);
                 } if (posicioncmbUtilidad==1) {
                     Punitario= (Punitario)/(1-0.12);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);
                 } if (posicioncmbUtilidad==2) {
                     Punitario= (Punitario)/(1-0.085);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);
                 }
                 String AgregarDVenta[] = new String[5];
                 AgregarDVenta[0] = txtCodigoBarraVender.getText();
                 AgregarDVenta[1] = txtNombreProductoVender.getText();
                 AgregarDVenta[2] = txtCantidadVender.getText();
-                AgregarDVenta[3] = String.valueOf(Punitario);
-                AgregarDVenta[4] = String.valueOf(SubTotalVenta);
+                AgregarDVenta[3] = String.valueOf((df.format(Punitario)));
+                AgregarDVenta[4] = String.valueOf((df.format(SubTotalVenta)));
                 mAgregarDVenta.addRow(AgregarDVenta);
                 TotalVenta = TotalVenta +(SubTotalVenta);
-                //hacer que al dar clip se pase al txtCodigoBarraVender
+
                 txtCodigoBarraVender.requestFocus();
                 txtCodigoBarraVender.setText("");
                 txtNombreProductoVender.setText("");
@@ -3537,15 +3521,12 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                 if (posicioncmbUtilidad==0) {
                     Punitario = (Punitario)/(1-0.25);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);
                 } if (posicioncmbUtilidad==1) {
                     Punitario= (Punitario)/(1-0.12);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);
                 } if (posicioncmbUtilidad==2) {
                     Punitario= (Punitario)/(1-0.085);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
-                    TotalVenta = TotalVenta +(SubTotalVenta);
                 }
                 CantidadActualizada = (Integer.parseInt(tblRegistrarVenta.getValueAt(j-1, 2).toString())) + (Integer.parseInt(txtCantidadVender.getText()));
                 NuevoValor = (Punitario * Double.parseDouble(txtCantidadVender.getText())) + (Double.parseDouble(tblRegistrarVenta.getValueAt(j-1, 4).toString()));
