@@ -3244,19 +3244,20 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
         String NDocumento = txtNuDocumentoVenta.getText();
 
         int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
-        double  TotalGravadoVenta = 0;
+        double  TotalVentas = 0;
         while (iteracion<filas){
-            TotalGravadoVenta = TotalGravadoVenta + Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
+            TotalVentas = TotalVentas + Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
             iteracion++;
         }
         
-        double IVA=0, TotalGravado=TotalGravadoVenta, Total=0;
+        double IVA=0, TotalGravado=0, Total=0;
        
         if (cmbTipoFacturaVenta.getSelectedIndex()==0) {
             TipoVenta = "FACTURA";
-            double saberiva = TotalGravado/1.13;
-            IVA = TotalGravado - saberiva;
+            double saberiva = TotalVentas/1.13;
+            IVA = TotalVentas - saberiva;
             Total=saberiva;
+            TotalGravado = TotalVentas + IVA;
 
         } 
         if (cmbTipoFacturaVenta.getSelectedIndex()==1) {
@@ -3264,19 +3265,21 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
             NIT = txtNITventa.getText();
             NRC = txtNRCventa.getText();
             TipoVenta = "CREDITO FISCAL";
-            IVA = 0;
-            Total = TotalGravadoVenta;            
+            IVA = Total*1.13;
+            IVA = IVA - Total;
+            Total = TotalVentas;            
+            TotalGravado = TotalVentas + IVA;
         }
         
         if (cmbTipoFacturaVenta.getSelectedIndex()==2) {
             TipoVenta = "LIBRE";
             IVA = 0;
             Total = TotalGravado;
-
+            IVA = Total*1.13;
+            IVA = IVA - Total;
+            Total = TotalVentas;            
+            TotalGravado = TotalVentas + IVA;
         }
-        txtSaberIdTipoPrecio.setText("" +IdTipoPrecio);
-        txtSaberIdSucursal.setText("" +IdSucursal);
-
         try {
             controladorventa.Agregar(IdVenta, IdSucursal, IdTipoPrecio, TipoVenta, Cliente, Fecha, IVA, TotalGravado, Total, Direcion, Giro, NIT, NRC, NDocumento);
         } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
@@ -3476,14 +3479,13 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                 total+=Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
                 iteracion++;
             }
-            double TotalGravadoFiscalIVA=0, TotalGravadoFiscalP=0;
-            TotalGravadoFiscalP = total * 1.01;
-            TotalGravadoFiscalP = TotalGravadoFiscalP - total;
-            TotalGravadoFiscalIVA = total * 1.13;
-            TotalGravadoFiscalIVA = TotalGravadoFiscalIVA - total;
+            double TotalGravadoVentaIVA=0, TotalGravadoVentamasIVA=0, TotalVentaGravadoAgregar=0;                        
+            TotalGravadoVentaIVA = total * 1.13;
+            TotalGravadoVentaIVA = TotalGravadoVentaIVA - total;
+            TotalVentaGravadoAgregar = total + TotalGravadoVentaIVA;
             txtSumas.setText("$"+total);
-            txtIVA.setText("$"+TotalGravadoFiscalIVA);
-            txtTotalventaGravado.setText("$"+total);
+            txtIVA.setText("$"+TotalGravadoVentaIVA);
+            txtTotalventaGravado.setText("$"+TotalVentaGravadoAgregar);
         }
         //FINALIZADO (CREDITOFISCAL)//
         //*************************************************************************//\
@@ -3500,16 +3502,16 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
             //si no hay produc repetido se realiza esta opcion//
             if (encontrar == false) {
                 if (posicioncmbUtilidad==0) {
-                    Punitario = (Punitario*1.13)/(1-0.25);
+                    Punitario = (Punitario)/(1-0.25);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
 
                     TotalVenta = TotalVenta +(SubTotalVenta);
                 } if (posicioncmbUtilidad==1) {
-                    Punitario= (Punitario*1.13)/(1-0.12);
+                    Punitario= (Punitario)/(1-0.12);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
                     TotalVenta = TotalVenta +(SubTotalVenta);
                 } if (posicioncmbUtilidad==2) {
-                    Punitario= (Punitario*1.13)/(1-0.085);
+                    Punitario= (Punitario)/(1-0.085);
                     SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
                     TotalVenta = TotalVenta +(SubTotalVenta);
                 }
@@ -3567,9 +3569,7 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                 total+=Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
                 iteracion++;
             }
-            double TotalGravadoFiscalIVA=0, TotalGravadoFiscalP=0;
-            TotalGravadoFiscalP = total * 1.01;
-            TotalGravadoFiscalP = TotalGravadoFiscalP - total;
+            double TotalGravadoFiscalIVA=0, TotalGravadoFiscalP=0;            
             TotalGravadoFiscalIVA = total * 1.13;
             TotalGravadoFiscalIVA = TotalGravadoFiscalIVA - total;
             txtSumas.setText("$"+total);
@@ -3605,16 +3605,21 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
             txtGiroVenta.setVisible(true);
             txtNITventa.setVisible(true);
             txtNRCventa.setVisible(true);
+            txtIVA.setVisible(true);
             lblGiroVenta.setVisible(true);
             lblNITventa.setVisible(true);
             lblNRCventa.setVisible(true);
+            lblIVA.setVisible(true);
         }else{
             txtGiroVenta.setVisible(false);
             txtNITventa.setVisible(false);
             txtNRCventa.setVisible(false);
+            txtIVA.setVisible(false);
             lblGiroVenta.setVisible(false);
             lblNITventa.setVisible(false);
-            lblNRCventa.setVisible(false);            
+            lblNRCventa.setVisible(false);  
+            lblIVA.setVisible(false);
+            
         }
         sabercmbTipoFactura = cmbTipoFacturaVenta.getSelectedIndex();
     }//GEN-LAST:event_cmbTipoFacturaVentaItemStateChanged
@@ -3692,8 +3697,23 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                 ReporteVenta.addRow(GReporteVenta);
             }
         } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
+        
+        int filas = tblReporteVentas.getRowCount(), iteracion=0;
+        double  TotalReporteVentas = 0, TotalReporteVentaIVA = 0, TotalReporteVentasGravadas = 0;
+        while (iteracion<filas){
+            TotalReporteVentas = TotalReporteVentas + Double.parseDouble(String.valueOf(tblReporteVentas.getValueAt(iteracion, 4)));
+            iteracion++;
+        }
+        TotalReporteVentaIVA = TotalReporteVentas * 1.13;
+        TotalReporteVentaIVA = TotalReporteVentaIVA - TotalReporteVentas;
+        TotalReporteVentasGravadas = TotalReporteVentaIVA + TotalReporteVentas;
+        
+        txtVentasNetas.setText(""+TotalReporteVentas);
+        txtImpuestosVentas.setText(""+TotalReporteVentaIVA);
+        txtVentasGravadas.setText(""+TotalReporteVentasGravadas);
         jpnMenuVentas.setVisible(false);
         jpnReporteVentas.setVisible(true);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
       
 //    public void llenarTablaProductoTyped(String codigo) throws SQLException{
