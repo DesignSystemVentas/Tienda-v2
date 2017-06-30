@@ -79,9 +79,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     DefaultTableModel mAgregarDVenta = new DefaultTableModel();
     DefaultTableModel ReporteVenta = new DefaultTableModel();
     DefaultComboBoxModel mSucursal = new DefaultComboBoxModel();
-    DefaultComboBoxModel mUtilidad = new DefaultComboBoxModel();         
+    DefaultComboBoxModel mUtilidad = new DefaultComboBoxModel(); 
+    
     //vizcarra//
 
+    
     
     public JFRPrincipal() {
         initComponents();
@@ -180,6 +182,22 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jtblParametros.setModel(modeloParametro);
         jtblSucursales.setModel(modeloSucursal);
         jtblProductos.setModel(modeloProducto);
+        
+            modificarTipoPrecio=false;
+            txtIdTipoPrecio.setEditable(false);
+            txtNombreTipoPrecio.setEditable(false);
+            txtUtilidadTipoPrecio.setEditable(false);
+            
+            txtIdParametro.setEditable(false);
+            txtNombreParametro.setEditable(false);
+            txtParametroParametro.setEditable(false);
+            modificarParametro=false;
+            
+            txtIdSucursal.setEditable(false);
+            txtNombreSucursal.setEditable(false);
+            txtDireccionSucursal.setEditable(false);
+            txtTelefonoSucursal.setEditable(false);
+            modificarSucursal=false;
         
         
         
@@ -570,7 +588,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtIdParametro = new javax.swing.JTextField();
         txtNombreParametro = new javax.swing.JTextField();
         txtParametroParametro = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnGuardarParametro = new javax.swing.JButton();
         btnModificarParametro = new javax.swing.JButton();
         btnCancelarParametro = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JSeparator();
@@ -2028,8 +2046,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tjpnlParametros.add(txtNombreParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 150, -1));
         tjpnlParametros.add(txtParametroParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 150, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardarprov.png"))); // NOI18N
-        tjpnlParametros.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 100, 30));
+        btnGuardarParametro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardarprov.png"))); // NOI18N
+        btnGuardarParametro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarParametroActionPerformed(evt);
+            }
+        });
+        tjpnlParametros.add(btnGuardarParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 100, 30));
 
         btnModificarParametro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
         btnModificarParametro.addActionListener(new java.awt.event.ActionListener() {
@@ -2040,6 +2063,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tjpnlParametros.add(btnModificarParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 100, 30));
 
         btnCancelarParametro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
+        btnCancelarParametro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarParametroActionPerformed(evt);
+            }
+        });
         tjpnlParametros.add(btnCancelarParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 100, 30));
         tjpnlParametros.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 790, -1));
 
@@ -2127,7 +2155,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tjpnlSucursales.add(btnModificarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 100, 30));
 
         btnCancelarSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
+        btnCancelarSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarSucursalActionPerformed(evt);
+            }
+        });
         tjpnlSucursales.add(btnCancelarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, 100, 40));
+
+        txtIdSucursal.setEditable(false);
         tjpnlSucursales.add(txtIdSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 350, -1));
         tjpnlSucursales.add(txtNombreSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 350, -1));
 
@@ -2984,7 +3019,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTotalCompraActionPerformed
 
     private void btnCancelarTipoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarTipoPrecioActionPerformed
-        // TODO add your handling code here:
+modificarTipoPrecio=false;
+      txtIdTipoPrecio.setEditable(false);
+            txtNombreTipoPrecio.setEditable(false);
+            txtUtilidadTipoPrecio.setEditable(false);        
     }//GEN-LAST:event_btnCancelarTipoPrecioActionPerformed
 
     private void txtDireccionSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionSucursalActionPerformed
@@ -3030,7 +3068,9 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                 String id = modeloParametro.getValueAt(jtblParametros.getSelectedRow(), 0).toString();
                 String nombre = modeloParametro.getValueAt(jtblParametros.getSelectedRow(), 1).toString();
                 String valor= modeloParametro.getValueAt(jtblParametros.getSelectedRow(), 2).toString();
-                
+               txtIdParametro.setEditable(true);
+            txtNombreParametro.setEditable(true);
+            txtParametroParametro.setEditable(true); 
             txtIdParametro.setText(""+id);
             txtNombreParametro.setText(""+nombre);
             txtParametroParametro.setText(""+valor);
@@ -3738,6 +3778,57 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
     private void btnEliminarSucursalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarSucursalesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarSucursalesActionPerformed
+
+    private void btnGuardarParametroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarParametroActionPerformed
+        Parametro p= new Parametro();
+
+                String id = txtIdParametro.getText();
+                String nombre = txtNombreParametro.getText();
+                String valor=txtParametroParametro.getText();
+                
+                Object P[]={id,nombre,valor};
+        
+         
+            if(modificarParametro==true){
+                try {
+                    p.Modificar(P);
+                } catch (Exception ex) {
+                    Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            txtIdParametro.setText("");
+            txtNombreParametro.setText("");
+            txtParametroParametro.setText("");
+            JOptionPane.showMessageDialog(null, "modificado con exito");
+            
+            
+            }
+             
+             
+            try {
+                llenarParametro();
+            } catch (Exception ex) {
+                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             modificarParametro=false;
+          txtIdParametro.setEditable(false);
+            txtNombreParametro.setEditable(false);
+            txtParametroParametro.setEditable(false);
+    }//GEN-LAST:event_btnGuardarParametroActionPerformed
+
+    private void btnCancelarSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarSucursalActionPerformed
+            txtIdSucursal.setEditable(false);
+            txtNombreSucursal.setEditable(false);
+            txtDireccionSucursal.setEditable(false);
+            txtTelefonoSucursal.setEditable(false);
+            modificarSucursal=false;
+    }//GEN-LAST:event_btnCancelarSucursalActionPerformed
+
+    private void btnCancelarParametroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarParametroActionPerformed
+       txtIdParametro.setEditable(false);
+            txtNombreParametro.setEditable(false);
+            txtParametroParametro.setEditable(false);
+            modificarParametro=false;
+    }//GEN-LAST:event_btnCancelarParametroActionPerformed
       
 //    public void llenarTablaProductoTyped(String codigo) throws SQLException{
 //        //clearTableCompra();
@@ -3970,6 +4061,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JButton btnEliminarTipoPrecio;
     private javax.swing.JButton btnGuardarCompra;
     private javax.swing.JButton btnGuardarModificarProveedor;
+    private javax.swing.JButton btnGuardarParametro;
     private javax.swing.JButton btnGuardarProveedor;
     private javax.swing.JButton btnGuardarSucursal;
     private javax.swing.JButton btnGuardarTipoPrecio;
@@ -3997,7 +4089,6 @@ public void limpiarTablaProducto(){
     private javax.swing.JComboBox cmbSucursalMenuVenta;
     private javax.swing.JComboBox cmbTipoFacturaVenta;
     private javax.swing.JComboBox cmbUtilidad;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

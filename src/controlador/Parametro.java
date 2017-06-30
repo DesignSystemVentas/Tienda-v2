@@ -63,11 +63,11 @@ public class Parametro {
     Conexion cn=new Conexion();
     
      
-     public void Modificar(Parametro pr) throws Exception{
+     public void Modificar(Object t[]) throws Exception{
          
          try {
          cn.conectar();
-         cn.UID("UPDATE parametro SET Nombre='" + pr.getNombre() + "',Valor='" + pr.getValor()+"'  WHERE IdParametro='" + pr.getIdParametro()+ "'");
+         cn.UID("UPDATE parametro SET Nombre='" +t[1] + "',Valor='" + t[2]+"'  WHERE IdParametro='" + t[0]+ "'");
          cn.desconectar();   
          } catch (Exception e) {
              throw new ErrorTienda("no logra actualizar parametro");
