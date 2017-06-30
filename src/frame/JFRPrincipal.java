@@ -11,6 +11,7 @@ import controlador.ErrorTienda;
 import controlador.Parametro;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
@@ -1000,11 +1001,16 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnEliminarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
         btnEliminarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarProveedorMouseExited(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnEliminarProveedorMouseEntered(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnEliminarProveedorMouseExited(evt);
+        });
+        btnEliminarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProveedorActionPerformed(evt);
             }
         });
         jpnProveedores.add(btnEliminarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 520, 110, 30));
@@ -1019,11 +1025,16 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAgregarProveedorMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgregarProveedorMouseExited(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnAgregarProveedorMouseEntered(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAgregarProveedorMouseExited(evt);
+        });
+        btnAgregarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarProveedorActionPerformed(evt);
             }
         });
         jpnProveedores.add(btnAgregarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, 110, 30));
@@ -1037,11 +1048,16 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnModificarProveedorMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnModificarProveedorMouseExited(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnModificarProveedorMouseEntered(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnModificarProveedorMouseExited(evt);
+        });
+        btnModificarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarProveedorActionPerformed(evt);
             }
         });
         jpnProveedores.add(btnModificarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 520, 110, 30));
@@ -1100,11 +1116,16 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnGuardarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardarprov.png"))); // NOI18N
         btnGuardarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardarProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGuardarProveedorMouseExited(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnGuardarProveedorMouseEntered(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnGuardarProveedorMouseExited(evt);
+        });
+        btnGuardarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarProveedorActionPerformed(evt);
             }
         });
         jpnAgregarProv.add(btnGuardarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, 110, 30));
@@ -1115,19 +1136,62 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAtrasProveedoresMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAtrasProveedoresMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAtrasProveedoresMouseExited(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAtrasProveedoresMouseEntered(evt);
+            }
+        });
+        btnAtrasProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasProveedoresActionPerformed(evt);
+            }
         });
         jpnAgregarProv.add(btnAtrasProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 480, 110, 30));
+
+        txtDireccionProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDireccionProveedorActionPerformed(evt);
+            }
+        });
+        txtDireccionProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionProveedorKeyTyped(evt);
+            }
+        });
         jpnAgregarProv.add(txtDireccionProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 410, 30));
+
+        txtNIT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNITKeyTyped(evt);
+            }
+        });
         jpnAgregarProv.add(txtNIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 230, 30));
 
         txtNombreProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtNombreProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreProveedorActionPerformed(evt);
+            }
+        });
+        txtNombreProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreProveedorKeyTyped(evt);
+            }
+        });
         jpnAgregarProv.add(txtNombreProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 410, 30));
+
+        txtTelefonoProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefonoProveedorActionPerformed(evt);
+            }
+        });
+        txtTelefonoProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoProveedorKeyTyped(evt);
+            }
+        });
         jpnAgregarProv.add(txtTelefonoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 230, 30));
 
         jPanel45.setBackground(new java.awt.Color(0, 0, 0));
@@ -1178,11 +1242,16 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnGuardarModificarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardarprov.png"))); // NOI18N
         btnGuardarModificarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardarModificarProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGuardarModificarProveedorMouseExited(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnGuardarModificarProveedorMouseEntered(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnGuardarModificarProveedorMouseExited(evt);
+        });
+        btnGuardarModificarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarModificarProveedorActionPerformed(evt);
             }
         });
         jpnModificarProveedor.add(btnGuardarModificarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 500, 110, 30));
@@ -1193,19 +1262,62 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAtrasModificarProveedorMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAtrasModificarProveedorMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAtrasModificarProveedorMouseExited(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAtrasModificarProveedorMouseEntered(evt);
+            }
+        });
+        btnAtrasModificarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasModificarProveedorActionPerformed(evt);
+            }
         });
         jpnModificarProveedor.add(btnAtrasModificarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 500, 110, 30));
+
+        txtNuevoDireccionProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevoDireccionProveedorActionPerformed(evt);
+            }
+        });
+        txtNuevoDireccionProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNuevoDireccionProveedorKeyTyped(evt);
+            }
+        });
         jpnModificarProveedor.add(txtNuevoDireccionProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 410, 30));
+
+        txtNuevoNIT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNuevoNITKeyTyped(evt);
+            }
+        });
         jpnModificarProveedor.add(txtNuevoNIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, 230, 30));
 
         txtNuevoNombreProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtNuevoNombreProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevoNombreProveedorActionPerformed(evt);
+            }
+        });
+        txtNuevoNombreProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNuevoNombreProveedorKeyTyped(evt);
+            }
+        });
         jpnModificarProveedor.add(txtNuevoNombreProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 410, 30));
+
+        txtNuevoTelefonoProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevoTelefonoProveedorActionPerformed(evt);
+            }
+        });
+        txtNuevoTelefonoProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNuevoTelefonoProveedorKeyTyped(evt);
+            }
+        });
         jpnModificarProveedor.add(txtNuevoTelefonoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 230, 30));
 
         jPanel48.setBackground(new java.awt.Color(0, 0, 0));
@@ -2949,6 +3061,18 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private void btnProveedores1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedores1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnProveedores1ActionPerformed
+             
+
+    private void txtProductosBuscar1KeyTyped(java.awt.event.KeyEvent evt) {                                             
+        char c=evt.getKeyChar();
+       if(Character.isDigit(c)){
+       
+       
+       }else{
+       evt.consume();
+       }     
+            
+    }                                            
 
     private void btnEliminarTipoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTipoPrecioActionPerformed
         ControladorTipoPrecio cpp= new ControladorTipoPrecio();
@@ -4034,6 +4158,232 @@ if(decide==0){
 }
 
     }//GEN-LAST:event_btnEliminarProductoActionPerformed
+
+    private void btnAgregarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProveedorActionPerformed
+        jpnProveedores.setVisible(false);
+                jpnAgregarProv.setVisible(true);
+    }//GEN-LAST:event_btnAgregarProveedorActionPerformed
+
+    private void btnGuardarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProveedorActionPerformed
+         ControladorProveedor cpp= new ControladorProveedor();
+
+//        int id = Integer.parseInt(txtIDProveedor.getText());
+        String nombre  = txtNombreProveedor.getText();
+        String telefono= txtTelefonoProveedor.getText();
+        String direccion = txtDireccionProveedor.getText();
+        String NIT = txtNIT.getText();
+//        Object P[]={id,nombre,telefono, direccion, NIT};
+        Object P[]={nombre,telefono, direccion, NIT};
+        try {
+
+            cpp.AgregarP(P);
+            txtNombreProveedor.setText("");
+            txtTelefonoProveedor.setText("");
+            txtTelefonoProveedor.setText("");
+            txtDireccionProveedor.setText("");
+            txtNIT.setText("");
+            JOptionPane.showMessageDialog(null, "agregado con exito");
+            jpnAgregarProv.setVisible(false);
+            jpnProveedores.setVisible(true);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ErrorTienda ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        llenarTablaProveedoresP();
+
+        }
+
+        public void llenarTablaProveedoresP()
+        {
+//            limpiarTablaProveedores();
+            Conexion cn = new Conexion();
+            cn.conectar();
+
+            String proveedor[]= new String[5];
+//            rsProveedor=cn.getValores("SELECT*FROM proveedor");
+//            try {
+//                while(rsProveedor.next()){
+//                    proveedor[0]=rsProveedor.getString(1);
+//                    proveedor[1]=rsProveedor.getString(2);
+//                    proveedor[2]=rsProveedor.getString(3);
+//                    proveedor[3]=rsProveedor.getString(4);
+//                    proveedor[4]=rsProveedor.getString(5);
+//
+//                    modeloTablaProveedor.addRow(proveedor);
+//                    tblProveedores.setModel(modeloTablaProveedor);
+//
+//                }
+//            } catch (SQLException ex) {
+//                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+    }//GEN-LAST:event_btnGuardarProveedorActionPerformed
+
+    private void txtNombreProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProveedorActionPerformed
+        evt.setSource((char)KeyEvent.VK_CLEAR);
+        txtTelefonoProveedor.requestFocus();  
+    }//GEN-LAST:event_txtNombreProveedorActionPerformed
+
+    private void btnAtrasProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasProveedoresActionPerformed
+                txtIDProveedor.setText("");
+        txtNombreProveedor.setText("");
+        txtTelefonoProveedor.setText("");
+        txtDireccionProveedor.setText("");
+        txtNIT.setText("");
+        jpnAgregarProv.setVisible(false);
+        jpnProveedores.setVisible(true);
+ 
+    }//GEN-LAST:event_btnAtrasProveedoresActionPerformed
+
+    private void txtNombreProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProveedorKeyTyped
+        char c=evt.getKeyChar();
+        if((Character.isLetter(c) || c==8 || c==32) && txtNombreProveedor.getText().length()<30 ){
+       //(Character.isDigit(c) || c==8 ) && txtCpu.getText().length()<2
+       }else{
+       evt.consume();
+       }
+    }//GEN-LAST:event_txtNombreProveedorKeyTyped
+
+    private void txtTelefonoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoProveedorActionPerformed
+        evt.setSource((char)KeyEvent.VK_CLEAR);
+txtDireccionProveedor.requestFocus(); 
+    }//GEN-LAST:event_txtTelefonoProveedorActionPerformed
+
+    private void txtTelefonoProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoProveedorKeyTyped
+        char c=evt.getKeyChar();
+        if((Character.isDigit(c) || c==8)&& txtTelefonoProveedor.getText().length()<30 ){
+       //(Character.isDigit(c) || c==8 ) && txtCpu.getText().length()<2
+       }else{
+       evt.consume();
+       }
+    }//GEN-LAST:event_txtTelefonoProveedorKeyTyped
+
+    private void txtDireccionProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionProveedorActionPerformed
+         evt.setSource((char)KeyEvent.VK_CLEAR);
+txtNIT.requestFocus();  
+    }//GEN-LAST:event_txtDireccionProveedorActionPerformed
+
+    private void txtDireccionProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionProveedorKeyTyped
+        char c=evt.getKeyChar();
+        if(txtDireccionProveedor.getText().length()<30 || c==32 || c==8){
+       //(Character.isDigit(c) || c==8 ) && txtCpu.getText().length()<2
+       }else{
+       evt.consume();
+       }
+    }//GEN-LAST:event_txtDireccionProveedorKeyTyped
+
+    private void txtNITKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNITKeyTyped
+char c=evt.getKeyChar();
+        if((Character.isDigit(c) || c==8)&& txtTelefonoProveedor.getText().length()<13 ){
+       //(Character.isDigit(c) || c==8 ) && txtCpu.getText().length()<2
+       }else{
+       evt.consume();
+       }        
+    }//GEN-LAST:event_txtNITKeyTyped
+
+    private void btnAtrasModificarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasModificarProveedorActionPerformed
+         txtIDProveedor1.setText("");
+        txtNuevoNombreProveedor.setText("");
+        txtNuevoTelefonoProveedor.setText("");
+        txtNuevoDireccionProveedor.setText("");
+        txtNuevoNIT.setText("");
+        jpnModificarProveedor.setVisible(false);
+        jpnProveedores.setVisible(true);
+    }//GEN-LAST:event_btnAtrasModificarProveedorActionPerformed
+
+    private void txtNuevoNombreProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevoNombreProveedorActionPerformed
+        evt.setSource((char)KeyEvent.VK_CLEAR);
+txtNuevoTelefonoProveedor.requestFocus();  
+    }//GEN-LAST:event_txtNuevoNombreProveedorActionPerformed
+
+    private void txtNuevoNombreProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevoNombreProveedorKeyTyped
+         char c=evt.getKeyChar();
+       if((Character.isLetter(c) || c==8 || c==32) && txtNuevoNombreProveedor.getText().length()<30 ){
+       //(Character.isDigit(c) || c==8 ) && txtCpu.getText().length()<2
+       }else{
+       evt.consume();
+       }
+    }//GEN-LAST:event_txtNuevoNombreProveedorKeyTyped
+
+    private void txtNuevoTelefonoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevoTelefonoProveedorActionPerformed
+        evt.setSource((char)KeyEvent.VK_CLEAR);
+txtNuevoDireccionProveedor.requestFocus();  
+
+    }//GEN-LAST:event_txtNuevoTelefonoProveedorActionPerformed
+
+    private void txtNuevoTelefonoProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevoTelefonoProveedorKeyTyped
+        char c=evt.getKeyChar();
+        if(txtNuevoTelefonoProveedor.getText().length()<8 && (Character.isDigit(c) || c==8) ){
+        }
+        else{evt.consume();}
+    }//GEN-LAST:event_txtNuevoTelefonoProveedorKeyTyped
+
+    private void txtNuevoDireccionProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevoDireccionProveedorActionPerformed
+        evt.setSource((char)KeyEvent.VK_CLEAR);
+txtNuevoNIT.requestFocus();  
+   
+    }//GEN-LAST:event_txtNuevoDireccionProveedorActionPerformed
+
+    private void txtNuevoDireccionProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevoDireccionProveedorKeyTyped
+        char c=evt.getKeyChar();
+        if(txtNuevoDireccionProveedor.getText().length()<40 || c==8 || c==32){
+        
+        }else{evt.consume();}
+
+    }//GEN-LAST:event_txtNuevoDireccionProveedorKeyTyped
+
+    private void txtNuevoNITKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevoNITKeyTyped
+         char c=evt.getKeyChar();
+        if(txtNuevoNIT.getText().length()<14 && (Character.isDigit(c) || c==8)){
+        }
+        else{evt.consume();}
+
+    }//GEN-LAST:event_txtNuevoNITKeyTyped
+
+    private void btnGuardarModificarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarModificarProveedorActionPerformed
+                        ControladorProveedor cpp= new ControladorProveedor();
+
+        int id = Integer.parseInt(txtIDProveedor.getText());
+        String nombre  = txtNombreProveedor.getText();
+        String telefono= txtTelefonoProveedor.getText();
+        String direccion = txtDireccionProveedor.getText();
+        String NIT = txtNIT.getText();
+        Object P[]={id,nombre,telefono, direccion, NIT};
+
+        try {
+
+            cpp.modificarP(P);
+            txtIDProveedor.setText("");
+            txtNombreProveedor.setText("");
+            txtTelefonoProveedor.setText("");
+            txtDireccionProveedor.setText("");
+            txtNIT.setText("");
+            JOptionPane.showMessageDialog(null, "modificado con exito");
+            jpnModificarProveedor.setVisible(false);
+            jpnProveedores.setVisible(true);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ErrorTienda ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        llenarTablaProveedoresP();
+
+    }//GEN-LAST:event_btnGuardarModificarProveedorActionPerformed
+
+    private void btnModificarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarProveedorActionPerformed
+        jpnProveedores.setVisible(false);
+        jpnModificarProveedor.setVisible(true);
+    }//GEN-LAST:event_btnModificarProveedorActionPerformed
+
+    private void btnEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProveedorActionPerformed
+   
+    }//GEN-LAST:event_btnEliminarProveedorActionPerformed
       
     public void buscarProductos(){
     
