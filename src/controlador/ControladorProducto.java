@@ -79,11 +79,13 @@ public class ControladorProducto {
          }
          return d;
      }
+     
+    
      public ResultSet Obtener() throws Exception{
      ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("SELECT * FROM producto");    
+         d=cn.getValores("SELECT * FROM producto,inventario");    
          } catch (Exception e) {
              cn.desconectar();
              throw new ErrorTienda("no logra obtener datos producto ");  
@@ -102,5 +104,22 @@ public class ControladorProducto {
         }        
     }     
      //VIZCARRA//
+ public ResultSet ObtenerSucursal(String p) throws Exception{
+     ResultSet d=null;
+         try {
+         cn.conectar();
+         d=cn.getValores("SELECT * FROM producto WHERE CodBarra='"+p+"'");    
+         } catch (Exception e) {
+             throw new ErrorTienda("no logra obtener datos producto ");  
+         }finally{
+         cn.desconectar();
+         }
+         return d;
+     }
+
+
+
+
+
 }
 

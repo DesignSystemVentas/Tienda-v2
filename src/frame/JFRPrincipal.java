@@ -177,6 +177,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         modeloProducto.addColumn("CodBarra");
         modeloProducto.addColumn("Nombre");
         modeloProducto.addColumn("Costo");
+        modeloProducto.addColumn("Sucursal");
+        
         
         
         tblCompra.setModel(modeloAddCompra);
@@ -4185,6 +4187,7 @@ public void llenarProducto() throws Exception{
     ControladorProducto tp=new ControladorProducto();
     limpiarTablaProducto();
     ResultSet rs=null;
+    ResultSet rs2=null;
     rs=tp.Obtener();
     if (!rs.isBeforeFirst()) { 
              System.out.println("No existe"); 
@@ -4194,7 +4197,11 @@ public void llenarProducto() throws Exception{
                 String CodBarra = rs.getString("CodBarra");
                 String Nombre = rs.getString("Nombre");
                 String Costo = rs.getString("Costo");
-                modeloProducto.addRow(new String[]{CodBarra,Nombre,Costo});
+                String sucu=rs.getString("IdSucursal");
+//                
+//                rs2=tp.ObtenerSucursal(sucu);
+//                String nombreSucursal=rs2.getString("nombre");
+                modeloProducto.addRow(new String[]{CodBarra,Nombre,Costo,sucu});
                 System.out.println("puso el modelo Producto");       
             }
         } catch (Exception e) {
