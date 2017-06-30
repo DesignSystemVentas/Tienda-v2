@@ -11,11 +11,11 @@ import modelo.Sucursal;
 public class ControladorSucursal {
  
     Conexion cn=new Conexion();
-     public void AgregarSucursal(Sucursal s) throws Exception{
+     public void AgregarSucursal(Object t[]) throws Exception{
 
          try {
             cn.conectar();
-            cn.UID("INSERT into Sucursal(Nombre,Direccion,Telefono) Values("+s.getNombre()+","+s.getDireccion()+","+s.getTelefono()+");");
+            cn.UID("INSERT into sucursal(Nombre,Direccion,Telefono) Values('"+t[1]+"','"+t[2]+"','"+t[3]+"');");
             cn.desconectar();   
          } catch (Exception e) {
              throw new ErrorTienda("no logra ingresar sucursal");
@@ -26,11 +26,11 @@ public class ControladorSucursal {
      
      }
      
-     public void ModificarSucursal(Sucursal s) throws Exception{
+     public void ModificarSucursal(Object t[]) throws Exception{
          
          try {
          cn.conectar();
-         cn.UID("UPDATE Sucursal SET Nombre='" + s.getNombre() + "',Direccion='" + s.getDireccion()+"',Telefono='" + s.getTelefono()+"'  WHERE IdTipoPrecio='" + s.getIdSucursal() + "'");
+         cn.UID("UPDATE sucursal SET Nombre='" + t[1]+ "',Direccion='" + t[2]+"',Telefono='" + t[3]+"'  WHERE IdSucursal='" + t[0] + "'");
          cn.desconectar();   
          } catch (Exception e) {
              throw new ErrorTienda("no logra actualizar sucursal");
@@ -42,7 +42,7 @@ public class ControladorSucursal {
      public void EliminarSucursal(Sucursal s) throws  Exception{
          try {
          cn.conectar();
-         cn.UID("DELETE FROM Sucursal WHERE IdSucursal='" + s.getIdSucursal() + "'");
+         cn.UID("DELETE FROM sucursal WHERE IdSucursal='" + s.getIdSucursal() + "'");
          cn.desconectar();   
          } catch (Exception e) {
              throw new ErrorTienda("no logra eliminar sucursal");
@@ -55,7 +55,7 @@ public class ControladorSucursal {
          ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("SELECT * FROM Sucursal WHERE IdSucursal='"+s+"'");    
+         d=cn.getValores("SELECT * FROM sucursal WHERE IdSucursal='"+s+"'");    
          } catch (Exception e) {
              throw new ErrorTienda("no logra obtener datos sucursal");  
          }finally{
@@ -68,7 +68,7 @@ public class ControladorSucursal {
      ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("SELECT * FROM Sucursal WHERE IdSucursal='"+t+"'");    
+         d=cn.getValores("SELECT * FROM sucursal WHERE IdSucursal='"+t+"'");    
          } catch (Exception e) {
              throw new ErrorTienda("no logra obtener datos sucursal ");  
          }finally{
@@ -86,7 +86,7 @@ public class ControladorSucursal {
         ResultSet datos = null;
         try{
         cn.conectar();
-        datos = cn.getValores("SELECT * FROM Sucursal");
+        datos = cn.getValores("SELECT * FROM sucursal");
         
         System.out.println("Exito en extraer datos de sucursales");
         } catch (Exception e){

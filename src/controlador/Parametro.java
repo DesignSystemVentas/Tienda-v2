@@ -67,7 +67,7 @@ public class Parametro {
          
          try {
          cn.conectar();
-         cn.UID("UPDATE Parametro SET Nombre='" + pr.getNombre() + "',Valor='" + pr.getValor()+"'  WHERE IdParametro='" + pr.getIdParametro()+ "'");
+         cn.UID("UPDATE parametro SET Nombre='" + pr.getNombre() + "',Valor='" + pr.getValor()+"'  WHERE IdParametro='" + pr.getIdParametro()+ "'");
          cn.desconectar();   
          } catch (Exception e) {
              throw new ErrorTienda("no logra actualizar parametro");
@@ -79,7 +79,7 @@ public class Parametro {
      ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("SELECT * FROM Parametro WHERE IdParametro='"+pr+"'");    
+         d=cn.getValores("SELECT * FROM parametro WHERE IdParametro='"+pr+"'");    
          } catch (Exception e) {
              throw new ErrorTienda("no logra obtener datos Parametro");  
          }finally{
@@ -97,7 +97,7 @@ public class Parametro {
         ResultSet datos = null;
         try{
         cn.conectar();
-        datos = cn.getValores("SELECT * FROM Parametro");
+        datos = cn.getValores("SELECT * FROM parametro");
         
         System.out.println("Exito en extraer datos de parametro");
         } catch (Exception e){

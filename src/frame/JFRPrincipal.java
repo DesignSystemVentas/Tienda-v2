@@ -459,7 +459,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        cmbSucursalCompra = new javax.swing.JComboBox<String>();
+        cmbSucursalCompra = new javax.swing.JComboBox<>();
         lblFecha = new javax.swing.JLabel();
         lbltxtFechaCompra = new javax.swing.JLabel();
         lblFecha1 = new javax.swing.JLabel();
@@ -562,8 +562,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tjpnlParametros = new javax.swing.JPanel();
         jscpTablaParametros = new javax.swing.JScrollPane();
         jtblParametros = new javax.swing.JTable();
-        btnEliminarParametros = new javax.swing.JButton();
-        btnNuevoParametros = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
@@ -1963,7 +1961,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel45.setText("Utilidad:");
         tjpnlTipoPrecio.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
 
-        txtIdTipoPrecio.setEditable(false);
         txtIdTipoPrecio.setFocusable(false);
         tjpnlTipoPrecio.add(txtIdTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 250, -1));
         tjpnlTipoPrecio.add(txtNombreTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 250, -1));
@@ -2013,44 +2010,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         tjpnlParametros.add(jscpTablaParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 170));
 
-        btnEliminarParametros.setBackground(new java.awt.Color(0, 0, 0));
-        btnEliminarParametros.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminarParametros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
-        btnEliminarParametros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEliminarParametros.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnEliminarParametrosMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEliminarParametrosMouseEntered(evt);
-            }
-        });
-        btnEliminarParametros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarParametrosActionPerformed(evt);
-            }
-        });
-        tjpnlParametros.add(btnEliminarParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 100, 30));
-
-        btnNuevoParametros.setBackground(new java.awt.Color(0, 0, 0));
-        btnNuevoParametros.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuevoParametros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo3.png"))); // NOI18N
-        btnNuevoParametros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNuevoParametros.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnNuevoParametrosMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnNuevoParametrosMouseEntered(evt);
-            }
-        });
-        btnNuevoParametros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoParametrosActionPerformed(evt);
-            }
-        });
-        tjpnlParametros.add(btnNuevoParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 100, 30));
-
         jLabel1.setText("idParamatro:");
         tjpnlParametros.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
         tjpnlParametros.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
@@ -2078,7 +2037,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnModificarParametroActionPerformed(evt);
             }
         });
-        tjpnlParametros.add(btnModificarParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 100, 30));
+        tjpnlParametros.add(btnModificarParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 100, 30));
 
         btnCancelarParametro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
         tjpnlParametros.add(btnCancelarParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 100, 30));
@@ -2112,6 +2071,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnNuevoSucursalesMouseEntered(evt);
             }
         });
+        btnNuevoSucursales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoSucursalesActionPerformed(evt);
+            }
+        });
         tjpnlSucursales.add(btnNuevoSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 100, 30));
 
         btnEliminarSucursales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
@@ -2121,6 +2085,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnEliminarSucursalesMouseEntered(evt);
+            }
+        });
+        btnEliminarSucursales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarSucursalesActionPerformed(evt);
             }
         });
         tjpnlSucursales.add(btnEliminarSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 100, 30));
@@ -2142,6 +2111,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tjpnlSucursales.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, -1, -1));
 
         btnGuardarSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardarprov.png"))); // NOI18N
+        btnGuardarSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarSucursalActionPerformed(evt);
+            }
+        });
         tjpnlSucursales.add(btnGuardarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 110, 40));
 
         btnModificarSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
@@ -2154,8 +2128,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         btnCancelarSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
         tjpnlSucursales.add(btnCancelarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, 100, 40));
-
-        txtIdSucursal.setEditable(false);
         tjpnlSucursales.add(txtIdSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 350, -1));
         tjpnlSucursales.add(txtNombreSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 350, -1));
 
@@ -2913,30 +2885,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnProveedores1ActionPerformed
 
-    private void btnEliminarParametrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarParametrosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarParametrosActionPerformed
-
-    private void btnEliminarParametrosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarParametrosMouseEntered
-         btnEliminarParametros.setIcon(new ImageIcon(getClass().getResource("/iconos/eliminarB.png")));
-    }//GEN-LAST:event_btnEliminarParametrosMouseEntered
-
-    private void btnEliminarParametrosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarParametrosMouseExited
-        btnEliminarParametros.setIcon(new ImageIcon(getClass().getResource("/iconos/eliminar.png")));
-    }//GEN-LAST:event_btnEliminarParametrosMouseExited
-
-    private void btnNuevoParametrosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoParametrosMouseExited
-        btnNuevoParametros.setIcon(new ImageIcon(getClass().getResource("/iconos/nuevo3.png")));
-    }//GEN-LAST:event_btnNuevoParametrosMouseExited
-
-    private void btnNuevoParametrosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoParametrosMouseEntered
-        btnNuevoParametros.setIcon(new ImageIcon(getClass().getResource("/iconos/nuevo3B.png")));
-    }//GEN-LAST:event_btnNuevoParametrosMouseEntered
-
-    private void btnNuevoParametrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoParametrosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevoParametrosActionPerformed
-
     private void btnEliminarTipoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTipoPrecioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarTipoPrecioActionPerformed
@@ -3051,7 +2999,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 String direccion= modeloSucursal.getValueAt(jtblSucursales.getSelectedRow(), 2).toString();
                 String telefono= modeloSucursal.getValueAt(jtblSucursales.getSelectedRow(), 3).toString();
                 
-                
+             txtIdSucursal.setEditable(true);
+            txtNombreSucursal.setEditable(true);
+            txtDireccionSucursal.setEditable(true);
+            txtTelefonoSucursal.setEditable(true);   
             txtIdSucursal.setText(""+id);
             txtNombreSucursal.setText(""+nombre);
             txtDireccionSucursal.setText(""+direccion); 
@@ -3065,7 +3016,9 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                 String id = modeloTipoPrecio.getValueAt(jtblTipoDePrecio.getSelectedRow(), 0).toString();
                 String nombre = modeloTipoPrecio.getValueAt(jtblTipoDePrecio.getSelectedRow(), 1).toString();
                 String utilidad= modeloTipoPrecio.getValueAt(jtblTipoDePrecio.getSelectedRow(), 2).toString();
-                
+                txtIdTipoPrecio.setEditable(true);
+            txtNombreTipoPrecio.setEditable(true);
+            txtUtilidadTipoPrecio.setEditable(true);
             txtIdTipoPrecio.setText(""+id);
             txtNombreTipoPrecio.setText(""+nombre);
             txtUtilidadTipoPrecio.setText(""+utilidad);       
@@ -3084,7 +3037,10 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
     }//GEN-LAST:event_btnModificarParametroActionPerformed
 
     private void btnNuevoTipoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoTipoPrecioActionPerformed
-       modificarTipoPrecio=true;
+       modificarTipoPrecio=false;
+       txtIdTipoPrecio.setEditable(true);
+            txtNombreTipoPrecio.setEditable(true);
+            txtUtilidadTipoPrecio.setEditable(true);
     }//GEN-LAST:event_btnNuevoTipoPrecioActionPerformed
 
     private void btnGuardarTipoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarTipoPrecioActionPerformed
@@ -3095,8 +3051,7 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
                 Double utilidad= Double.parseDouble(txtUtilidadTipoPrecio.getText());
                 
                 Object P[]={id,nombre,utilidad};
-         //       cpp.Agregar(P);
-       // Producto p= new Producto(id,inventario, costo, nombre);
+        
          
             if(modificarTipoPrecio==true){
                 try {
@@ -3108,8 +3063,7 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
             txtNombreTipoPrecio.setText("");
             txtUtilidadTipoPrecio.setText("");
             JOptionPane.showMessageDialog(null, "modificado con exito");
-            //jpnNuevoProducto.setVisible(false);
-            //jpnProductos.setVisible(true);
+            
             
             
             
@@ -3123,8 +3077,7 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
             txtNombreTipoPrecio.setText("");
             txtUtilidadTipoPrecio.setText("");
             JOptionPane.showMessageDialog(null, "agregado con exito");
-            //jpnNuevoProducto.setVisible(false);
-            //jpnProductos.setVisible(true);
+            
             
             }
              
@@ -3134,7 +3087,10 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
             } catch (Exception ex) {
                 Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
-      
+      modificarTipoPrecio=false;
+      txtIdTipoPrecio.setEditable(false);
+            txtNombreTipoPrecio.setEditable(false);
+            txtUtilidadTipoPrecio.setEditable(false);
     }//GEN-LAST:event_btnGuardarTipoPrecioActionPerformed
 
     private void btnHacerNuevaVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHacerNuevaVentaMouseEntered
@@ -3715,6 +3671,73 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
         jpnReporteVentas.setVisible(true);
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnGuardarSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarSucursalActionPerformed
+        ControladorSucursal ctp= new ControladorSucursal();
+
+                String id = txtIdSucursal.getText();
+                String nombre = txtNombreSucursal.getText();
+                String direccion = txtDireccionSucursal.getText();
+                String telefono = txtTelefonoSucursal.getText();
+               
+                
+                Object P[]={id,nombre,direccion,telefono};
+        
+         
+            if(modificarSucursal==true){
+                try {
+                    ctp.ModificarSucursal(P);
+                } catch (Exception ex) {
+                    Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            txtIdSucursal.setText("");
+            txtNombreSucursal.setText("");
+            txtDireccionSucursal.setText("");
+            txtTelefonoSucursal.setText("");
+            JOptionPane.showMessageDialog(null, "sucursal modificada con exito");
+            
+            
+            
+            
+            }else{
+                try {
+                    ctp.AgregarSucursal(P);
+                } catch (Exception ex) {
+                    Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            txtIdSucursal.setText("");
+            txtNombreSucursal.setText("");
+            txtDireccionSucursal.setText("");
+            txtTelefonoSucursal.setText("");
+            JOptionPane.showMessageDialog(null, "sucursal agregada con exito");
+            
+            
+            }
+             
+             
+            try {
+                llenarSucursal();
+            } catch (Exception ex) {
+                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      modificarSucursal=false;
+            txtIdSucursal.setEditable(false);
+            txtNombreSucursal.setEditable(false);
+            txtDireccionSucursal.setEditable(false);
+            txtTelefonoSucursal.setEditable(false);
+    }//GEN-LAST:event_btnGuardarSucursalActionPerformed
+
+    private void btnNuevoSucursalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoSucursalesActionPerformed
+        modificarSucursal=true;
+         txtIdSucursal.setEditable(true);
+            txtNombreSucursal.setEditable(true);
+            txtDireccionSucursal.setEditable(true);
+            txtTelefonoSucursal.setEditable(true);
+    }//GEN-LAST:event_btnNuevoSucursalesActionPerformed
+
+    private void btnEliminarSucursalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarSucursalesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarSucursalesActionPerformed
       
 //    public void llenarTablaProductoTyped(String codigo) throws SQLException{
 //        //clearTableCompra();
@@ -3941,7 +3964,6 @@ public void limpiarTablaProducto(){
     private javax.swing.JButton btnCancelarSucursal;
     private javax.swing.JButton btnCancelarTipoPrecio;
     private javax.swing.JButton btnCompras;
-    private javax.swing.JButton btnEliminarParametros;
     private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JButton btnEliminarProveedor;
     private javax.swing.JButton btnEliminarSucursales;
@@ -3958,7 +3980,6 @@ public void limpiarTablaProducto(){
     private javax.swing.JButton btnModificarProveedor;
     private javax.swing.JButton btnModificarSucursal;
     private javax.swing.JButton btnModificarTipoPrecio;
-    private javax.swing.JButton btnNuevoParametros;
     private javax.swing.JButton btnNuevoProducto;
     private javax.swing.JButton btnNuevoSucursales;
     private javax.swing.JButton btnNuevoTipoPrecio;

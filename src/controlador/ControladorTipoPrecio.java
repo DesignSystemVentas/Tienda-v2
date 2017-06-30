@@ -19,7 +19,7 @@ public class ControladorTipoPrecio {
 
          try {
             cn.conectar();
-            cn.UID("INSERT into TipoPrecio(Nombre,Utilidad) Values("+t[1]+","+t[2]+");");
+            cn.UID("INSERT into tipoprecio(Nombre,Utilidad) Values('"+t[1]+"',"+t[2]+");");
             cn.desconectar();   
          } catch (Exception e) {
              throw new ErrorTienda("no logra ingresar tipoPrecio"); 
@@ -34,7 +34,7 @@ public class ControladorTipoPrecio {
          
          try {
          cn.conectar();
-         cn.UID("UPDATE TipoPrecio SET Nombre='" + t[1] + "',Utilidad='" + t[2]+"' WHERE IdTipoPrecio='" + t[0] + "'");
+         cn.UID("UPDATE tipoprecio SET Nombre='" + t[1] + "',Utilidad='" + t[2]+"' WHERE IdTipoPrecio='" + t[0] + "'");
          cn.desconectar();   
          } catch (Exception e) {
               throw new ErrorTienda("no logra actualizar tipoPrecio"); 
@@ -46,7 +46,7 @@ public class ControladorTipoPrecio {
      public void EliminarTipoPrecio(TipoPrecio t) throws  Exception{
          try {
          cn.conectar();
-         cn.UID("DELETE FROM TipoPrecio WHERE IdTipoPrecio='" + t.getIdTipoPrecio() + "'");
+         cn.UID("DELETE FROM tipoprecio WHERE IdTipoPrecio='" + t.getIdTipoPrecio() + "'");
          cn.desconectar();   
          } catch (Exception e) {
             throw new ErrorTienda("no logra liminar tipoPrecio"); 
@@ -59,7 +59,7 @@ public class ControladorTipoPrecio {
          ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("SELECT * FROM TipoPrecio WHERE IdTipoPrecio='"+t+"'");    
+         d=cn.getValores("SELECT * FROM tipoprecio WHERE IdTipoPrecio='"+t+"'");    
          } catch (Exception e) {
               throw new ErrorTienda("no logra obtener datos de tipoPrecio");   
          }finally{
@@ -72,7 +72,7 @@ public class ControladorTipoPrecio {
      ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("SELECT * FROM TipoPrecio WHERE IdTipoPrecio='"+t+"'");    
+         d=cn.getValores("SELECT * FROM tipoprecio WHERE IdTipoPrecio='"+t+"'");    
          } catch (Exception e) {
               throw new ErrorTienda("no logra obtener dato de tipoPrecio");   
          }finally{
@@ -85,7 +85,7 @@ public class ControladorTipoPrecio {
      ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("SELECT * FROM TipoPrecio");    
+         d=cn.getValores("SELECT * FROM tipoprecio");    
          } catch (Exception e) {
              throw new ErrorTienda("no logra obtener datos de tipoPrecio"); 
          }finally{
