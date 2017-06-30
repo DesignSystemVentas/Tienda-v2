@@ -43,10 +43,10 @@ public class ControladorTipoPrecio {
          }
      }
      
-     public void EliminarTipoPrecio(TipoPrecio t) throws  Exception{
+     public void EliminarTipoPrecio(Object t) throws  Exception{
          try {
          cn.conectar();
-         cn.UID("DELETE FROM tipoprecio WHERE IdTipoPrecio='" + t.getIdTipoPrecio() + "'");
+         cn.UID("DELETE FROM tipoprecio WHERE IdTipoPrecio='" + t + "'");
          cn.desconectar();   
          } catch (Exception e) {
             throw new ErrorTienda("no logra liminar tipoPrecio"); 

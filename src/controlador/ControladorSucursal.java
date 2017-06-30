@@ -39,10 +39,10 @@ public class ControladorSucursal {
          }
      }
      
-     public void EliminarSucursal(Sucursal s) throws  Exception{
+     public void EliminarSucursal(Object s) throws  Exception{
          try {
          cn.conectar();
-         cn.UID("DELETE FROM sucursal WHERE IdSucursal='" + s.getIdSucursal() + "'");
+         cn.UID("DELETE FROM sucursal WHERE IdSucursal='" + s + "'");
          cn.desconectar();   
          } catch (Exception e) {
              throw new ErrorTienda("no logra eliminar sucursal");

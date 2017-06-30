@@ -14,11 +14,11 @@ import modelo.Producto;
  */
 public class ControladorProducto {
     Conexion cn=new Conexion();
-     public void Agregar(Producto p) throws Exception{
+     public void Agregar(Object p[]) throws Exception{
 
          try {
             cn.conectar();
-            cn.UID("INSERT into Producto(CodBarra,Nombre,Costo) Values("+p.getCodBarra()+","+p.getNombre()+","+p.getCosto()+");");
+            cn.UID("INSERT into producto(CodBarra,Nombre,Costo) Values("+p[0]+",'"+p[1]+"',"+p[2]+");");
             cn.desconectar();   
          } catch (Exception e) {
              throw new ErrorTienda("no logra ingresar producto");
@@ -29,11 +29,11 @@ public class ControladorProducto {
      
      }
      
-     public void Modificar(Producto p) throws Exception{
+     public void Modificar(Object t[]) throws Exception{
          
          try {
          cn.conectar();
-         cn.UID("UPDATE Producto SET Nombre='" + p.getNombre() + "',Costo='" + p.getCosto()+"'  WHERE CodBarra='" + p.getCodBarra() + "'");
+         cn.UID("UPDATE producto SET Nombre='" + t[1] + "',Costo='" + t[2]+"'  WHERE CodBarra='" + t[0] + "'");
          cn.desconectar();   
          } catch (Exception e) {
              throw new ErrorTienda("no logra actualizar producto");
@@ -42,10 +42,10 @@ public class ControladorProducto {
          }
      }
      
-     public void Eliminar(Producto p) throws  Exception{
+     public void Eliminar(Object p) throws  Exception{
          try {
          cn.conectar();
-         cn.UID("DELETE FROM Producto WHERE CodBarra='" + p.getCodBarra() + "'");
+         cn.UID("DELETE FROM producto WHERE CodBarra='" + p + "'");
          cn.desconectar();   
          } catch (Exception e) {
              throw new ErrorTienda("no logra eliminar producto");
@@ -58,7 +58,7 @@ public class ControladorProducto {
          ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("SELECT * FROM Producto WHERE CodBarra='"+p+"'");    
+         d=cn.getValores("SELECT * FROM producto WHERE CodBarra='"+p+"'");    
          } catch (Exception e) {
              throw new ErrorTienda("no logra obtener datos producto");  
          }finally{
@@ -71,7 +71,7 @@ public class ControladorProducto {
      ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("SELECT * FROM Producto WHERE CodBarra='"+p+"'");    
+         d=cn.getValores("SELECT * FROM producto WHERE CodBarra='"+p+"'");    
          } catch (Exception e) {
              throw new ErrorTienda("no logra obtener datos producto ");  
          }finally{
@@ -83,7 +83,7 @@ public class ControladorProducto {
      ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("SELECT * FROM Producto");    
+         d=cn.getValores("SELECT * FROM producto");    
          } catch (Exception e) {
              cn.desconectar();
              throw new ErrorTienda("no logra obtener datos producto ");  
