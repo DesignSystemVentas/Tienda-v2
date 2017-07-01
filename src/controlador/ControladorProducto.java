@@ -58,7 +58,7 @@ public class ControladorProducto {
          ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("SELECT * FROM producto WHERE CodBarra='"+p+"'");    
+         d=cn.getValores("SELECT * FROM producto P,inventario WHERE P.CodBarra='"+p+"'");    
          } catch (Exception e) {
              throw new ErrorTienda("no logra obtener datos producto");  
          }finally{
@@ -67,15 +67,28 @@ public class ControladorProducto {
          return d;
      }
      
+          public ResultSet BuscarN(String p) throws Exception{
+         ResultSet d=null;
+         try {
+         cn.conectar();
+         d=cn.getValores("select * from producto P, inventario I where P.Nombre ='"+p+"' and I.CodBarra=(select CodBarra from producto where Nombre='"+p+"');");    
+         } catch (Exception e) {
+             throw new ErrorTienda("no logra obtener datos producto");  
+         }finally{
+         //cn.desconectar();
+         }
+         return d;
+     }
+     
      public ResultSet Obtener(String p) throws Exception{
      ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("SELECT * FROM producto WHERE CodBarra='"+p+"'");    
+         d=cn.getValores("select * from producto P, inventario I where P.CodBarra ='"+p+"' and  I.CodBarra='"+p+"';");    
          } catch (Exception e) {
              throw new ErrorTienda("no logra obtener datos producto ");  
          }finally{
-         cn.desconectar();
+         //cn.desconectar();
          }
          return d;
      }
@@ -85,7 +98,7 @@ public class ControladorProducto {
      ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("SELECT * FROM producto,inventario");    
+         d=cn.getValores("select * from producto P , inventario I where P.CodBarra  = I.CodBarra;");    
          } catch (Exception e) {
              cn.desconectar();
              throw new ErrorTienda("no logra obtener datos producto ");  
@@ -96,7 +109,7 @@ public class ControladorProducto {
      }
      //VIZCARRA//     
      public ResultSet buscarNYP(String CodBarra) throws ErrorTienda {
-         Conexion cn = new Conexion();
+        // Conexion cn = new Conexion();
         try{
             return (cn.getValores("SELECT * FROM producto WHERE CodBarra = '" + CodBarra + "'"));
         } catch (Exception ex){
@@ -117,8 +130,9 @@ public class ControladorProducto {
          return d;
      }
 
-
-
+   // select * from producto P , inventario I where P.CodBarra  = I.CodBarra;
+ // select * from producto P, inventario I where P.CodBarra ="1234" and  I.CodBarra="1234";
+ //select * from producto P, inventario I where P.Nombre ="lapiz" and I.CodBarra=(select CodBarra from producto where Nombre="lapiz");
 
 
 }
