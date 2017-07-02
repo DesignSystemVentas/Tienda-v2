@@ -133,7 +133,7 @@ public class ControladorProducto {
    // select * from producto P , inventario I where P.CodBarra  = I.CodBarra;
  // select * from producto P, inventario I where P.CodBarra ="1234" and  I.CodBarra="1234";
  //select * from producto P, inventario I where P.Nombre ="lapiz" and I.CodBarra=(select CodBarra from producto where Nombre="lapiz");
-
+//select * from producto P, inventario I where P.CodBarra like "%estu%" or P.Nombre like "%estu%";
 
 }
 
