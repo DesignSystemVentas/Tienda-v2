@@ -40,31 +40,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     Date date = new Date();
     Calendar calendar1 = Calendar.getInstance();
     Calendar calendar2 = new GregorianCalendar();       
-    Calendar calendar = Calendar.getInstance();  
-    
-    //Todas las variables que agregue-Daniel
-    boolean cargarSucursalesFC, agregarDetalleModelo, validarPC, agregarProductoBD, agregarSubtotalDC, add;
-    //Todos estos son para el momento de la compra con sus detalles
-    Conexion cn = new Conexion();
-    String costoUC="", IdCompraPC="",CodBarraPC="",NombrePC="",CantidadPC="", 
-            CostoUnitarioPC="",IdSucursalPC="",sucursalPC="",SubtotalPC="", 
-            SubtotalCompra="", tipoCompra="", IdSucursalGC="", SucursalGC="", IdProveedorGC="", ProveedorGC="", ivaCompra="", percepcionCompra="";
-    String detalleCompra[] = new String[5];
-    int CantidadAnteriorPC, filaEliminar;
-    double SubtotalAnteriorPC;
-    //--
-    ResultSet rsFiltroCompra, rsCompra, rsSucursalFC, rsMayorIdC, rsNameProd, rsDC;
-    DefaultComboBoxModel modeloSucursalFC = new DefaultComboBoxModel();//Combo filtro sucursal
-    
-    //--------------------------------------------------------
-    
-    
-    
-    
-    
-    
-    
-    
+    Calendar calendar = Calendar.getInstance();            
     int dia,mes,anio,fila=0,venta=0,sucursal,tipoventa,nitVenta,giroVenta,nDocumentoVenta,sabercmbUtilidadVenta,sabercmbIdSucursal,sabercmbTipoFactura,saberMesParaGenerarReporteVenta;
     double Punitario = 0, TotalGravadoVenta=0, TotalVenta=0, SubTotalVenta;   
     boolean encontrar;
@@ -80,6 +56,22 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     String GReporteVenta[] = new String[5];
     DecimalFormat df = new DecimalFormat("00.00");
     //vaizcarra//
+        //Todas las variables que agregue-Daniel
+    boolean cargarSucursalesFC, agregarDetalleModelo, validarPC, agregarProductoBD, agregarSubtotalDC, add;
+    //Todos estos son para el momento de la compra con sus detalles
+    Conexion cn = new Conexion();
+    String costoUC="", IdCompraPC="",CodBarraPC="",NombrePC="",CantidadPC="", 
+            CostoUnitarioPC="",IdSucursalPC="",sucursalPC="",SubtotalPC="", 
+            SubtotalCompra="", tipoCompra="", IdSucursalGC="", SucursalGC="", IdProveedorGC="", ProveedorGC="", ivaCompra="", percepcionCompra="";
+    String detalleCompra[] = new String[5];
+    int CantidadAnteriorPC, filaEliminar;
+    double SubtotalAnteriorPC;
+    //--
+    ResultSet rsFiltroCompra, rsCompra, rsSucursalFC, rsMayorIdC, rsNameProd, rsDC;
+    DefaultComboBoxModel modeloSucursalFC = new DefaultComboBoxModel();//Combo filtro sucursal
+    
+    //--------------------------------------------------------
+
 
     boolean ventas, compras, productos, proveedores, administradores;
     boolean apagado, principal,modificarTipoPrecio,modificarSucursal,modificarParametro;
@@ -118,7 +110,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     
     public JFRPrincipal() {
         initComponents();
-        tHeadVentas = tblMenuVentas.getTableHeader();
+//        tHeadVentas = tblMenuVentas.getTableHeader();
         tHeadCompras=tblCompras.getTableHeader();
         tHeadProductos=jtblProductos.getTableHeader();
         tHeadCompra=tblCompra.getTableHeader();
@@ -152,7 +144,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         MenuVenta.addColumn("TotalGravado");       
         MenuVenta.addColumn("Direccion");
         MenuVenta.addColumn("Documento");
-        tblMenuVentas.setModel(MenuVenta);
+//        tblMenuVentas.setModel(MenuVenta);
         //finalizado "llenado de tabla MenuVenta"//
         //llenado de tabla Registro Venta (detalleventa)
         mAgregarDVenta.addColumn("Codigo Barra");
@@ -484,16 +476,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnMenuVentas = new javax.swing.JPanel();
         jPanel44 = new javax.swing.JPanel();
         lblProveedores5 = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblMenuVentas = new javax.swing.JTable();
-        btnHacerNuevaVenta = new javax.swing.JButton();
-        cmbFechasVenta = new javax.swing.JComboBox();
-        jLabel51 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        lblSucursalMenuVenta = new javax.swing.JLabel();
-        cmbSucursalMenuVenta = new javax.swing.JComboBox();
-        jLabel54 = new javax.swing.JLabel();
         jpnCompras = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblCompras = new javax.swing.JTable();
@@ -504,7 +486,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores3 = new javax.swing.JLabel();
         lblListadoCompras = new javax.swing.JLabel();
         jSeparator35 = new javax.swing.JSeparator();
-        cmbFiltroSucursalCompra = new javax.swing.JComboBox<>();
+        cmbFiltroSucursalCompra = new javax.swing.JComboBox<String>();
         lblFiltrarCompra = new javax.swing.JLabel();
         jpnRegistroCompra = new javax.swing.JPanel();
         btnGuardarCompra = new javax.swing.JButton();
@@ -514,7 +496,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        cmbSucursalCompra = new javax.swing.JComboBox<>();
+        cmbSucursalCompra = new javax.swing.JComboBox<String>();
         lblSucursalCompra = new javax.swing.JLabel();
         txtIdCompra = new javax.swing.JTextField();
         lblIdCompra = new javax.swing.JLabel();
@@ -1447,76 +1429,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         jpnMenuVentas.add(jPanel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 70));
 
-        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jpnMenuVentas.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 750, 10));
-
-        tblMenuVentas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        tblMenuVentas.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(tblMenuVentas);
-
-        jpnMenuVentas.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 740, 190));
-
-        btnHacerNuevaVenta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnHacerNuevaVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/agregar2.png"))); // NOI18N
-        btnHacerNuevaVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnHacerNuevaVenta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnHacerNuevaVentaMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnHacerNuevaVentaMouseEntered(evt);
-            }
-        });
-        btnHacerNuevaVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHacerNuevaVentaActionPerformed(evt);
-            }
-        });
-        jpnMenuVentas.add(btnHacerNuevaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 520, 110, 30));
-
-        cmbFechasVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE" }));
-        cmbFechasVenta.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbFechasVentaItemStateChanged(evt);
-            }
-        });
-        jpnMenuVentas.add(cmbFechasVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 100, 40));
-
-        jLabel51.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel51.setText("Generar Reporte");
-        jpnMenuVentas.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 110, -1));
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscar48.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jpnMenuVentas.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 100, 40));
-
-        lblSucursalMenuVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblSucursalMenuVenta.setText("Fecha de Venta");
-        jpnMenuVentas.add(lblSucursalMenuVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 110, -1));
-
-        cmbSucursalMenuVenta.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbSucursalMenuVentaItemStateChanged(evt);
-            }
-        });
-        jpnMenuVentas.add(cmbSucursalMenuVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 140, -1));
-
-        jLabel54.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel54.setText("Fecha de Venta");
-        jpnMenuVentas.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 110, -1));
-
         getContentPane().add(jpnMenuVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
         jpnCompras.setName("jpnCompras"); // NOI18N
@@ -1595,7 +1507,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnCompras.add(lblListadoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 200, -1));
         jpnCompras.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 117, 200, 10));
 
-        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         cmbFiltroSucursalCompra.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFiltroSucursalCompraItemStateChanged(evt);
@@ -2789,63 +2701,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasProveedoresMouseClicked
 
     private void btnVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentasMouseClicked
-                 for(int i=0;i < MenuVenta.getRowCount();i++){
-            MenuVenta.removeRow(i);
-            i-=1;
-        }
-        apagado();        apagado2();
-        jpnMenuVentas.setVisible(true); 
-        int IdSucursal = cmbSucursalMenuVenta.getSelectedIndex() + 1;                                 
-         try {  
-                rstControladorVenta = controladorventa.llenarVenta(1);                
-                
-            } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}            
-        try {
-            while (rstControladorVenta.next()) {//tablas base de datos
-                //tabla de compra
-                datosVenta[0] = rstControladorVenta.getString(1);
-                datosVenta[1] = rstControladorVenta.getString(3);
-                datosVenta[2] = rstControladorVenta.getString(5);
-                datosVenta[3] = rstControladorVenta.getString(6);                                                        
-                datosVenta[4] = rstControladorVenta.getString(8);
-                datosVenta[5] = rstControladorVenta.getString(10);
-                datosVenta[6] = rstControladorVenta.getString(14);                
-                MenuVenta.addRow(datosVenta);
-            }           
-        } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}  
-        txtCodigoBarraVender.setText("");
-        txtNombreProductoVender.setText("");
-        txtCantidadVender.setText("");
-        txtClienteVenta.setText("");
-        txtCodigoBarraVender.requestFocus();
-        txtSumas.setText("");
-        txtIVA.setText("");
-        txtTotalventaGravado.setText("");
-        txtIdVenta.setText("");
-        txtNuDocumentoVenta.setText("");
-        //llenar cmbSucursal y cmbUtilidad//  
-        mSucursal.removeAllElements();
-        mUtilidad.removeAllElements();
-         try {
-            rstCSucursal = cSucursal.llenarSucursal();
-            rstTipoPrecio = cTipoPrecio.llenarUtilidad();             
-        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}           
-        //iniciar recorrer//
-        try {
-            //Sucursal
-            while (rstCSucursal.next()) {
-                mSucursal.addElement(rstCSucursal.getString(2));     
-            }
-            cmbSucursal.setModel(mSucursal);
-            cmbSucursalMenuVenta.setModel(mSucursal); 
-            //Utilidad
-            while (rstTipoPrecio.next()) {
-                mUtilidad.addElement(rstTipoPrecio.getString(2));     
-            }
-            cmbUtilidad.setModel(mUtilidad);             
-        } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}//finalizado (recorrer)//
-        //finalizar()/llenado cmbSucursal, IdVenta y cmbUtilidad/         
-
     }//GEN-LAST:event_btnVentasMouseClicked
 
     private void btnNuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProductoActionPerformed
@@ -3439,64 +3294,6 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
             txtUtilidadTipoPrecio.setEditable(false);
     }//GEN-LAST:event_btnGuardarTipoPrecioActionPerformed
 
-    private void btnHacerNuevaVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHacerNuevaVentaMouseEntered
-
-    }//GEN-LAST:event_btnHacerNuevaVentaMouseEntered
-
-    private void btnHacerNuevaVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHacerNuevaVentaMouseExited
-
-    }//GEN-LAST:event_btnHacerNuevaVentaMouseExited
-
-    private void btnHacerNuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHacerNuevaVentaActionPerformed
-        if (cmbTipoFacturaVenta.getSelectedIndex()==1) {
-            txtGiroVenta.setVisible(true);
-            txtNITventa.setVisible(true);
-            txtNRCventa.setVisible(true);
-        }else{
-            txtGiroVenta.setVisible(false);
-            txtNITventa.setVisible(false);
-            txtNRCventa.setVisible(false);
-            lblGiroVenta.setVisible(false);
-            lblNITventa.setVisible(false);
-            lblNRCventa.setVisible(false);
-        }
-        saberCodigoVenta();
-        dia = calendar.get(Calendar.DATE);
-        mes = calendar.get(Calendar.MONTH)+1;
-        anio = calendar.get(Calendar.YEAR);
-        lblFechaVentaMostrar.setText(anio+"/"+mes+"/"+dia);
-
-        jpnMenuVentas.setVisible(false);
-        jpnRegistrarVenta.setVisible(true);
-        txtCodigoBarraVender.requestFocus();
-    }//GEN-LAST:event_btnHacerNuevaVentaActionPerformed
-
-    private void cmbSucursalMenuVentaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSucursalMenuVentaItemStateChanged
-        rstControladorVenta = null;
-        for(int i=0;i < MenuVenta.getRowCount();i++){
-            MenuVenta.removeRow(i);
-            i-=1;
-        }
-        int IdSucursal = cmbSucursalMenuVenta.getSelectedIndex() + 1;
-        try {
-            rstControladorVenta = controladorventa.llenarVenta(IdSucursal);
-
-        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
-        try {
-            while (rstControladorVenta.next()) {//tablas base de datos
-                //tabla de compra
-                datosVenta[0] = rstControladorVenta.getString(1);
-                datosVenta[1] = rstControladorVenta.getString(3);
-                datosVenta[2] = rstControladorVenta.getString(5);
-                datosVenta[3] = rstControladorVenta.getString(6);
-                datosVenta[4] = rstControladorVenta.getString(8);
-                datosVenta[5] = rstControladorVenta.getString(10);
-                datosVenta[6] = rstControladorVenta.getString(14);
-                MenuVenta.addRow(datosVenta);
-            }
-        } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
-    }//GEN-LAST:event_cmbSucursalMenuVentaItemStateChanged
-
     private void btnVenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVenderMouseClicked
 
     }//GEN-LAST:event_btnVenderMouseClicked
@@ -3916,85 +3713,6 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
         
         sabercmbIdSucursal = cmbSucursal.getSelectedIndex();
     }//GEN-LAST:event_cmbSucursalItemStateChanged
-
-    private void cmbFechasVentaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFechasVentaItemStateChanged
-        saberMesParaGenerarReporteVenta = cmbFechasVenta.getSelectedIndex();
-    }//GEN-LAST:event_cmbFechasVentaItemStateChanged
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        int Generar=0;
-        if (cmbFechasVenta.getSelectedIndex()==0) {
-            Generar =1;
-        }
-        if (cmbFechasVenta.getSelectedIndex()==1) {
-            Generar =2;
-        }
-        if (cmbFechasVenta.getSelectedIndex()==2) {
-            Generar =3;
-        }
-        if (cmbFechasVenta.getSelectedIndex()==3) {
-            Generar =4;
-        }
-        if (cmbFechasVenta.getSelectedIndex()==4) {
-            Generar =5;
-        }
-        if (cmbFechasVenta.getSelectedIndex()==5) {
-            Generar =6;
-        }
-        if (cmbFechasVenta.getSelectedIndex()==6) {
-            Generar =7;
-        }
-        if (cmbFechasVenta.getSelectedIndex()==7) {
-            Generar =8;
-        }
-        if (cmbFechasVenta.getSelectedIndex()==8) {
-            Generar =9;
-        }
-        if (cmbFechasVenta.getSelectedIndex()==9) {
-            Generar =10;
-        }
-        if (cmbFechasVenta.getSelectedIndex()==10) {
-            Generar =11;
-        }
-        if (cmbFechasVenta.getSelectedIndex()==11) {
-            Generar =12;
-        }
-        
-        try {
-            rstControladorVenta = controladorventa.ObtenerVentas(String.valueOf(Generar));
-
-        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
-        
-        try {
-            while (rstControladorVenta.next()) {//tablas base de datos
-                //tabla de compra
-                GReporteVenta[0] = rstControladorVenta.getString(6);
-                GReporteVenta[1] = rstControladorVenta.getString(14);
-                GReporteVenta[2] = rstControladorVenta.getString(5);
-                GReporteVenta[3] = rstControladorVenta.getString(13);
-                GReporteVenta[4] = rstControladorVenta.getString(8);                
-                ReporteVenta.addRow(GReporteVenta);
-            }
-        } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
-        
-        int filas = tblReporteVentas.getRowCount(), iteracion=0;
-        double  TotalReporteVentas = 0, TotalReporteVentaIVA = 0, TotalReporteVentasGravadas = 0;
-        while (iteracion<filas){
-            TotalReporteVentas = TotalReporteVentas + Double.parseDouble(String.valueOf(tblReporteVentas.getValueAt(iteracion, 4)));
-            iteracion++;
-        }
-        TotalReporteVentaIVA = TotalReporteVentas * 1.13;
-        TotalReporteVentaIVA = TotalReporteVentaIVA - TotalReporteVentas;
-        TotalReporteVentasGravadas = TotalReporteVentaIVA + TotalReporteVentas;
-        
-        txtVentasNetas.setText("$ "+(df.format(TotalReporteVentas)));
-        txtImpuestosVentas.setText("$ "+(df.format(TotalReporteVentaIVA)));
-        txtVentasGravadas.setText("$ "+(df.format(TotalReporteVentasGravadas)));
-        jpnMenuVentas.setVisible(false);
-        jpnReporteVentas.setVisible(true);
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnGuardarSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarSucursalActionPerformed
         ControladorSucursal ctp= new ControladorSucursal();
@@ -4938,17 +4656,6 @@ public void llenarComprasRealizadasFiltro() throws Exception{
             
             avance++;
        }
-      
-      
-
-      
-      
-           
-           
-       
-        
-      
-        
         
     }//GEN-LAST:event_btnGuardarCompraActionPerformed
 
@@ -5266,7 +4973,6 @@ public void limpiarTablaProducto(){
     private javax.swing.JButton btnGuardarProveedor;
     private javax.swing.JButton btnGuardarSucursal;
     private javax.swing.JButton btnGuardarTipoPrecio;
-    private javax.swing.JButton btnHacerNuevaVenta;
     private javax.swing.JLabel btnHome;
     private javax.swing.JButton btnModificarParametro;
     private javax.swing.JButton btnModificarProducto;
@@ -5283,15 +4989,12 @@ public void limpiarTablaProducto(){
     private javax.swing.JButton btnVentas;
     private javax.swing.JButton btnVerDetalle;
     private javax.swing.ButtonGroup btngFiltroProductos;
-    private javax.swing.JComboBox cmbFechasVenta;
     private javax.swing.JComboBox<String> cmbFiltroSucursalCompra;
     private javax.swing.JComboBox cmbProveedorCompra;
     private javax.swing.JComboBox cmbSucursal;
     private javax.swing.JComboBox<String> cmbSucursalCompra;
-    private javax.swing.JComboBox cmbSucursalMenuVenta;
     private javax.swing.JComboBox cmbTipoFacturaVenta;
     private javax.swing.JComboBox cmbUtilidad;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -5333,10 +5036,8 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
@@ -5365,7 +5066,6 @@ public void limpiarTablaProducto(){
     private javax.swing.JPanel jPanel50;
     private javax.swing.JPanel jPanel51;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -5382,7 +5082,6 @@ public void limpiarTablaProducto(){
     private javax.swing.JSeparator jSeparator17;
     private javax.swing.JSeparator jSeparator18;
     private javax.swing.JSeparator jSeparator19;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator20;
     private javax.swing.JSeparator jSeparator21;
     private javax.swing.JSeparator jSeparator25;
@@ -5500,13 +5199,11 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel lblProveedores9;
     private javax.swing.JLabel lblSubtotalCompra;
     private javax.swing.JLabel lblSucursalCompra;
-    private javax.swing.JLabel lblSucursalMenuVenta;
     private javax.swing.JLabel lblTotalCompra;
     private javax.swing.JLabel lbltxtTipoCompra;
     private javax.swing.JTable tblCompra;
     private javax.swing.JTable tblCompras;
     private javax.swing.JTable tblDetalleCompra;
-    private javax.swing.JTable tblMenuVentas;
     private javax.swing.JTable tblProveedores;
     private javax.swing.JTable tblRegistrarVenta;
     private javax.swing.JTable tblReporteVentas;
