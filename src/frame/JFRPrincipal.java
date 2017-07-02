@@ -151,7 +151,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         MenuVenta.addColumn("TotalGravado");       
         MenuVenta.addColumn("Direccion");
         MenuVenta.addColumn("Documento");
-//        tblMenuVentas.setModel(MenuVenta);
+        tblMenuVentas.setModel(MenuVenta);
         //finalizado "llenado de tabla MenuVenta"//
         //llenado de tabla Registro Venta (detalleventa)
         mAgregarDVenta.addColumn("Codigo Barra");
@@ -335,9 +335,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnAdministracion.setVisible(false);
         jpnRegistrarVenta.setVisible(false);
         jpnReporteVentas.setVisible(false);
-//        jpnUtilidadMenuVentasParametros.setVisible(false);
-//        jpnVentasReporteParametro.setVisible(false);
-//        jpnVerVentasporSucursal.setVisible(false);
+        jpnUtilidadMenuVentasParametros.setVisible(false);
+        jpnVentasReporteParametro.setVisible(false);
+        jpnVerVentasporSucursal.setVisible(false);
     }
        //VIZCARRA//
     public void saberCodigoVenta(){
@@ -714,6 +714,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel54 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jpnVerVentasporSucursal = new javax.swing.JPanel();
+        jPanel53 = new javax.swing.JPanel();
+        lblProveedores12 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        tblMenuVentas = new javax.swing.JTable();
+        lblSucursalMenuVenta = new javax.swing.JLabel();
+        cmbSucursalMenuVenta = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/iconos/lanzador.png")).getImage());
@@ -2761,6 +2768,46 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(jpnVentasReporteParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
+        jpnVerVentasporSucursal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel53.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel53.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblProveedores12.setBackground(new java.awt.Color(255, 255, 255));
+        lblProveedores12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblProveedores12.setForeground(new java.awt.Color(255, 255, 255));
+        lblProveedores12.setText("VENTAS EFECTUADAS");
+        jPanel53.add(lblProveedores12, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 210, 50));
+
+        jpnVerVentasporSucursal.add(jPanel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 70));
+
+        tblMenuVentas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblMenuVentas.getTableHeader().setReorderingAllowed(false);
+        jScrollPane9.setViewportView(tblMenuVentas);
+
+        jpnVerVentasporSucursal.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 610, 230));
+
+        lblSucursalMenuVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblSucursalMenuVenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSucursalMenuVenta.setText("Sucursal");
+        jpnVerVentasporSucursal.add(lblSucursalMenuVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 180, -1));
+
+        cmbSucursalMenuVenta.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbSucursalMenuVentaItemStateChanged(evt);
+            }
+        });
+        jpnVerVentasporSucursal.add(cmbSucursalMenuVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 180, -1));
+
+        getContentPane().add(jpnVerVentasporSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -4664,6 +4711,32 @@ public void llenarComprasRealizadasFiltro() throws Exception{
         jpnReporteVentas.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void cmbSucursalMenuVentaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSucursalMenuVentaItemStateChanged
+        rstControladorVenta = null;
+        for(int i=0;i < MenuVenta.getRowCount();i++){
+            MenuVenta.removeRow(i);
+            i-=1;
+        }
+        int IdSucursal = cmbSucursalMenuVenta.getSelectedIndex() + 1;
+        try {
+            rstControladorVenta = controladorventa.llenarVenta(IdSucursal);
+
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
+        try {
+            while (rstControladorVenta.next()) {//tablas base de datos
+                //tabla de compra
+                datosVenta[0] = rstControladorVenta.getString(1);
+                datosVenta[1] = rstControladorVenta.getString(3);
+                datosVenta[2] = rstControladorVenta.getString(5);
+                datosVenta[3] = rstControladorVenta.getString(6);
+                datosVenta[4] = rstControladorVenta.getString(8);
+                datosVenta[5] = rstControladorVenta.getString(10);
+                datosVenta[6] = rstControladorVenta.getString(14);
+                MenuVenta.addRow(datosVenta);
+            }
+        } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
+    }//GEN-LAST:event_cmbSucursalMenuVentaItemStateChanged
+
     public void agregarDetalle(){
         detalleCompra[0] = CodBarraPC;    
         detalleCompra[1] = NombrePC;
@@ -5003,6 +5076,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JComboBox<String> cmbFiltroSucursalCompra;
     private javax.swing.JComboBox cmbProveedorCompra;
     private javax.swing.JComboBox<String> cmbSucursalCompra;
+    private javax.swing.JComboBox cmbSucursalMenuVenta;
     private javax.swing.JComboBox cmbSucursalParametro;
     private javax.swing.JComboBox cmbTipoFacturaParametro;
     private javax.swing.JComboBox cmbUtilidadParametro;
@@ -5082,6 +5156,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JPanel jPanel50;
     private javax.swing.JPanel jPanel51;
     private javax.swing.JPanel jPanel52;
+    private javax.swing.JPanel jPanel53;
     private javax.swing.JPanel jPanel54;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
@@ -5090,6 +5165,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
@@ -5152,6 +5228,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JPanel jpnTercero;
     private javax.swing.JPanel jpnUtilidadMenuVentasParametros;
     private javax.swing.JPanel jpnVentasReporteParametro;
+    private javax.swing.JPanel jpnVerVentasporSucursal;
     private javax.swing.JScrollPane jscpSucursales;
     private javax.swing.JScrollPane jscpTablaParametros;
     private javax.swing.JScrollPane jscpTipoDePrecio;
@@ -5211,6 +5288,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel lblPercepcionCompra;
     private javax.swing.JLabel lblProveedor;
     private javax.swing.JLabel lblProveedores11;
+    private javax.swing.JLabel lblProveedores12;
     private javax.swing.JLabel lblProveedores13;
     private javax.swing.JLabel lblProveedores3;
     private javax.swing.JLabel lblProveedores4;
@@ -5221,11 +5299,13 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel lblProveedores9;
     private javax.swing.JLabel lblSubtotalCompra;
     private javax.swing.JLabel lblSucursalCompra;
+    private javax.swing.JLabel lblSucursalMenuVenta;
     private javax.swing.JLabel lblTotalCompra;
     private javax.swing.JLabel lbltxtTipoCompra;
     private javax.swing.JTable tblCompra;
     private javax.swing.JTable tblCompras;
     private javax.swing.JTable tblDetalleCompra;
+    private javax.swing.JTable tblMenuVentas;
     private javax.swing.JTable tblProveedores;
     private javax.swing.JTable tblRegistrarVenta;
     private javax.swing.JTable tblReporteVentas;
