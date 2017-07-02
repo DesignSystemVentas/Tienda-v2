@@ -179,6 +179,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         modeloProducto.addColumn("Nombre");
         modeloProducto.addColumn("Costo");
         modeloProducto.addColumn("Sucursal");
+        modeloProducto.addColumn("Existencia");
         
         
         
@@ -486,7 +487,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        cmbSucursalCompra = new javax.swing.JComboBox<String>();
+        cmbSucursalCompra = new javax.swing.JComboBox<>();
         lblFecha = new javax.swing.JLabel();
         lbltxtFechaCompra = new javax.swing.JLabel();
         lblFecha1 = new javax.swing.JLabel();
@@ -1800,11 +1801,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscar.png"))); // NOI18N
         btnBuscarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnBuscarProductoMouseEntered(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarProductoMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnBuscarProductoMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBuscarProductoMouseEntered(evt);
             }
         });
         jpnProductos.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 110, 30));
@@ -4058,7 +4062,18 @@ if(decide==0){
     }//GEN-LAST:event_btnModificarProductoActionPerformed
 
     private void txtProductosBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductosBuscarActionPerformed
-       buscarProductos();
+       if(!txtCantidad.getText().isEmpty()){
+       
+       String C=txtPrecioProductos.getText();
+        try {
+            buscarProducto(C);
+        } catch (Exception ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Se cago al obtener la busqueda");
+        }
+       }
+        
+
     }//GEN-LAST:event_txtProductosBuscarActionPerformed
 
     private void txtProductosBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProductosBuscarKeyReleased
@@ -4066,12 +4081,16 @@ if(decide==0){
         if(txtProductosBuscar.getText().isEmpty()|| c==8 || c==13){ }
         else{
             limpiarTablaProducto();
+             
             try {
-                llenarProducto(txtProductosBuscar.getText());
+                buscarProducto(txtProductosBuscar.getText());
             } catch (Exception ex) {
                 Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("Se cago buscando el producto");
+                System.out.println("Se cago buscnado el producto");
             }
+            
+        
+            
         
         }
     }//GEN-LAST:event_txtProductosBuscarKeyReleased
@@ -4079,11 +4098,19 @@ if(decide==0){
     private void txtProductosBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProductosBuscarKeyTyped
        char c=evt.getKeyChar();
         
-        if(c==8 || Character.isLetterOrDigit(c)){
+        if(c==8 || c==32 || c==13 || Character.isLetterOrDigit(c)){
         
-        }else if(c==13){
-        buscarProductos();
-        }else{
+//        }else if(c==13){
+//        limpiarTablaProducto();
+//             
+//            try {
+//                buscarProducto(txtProductosBuscar.getText());
+//            } catch (Exception ex) {
+//                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//                System.out.println("Se cago buscnado el producto");
+//            }
+}
+        else{
         evt.consume();
         }
     }//GEN-LAST:event_txtProductosBuscarKeyTyped
@@ -4394,6 +4421,18 @@ txtNuevoNIT.requestFocus();
     private void btnEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProveedorActionPerformed
    
     }//GEN-LAST:event_btnEliminarProveedorActionPerformed
+
+    private void btnBuscarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarProductoMouseClicked
+        if(!txtProductosBuscar.getText().isEmpty()){
+            try {
+                buscarProducto(txtProductosBuscar.getText());
+            } catch (Exception ex) {
+                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Se cago buscnado el producto");
+            }
+            
+        }
+    }//GEN-LAST:event_btnBuscarProductoMouseClicked
       
     public void buscarProductos(){
     
@@ -4560,14 +4599,15 @@ public void llenarProducto() throws Exception{
                 String Nombre = rs.getString("Nombre");
                 String Costo = rs.getString("Costo");
                 String sucu=rs.getString("IdSucursal");
+                String existencia=rs.getString("Cantidad");
 //                
 //                rs2=tp.ObtenerSucursal(sucu);
 //                String nombreSucursal=rs2.getString("nombre");
-                modeloProducto.addRow(new String[]{CodBarra,Nombre,Costo,sucu});
+                modeloProducto.addRow(new String[]{CodBarra,Nombre,Costo,sucu,existencia});
                 System.out.println("puso el modelo Producto");       
             }
         } catch (Exception e) {
-            throw  new ErrorTienda("No logra poner el modelo Producto");
+            throw  new ErrorTienda("No logra poner el modelo Producto()");
         }
         jtblProductos.setModel(modeloProducto);
          }   
@@ -4585,16 +4625,42 @@ public void llenarProducto(String producto) throws Exception{
                 String CodBarra = rs.getString("CodBarra");
                 String Nombre = rs.getString("Nombre");
                 String Costo = rs.getString("Costo");
-                modeloProducto.addRow(new String[]{CodBarra,Nombre,Costo});
+                 String sucu=rs.getString("IdSucursal");
+                String existencia=rs.getString("Cantidad");
+                modeloProducto.addRow(new String[]{CodBarra,Nombre,Costo,sucu,existencia});
                 System.out.println("puso el modelo Producto");       
             }
         } catch (Exception e) {
-            throw  new ErrorTienda("No logra poner el modelo Producto");
+            throw  new ErrorTienda("No logra poner el modelo Producto de llenar producto(param)");
         }
         jtblProductos.setModel(modeloProducto);
          }   
 } 
 
+public void buscarProducto(String C) throws Exception{
+ ControladorProducto tp=new ControladorProducto();
+    limpiarTablaProducto();
+    ResultSet rs=null;
+    rs=tp.Buscar(C);
+    if (!rs.isBeforeFirst()) { 
+             System.out.println("No existe"); 
+}    else{
+         try {
+            while (rs.next()) {
+                String CodBarra = rs.getString("CodBarra");
+                String Nombre = rs.getString("Nombre");
+                String Costo = rs.getString("Costo");
+                 String sucu=rs.getString("IdSucursal");
+                String existencia=rs.getString("Cantidad");
+                modeloProducto.addRow(new String[]{CodBarra,Nombre,Costo,sucu,existencia});
+                System.out.println("puso el modelo Producto");       
+            }
+        } catch (Exception e) {
+            throw  new ErrorTienda("No logra poner el modelo Producto del metodo buscarpro(param)");
+        }
+        jtblProductos.setModel(modeloProducto);
+         }
+}
 
 public void limpiarTablaProducto(){
  for (int i = 0; i < jtblProductos.getRowCount(); i++) {

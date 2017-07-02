@@ -48,6 +48,7 @@ public class ControladorProducto {
          cn.UID("DELETE FROM producto WHERE CodBarra='" + p + "'");
          cn.desconectar();   
          } catch (Exception e) {
+             
              throw new ErrorTienda("no logra eliminar producto");
          }finally{
          cn.desconectar();
@@ -58,11 +59,13 @@ public class ControladorProducto {
          ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("SELECT * FROM producto WHERE CodBarra='"+p+"'");    
+         d=cn.getValores("select * from producto P, inventario I where (P.CodBarra like '%"+p+"%' and I.CodBarra like '%"+p+"%') or (I.CodBarra=(select P.CodBarra producto where Nombre like '%"+p+"%'));");    
+         //select * from producto P,inventario I where P.CodBarra like "%123%" and I.CodBarra like "%123%"
          } catch (Exception e) {
+            cn.desconectar();
              throw new ErrorTienda("no logra obtener datos producto");  
          }finally{
-         cn.desconectar();
+         
          }
          return d;
      }
@@ -71,11 +74,12 @@ public class ControladorProducto {
      ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("SELECT * FROM producto WHERE CodBarra='"+p+"'");    
+         d=cn.getValores("select * from producto P, inventario I where P.CodBarra ='"+p+"' and  I.CodBarra='"+p+"';");    
          } catch (Exception e) {
+             cn.desconectar();
              throw new ErrorTienda("no logra obtener datos producto ");  
          }finally{
-         cn.desconectar();
+         
          }
          return d;
      }
@@ -85,7 +89,7 @@ public class ControladorProducto {
      ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("SELECT * FROM producto,inventario");    
+         d=cn.getValores("select * from producto P , inventario I where P.CodBarra  = I.CodBarra;");    
          } catch (Exception e) {
              cn.desconectar();
              throw new ErrorTienda("no logra obtener datos producto ");  
@@ -100,6 +104,7 @@ public class ControladorProducto {
         try{
             return (cn.getValores("SELECT * FROM producto WHERE CodBarra = '" + CodBarra + "'"));
         } catch (Exception ex){
+            cn.desconectar();
             throw new ErrorTienda("Insertar" + ex.getMessage());
         }        
     }     
@@ -110,9 +115,10 @@ public class ControladorProducto {
          cn.conectar();
          d=cn.getValores("SELECT * FROM producto WHERE CodBarra='"+p+"'");    
          } catch (Exception e) {
+             cn.desconectar();
              throw new ErrorTienda("no logra obtener datos producto ");  
          }finally{
-         cn.desconectar();
+         
          }
          return d;
      }
