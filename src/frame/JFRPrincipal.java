@@ -36,12 +36,15 @@ import javax.swing.table.TableModel;
  * @author Jose Lopez Garcia
  */
 public final class JFRPrincipal extends javax.swing.JFrame {
-        //vizcarra//
+          //vizcarra//
     Date date = new Date();
     Calendar calendar1 = Calendar.getInstance();
     Calendar calendar2 = new GregorianCalendar();       
-    Calendar calendar = Calendar.getInstance();            
+    Calendar calendar = Calendar.getInstance();  
+    
     int dia,mes,anio,fila=0,venta=0,sucursal,tipoventa,nitVenta,giroVenta,nDocumentoVenta,sabercmbUtilidadVenta,sabercmbIdSucursal,sabercmbTipoFactura,saberMesParaGenerarReporteVenta;
+    double saberTipoUtilidadVenta=0;
+    int SaberSucursalVentas=0;
     double Punitario = 0, TotalGravadoVenta=0, TotalVenta=0, SubTotalVenta;   
     boolean encontrar;
     ResultSet rstControladorVenta = null;
@@ -54,9 +57,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     ControladorTipoPrecio cTipoPrecio = new ControladorTipoPrecio();
     String datosVenta[] = new String[7], CodigoBarraVender = "";
     String GReporteVenta[] = new String[5];
-    DecimalFormat df = new DecimalFormat("00.00");
+    DecimalFormat df = new DecimalFormat("#.00");
     //vaizcarra//
-        //Todas las variables que agregue-Daniel
+
+    //Todas las variables que agregue-Daniel
     boolean cargarSucursalesFC, agregarDetalleModelo, validarPC, agregarProductoBD, agregarSubtotalDC, add;
     //Todos estos son para el momento de la compra con sus detalles
     Conexion cn = new Conexion();
@@ -101,9 +105,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     DefaultTableModel mAgregarDVenta = new DefaultTableModel();
     DefaultTableModel ReporteVenta = new DefaultTableModel();
     DefaultComboBoxModel mSucursal = new DefaultComboBoxModel();
+    DefaultComboBoxModel mLlenarIdS = new DefaultComboBoxModel();
     DefaultComboBoxModel mUtilidad = new DefaultComboBoxModel(); 
+    DefaultComboBoxModel mLlenarPoU = new DefaultComboBoxModel(); 
     
     //vizcarra//
+
     private boolean modificarProducto;
 
     
@@ -135,7 +142,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         Productos(false);
         Proveedores(false);
         
-                //VIZCARRA//
+               //VIZCARRA//
          //llenado de tabla MenuVenta
         MenuVenta.addColumn("IdVenta");        
         MenuVenta.addColumn("TipoVenta");        
@@ -161,6 +168,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         ReporteVenta.addColumn("TotalVentas");        
         tblReporteVentas.setModel(ReporteVenta);
         //VIZCARRA//
+
                 
         //llenado de tabla Compra  
         modeloCompra.addColumn("ID Compra");
@@ -314,7 +322,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnPrincipal.setVisible(false);  
     }
     public void apagado2(){
-        jpnProveedores.setVisible(false);
+       jpnProveedores.setVisible(false);
         jpnAgregarProv.setVisible(false);
         jpnModificarProveedor.setVisible(false);
         jpnMenuVentas.setVisible(false);
@@ -326,10 +334,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistrarVenta.setVisible(false);
         jpnAdministracion.setVisible(false);
         jpnRegistrarVenta.setVisible(false);
-         jpnReporteVentas.setVisible(false);
-
+        jpnReporteVentas.setVisible(false);
+//        jpnUtilidadMenuVentasParametros.setVisible(false);
+//        jpnVentasReporteParametro.setVisible(false);
+//        jpnVerVentasporSucursal.setVisible(false);
     }
-    //VIZCARRA//
+       //VIZCARRA//
     public void saberCodigoVenta(){
         int cantidad, mayor=0;           
         try {
@@ -356,6 +366,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
     }
     //VIZCARRA//    
+
 
 
     @SuppressWarnings("unchecked")
@@ -2581,8 +2592,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores9.setBackground(new java.awt.Color(255, 255, 255));
         lblProveedores9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblProveedores9.setForeground(new java.awt.Color(255, 255, 255));
-        lblProveedores9.setText("REPORTE");
-        jPanel51.add(lblProveedores9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 110, 50));
+        lblProveedores9.setText("REPORTE VENTAS MES");
+        jPanel51.add(lblProveedores9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 240, 50));
 
         jpnReporteVentas.add(jPanel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 70));
 
