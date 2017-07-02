@@ -18,7 +18,8 @@ public class ControladorProducto {
 
          try {
             cn.conectar();
-            cn.UID("INSERT into producto(CodBarra,Nombre,Costo) Values("+p[0]+",'"+p[1]+"',"+p[2]+");");
+            cn.UID("INSERT into producto(CodBarra,Nombre,Costo) Values('"+p[0]+"','"+p[1]+"',"+p[2]+");");
+            
             cn.desconectar();   
          } catch (Exception e) {
              throw new ErrorTienda("no logra ingresar producto");
