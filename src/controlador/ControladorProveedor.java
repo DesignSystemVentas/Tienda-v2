@@ -29,7 +29,7 @@ public class ControladorProveedor {
         ResultSet datos = null;
         try{
         cn.conectar();     
-        datos = cn.getValores("SELECT * FROM Proveedor");
+        datos = cn.getValores("SELECT * FROM proveedor");
         } catch (Exception e){
             cn.desconectar();
             throw new ErrorTienda("no logra obtener datos de proveedores");        
