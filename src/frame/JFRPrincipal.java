@@ -2923,6 +2923,52 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasProveedoresMouseClicked
 
     private void btnVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentasMouseClicked
+              apagado();        apagado2();
+        jpnMenuVentas.setVisible(true);         
+        //llenar cmbSucursal y cmbUtilidad//  
+         try {
+            rstCSucursal = cSucursal.Obtener();
+            rstTipoPrecio = cTipoPrecio.ObtenerTipoPrecio();             
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} catch (Exception ex) {           
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }           
+        //iniciar recorrer//
+        try {
+
+//            mSucursal=null;
+//            mUtilidad=null;
+//            mLlenarIdS=null;
+//            mLlenarPoU=null;
+
+            String IdSucursal = "";
+            int IdSucursalVenta = 0;
+            //Sucursal
+            while (rstCSucursal.next()) {
+                mSucursal.addElement(rstCSucursal.getString(2));                 
+                IdSucursal = IdSucursal + " "+rstCSucursal.getString(1); 
+                mLlenarIdS.addElement(rstCSucursal.getString(1));          
+            }
+            cmbSucursalParametro.setModel(mSucursal);
+            cmbSucursalMenuVenta.setModel(mSucursal); 
+            txtSucursalVentaParametro.setText(String.valueOf(mLlenarIdS.getElementAt(0))); 
+            IdSucursalVenta = Integer.parseInt(String.valueOf(mLlenarIdS.getElementAt(0)));
+            SaberSucursalVentas = IdSucursalVenta;
+            //Utilidad
+            String Porcentaje = "";
+            while (rstTipoPrecio.next()) {
+                mUtilidad.addElement(rstTipoPrecio.getString(2)); 
+                Porcentaje = Porcentaje + " "+rstTipoPrecio.getString(3); 
+                mLlenarPoU.addElement(rstTipoPrecio.getString(3));          
+            }
+            double PorcentajeVenta=0;
+            PorcentajeVenta = Double.parseDouble((String.valueOf(mLlenarPoU.getElementAt(0))));
+            saberTipoUtilidadVenta = PorcentajeVenta;
+            PorcentajeVenta = PorcentajeVenta *100;
+//            txtUtilidadVentaParametro.setText(String.valueOf(mLlenarPoU.getElementAt(0))); 
+             txtUtilidadVentaParametro.setText(String.valueOf(PorcentajeVenta)+"%");
+            cmbUtilidadParametro.setModel(mUtilidad);
+        } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}//finalizado (recorrer)//
+        //finalizar()/llenado cmbSucursal, IdVenta y cmbUtilidad/ 
     }//GEN-LAST:event_btnVentasMouseClicked
 
     private void btnNuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProductoActionPerformed
