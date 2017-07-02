@@ -476,6 +476,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnMenuVentas = new javax.swing.JPanel();
         jPanel44 = new javax.swing.JPanel();
         lblProveedores5 = new javax.swing.JLabel();
+        btnHacerVenta = new javax.swing.JButton();
+        btnVerVentas = new javax.swing.JButton();
+        btnVerReporteVentas = new javax.swing.JButton();
         jpnCompras = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblCompras = new javax.swing.JTable();
@@ -1417,10 +1420,70 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores5.setBackground(new java.awt.Color(255, 255, 255));
         lblProveedores5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblProveedores5.setForeground(new java.awt.Color(255, 255, 255));
-        lblProveedores5.setText("Ventas");
-        jPanel44.add(lblProveedores5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 110, 50));
+        lblProveedores5.setText("MENÚ VENTAS");
+        jPanel44.add(lblProveedores5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 170, 50));
 
         jpnMenuVentas.add(jPanel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 70));
+
+        btnHacerVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/VentaHacer.png"))); // NOI18N
+        btnHacerVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHacerVenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHacerVentaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnHacerVentaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnHacerVentaMouseExited(evt);
+            }
+        });
+        btnHacerVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHacerVentaActionPerformed(evt);
+            }
+        });
+        jpnMenuVentas.add(btnHacerVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 140, 140));
+
+        btnVerVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/VentaVer.png"))); // NOI18N
+        btnVerVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVerVentasMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVerVentasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVerVentasMouseExited(evt);
+            }
+        });
+        btnVerVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerVentasActionPerformed(evt);
+            }
+        });
+        jpnMenuVentas.add(btnVerVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 140, 140));
+
+        btnVerReporteVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/VentaReporte.png"))); // NOI18N
+        btnVerReporteVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerReporteVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVerReporteVentasMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVerReporteVentasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVerReporteVentasMouseExited(evt);
+            }
+        });
+        btnVerReporteVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerReporteVentasActionPerformed(evt);
+            }
+        });
+        jpnMenuVentas.add(btnVerReporteVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, 140, 140));
 
         getContentPane().add(jpnMenuVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -4249,6 +4312,77 @@ public void llenarComprasRealizadasFiltro() throws Exception{
         
     }//GEN-LAST:event_btnGuardarCompraActionPerformed
 
+    private void btnHacerVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHacerVentaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHacerVentaMouseClicked
+
+    private void btnHacerVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHacerVentaMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHacerVentaMouseEntered
+
+    private void btnHacerVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHacerVentaMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHacerVentaMouseExited
+
+    private void btnHacerVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHacerVentaActionPerformed
+        jpnMenuVentas.setVisible(false);
+//        jpnUtilidadMenuVentasParametros.setVisible(true);
+//        manejarcmbVentas();
+    }//GEN-LAST:event_btnHacerVentaActionPerformed
+
+    private void btnVerVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerVentasMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerVentasMouseClicked
+
+    private void btnVerVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerVentasMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerVentasMouseEntered
+
+    private void btnVerVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerVentasMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerVentasMouseExited
+
+    private void btnVerVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerVentasActionPerformed
+//        manejarcmbVentas();
+        jpnMenuVentas.setVisible(false);
+//        jpnVerVentasporSucursal.setVisible(true);
+//        int IdSucursal = cmbSucursalMenuVenta.getSelectedIndex() + 1;
+        try {
+            rstControladorVenta = controladorventa.llenarVenta(1);
+
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
+        try {
+            while (rstControladorVenta.next()) {//tablas base de datos
+                //tabla de compra
+                datosVenta[0] = rstControladorVenta.getString(1);
+                datosVenta[1] = rstControladorVenta.getString(3);
+                datosVenta[2] = rstControladorVenta.getString(5);
+                datosVenta[3] = rstControladorVenta.getString(6);
+                datosVenta[4] = rstControladorVenta.getString(8);
+                datosVenta[5] = rstControladorVenta.getString(10);
+                datosVenta[6] = rstControladorVenta.getString(14);
+                MenuVenta.addRow(datosVenta);
+            }
+        } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
+    }//GEN-LAST:event_btnVerVentasActionPerformed
+
+    private void btnVerReporteVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerReporteVentasMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerReporteVentasMouseClicked
+
+    private void btnVerReporteVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerReporteVentasMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerReporteVentasMouseEntered
+
+    private void btnVerReporteVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerReporteVentasMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerReporteVentasMouseExited
+
+    private void btnVerReporteVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerReporteVentasActionPerformed
+        jpnMenuVentas.setVisible(false);
+//        jpnVentasReporteParametro.setVisible(true);
+    }//GEN-LAST:event_btnVerReporteVentasActionPerformed
+
     public void agregarDetalle(){
         detalleCompra[0] = CodBarraPC;    
         detalleCompra[1] = NombrePC;
@@ -4563,6 +4697,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JButton btnGuardarProveedor;
     private javax.swing.JButton btnGuardarSucursal;
     private javax.swing.JButton btnGuardarTipoPrecio;
+    private javax.swing.JButton btnHacerVenta;
     private javax.swing.JLabel btnHome;
     private javax.swing.JButton btnModificarParametro;
     private javax.swing.JButton btnModificarProducto;
@@ -4578,6 +4713,8 @@ public void limpiarTablaProducto(){
     private javax.swing.JButton btnVender;
     private javax.swing.JButton btnVentas;
     private javax.swing.JButton btnVerDetalle;
+    private javax.swing.JButton btnVerReporteVentas;
+    private javax.swing.JButton btnVerVentas;
     private javax.swing.ButtonGroup btngFiltroProductos;
     private javax.swing.JComboBox<String> cmbFiltroSucursalCompra;
     private javax.swing.JComboBox cmbProveedorCompra;
