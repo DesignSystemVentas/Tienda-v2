@@ -117,7 +117,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     
     public JFRPrincipal() {
         initComponents();
-//        tHeadVentas = tblMenuVentas.getTableHeader();
+        tHeadVentas = tblMenuVentas.getTableHeader();
         tHeadCompras=tblCompras.getTableHeader();
         tHeadProductos=jtblProductos.getTableHeader();
         tHeadCompra=tblCompra.getTableHeader();
