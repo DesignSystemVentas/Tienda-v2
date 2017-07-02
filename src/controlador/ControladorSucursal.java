@@ -64,6 +64,22 @@ public class ControladorSucursal {
          return d;
      }
      
+     
+     public ResultSet ObtenerId(String s) throws Exception{
+         ResultSet d=null;
+         try {
+         cn.conectar();
+         d=cn.getValores("SELECT * FROM sucursal WHERE Nombre='"+s+"'");    
+         } catch (Exception e) {
+             throw new ErrorTienda("no logra obtener datos sucursal");  
+         }finally{
+        // cn.desconectar();
+         }
+         return d;
+     }
+     
+     
+     
      public ResultSet ObtenerSucursal(int t) throws Exception{
      ResultSet d=null;
          try {

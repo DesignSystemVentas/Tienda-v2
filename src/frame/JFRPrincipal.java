@@ -2,6 +2,7 @@
 package frame;
 
 import controlador.Conexion;
+import controlador.ControladorCompra;
 import controlador.ControladorProducto;
 import controlador.ControladorProveedor;
 import controlador.ControladorSucursal;
@@ -11,6 +12,7 @@ import controlador.ErrorTienda;
 import controlador.Parametro;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,6 +41,20 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     Calendar calendar1 = Calendar.getInstance();
     Calendar calendar2 = new GregorianCalendar();       
     Calendar calendar = Calendar.getInstance();  
+    
+    //Todas las variables que agregue-Daniel
+    boolean cargarSucursalesFC;
+    ResultSet rsFiltroCompra, rsCompra, rsSucursalFC;
+    DefaultComboBoxModel modeloSucursalFC = new DefaultComboBoxModel();//Combo filtro sucursal
+    
+    //----------------------------
+    
+    
+    
+    
+    
+    
+    
     
     int dia,mes,anio,fila=0,venta=0,sucursal,tipoventa,nitVenta,giroVenta,nDocumentoVenta,sabercmbUtilidadVenta,sabercmbIdSucursal,sabercmbTipoFactura,saberMesParaGenerarReporteVenta;
     double Punitario = 0, TotalGravadoVenta=0, TotalVenta=0, SubTotalVenta;   
@@ -77,6 +93,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     ResultSet rsSucursalC = null;
     DefaultComboBoxModel modeloProveedorC = new DefaultComboBoxModel();
     DefaultComboBoxModel  modeloSucursalC = new DefaultComboBoxModel();
+    
     
     //vizcarra//
     DefaultTableModel MenuVenta = new DefaultTableModel();
@@ -477,6 +494,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores3 = new javax.swing.JLabel();
         lblListadoCompras = new javax.swing.JLabel();
         jSeparator35 = new javax.swing.JSeparator();
+        cmbFiltroSucursalCompra = new javax.swing.JComboBox<>();
+        lblFiltrarCompra = new javax.swing.JLabel();
         jpnRegistroCompra = new javax.swing.JPanel();
         btnGuardarCompra = new javax.swing.JButton();
         btnCancelarCompra = new javax.swing.JButton();
@@ -486,7 +505,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        cmbSucursalCompra = new javax.swing.JComboBox<String>();
+        cmbSucursalCompra = new javax.swing.JComboBox<>();
         lblFecha = new javax.swing.JLabel();
         lbltxtFechaCompra = new javax.swing.JLabel();
         lblFecha1 = new javax.swing.JLabel();
@@ -1565,6 +1584,22 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblListadoCompras.setText("Listado de Compras Realizadas:");
         jpnCompras.add(lblListadoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 200, -1));
         jpnCompras.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 117, 200, 10));
+
+        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cmbFiltroSucursalCompra.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbFiltroSucursalCompraItemStateChanged(evt);
+            }
+        });
+        cmbFiltroSucursalCompra.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cmbFiltroSucursalCompraFocusGained(evt);
+            }
+        });
+        jpnCompras.add(cmbFiltroSucursalCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 200, -1));
+
+        lblFiltrarCompra.setText("Filtrar:");
+        jpnCompras.add(lblFiltrarCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
 
         getContentPane().add(jpnCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -2864,6 +2899,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnCompras);  
         apagado2();
         jpnCompras.setVisible(true);
+        cargarSucursalesFC = true;
+        cmbFiltroSucursalCompra.requestFocus();
     }//GEN-LAST:event_btnComprasMouseClicked
 
     /*  ---- Mover barra ----  */
@@ -4394,6 +4431,103 @@ txtNuevoNIT.requestFocus();
     private void btnEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProveedorActionPerformed
    
     }//GEN-LAST:event_btnEliminarProveedorActionPerformed
+
+    private void cmbFiltroSucursalCompraItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFiltroSucursalCompraItemStateChanged
+
+        if(evt.getStateChange()==ItemEvent.SELECTED){
+            try {
+                llenarComprasRealizadasFiltro();
+            } catch (Exception ex) {
+                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }//GEN-LAST:event_cmbFiltroSucursalCompraItemStateChanged
+//Llenado de tabla Compras, que contiene todas las compras registradas en la base de datos.
+
+public void llenarComprasRealizadasFiltro() throws Exception{
+    rsFiltroCompra=null;
+    rsCompra=null;
+    ControladorCompra cp=new ControladorCompra();
+    ControladorProveedor cP = new ControladorProveedor();
+    ControladorSucursal cS = new ControladorSucursal();
+    limpiarTablaComprasRealizadas();
+    String Prov = "";
+    String Sucur = "";
+    int IdSucursal = 0;  
+    String sucursal =   (String)cmbFiltroSucursalCompra.getSelectedItem();
+    rsFiltroCompra = cS.ObtenerId(sucursal);
+        
+    while (rsFiltroCompra.next()) {
+    IdSucursal = rsFiltroCompra.getInt("IdSucursal");    
+    }
+    rsFiltroCompra = null;
+    rsFiltroCompra = cp.ObtenerComprasFiltro(IdSucursal);
+
+    if (!rsFiltroCompra.isBeforeFirst()) { 
+
+             System.out.println("No existe");
+}    else{
+         try {
+            while (rsFiltroCompra.next()) {
+                String IdCompra = rsFiltroCompra.getString("IdCompra");
+                String Fecha = rsFiltroCompra.getString("IdSucursal");
+                String IdProveedor = rsFiltroCompra.getString("IdProveedor");
+                String Total = rsFiltroCompra.getString("Total");
+               
+                rsCompra= cP.buscarProveedor(IdProveedor);
+               
+                while(rsCompra.next()){
+                Prov = rsCompra.getString("Nombre");
+                }
+           
+                modeloCompra.addRow(new Object[]{IdCompra,Prov,Fecha,Total});
+                
+            }
+        } catch (SQLException e) {
+            throw  new ErrorTienda("No logra poner el modelo");
+        }
+        
+       tblCompras.setModel(modeloCompra);
+
+        
+        }
+}
+
+    public void limpiarTablaComprasRealizadas(){
+ for (int i = 0; i < tblCompras.getRowCount(); i++) {
+           modeloCompra.removeRow(i);
+           i-=1;
+       }
+}
+    
+    private void cmbFiltroSucursalCompraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbFiltroSucursalCompraFocusGained
+        if (cargarSucursalesFC==true){//Este metodo es la copia del otro que llena el combo con las sucursales, solo que en este caso sirve para filtrar las compras por sucursal -LoL-
+
+            ControladorSucursal p = new ControladorSucursal();
+            modeloSucursalFC.removeAllElements();
+
+            try{
+                rsSucursalFC = p.Obtener();
+                while (rsSucursalFC.next()) {
+                    modeloSucursalFC.addElement(rsSucursalFC.getString(2));
+                }
+                cmbFiltroSucursalCompra.setModel(modeloSucursalFC);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+            }  catch (Exception ex) {
+                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        cargarSucursalesFC=false;
+
+        try {
+            llenarComprasRealizadasFiltro();
+        } catch (Exception ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_cmbFiltroSucursalCompraFocusGained
       
     public void buscarProductos(){
     
@@ -4695,6 +4829,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JButton btnVerDetalle;
     private javax.swing.ButtonGroup btngFiltroProductos;
     private javax.swing.JComboBox cmbFechasVenta;
+    private javax.swing.JComboBox<String> cmbFiltroSucursalCompra;
     private javax.swing.JComboBox cmbProveedorCompra;
     private javax.swing.JComboBox cmbSucursal;
     private javax.swing.JComboBox<String> cmbSucursalCompra;
@@ -4884,6 +5019,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel lblFecha1;
     private javax.swing.JTextField lblFechaVentaMostrar;
     private javax.swing.JLabel lblFechaVentas;
+    private javax.swing.JLabel lblFiltrarCompra;
     private javax.swing.JLabel lblGiroVenta;
     private javax.swing.JLabel lblIVA;
     private javax.swing.JLabel lblIVA1;
