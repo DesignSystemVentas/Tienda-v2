@@ -117,7 +117,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     
     public JFRPrincipal() {
         initComponents();
-//        tHeadVentas = tblMenuVentas.getTableHeader();
+        tHeadVentas = tblMenuVentas.getTableHeader();
         tHeadCompras=tblCompras.getTableHeader();
         tHeadProductos=jtblProductos.getTableHeader();
         tHeadCompra=tblCompra.getTableHeader();
@@ -4535,8 +4535,8 @@ public void llenarComprasRealizadasFiltro() throws Exception{
     private void btnVerVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerVentasActionPerformed
 //        manejarcmbVentas();
         jpnMenuVentas.setVisible(false);
-//        jpnVerVentasporSucursal.setVisible(true);
-//        int IdSucursal = cmbSucursalMenuVenta.getSelectedIndex() + 1;
+        jpnVerVentasporSucursal.setVisible(true);
+        int IdSucursal = cmbSucursalMenuVenta.getSelectedIndex() + 1;
         try {
             rstControladorVenta = controladorventa.llenarVenta(1);
 
