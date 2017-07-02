@@ -1910,11 +1910,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnSalirProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
         btnSalirProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalirProductos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSalirProductosMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnSalirProductosMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSalirProductosMouseEntered(evt);
             }
         });
         btnSalirProductos.addActionListener(new java.awt.event.ActionListener() {
@@ -2307,8 +2307,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             }
         });
         tjpnlSucursales.add(btnCancelarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, 100, 40));
-
-        txtIdSucursal.setEditable(false);
         tjpnlSucursales.add(txtIdSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 350, -1));
         tjpnlSucursales.add(txtNombreSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 350, -1));
 
@@ -2782,11 +2780,18 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         modificarProducto=false;
         jpnProductos.setVisible(false);
         jpnNuevoProducto.setVisible(true);
+        txtCodBarraProductos.setText("");
+        txtNombreProductos.setText("");
+        txtPrecioProductos.setText("");
+        
     }//GEN-LAST:event_btnNuevoProductoActionPerformed
 
     private void btnSalirProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirProductosActionPerformed
             jpnNuevoProducto.setVisible(false);
             jpnProductos.setVisible(true);
+             txtCodBarraProductos.setText("");
+        txtNombreProductos.setText("");
+        txtPrecioProductos.setText("");
     }//GEN-LAST:event_btnSalirProductosActionPerformed
 
     private void btnProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseClicked
@@ -3095,7 +3100,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     Object mostrar=modeloTipoPrecio.getValueAt(jtblTipoDePrecio.getSelectedRow(), 0);     
 //    Object P[]={mostrar};
     
-int decide=JOptionPane.showConfirmDialog(null, "Desea borrar el tipo precio:" +modeloProducto.getValueAt(jtblProductos.getSelectedRow(), 1));
+int decide=JOptionPane.showConfirmDialog(null, "Desea borrar el tipo precio:" +modeloTipoPrecio.getValueAt(jtblTipoDePrecio.getSelectedRow(), 1));
 
 
 if(decide==0){
@@ -3947,8 +3952,8 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
     }//GEN-LAST:event_btnGuardarSucursalActionPerformed
 
     private void btnNuevoSucursalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoSucursalesActionPerformed
-        modificarSucursal=true;
-         txtIdSucursal.setEditable(true);
+        modificarSucursal=false;
+         
             txtNombreSucursal.setEditable(true);
             txtDireccionSucursal.setEditable(true);
             txtTelefonoSucursal.setEditable(true);
@@ -3957,16 +3962,16 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
     private void btnEliminarSucursalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarSucursalesActionPerformed
       ControladorSucursal cpp= new ControladorSucursal();
         TableModel tableModel = jtblProductos.getModel();
-    Object mostrar=modeloTipoPrecio.getValueAt(jtblTipoDePrecio.getSelectedRow(), 0);     
+    Object mostrar=modeloSucursal.getValueAt(jtblSucursales.getSelectedRow(), 0);     
 //    Object P[]={mostrar};
     
-int decide=JOptionPane.showConfirmDialog(null, "Desea borrar al sucursal" +modeloProducto.getValueAt(jtblProductos.getSelectedRow(), 1));
+int decide=JOptionPane.showConfirmDialog(null, "Desea borrar al sucursal" +modeloSucursal.getValueAt(jtblSucursales.getSelectedRow(), 1));
 
 
 if(decide==0){
  try {
                cpp.EliminarSucursal(mostrar);
-               JOptionPane.showMessageDialog(null,"Se elimino el Tipo Precio" +mostrar);
+               JOptionPane.showMessageDialog(null,"Se elimino la sucursal" +mostrar);
                limpiarTablaProducto();
            } catch (SQLException ex) {
                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
