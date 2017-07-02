@@ -486,7 +486,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        cmbSucursalCompra = new javax.swing.JComboBox<>();
+        cmbSucursalCompra = new javax.swing.JComboBox<String>();
         lblFecha = new javax.swing.JLabel();
         lbltxtFechaCompra = new javax.swing.JLabel();
         lblFecha1 = new javax.swing.JLabel();
@@ -635,6 +635,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblFechaVentas = new javax.swing.JLabel();
         lblFechaVentaMostrar = new javax.swing.JTextField();
         txtNuDocumentoVenta = new javax.swing.JTextField();
+        jLabel65 = new javax.swing.JLabel();
+        txtDireccion = new javax.swing.JTextField();
         jLabel55 = new javax.swing.JLabel();
         jLabel56 = new javax.swing.JLabel();
         txtCodigoBarraVender = new javax.swing.JTextField();
@@ -2324,7 +2326,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         jSeparator44.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator44.setForeground(new java.awt.Color(0, 0, 0));
-        jpnRegistrarVenta.add(jSeparator44, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 170, 750, 10));
+        jpnRegistrarVenta.add(jSeparator44, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 750, 10));
 
         tblRegistrarVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2337,7 +2339,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblRegistrarVenta.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(tblRegistrarVenta);
 
-        jpnRegistrarVenta.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 710, 250));
+        jpnRegistrarVenta.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 710, 220));
 
         btnVender.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/vender.png"))); // NOI18N
@@ -2365,11 +2367,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         txtNombreProductoVender.setEditable(false);
         txtNombreProductoVender.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jpnRegistrarVenta.add(txtNombreProductoVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 300, 40));
+        jpnRegistrarVenta.add(txtNombreProductoVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 300, 40));
 
         txtCantidadVender.setText("  1");
         txtCantidadVender.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jpnRegistrarVenta.add(txtCantidadVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 80, 40));
+        jpnRegistrarVenta.add(txtCantidadVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 80, 40));
 
         btnAgregarProductoVenta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAgregarProductoVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/agregar2.png"))); // NOI18N
@@ -2387,7 +2389,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnAgregarProductoVentaActionPerformed(evt);
             }
         });
-        jpnRegistrarVenta.add(btnAgregarProductoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 110, 40));
+        jpnRegistrarVenta.add(btnAgregarProductoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, 110, 40));
 
         jPanel49.setBackground(new java.awt.Color(0, 0, 0));
         jPanel49.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -2423,36 +2425,45 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblFechaVentas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblFechaVentas.setForeground(new java.awt.Color(255, 255, 255));
         lblFechaVentas.setText("Fecha:");
-        jPanel49.add(lblFechaVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 60, -1));
+        jPanel49.add(lblFechaVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 60, -1));
 
         lblFechaVentaMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lblFechaVentaMostrarActionPerformed(evt);
             }
         });
-        jPanel49.add(lblFechaVentaMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 80, 30));
+        jPanel49.add(lblFechaVentaMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 80, 30));
         jPanel49.add(txtNuDocumentoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 100, 30));
 
-        jpnRegistrarVenta.add(jPanel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 70));
+        jLabel65.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel65.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel65.setText("Direccion");
+        jPanel49.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 70, -1));
+
+        txtDireccion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtDireccion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        jPanel49.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 220, 30));
+
+        jpnRegistrarVenta.add(jPanel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 130));
 
         jLabel55.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel55.setText("Producto");
-        jpnRegistrarVenta.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        jpnRegistrarVenta.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
 
         jLabel56.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel56.setText("Tipo Factura");
-        jpnRegistrarVenta.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, -1, -1));
+        jpnRegistrarVenta.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, -1, -1));
 
         txtCodigoBarraVender.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoBarraVenderKeyPressed(evt);
             }
         });
-        jpnRegistrarVenta.add(txtCodigoBarraVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 120, 40));
+        jpnRegistrarVenta.add(txtCodigoBarraVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 120, 40));
 
         lblNRCventa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblNRCventa.setText("NRC");
-        jpnRegistrarVenta.add(lblNRCventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
+        jpnRegistrarVenta.add(lblNRCventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, -1, -1));
 
         cmbTipoFacturaVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FACTURA", "CREDITO FISCAL", "LIBRE" }));
         cmbTipoFacturaVenta.addItemListener(new java.awt.event.ItemListener() {
@@ -2460,7 +2471,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 cmbTipoFacturaVentaItemStateChanged(evt);
             }
         });
-        jpnRegistrarVenta.add(cmbTipoFacturaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, 140, 30));
+        jpnRegistrarVenta.add(cmbTipoFacturaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, 140, 30));
 
         cmbSucursal.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -2472,15 +2483,15 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 cmbSucursalActionPerformed(evt);
             }
         });
-        jpnRegistrarVenta.add(cmbSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 120, 30));
+        jpnRegistrarVenta.add(cmbSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 120, 30));
 
         jLabel57.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel57.setText("Código de Barra");
-        jpnRegistrarVenta.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, -1, -1));
+        jpnRegistrarVenta.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, -1, -1));
 
         jLabel58.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel58.setText("Cantidad");
-        jpnRegistrarVenta.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, -1, -1));
+        jpnRegistrarVenta.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, -1, -1));
 
         lblIVA.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblIVA.setText("IVA");
@@ -2499,29 +2510,29 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         jLabel60.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel60.setText("Sucursal");
-        jpnRegistrarVenta.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        jpnRegistrarVenta.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         cmbUtilidad.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbUtilidadItemStateChanged(evt);
             }
         });
-        jpnRegistrarVenta.add(cmbUtilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 120, 30));
-        jpnRegistrarVenta.add(txtGiroVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 90, 30));
-        jpnRegistrarVenta.add(txtNRCventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 80, 30));
-        jpnRegistrarVenta.add(txtNITventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 80, 30));
+        jpnRegistrarVenta.add(cmbUtilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 120, 30));
+        jpnRegistrarVenta.add(txtGiroVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 90, 30));
+        jpnRegistrarVenta.add(txtNRCventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 80, 30));
+        jpnRegistrarVenta.add(txtNITventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 80, 30));
 
         jLabel61.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel61.setText("Utilidad");
-        jpnRegistrarVenta.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, -1, -1));
+        jpnRegistrarVenta.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
 
         lblGiroVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblGiroVenta.setText("Giro");
-        jpnRegistrarVenta.add(lblGiroVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
+        jpnRegistrarVenta.add(lblGiroVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
 
         lblNITventa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblNITventa.setText("NIT");
-        jpnRegistrarVenta.add(lblNITventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, -1, -1));
+        jpnRegistrarVenta.add(lblNITventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, -1, -1));
 
         jLabel62.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel62.setText("SUMAS");
@@ -3416,7 +3427,7 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
         }
         //TERMINAR DE AGREGAR//
 
-        String Fecha="", Direcion="";
+        String Fecha="";
         Fecha=anio+"-"+mes+"-"+dia;
         String Giro = "";
         String NIT = "";
@@ -3424,8 +3435,7 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
         String TipoVenta = "";        
         String Cliente = txtClienteVenta.getText();
         String NDocumento = txtNuDocumentoVenta.getText();
-
-        int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
+        String Direcion = txtDireccion.getText();        int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
         double  TotalVentas = 0;
         while (iteracion<filas){
             TotalVentas = TotalVentas + Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
@@ -4748,6 +4758,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -4921,6 +4932,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JTextField txtCodBarraProductos1;
     private javax.swing.JTextField txtCodigoBarraVender;
     private javax.swing.JTextField txtCostoProductoCompra;
+    private javax.swing.JTextField txtDireccion;
     private javax.swing.JLabel txtDireccionActualProveedor;
     private javax.swing.JTextField txtDireccionProveedor;
     private javax.swing.JTextField txtDireccionSucursal;
