@@ -231,13 +231,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             txtNombreSucursal.setEditable(false);
             txtDireccionSucursal.setEditable(false);
             txtTelefonoSucursal.setEditable(false);
-            modificarSucursal=false;
-        
-        
-        
-        
-        
-        
+            modificarSucursal=false;                                             
     }
     
     /*  ---- Color a las cabeceras de las tablas ----  */
@@ -643,6 +637,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtDireccionSucursal = new javax.swing.JTextField();
         txtTelefonoSucursal = new javax.swing.JTextField();
         jpnRegistrarVenta = new javax.swing.JPanel();
+        jPanel49 = new javax.swing.JPanel();
+        lblProveedores7 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        txtIdVenta = new javax.swing.JTextField();
+        lblFechaVentas = new javax.swing.JLabel();
+        lblFechaVentaMostrar = new javax.swing.JTextField();
+        txtNuDocumentoVenta = new javax.swing.JTextField();
         jSeparator44 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblRegistrarVenta = new javax.swing.JTable();
@@ -650,20 +652,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtNombreProductoVender = new javax.swing.JTextField();
         txtCantidadVender = new javax.swing.JTextField();
         btnAgregarProductoVenta = new javax.swing.JButton();
-        jPanel49 = new javax.swing.JPanel();
-        jSeparator45 = new javax.swing.JSeparator();
-        lblProveedores7 = new javax.swing.JLabel();
-        jLabel52 = new javax.swing.JLabel();
-        txtClienteVenta = new javax.swing.JTextField();
-        jLabel53 = new javax.swing.JLabel();
-        txtIdVenta = new javax.swing.JTextField();
-        lblFechaVentas = new javax.swing.JLabel();
-        lblFechaVentaMostrar = new javax.swing.JTextField();
-        txtNuDocumentoVenta = new javax.swing.JTextField();
-        jLabel65 = new javax.swing.JLabel();
-        txtDireccion = new javax.swing.JTextField();
         jLabel55 = new javax.swing.JLabel();
-        jLabel56 = new javax.swing.JLabel();
         txtCodigoBarraVender = new javax.swing.JTextField();
         lblNRCventa = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
@@ -673,14 +662,17 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtSumas = new javax.swing.JTextField();
         jLabel59 = new javax.swing.JLabel();
         txtTotalventaGravado = new javax.swing.JTextField();
-        jLabel60 = new javax.swing.JLabel();
-        txtGiroVenta = new javax.swing.JTextField();
+        txtClienteVenta = new javax.swing.JTextField();
         txtNRCventa = new javax.swing.JTextField();
         txtNITventa = new javax.swing.JTextField();
-        jLabel61 = new javax.swing.JLabel();
-        lblGiroVenta = new javax.swing.JLabel();
+        lblCliente = new javax.swing.JLabel();
         lblNITventa = new javax.swing.JLabel();
         jLabel62 = new javax.swing.JLabel();
+        lblDireccion = new javax.swing.JLabel();
+        txtDireccion = new javax.swing.JTextField();
+        txtGiroVenta = new javax.swing.JTextField();
+        lblGiroVenta = new javax.swing.JLabel();
+        btnRegresarPaeametroVentas = new javax.swing.JButton();
         jpnReporteVentas = new javax.swing.JPanel();
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane8 = new javax.swing.JScrollPane();
@@ -2406,9 +2398,51 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         jpnRegistrarVenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel49.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel49.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblProveedores7.setBackground(new java.awt.Color(255, 255, 255));
+        lblProveedores7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblProveedores7.setForeground(new java.awt.Color(255, 255, 255));
+        lblProveedores7.setText("Registrar Ventas");
+        jPanel49.add(lblProveedores7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 190, 30));
+
+        jLabel52.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel52.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel52.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel52.setText("Código");
+        jPanel49.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 100, -1));
+
+        jLabel53.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel53.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel53.setText("Documento");
+        jPanel49.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 100, -1));
+
+        txtIdVenta.setEditable(false);
+        txtIdVenta.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtIdVenta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        jPanel49.add(txtIdVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 100, 30));
+
+        lblFechaVentas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblFechaVentas.setForeground(new java.awt.Color(255, 255, 255));
+        lblFechaVentas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFechaVentas.setText("Fecha");
+        jPanel49.add(lblFechaVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 80, -1));
+
+        lblFechaVentaMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblFechaVentaMostrarActionPerformed(evt);
+            }
+        });
+        jPanel49.add(lblFechaVentaMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 80, 30));
+        jPanel49.add(txtNuDocumentoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 100, 30));
+
+        jpnRegistrarVenta.add(jPanel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 100));
+
         jSeparator44.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator44.setForeground(new java.awt.Color(0, 0, 0));
-        jpnRegistrarVenta.add(jSeparator44, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 750, 10));
+        jpnRegistrarVenta.add(jSeparator44, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 750, 10));
 
         tblRegistrarVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2421,7 +2455,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblRegistrarVenta.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(tblRegistrarVenta);
 
-        jpnRegistrarVenta.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 710, 220));
+        jpnRegistrarVenta.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 710, 230));
 
         btnVender.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/vender.png"))); // NOI18N
@@ -2449,11 +2483,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         txtNombreProductoVender.setEditable(false);
         txtNombreProductoVender.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jpnRegistrarVenta.add(txtNombreProductoVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 300, 40));
+        jpnRegistrarVenta.add(txtNombreProductoVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 300, 40));
 
         txtCantidadVender.setText("  1");
         txtCantidadVender.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jpnRegistrarVenta.add(txtCantidadVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 80, 40));
+        jpnRegistrarVenta.add(txtCantidadVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 80, 40));
 
         btnAgregarProductoVenta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAgregarProductoVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/agregar2.png"))); // NOI18N
@@ -2471,89 +2505,31 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnAgregarProductoVentaActionPerformed(evt);
             }
         });
-        jpnRegistrarVenta.add(btnAgregarProductoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, 110, 40));
-
-        jPanel49.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel49.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jSeparator45.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel49.add(jSeparator45, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 20, 70));
-
-        lblProveedores7.setBackground(new java.awt.Color(255, 255, 255));
-        lblProveedores7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblProveedores7.setForeground(new java.awt.Color(255, 255, 255));
-        lblProveedores7.setText("Registrar Ventas");
-        jPanel49.add(lblProveedores7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 190, 50));
-
-        jLabel52.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel52.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel52.setText("ID Venta");
-        jPanel49.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 70, -1));
-
-        txtClienteVenta.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtClienteVenta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        jPanel49.add(txtClienteVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, 220, 30));
-
-        jLabel53.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel53.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel53.setText("Cliente");
-        jPanel49.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 70, -1));
-
-        txtIdVenta.setEditable(false);
-        txtIdVenta.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtIdVenta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        jPanel49.add(txtIdVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 80, 30));
-
-        lblFechaVentas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblFechaVentas.setForeground(new java.awt.Color(255, 255, 255));
-        lblFechaVentas.setText("Fecha:");
-        jPanel49.add(lblFechaVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 60, -1));
-
-        lblFechaVentaMostrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lblFechaVentaMostrarActionPerformed(evt);
-            }
-        });
-        jPanel49.add(lblFechaVentaMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 80, 30));
-        jPanel49.add(txtNuDocumentoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 100, 30));
-
-        jLabel65.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel65.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel65.setText("Direccion");
-        jPanel49.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 70, -1));
-
-        txtDireccion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtDireccion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        jPanel49.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 220, 30));
-
-        jpnRegistrarVenta.add(jPanel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 130));
+        jpnRegistrarVenta.add(btnAgregarProductoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 110, 40));
 
         jLabel55.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel55.setText("Producto");
-        jpnRegistrarVenta.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
-
-        jLabel56.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel56.setText("Tipo Factura");
-        jpnRegistrarVenta.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, -1, -1));
+        jpnRegistrarVenta.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, -1, 10));
 
         txtCodigoBarraVender.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoBarraVenderKeyPressed(evt);
             }
         });
-        jpnRegistrarVenta.add(txtCodigoBarraVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 120, 40));
+        jpnRegistrarVenta.add(txtCodigoBarraVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 120, 40));
 
         lblNRCventa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNRCventa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNRCventa.setText("NRC");
-        jpnRegistrarVenta.add(lblNRCventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, -1, -1));
+        jpnRegistrarVenta.add(lblNRCventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 110, 70, -1));
 
         jLabel57.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel57.setText("Código de Barra");
-        jpnRegistrarVenta.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, -1, -1));
+        jpnRegistrarVenta.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, 10));
 
         jLabel58.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel58.setText("Cantidad");
-        jpnRegistrarVenta.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, -1, -1));
+        jpnRegistrarVenta.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, -1, 10));
 
         lblIVA.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblIVA.setText("IVA");
@@ -2569,29 +2545,49 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtTotalventaGravado.setBackground(new java.awt.Color(255, 255, 255));
         txtTotalventaGravado.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jpnRegistrarVenta.add(txtTotalventaGravado, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 570, 90, 20));
+        jpnRegistrarVenta.add(txtClienteVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 250, 30));
 
-        jLabel60.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel60.setText("Sucursal");
-        jpnRegistrarVenta.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
-        jpnRegistrarVenta.add(txtGiroVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 90, 30));
-        jpnRegistrarVenta.add(txtNRCventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 80, 30));
-        jpnRegistrarVenta.add(txtNITventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 80, 30));
+        txtNRCventa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNRCventaActionPerformed(evt);
+            }
+        });
+        jpnRegistrarVenta.add(txtNRCventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 130, 80, 30));
+        jpnRegistrarVenta.add(txtNITventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, 80, 30));
 
-        jLabel61.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel61.setText("Utilidad");
-        jpnRegistrarVenta.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
-
-        lblGiroVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblGiroVenta.setText("Giro");
-        jpnRegistrarVenta.add(lblGiroVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
+        lblCliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCliente.setText("Cliente");
+        jpnRegistrarVenta.add(lblCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 110, 250, -1));
 
         lblNITventa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNITventa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNITventa.setText("NIT");
-        jpnRegistrarVenta.add(lblNITventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, -1, -1));
+        jpnRegistrarVenta.add(lblNITventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, 70, -1));
 
         jLabel62.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel62.setText("SUMAS");
         jpnRegistrarVenta.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 510, -1, -1));
+
+        lblDireccion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDireccion.setText("Direccion");
+        jpnRegistrarVenta.add(lblDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 110, 220, -1));
+        jpnRegistrarVenta.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 230, 30));
+        jpnRegistrarVenta.add(txtGiroVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 90, 30));
+
+        lblGiroVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblGiroVenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblGiroVenta.setText("Giro");
+        jpnRegistrarVenta.add(lblGiroVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 90, -1));
+
+        btnRegresarPaeametroVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
+        btnRegresarPaeametroVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarPaeametroVentasActionPerformed(evt);
+            }
+        });
+        jpnRegistrarVenta.add(btnRegresarPaeametroVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, 110, 40));
 
         getContentPane().add(jpnRegistrarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -3561,58 +3557,6 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
             txtNombreTipoPrecio.setEditable(false);
             txtUtilidadTipoPrecio.setEditable(false);
     }//GEN-LAST:event_btnGuardarTipoPrecioActionPerformed
-
-    private void btnVenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVenderMouseClicked
-
-    }//GEN-LAST:event_btnVenderMouseClicked
-
-    private void btnVenderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVenderMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVenderMouseEntered
-
-    private void btnVenderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVenderMouseExited
-
-    }//GEN-LAST:event_btnVenderMouseExited
-
-    private void btnVenderMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVenderMousePressed
-
-    }//GEN-LAST:event_btnVenderMousePressed
-
-    private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-    }//GEN-LAST:event_btnVenderActionPerformed
-
-    private void btnAgregarProductoVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarProductoVentaMouseEntered
-
-    private void btnAgregarProductoVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarProductoVentaMouseExited
-
-    private void btnAgregarProductoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaActionPerformed
-    }//GEN-LAST:event_btnAgregarProductoVentaActionPerformed
-
-    private void lblFechaVentaMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblFechaVentaMostrarActionPerformed
-
-    }//GEN-LAST:event_lblFechaVentaMostrarActionPerformed
-
-    private void txtCodigoBarraVenderKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoBarraVenderKeyPressed
-        if (evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER){
-            //busacado de nombre y precio//
-            try {
-                rstControladorProducto = cp.buscarNYP((String)txtCodigoBarraVender.getText());
-            } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
-            try {
-                while (rstControladorProducto.next()){
-                    //guardar en una variable en precio del producto buscado desde la base de datos
-                    String PrecioUnitario = rstControladorProducto.getString("Costo");
-                    Punitario = Double.parseDouble(PrecioUnitario);
-                    txtNombreProductoVender.setText(rstControladorProducto.getString("Nombre"));
-                }
-            } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
-            txtCantidadVender.requestFocus();
-        }//finalizado (buscado de nombre y precio)//
-    }//GEN-LAST:event_txtCodigoBarraVenderKeyPressed
 
     private void btnGuardarSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarSucursalActionPerformed
         ControladorSucursal ctp= new ControladorSucursal();
@@ -4783,6 +4727,394 @@ public void llenarComprasRealizadasFiltro() throws Exception{
         } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
     }//GEN-LAST:event_cmbSucursalMenuVentaItemStateChanged
 
+    private void lblFechaVentaMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblFechaVentaMostrarActionPerformed
+
+    }//GEN-LAST:event_lblFechaVentaMostrarActionPerformed
+
+    private void btnVenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVenderMouseClicked
+
+    }//GEN-LAST:event_btnVenderMouseClicked
+
+    private void btnVenderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVenderMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVenderMouseEntered
+
+    private void btnVenderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVenderMouseExited
+
+    }//GEN-LAST:event_btnVenderMouseExited
+
+    private void btnVenderMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVenderMousePressed
+
+    }//GEN-LAST:event_btnVenderMousePressed
+
+    private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
+        //Agrega cada item de detalle compra
+        int IdTipoPrecio = sabercmbUtilidadVenta + 1;
+        int IdSucursal = sabercmbIdSucursal + 1;
+        int IdVenta = Integer.parseInt(txtIdVenta.getText());
+
+        if (cmbTipoFacturaParametro.getSelectedIndex()==0) {
+            for(int i=0;i < tblRegistrarVenta.getRowCount();i++){
+                double posicionprecio = (Double.parseDouble(tblRegistrarVenta.getValueAt(i, 3).toString() )) / 1.13;
+                posicionprecio = Double.parseDouble(df.format(posicionprecio));
+                Conexion cn = new Conexion();//
+                cn.UID("INSERT INTO detalleventa (IdVenta, CodBarra, Cantidad, PrecioUnitario) VALUES ('" +IdVenta+ "','" +tblRegistrarVenta.getValueAt(i, 0)+ "','"
+                    +tblRegistrarVenta.getValueAt(i, 2)+ "','" + posicionprecio + "')");
+                cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblRegistrarVenta.getValueAt(i, 2)+ "'  WHERE IdSucursal='" + IdSucursal + "'");
+            }
+        }else{
+            for(int i=0;i < tblRegistrarVenta.getRowCount();i++){
+                Conexion cn = new Conexion();//
+                cn.UID("INSERT INTO detalleventa (IdVenta, CodBarra, Cantidad, PrecioUnitario) VALUES ('" +IdVenta+ "','" +tblRegistrarVenta.getValueAt(i, 0)+ "','"
+                    +tblRegistrarVenta.getValueAt(i, 2)+ "','" +tblRegistrarVenta.getValueAt(i, 3)+  "')");
+                cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblRegistrarVenta.getValueAt(i, 2)+ "'  WHERE CodBarra='" +tblRegistrarVenta.getValueAt(i, 0)+ "'");
+            }
+        }
+        //TERMINAR DE AGREGAR//
+
+        String Fecha="";
+        Fecha=anio+"-"+mes+"-"+dia;
+        String Giro = "";
+        String NIT = "";
+        String NRC = "";
+        String TipoVenta = "";
+        String Cliente = txtClienteVenta.getText();
+        String NDocumento = txtNuDocumentoVenta.getText();
+        String Direcion = txtDireccion.getText();
+        int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
+        double  TotalVentas = 0;
+        while (iteracion<filas){
+            TotalVentas = TotalVentas + Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
+            iteracion++;
+        }
+
+        double IVA=0, TotalGravado=0, Total=0;
+
+        if (cmbTipoFacturaParametro.getSelectedIndex()==0) {
+            TipoVenta = "FACTURA";
+            double saberiva = TotalVentas/1.13;
+            IVA = TotalVentas - saberiva;
+            IVA = Double.parseDouble(df.format(IVA));
+            Total = saberiva;
+            Total = Double.parseDouble(df.format(Total));
+            TotalGravado = TotalVentas;
+            TotalGravado = Double.parseDouble(df.format(TotalGravado));
+
+        }
+        if (cmbTipoFacturaParametro.getSelectedIndex()==1) {
+            Giro = txtClienteVenta.getText();
+            NIT = txtNITventa.getText();
+            NRC = txtNRCventa.getText();
+            TipoVenta = "CREDITO FISCAL";
+            IVA = TotalVentas*1.13;
+            IVA = IVA - TotalVentas;
+            IVA = Double.parseDouble(df.format(IVA));
+            Total = TotalVentas;
+            Total = Double.parseDouble(df.format(Total));
+            TotalGravado = TotalVentas + IVA;
+            TotalGravado = Double.parseDouble(df.format(TotalGravado));
+        }
+
+        if (cmbTipoFacturaParametro.getSelectedIndex()==2) {
+            TipoVenta = "LIBRE";
+            IVA = 0;
+            Total = TotalGravado;
+            IVA = TotalVentas*1.13;
+            IVA = IVA - TotalVentas;
+            IVA = Double.parseDouble(df.format(IVA));
+            Total = TotalVentas;
+            Total = Double.parseDouble(df.format(Total));
+            TotalGravado = TotalVentas + IVA;
+            TotalGravado = Double.parseDouble(df.format(TotalGravado));
+        }
+        try {
+            controladorventa.Agregar(IdVenta, IdSucursal, IdTipoPrecio, TipoVenta, Cliente, Fecha, IVA, TotalGravado, Total, Direcion, Giro, NIT, NRC, NDocumento);
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
+        //limpiar la tabla
+        for(int i=0;i < mAgregarDVenta.getRowCount();i++){
+            mAgregarDVenta.removeRow(i);
+            i-=1;
+        }
+        txtCodigoBarraVender.setText("");
+        txtNombreProductoVender.setText("");
+        txtCantidadVender.setText("");
+        txtDireccion.setText("");
+        txtSumas.setText("");
+        txtIVA.setText("");
+        txtTotalventaGravado.setText("");
+        txtIdVenta.setText("");
+        txtNuDocumentoVenta.setText("");
+        txtClienteVenta.setText("");
+        txtNITventa.setText("");
+        txtNRCventa.setText("");
+        txtClienteVenta.setText("");
+        txtCodigoBarraVender.requestFocus();
+        saberCodigoVenta();
+    }//GEN-LAST:event_btnVenderActionPerformed
+
+    private void btnAgregarProductoVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarProductoVentaMouseEntered
+
+    private void btnAgregarProductoVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarProductoVentaMouseExited
+
+    private void btnAgregarProductoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaActionPerformed
+        tipoventa = 1;
+        CodigoBarraVender = txtCodigoBarraVender.getText();
+        int posicioncmbTipoFactura=cmbTipoFacturaParametro.getSelectedIndex();
+        //CON FACTURA//
+        if (posicioncmbTipoFactura==0) {
+            // para saber si se repite el producto
+            if (tblRegistrarVenta.getRowCount()>0) {
+                int i = 0;
+                while (encontrar==false&&i<tblRegistrarVenta.getRowCount()) {
+                    encontrar = tblRegistrarVenta.getValueAt(i, 0).equals(CodigoBarraVender);
+                    i=1+1;
+                }
+            }
+            //si no hay producTO repetido se realiza esta opcion//
+            if (encontrar == false) {
+                Punitario = (Punitario*1.13)/(1 - saberTipoUtilidadVenta);
+                SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+
+                String AgregarDVenta[] = new String[5];
+                AgregarDVenta[0] = txtCodigoBarraVender.getText();
+                AgregarDVenta[1] = txtNombreProductoVender.getText();
+                AgregarDVenta[2] = txtCantidadVender.getText();
+                AgregarDVenta[3] = String.valueOf((df.format(Punitario)));
+                AgregarDVenta[4] = String.valueOf((df.format(SubTotalVenta)));
+                mAgregarDVenta.addRow(AgregarDVenta);
+
+                txtCodigoBarraVender.requestFocus();
+                txtCodigoBarraVender.setText("");
+                txtNombreProductoVender.setText("");
+                txtCantidadVender.setText("");
+            }
+            //si el producto se repite hace esta opcion
+            else {
+                boolean buscar = false;
+                int j=0, CantidadActualizada;
+                double NuevoValor;
+                while (buscar == false) {
+                    buscar = tblRegistrarVenta.getValueAt(j, 0).equals(CodigoBarraVender);
+                    j++;
+                }
+
+                CantidadActualizada = (Integer.parseInt(tblRegistrarVenta.getValueAt(j-1, 2).toString())) + (Integer.parseInt(txtCantidadVender.getText()));
+                Punitario = (Punitario*1.13)/(1 - saberTipoUtilidadVenta);
+
+                NuevoValor = (Punitario * Double.parseDouble(txtCantidadVender.getText())) + (Double.parseDouble(tblRegistrarVenta.getValueAt(j-1, 4).toString()));
+                NuevoValor = Double.parseDouble(df.format(NuevoValor));
+                tblRegistrarVenta.setValueAt(CantidadActualizada, j-1, 2);
+                tblRegistrarVenta.setValueAt(NuevoValor, j-1, 4);
+
+                txtCodigoBarraVender.requestFocus();
+                txtCodigoBarraVender.setText("");
+                txtNombreProductoVender.setText("");
+                txtCantidadVender.setText("");
+            }//finaliza la actualizacion de tupla
+            encontrar=false;
+            int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
+            double total=0;
+            while (iteracion<filas){
+                total+=Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
+                iteracion++;
+            }
+            txtSumas.setText("$"+total);
+            txtTotalventaGravado.setText("$"+total);
+        }
+        //(TIPO FACTURA)//
+        //***************************************************************************//
+        //ICREDITO  FISCAL//
+        if (posicioncmbTipoFactura==1) {
+            // para saber si se repite el producto
+            if (tblRegistrarVenta.getRowCount()>0) {
+                int i = 0;
+                while (encontrar==false&&i<tblRegistrarVenta.getRowCount()) {
+                    encontrar = tblRegistrarVenta.getValueAt(i, 0).equals(CodigoBarraVender);
+                    i=i+1;
+                }
+            }
+            //si no hay producto repetido se realiza esta opcion//
+            if (encontrar == false) {
+                Punitario = Punitario /(1 - saberTipoUtilidadVenta);
+                SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+
+                String AgregarDVenta[] = new String[5];
+                AgregarDVenta[0] = txtCodigoBarraVender.getText();
+                AgregarDVenta[1] = txtNombreProductoVender.getText();
+                AgregarDVenta[2] = txtCantidadVender.getText();
+                AgregarDVenta[3] = String.valueOf((df.format(Punitario)));
+                AgregarDVenta[4] = String.valueOf((df.format(SubTotalVenta)));
+                mAgregarDVenta.addRow(AgregarDVenta);
+
+                txtCodigoBarraVender.requestFocus();
+                txtCodigoBarraVender.setText("");
+                txtNombreProductoVender.setText("");
+                txtCantidadVender.setText("");
+            }
+            //si el producto se repite hace esta opcion
+            else {
+                boolean buscar = false;
+                int j=0, CantidadActualizada, CantidadAntigua, CantidadNueva;
+                double NuevoValor;
+                while (buscar == false) {
+                    buscar = tblRegistrarVenta.getValueAt(j, 0).equals(CodigoBarraVender);
+                    j++;
+                }
+                Punitario = (Punitario)/(1 - saberTipoUtilidadVenta);
+                SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+
+                CantidadActualizada = (Integer.parseInt(tblRegistrarVenta.getValueAt(j-1, 2).toString())) + (Integer.parseInt(txtCantidadVender.getText()));
+                NuevoValor = (Punitario * Double.parseDouble(txtCantidadVender.getText())) + (Double.parseDouble(tblRegistrarVenta.getValueAt(j-1, 4).toString()));
+                NuevoValor = Double.parseDouble(df.format(NuevoValor));
+                tblRegistrarVenta.setValueAt(CantidadActualizada, j-1, 2);
+                tblRegistrarVenta.setValueAt(NuevoValor, j-1, 4);
+
+                txtCodigoBarraVender.requestFocus();
+                txtCodigoBarraVender.setText("");
+                txtNombreProductoVender.setText("");
+                txtCantidadVender.setText("");
+            }//finaliza la actualizacion de tupla
+
+            encontrar=false;
+            int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
+            double total=0;
+            while (iteracion<filas){
+                total+=Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
+                iteracion++;
+            }
+            double TotalGravadoVentaIVA=0, TotalGravadoVentamasIVA=0, TotalVentaGravadoAgregar=0;
+            TotalGravadoVentaIVA = total * 1.13;
+            TotalGravadoVentaIVA = TotalGravadoVentaIVA - total;
+            TotalGravadoVentaIVA = Double.parseDouble(df.format(TotalGravadoVentaIVA));
+            TotalVentaGravadoAgregar = total + TotalGravadoVentaIVA;
+            TotalVentaGravadoAgregar = Double.parseDouble(df.format(TotalVentaGravadoAgregar));
+
+            txtSumas.setText("$"+total);
+            txtIVA.setText("$"+TotalGravadoVentaIVA);
+            txtTotalventaGravado.setText("$"+TotalVentaGravadoAgregar);
+        }
+        //FINALIZADO (CREDITOFISCAL)//
+        //*************************************************************************//\
+        //INICIA LIBRE//
+        if (posicioncmbTipoFactura==2) {
+            // para saber si se repite el producto
+            if (tblRegistrarVenta.getRowCount()>0) {
+                int i = 0;
+                while (encontrar==false&&i<tblRegistrarVenta.getRowCount()) {
+                    encontrar = tblRegistrarVenta.getValueAt(i, 0).equals(CodigoBarraVender);
+                    i=i+1;
+                }
+            }
+            //si no hay produc repetido se realiza esta opcion//
+            if (encontrar == false) {
+                Punitario = (Punitario)/(1 - saberTipoUtilidadVenta);
+                SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+
+                String AgregarDVenta[] = new String[5];
+                AgregarDVenta[0] = txtCodigoBarraVender.getText();
+                AgregarDVenta[1] = txtNombreProductoVender.getText();
+                AgregarDVenta[2] = txtCantidadVender.getText();
+                AgregarDVenta[3] = String.valueOf((df.format(Punitario)));
+                AgregarDVenta[4] = String.valueOf((df.format(SubTotalVenta)));
+                mAgregarDVenta.addRow(AgregarDVenta);
+                TotalVenta = TotalVenta +(SubTotalVenta);
+
+                txtCodigoBarraVender.requestFocus();
+                txtCodigoBarraVender.setText("");
+                txtNombreProductoVender.setText("");
+                txtCantidadVender.setText("");
+            }
+            //si el producto se repite hace esta opcion
+            else {
+                boolean buscar = false;
+                int j=0, CantidadActualizada;
+                double NuevoValor;
+                while (buscar == false) {
+                    buscar = tblRegistrarVenta.getValueAt(j, 0).equals(CodigoBarraVender);
+                    j++;
+                }
+
+                Punitario = (Punitario)/(1 - saberTipoUtilidadVenta);
+                SubTotalVenta = Punitario * (Double.parseDouble(txtCantidadVender.getText()));
+
+                CantidadActualizada = (Integer.parseInt(tblRegistrarVenta.getValueAt(j-1, 2).toString())) + (Integer.parseInt(txtCantidadVender.getText()));
+                NuevoValor = (Punitario * Double.parseDouble(txtCantidadVender.getText())) + (Double.parseDouble(tblRegistrarVenta.getValueAt(j-1, 4).toString()));
+                NuevoValor = Double.parseDouble(df.format(NuevoValor));
+                tblRegistrarVenta.setValueAt(CantidadActualizada, j-1, 2);
+                tblRegistrarVenta.setValueAt(NuevoValor, j-1, 4);
+                //hacer que al dar clip se pase al txtCodigoBarraVender
+                txtCodigoBarraVender.requestFocus();
+                txtCodigoBarraVender.setText("");
+                txtNombreProductoVender.setText("");
+                txtCantidadVender.setText("");
+            }//finaliza la actualizacion de tupla
+            encontrar=false;
+            int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
+            double total=0;
+            while (iteracion<filas){
+                total+=Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
+                iteracion++;
+            }
+            double TotalGravadoFiscalIVA=0, TotalGravadoFiscalP=0;
+            TotalGravadoFiscalIVA = total * 1.13;
+            TotalGravadoFiscalIVA = TotalGravadoFiscalIVA - total;
+            txtSumas.setText("$"+total);
+            txtTotalventaGravado.setText("$"+total);
+        }
+        //FINALIZADO (LIBRE)//
+    }//GEN-LAST:event_btnAgregarProductoVentaActionPerformed
+
+    private void txtCodigoBarraVenderKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoBarraVenderKeyPressed
+        if (evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER){
+            //busacado de nombre y precio//
+            try {
+                rstControladorProducto = cp.buscarNYP((String)txtCodigoBarraVender.getText());
+            } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
+            try {
+                while (rstControladorProducto.next()){
+                    //guardar en una variable en precio del producto buscado desde la base de datos
+                    String PrecioUnitario = rstControladorProducto.getString("Costo");
+                    Punitario = Double.parseDouble(PrecioUnitario);
+                    txtNombreProductoVender.setText(rstControladorProducto.getString("Nombre"));
+                }
+            } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
+            txtCantidadVender.requestFocus();
+        }//finalizado (buscado de nombre y precio)//
+    }//GEN-LAST:event_txtCodigoBarraVenderKeyPressed
+
+    private void txtNRCventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNRCventaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNRCventaActionPerformed
+
+    private void btnRegresarPaeametroVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarPaeametroVentasActionPerformed
+        jpnUtilidadMenuVentasParametros.setVisible(true);
+        jpnRegistrarVenta.setVisible(false);
+        lblFechaVentaMostrar.setText("");
+        txtIdVenta.setText("");
+        txtNuDocumentoVenta.setText("");
+        txtClienteVenta.setText("");
+        txtDireccion.setText("");
+        txtGiroVenta.setText("");
+        txtNITventa.setText("");
+        txtNRCventa.setText("");
+        txtCodigoBarraVender.setText("");
+        txtNombreProductoVender.setText("");
+        txtCantidadVender.setText("");
+        txtSumas.setText("");
+        txtIVA.setText("");
+        txtTotalventaGravado.setText("");
+
+        //limpiar la tabla
+        for(int i=0;i < mAgregarDVenta.getRowCount();i++){
+            mAgregarDVenta.removeRow(i);
+            i-=1;
+        }
+    }//GEN-LAST:event_btnRegresarPaeametroVentasActionPerformed
+
     public void agregarDetalle(){
         detalleCompra[0] = CodBarraPC;    
         detalleCompra[1] = NombrePC;
@@ -5111,6 +5443,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JButton btnNuevoTipoPrecio;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnProveedores1;
+    private javax.swing.JButton btnRegresarPaeametroVentas;
     private javax.swing.JButton btnSalirProductos;
     private javax.swing.JButton btnVender;
     private javax.swing.JButton btnVentas;
@@ -5171,17 +5504,13 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
@@ -5246,7 +5575,6 @@ public void limpiarTablaProducto(){
     private javax.swing.JSeparator jSeparator42;
     private javax.swing.JSeparator jSeparator43;
     private javax.swing.JSeparator jSeparator44;
-    private javax.swing.JSeparator jSeparator45;
     private javax.swing.JSeparator jSeparator47;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
@@ -5309,8 +5637,10 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel lbl7;
     private javax.swing.JLabel lblBotonCerrar;
     private javax.swing.JLabel lblCantidad;
+    private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblCodBarraProd;
     private javax.swing.JLabel lblCostoProductoCompra;
+    private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblFechaCompra;
     private javax.swing.JTextField lblFechaVentaMostrar;
     private javax.swing.JLabel lblFechaVentas;
