@@ -111,6 +111,13 @@ public class ProveedorControlador {
         
     }
     
+      public ResultSet buscarProveedor(String IdProveedor)
+    {   
+        return( cn.getValores("SELECT  IdProveedor, Nombre, Telefono, Direccion, NIT FROM proveedor WHERE IdProveedor = '"+IdProveedor+"'"));
+    }
+    
+    
+    
 }
 
 

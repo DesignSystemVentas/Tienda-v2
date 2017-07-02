@@ -1,9 +1,26 @@
 package controlador;
 // @author Daniel Murillo
 
+import java.sql.ResultSet;
 import modelo.Compra;
 
 public class ControladorCompra {
+    Conexion cn = new Conexion();
+    
+     
+     //Metodo para filtrar las compras de acuerdo a la sucursal
+     public ResultSet ObtenerComprasFiltro(int IdSucursal) throws Exception{
+     ResultSet d=null;
+         try {
+         cn.conectar();
+         d=cn.getValores("SELECT * FROM compra Where IdSucursal='"+IdSucursal+"'");    
+         } catch (Exception e) {
+             throw new ErrorTienda("No logra obtener datos de Compras"); 
+         }finally{
+         //cn.desconectar();
+         }
+         return d;
+     }
    /* 
     public static void Agregar(Compra){
         
