@@ -693,6 +693,20 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel63 = new javax.swing.JLabel();
         txtVentasGravadas = new javax.swing.JTextField();
         jLabel64 = new javax.swing.JLabel();
+        jpnUtilidadMenuVentasParametros = new javax.swing.JPanel();
+        jPanel52 = new javax.swing.JPanel();
+        lblProveedores11 = new javax.swing.JLabel();
+        cmbTipoFacturaParametro = new javax.swing.JComboBox();
+        cmbSucursalParametro = new javax.swing.JComboBox();
+        jLabel70 = new javax.swing.JLabel();
+        jLabel71 = new javax.swing.JLabel();
+        Utilidad1 = new javax.swing.JLabel();
+        cmbUtilidadParametro = new javax.swing.JComboBox();
+        btnHacerNuevaVenta = new javax.swing.JButton();
+        txtUtilidadVentaParametro = new javax.swing.JTextField();
+        txtSucursalVentaParametro = new javax.swing.JTextField();
+        jLabel72 = new javax.swing.JLabel();
+        jLabel73 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/iconos/lanzador.png")).getImage());
@@ -2618,6 +2632,92 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(jpnReporteVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
+        jpnUtilidadMenuVentasParametros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel52.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel52.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblProveedores11.setBackground(new java.awt.Color(255, 255, 255));
+        lblProveedores11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblProveedores11.setForeground(new java.awt.Color(255, 255, 255));
+        lblProveedores11.setText("Parámetros ventas");
+        jPanel52.add(lblProveedores11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 180, 50));
+
+        jpnUtilidadMenuVentasParametros.add(jPanel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 70));
+
+        cmbTipoFacturaParametro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FACTURA", "CREDITO FISCAL", "LIBRE" }));
+        cmbTipoFacturaParametro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbTipoFacturaParametroItemStateChanged(evt);
+            }
+        });
+        jpnUtilidadMenuVentasParametros.add(cmbTipoFacturaParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 200, 40));
+
+        cmbSucursalParametro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbSucursalParametroItemStateChanged(evt);
+            }
+        });
+        jpnUtilidadMenuVentasParametros.add(cmbSucursalParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 200, 40));
+
+        jLabel70.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel70.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel70.setText("Porcentaje");
+        jpnUtilidadMenuVentasParametros.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 80, 40));
+
+        jLabel71.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel71.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel71.setText("Tipo factura");
+        jpnUtilidadMenuVentasParametros.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 200, 40));
+
+        Utilidad1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Utilidad1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Utilidad1.setText("Utilidad");
+        jpnUtilidadMenuVentasParametros.add(Utilidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 200, 40));
+
+        cmbUtilidadParametro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbUtilidadParametroItemStateChanged(evt);
+            }
+        });
+        jpnUtilidadMenuVentasParametros.add(cmbUtilidadParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 200, 40));
+
+        btnHacerNuevaVenta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnHacerNuevaVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/carrito48.png"))); // NOI18N
+        btnHacerNuevaVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHacerNuevaVenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnHacerNuevaVentaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnHacerNuevaVentaMouseExited(evt);
+            }
+        });
+        btnHacerNuevaVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHacerNuevaVentaActionPerformed(evt);
+            }
+        });
+        jpnUtilidadMenuVentasParametros.add(btnHacerNuevaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, 50, 40));
+
+        txtUtilidadVentaParametro.setEditable(false);
+        jpnUtilidadMenuVentasParametros.add(txtUtilidadVentaParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, 60, 40));
+
+        txtSucursalVentaParametro.setEditable(false);
+        jpnUtilidadMenuVentasParametros.add(txtSucursalVentaParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 160, 70, 40));
+
+        jLabel72.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel72.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel72.setText("Sucursal");
+        jpnUtilidadMenuVentasParametros.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 200, 40));
+
+        jLabel73.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel73.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel73.setText("Código sucursal");
+        jpnUtilidadMenuVentasParametros.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 110, 40));
+
+        getContentPane().add(jpnUtilidadMenuVentasParametros, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -4337,8 +4437,7 @@ public void llenarComprasRealizadasFiltro() throws Exception{
 
     private void btnHacerVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHacerVentaActionPerformed
         jpnMenuVentas.setVisible(false);
-//        jpnUtilidadMenuVentasParametros.setVisible(true);
-//        manejarcmbVentas();
+        jpnUtilidadMenuVentasParametros.setVisible(true);
     }//GEN-LAST:event_btnHacerVentaActionPerformed
 
     private void btnVerVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerVentasMouseClicked
@@ -4393,6 +4492,59 @@ public void llenarComprasRealizadasFiltro() throws Exception{
         jpnMenuVentas.setVisible(false);
 //        jpnVentasReporteParametro.setVisible(true);
     }//GEN-LAST:event_btnVerReporteVentasActionPerformed
+
+    private void cmbTipoFacturaParametroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTipoFacturaParametroItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbTipoFacturaParametroItemStateChanged
+
+    private void cmbSucursalParametroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSucursalParametroItemStateChanged
+        int posicion=cmbSucursalParametro.getSelectedIndex();
+        txtSucursalVentaParametro.setText(String.valueOf(mLlenarIdS.getElementAt(posicion)));
+        SaberSucursalVentas = Integer.parseInt(String.valueOf(mLlenarIdS.getElementAt(posicion)));
+    }//GEN-LAST:event_cmbSucursalParametroItemStateChanged
+
+    private void cmbUtilidadParametroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbUtilidadParametroItemStateChanged
+        int posicion=cmbUtilidadParametro.getSelectedIndex();
+        double PorcentajeVenta=0;
+        PorcentajeVenta = Double.parseDouble((String.valueOf(mLlenarPoU.getElementAt(posicion))));
+        saberTipoUtilidadVenta = PorcentajeVenta;
+        PorcentajeVenta = PorcentajeVenta *100;
+        txtUtilidadVentaParametro.setText(String.valueOf(PorcentajeVenta)+"%");
+    }//GEN-LAST:event_cmbUtilidadParametroItemStateChanged
+
+    private void btnHacerNuevaVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHacerNuevaVentaMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHacerNuevaVentaMouseEntered
+
+    private void btnHacerNuevaVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHacerNuevaVentaMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHacerNuevaVentaMouseExited
+
+    private void btnHacerNuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHacerNuevaVentaActionPerformed
+        saberCodigoVenta();
+        jpnUtilidadMenuVentasParametros.setVisible(false);
+        jpnRegistrarVenta.setVisible(true);
+
+        if (cmbTipoFacturaParametro.getSelectedIndex()==1) {
+            txtGiroVenta.setVisible(true);
+            txtNITventa.setVisible(true);
+            txtNRCventa.setVisible(true);
+            lblGiroVenta.setVisible(true);
+            lblNITventa.setVisible(true);
+            lblNRCventa.setVisible(true);
+            lblIVA.setVisible(true);
+            txtIVA.setVisible(true);
+        } else {
+            txtGiroVenta.setVisible(false);
+            txtNITventa.setVisible(false);
+            txtNRCventa.setVisible(false);
+            lblGiroVenta.setVisible(false);
+            lblNITventa.setVisible(false);
+            lblNRCventa.setVisible(false);
+            lblIVA.setVisible(false);
+            txtIVA.setVisible(false);
+        }
+    }//GEN-LAST:event_btnHacerNuevaVentaActionPerformed
 
     public void agregarDetalle(){
         detalleCompra[0] = CodBarraPC;    
@@ -4684,6 +4836,7 @@ public void limpiarTablaProducto(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Utilidad1;
     private javax.swing.JButton btnAdministacion;
     private javax.swing.JButton btnAgregarCompra;
     private javax.swing.JButton btnAgregarNuevoProducto;
@@ -4708,6 +4861,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JButton btnGuardarProveedor;
     private javax.swing.JButton btnGuardarSucursal;
     private javax.swing.JButton btnGuardarTipoPrecio;
+    private javax.swing.JButton btnHacerNuevaVenta;
     private javax.swing.JButton btnHacerVenta;
     private javax.swing.JLabel btnHome;
     private javax.swing.JButton btnModificarParametro;
@@ -4730,6 +4884,9 @@ public void limpiarTablaProducto(){
     private javax.swing.JComboBox<String> cmbFiltroSucursalCompra;
     private javax.swing.JComboBox cmbProveedorCompra;
     private javax.swing.JComboBox<String> cmbSucursalCompra;
+    private javax.swing.JComboBox cmbSucursalParametro;
+    private javax.swing.JComboBox cmbTipoFacturaParametro;
+    private javax.swing.JComboBox cmbUtilidadParametro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -4784,6 +4941,10 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel37;
@@ -4798,6 +4959,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JPanel jPanel49;
     private javax.swing.JPanel jPanel50;
     private javax.swing.JPanel jPanel51;
+    private javax.swing.JPanel jPanel52;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -4865,6 +5027,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JPanel jpnSegundo;
     private javax.swing.JPanel jpnSubMenu;
     private javax.swing.JPanel jpnTercero;
+    private javax.swing.JPanel jpnUtilidadMenuVentasParametros;
     private javax.swing.JScrollPane jscpSucursales;
     private javax.swing.JScrollPane jscpTablaParametros;
     private javax.swing.JScrollPane jscpTipoDePrecio;
@@ -4923,6 +5086,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel lblNomProd;
     private javax.swing.JLabel lblPercepcionCompra;
     private javax.swing.JLabel lblProveedor;
+    private javax.swing.JLabel lblProveedores11;
     private javax.swing.JLabel lblProveedores3;
     private javax.swing.JLabel lblProveedores4;
     private javax.swing.JLabel lblProveedores5;
@@ -4994,6 +5158,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JTextField txtProductosBuscar;
     private javax.swing.JTextField txtProductosBuscar1;
     private javax.swing.JTextField txtSubtotalCompra;
+    private javax.swing.JTextField txtSucursalVentaParametro;
     private javax.swing.JTextField txtSumas;
     private javax.swing.JLabel txtTelefonoActualProveedor;
     private javax.swing.JTextField txtTelefonoProveedor;
@@ -5002,6 +5167,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JTextField txtTotalCompra;
     private javax.swing.JTextField txtTotalventaGravado;
     private javax.swing.JTextField txtUtilidadTipoPrecio;
+    private javax.swing.JTextField txtUtilidadVentaParametro;
     private javax.swing.JTextField txtVentasGravadas;
     private javax.swing.JTextField txtVentasNetas;
     // End of variables declaration//GEN-END:variables
