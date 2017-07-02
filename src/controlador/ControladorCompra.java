@@ -9,7 +9,7 @@ public class ControladorCompra {
     
      
      //Metodo para filtrar las compras de acuerdo a la sucursal
-     public ResultSet ObtenerComprasFiltro(int IdSucursal) throws Exception{
+    public ResultSet ObtenerComprasFiltro(int IdSucursal) throws Exception{
      ResultSet d=null;
          try {
          cn.conectar();
@@ -21,6 +21,20 @@ public class ControladorCompra {
          }
          return d;
      }
+     
+     
+    public ResultSet mayorRegistro() throws ErrorTienda {
+         ResultSet mayor = null;
+        try{
+        cn.conectar();     
+        mayor = cn.getValores("SELECT MAX(IdCompra) FROM compra");
+        } catch (Exception e){
+            cn.desconectar();
+            throw new ErrorTienda("No logra obtener datos de proveedores");        
+        } 
+        return mayor;
+                
+    }
    /* 
     public static void Agregar(Compra){
         

@@ -44,7 +44,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     
     //Todas las variables que agregue-Daniel
     boolean cargarSucursalesFC;
-    ResultSet rsFiltroCompra, rsCompra, rsSucursalFC;
+    ResultSet rsFiltroCompra, rsCompra, rsSucursalFC, rsMayorIdC;
     DefaultComboBoxModel modeloSucursalFC = new DefaultComboBoxModel();//Combo filtro sucursal
     
     //----------------------------
@@ -1459,11 +1459,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnHacerNuevaVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/agregar2.png"))); // NOI18N
         btnHacerNuevaVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHacerNuevaVenta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnHacerNuevaVentaMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnHacerNuevaVentaMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnHacerNuevaVentaMouseEntered(evt);
             }
         });
         btnHacerNuevaVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -2866,8 +2866,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             case 0:
                 tipoCompra = "F" ;
                 bloquearIvaPercepcion();
-                txtTipoCompra.setText("Factura");
-                txtTipoCompra.setEditable(false);
+                lbltxtTipoCompra.setText("Factura N°");
                 break;
             
             case 1:
@@ -2876,20 +2875,40 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 lblIvaCompra.setVisible(true);
                 txtIvaCompra.setVisible(true);
                 txtPercepcionCompra.setVisible(true);
-                txtTipoCompra.setText("Crédito Fiscal");
-                txtTipoCompra.setEditable(false);
+                lbltxtTipoCompra.setText("Crédito Fiscal N°");
                 break;
                 
             case 2: 
                 tipoCompra = "L" ;
                 bloquearIvaPercepcion();
-                txtTipoCompra.setText("Libre");
-                txtTipoCompra.setEditable(false);
+                lbltxtTipoCompra.setText("Libre N°");
                 break;
         }
         //Daniel-Fin        
         jpnRegistroCompra.setVisible(true);
         jpnCompras.setVisible(false);
+        
+        //Para autogenerar el id de la compra
+        ControladorCompra cp = new ControladorCompra();
+        try {
+            rsMayorIdC = cp.mayorRegistro();
+            if(rsMayorIdC.next()) {
+            txtIdCompra.setText(""+(rsMayorIdC.getInt(1)+1));
+}
+        } catch (ErrorTienda ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //-----------------------------
+        //Para poner la fecha
+        dia = calendar.get(Calendar.DATE);
+        mes = calendar.get(Calendar.MONTH)+1;
+        anio = calendar.get(Calendar.YEAR);
+        txtFechaCompra.setText(anio+"/"+mes+"/"+dia);
+        //------------------
+        
+        
     }//GEN-LAST:event_btnAgregarCompraActionPerformed
     
     
@@ -3205,11 +3224,13 @@ if(decide==0){
 
     private void cmbProveedorCompraItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbProveedorCompraItemStateChanged
     int posicionProv=cmbProveedorCompra.getSelectedIndex();
-    
+    txtNumDocumento.requestFocus();
+
     }//GEN-LAST:event_cmbProveedorCompraItemStateChanged
 
     private void cmbProveedorCompraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbProveedorCompraFocusGained
         if (cargarProveedoresC==true){
+        txtNumDocumento.requestFocus();
         ControladorProveedor p = new ControladorProveedor();
         modeloProveedorC.removeAllElements();
         
@@ -3235,6 +3256,8 @@ if(decide==0){
 
     private void cmbSucursalCompraItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSucursalCompraItemStateChanged
         int posicionSucur=cmbSucursalCompra.getSelectedIndex();
+                txtNumDocumento.requestFocus();
+
     }//GEN-LAST:event_cmbSucursalCompraItemStateChanged
 
     private void cmbSucursalCompraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbSucursalCompraFocusGained
@@ -3257,7 +3280,7 @@ if(decide==0){
         }  catch (Exception ex) {  
                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
            }  
-       }   
+       }  
         cargarSucursalesC=false;
     }//GEN-LAST:event_cmbSucursalCompraFocusGained
 
