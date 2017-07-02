@@ -63,10 +63,23 @@ public class ControladorProducto {
          d=cn.getValores("select * from producto P, inventario I where (P.CodBarra like '%"+p+"%' and I.CodBarra like '%"+p+"%') or (I.CodBarra=(select P.CodBarra producto where Nombre like '%"+p+"%'));");    
          //select * from producto P,inventario I where P.CodBarra like "%123%" and I.CodBarra like "%123%"
          } catch (Exception e) {
-            cn.desconectar();
+          //  cn.desconectar();
              throw new ErrorTienda("no logra obtener datos producto");  
          }finally{
          
+         }
+         return d;
+     }
+     
+     public ResultSet BuscarProducto(String codigo) throws Exception{
+         ResultSet d=null;
+         try {
+         cn.conectar();
+         d=cn.getValores("SELECT * FROM producto WHERE CodBarra='"+codigo+"'");    
+         } catch (Exception e) {
+             throw new ErrorTienda("no logra obtener datos producto");  
+         }finally{
+         //cn.desconectar();
          }
          return d;
      }
@@ -92,7 +105,7 @@ public class ControladorProducto {
          cn.conectar();
          d=cn.getValores("select * from producto P , inventario I where P.CodBarra  = I.CodBarra;");    
          } catch (Exception e) {
-             cn.desconectar();
+            cn.desconectar();
              throw new ErrorTienda("no logra obtener datos producto ");  
          }finally{
          
