@@ -116,6 +116,19 @@ public class ProveedorControlador {
         return( cn.getValores("SELECT  IdProveedor, Nombre, Telefono, Direccion, NIT FROM proveedor WHERE IdProveedor = '"+IdProveedor+"'"));
     }
     
+      public ResultSet ObtenerId(String s) throws Exception{
+         ResultSet d=null;
+         try {
+         cn.conectar();
+         d=cn.getValores("SELECT * FROM proveedor WHERE Nombre='"+s+"'");    
+         } catch (Exception e) {
+             throw new ErrorTienda("no logra obtener datos sucursal");  
+         }finally{
+        // cn.desconectar();
+         }
+         return d;
+     }
+     
     
     
 }

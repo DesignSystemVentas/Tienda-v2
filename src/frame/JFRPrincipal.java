@@ -45,17 +45,18 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     //Todas las variables que agregue-Daniel
     boolean cargarSucursalesFC, agregarDetalleModelo, validarPC, agregarProductoBD, agregarSubtotalDC, add;
     //Todos estos son para el momento de la compra con sus detalles
+    Conexion cn = new Conexion();
     String costoUC="", IdCompraPC="",CodBarraPC="",NombrePC="",CantidadPC="", 
             CostoUnitarioPC="",IdSucursalPC="",sucursalPC="",SubtotalPC="", 
-            SubtotalCompra="", tipoCompra="";
+            SubtotalCompra="", tipoCompra="", IdSucursalGC="", SucursalGC="", IdProveedorGC="", ProveedorGC="", ivaCompra="", percepcionCompra="";
     String detalleCompra[] = new String[5];
-    int CantidadAnteriorPC;
+    int CantidadAnteriorPC, filaEliminar;
     double SubtotalAnteriorPC;
-    //-
+    //--
     ResultSet rsFiltroCompra, rsCompra, rsSucursalFC, rsMayorIdC, rsNameProd, rsDC;
     DefaultComboBoxModel modeloSucursalFC = new DefaultComboBoxModel();//Combo filtro sucursal
     
-    //----------------------------
+    //--------------------------------------------------------
     
     
     
@@ -77,7 +78,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     ControladorTipoPrecio cTipoPrecio = new ControladorTipoPrecio();
     String datosVenta[] = new String[7], CodigoBarraVender = "";
     String GReporteVenta[] = new String[5];
-    DecimalFormat df = new DecimalFormat("#.00");
+    DecimalFormat df = new DecimalFormat("00.00");
     //vaizcarra//
 
     boolean ventas, compras, productos, proveedores, administradores;
@@ -1624,6 +1625,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnGuardarCompraMouseEntered(evt);
             }
         });
+        btnGuardarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarCompraActionPerformed(evt);
+            }
+        });
         jpnRegistroCompra.add(btnGuardarCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 540, 110, 30));
 
         btnCancelarCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
@@ -1669,6 +1675,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             }
         ));
         tblCompra.getTableHeader().setReorderingAllowed(false);
+        tblCompra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCompraMouseClicked(evt);
+            }
+        });
         jScrollPane6.setViewportView(tblCompra);
 
         jpnRegistroCompra.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 660, 210));
@@ -4528,7 +4539,7 @@ txtNuevoNIT.requestFocus();
             
         }
     }//GEN-LAST:event_btnBuscarProductoMouseClicked
-
+//----------------------------------------------COMPRAS-------------------------------------------------------------------
     private void cmbFiltroSucursalCompraItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFiltroSucursalCompraItemStateChanged
 
         if(evt.getStateChange()==ItemEvent.SELECTED){
@@ -4684,7 +4695,7 @@ public void llenarComprasRealizadasFiltro() throws Exception{
             
                     if (evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER){
                         
-                        if(tipoCompra=="F"||tipoCompra=="L"){
+                        if(tipoCompra.equals("F")||tipoCompra.equals("L")){
                         IdCompraPC = txtIdCompra.getText();
                         CodBarraPC = txtCodBarraCompra.getText();
                         NombrePC = txtNombreProductoCompra.getText();
@@ -4716,7 +4727,6 @@ public void llenarComprasRealizadasFiltro() throws Exception{
                         add = true;
                         }
                         //---------------------------------------------------------------------------------------------------
-                        
                         else{
                             int validar = 0;
                             for(int i=0; i<modeloAddCompra.getRowCount();i++){
@@ -4731,24 +4741,29 @@ public void llenarComprasRealizadasFiltro() throws Exception{
                                 else{
                                     agregarSubtotalDC = true;
                                 }
-                                
                             }
 
                             if(validarPC==true){
-                                agregarDetalle();
-                                CantidadAnteriorPC = Integer.parseInt(modeloAddCompra.getValueAt(validar, 2).toString());
-                                System.out.println(""+CantidadAnteriorPC);
-                                modeloAddCompra.setValueAt((CantidadAnteriorPC + Integer.parseInt(detalleCompra[2])), validar, 2);
-                                SubtotalAnteriorPC = Double.parseDouble(modeloAddCompra.getValueAt(validar, 4).toString());
-                                modeloAddCompra.setValueAt(SubtotalAnteriorPC + (Double.parseDouble(detalleCompra[2])*Double.parseDouble(detalleCompra[3])), validar, 4);
-                                SubtotalPC = String.valueOf(SubtotalAnteriorPC + (Double.parseDouble(detalleCompra[2])*Double.parseDouble(detalleCompra[3])));
-                                SubtotalCompra = String.valueOf(Double.parseDouble(SubtotalCompra) - SubtotalAnteriorPC + Double.parseDouble(SubtotalPC));
-                                agregarSubtotalDC = false;
-                                limpiarDetalle();
-                                add = false;
-                                validarPC = false;
+                               if(modeloAddCompra.getValueAt(validar, 3).toString().equals(txtCostoProductoCompra.getText())){
+                                    agregarDetalle();
+                                    CantidadAnteriorPC = Integer.parseInt(modeloAddCompra.getValueAt(validar, 2).toString());
+                                    modeloAddCompra.setValueAt((CantidadAnteriorPC + Integer.parseInt(detalleCompra[2])), validar, 2);
+                                    SubtotalAnteriorPC = Double.parseDouble(modeloAddCompra.getValueAt(validar, 4).toString());
+                                    modeloAddCompra.setValueAt(SubtotalAnteriorPC + (Double.parseDouble(detalleCompra[2])*Double.parseDouble(detalleCompra[3])), validar, 4);
+                                    SubtotalPC = String.valueOf(SubtotalAnteriorPC + (Double.parseDouble(detalleCompra[2])*Double.parseDouble(detalleCompra[3])));
+                                    SubtotalCompra = String.valueOf(Double.parseDouble(SubtotalCompra) - SubtotalAnteriorPC + Double.parseDouble(SubtotalPC));
+                                    agregarSubtotalDC = false;
+                                    limpiarDetalle();
+                                    add = false;
+                                    validarPC = false;
+                               }
+                               
+                               else{
+                                   JOptionPane.showMessageDialog(null, "El producto esta registrado con el costo de $"+modeloAddCompra.getValueAt(validar, 3).toString(), "EL COSTO DEL PRODUCTO NO COINCIDE",JOptionPane.ERROR_MESSAGE);
+                                   add = false;
+                               }                               
+                                
                             }
-                            
                             //Complemento para agregar el detalle compra de otro producto al modelo
                             if(agregarSubtotalDC==true){
                                 agregarDetalle();
@@ -4758,48 +4773,184 @@ public void llenarComprasRealizadasFiltro() throws Exception{
                                 agregarSubtotalDC = false;
                                 add = true;
                             }
-                            
-
                         }
-                        
-                        
+                                                
                         if(add==true){
                         modeloAddCompra.addRow(detalleCompra); 
                         tblCompra.setModel(modeloAddCompra);
+                        txtTotalCompra.setText(SubtotalCompra);//Pongo el total actualizado
                         limpiarCompra();
                         limpiarDetalle();
-                        System.out.println(""+SubtotalCompra);
-    
                         }
                         else{
                         tblCompra.setModel(modeloAddCompra);
+                        txtTotalCompra.setText(SubtotalCompra);//Pongo el total actualizado
                         limpiarCompra();
                         limpiarDetalle();
-                        System.out.println(""+SubtotalCompra);
                         }
-                        
-                        }
-                                         
-                    
-                    
+                  
                     if(tipoCompra=="C"){
                         
                     }
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                   
+                        }
+                
                     
                     }
 }
     }//GEN-LAST:event_txtCostoProductoCompraKeyPressed
+
+    private void tblCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCompraMouseClicked
+      if(evt.getClickCount()== 2){
+     
+          filaEliminar = tblCompra.getSelectedRow();
+         
+          if(txtCodBarraCompra.getText().isEmpty()){
+                txtCodBarraCompra.setText(modeloAddCompra.getValueAt(filaEliminar, 0).toString());
+                txtNombreProductoCompra.setText(modeloAddCompra.getValueAt(filaEliminar, 1).toString());
+                txtCantidadCompra.setText(modeloAddCompra.getValueAt(filaEliminar, 2).toString());
+                txtCostoProductoCompra.setText(modeloAddCompra.getValueAt(filaEliminar, 3).toString());
+                SubtotalCompra = String.valueOf(df.format(Double.parseDouble(SubtotalCompra) - Double.parseDouble(modeloAddCompra.getValueAt(filaEliminar, 4).toString())));
+                txtTotalCompra.setText(SubtotalCompra);
+                modeloAddCompra.removeRow(filaEliminar);
+                tblCompra.setModel(modeloAddCompra);   
+      }
+      else{
+          JOptionPane.showMessageDialog(null, "Agregue el producto actual antes de eliminar otro");
+          txtCostoProductoCompra.requestFocus();
+      }
+        
+      }
+      
+      
+    }//GEN-LAST:event_tblCompraMouseClicked
+
+    private void btnGuardarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCompraActionPerformed
+       ControladorCompra cpp= new ControladorCompra();
+       ControladorProducto cpr = new ControladorProducto();
+       ControladorProveedor cpv = new ControladorProveedor();
+       ControladorSucursal cs = new ControladorSucursal();
+       rsDC = null;
+       if(tipoCompra.equals("F")||tipoCompra.equals("L")){
+           ivaCompra = "0.0";
+           percepcionCompra = "0.0";
+       } 
+        
+       //Encontrando el Id de la sucursal por medio del cmb
+        IdSucursalGC = "";
+        SucursalGC = (String) cmbSucursalCompra.getSelectedItem();
+        try {
+           rsDC = cs.ObtenerId(SucursalGC);
+        } catch (Exception ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            while(rsDC.next()){
+                IdSucursalGC = rsDC.getString("IdSucursal");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //-----------------------
+        
+        rsDC = null;
+        //Encontrando el IdProveedor por medio del cmb
+        IdProveedorGC = "";
+        ProveedorGC = (String) cmbProveedorCompra.getSelectedItem();
+        try {
+           rsDC = cpv.ObtenerId(ProveedorGC);
+        } catch (Exception ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            while(rsDC.next()){
+                IdProveedorGC = rsDC.getString("IdProveedor");
+                System.out.println(""+IdProveedorGC);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //---------------------------
+        //Guardar la Compra 
+        Object P[]={txtIdCompra.getText(), IdProveedorGC, IdSucursalGC, txtFechaCompra.getText(), tipoCompra, txtNumDocumento.getText(), txtTotalCompra.getText(), ivaCompra, percepcionCompra, txtTotalCompra.getText()};
+        try {
+            cpp.Agregar(P);
+            //Calcular la fecha y hora de nuevo
+            JOptionPane.showMessageDialog(null, "Compra agregado con éxito");
+            txtFechaCompra.setText("");
+            jpnCompras.setVisible(true);
+            cmbFiltroSucursalCompra.requestFocus();
+        } catch (SQLException | ClassNotFoundException | ErrorTienda ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //----------------------------
+        
+      //----------------------------
+      
+      
+      String vectorCodigo[] = new String [modeloAddCompra.getRowCount()];
+       rsDC=null;
+       ResultSet r = null;
+       int filas = modeloAddCompra.getRowCount();
+       int avance=0;
+       //Cargo todos los CodBarra en el vector
+      for(int i=0;i<modeloAddCompra.getRowCount();i++){
+      vectorCodigo[i] = modeloAddCompra.getValueAt(i, 0).toString();
+      }
+      //------------------------
+      
+       while(filas>avance){
+                     
+           try {
+               agregarProductoBD = validarProductoRegistrado(vectorCodigo[avance]);
+           } catch (Exception ex) {
+               Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           
+           //Si hay que agregar un nuevo producto a la base de datos
+           if(agregarProductoBD==true){
+               Object Pr[] = {modeloAddCompra.getValueAt(avance,0).toString(),modeloAddCompra.getValueAt(avance,1).toString(),modeloAddCompra.getValueAt(avance,3).toString()};
+               try {
+                   cpr.Agregar(Pr);
+               } catch (Exception ex) {
+                   Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+               }
+               
+               Object Ps[] = {IdSucursalGC,modeloAddCompra.getValueAt(avance,0).toString(),modeloAddCompra.getValueAt(avance,2).toString()};
+               cn.UID("Insert into inventario(IdSucursal, CodBarra, Cantidad) values ("+Ps[0]+",'"+Ps[1]+"',"+Ps[2]+")");
+               
+               Object Pdc[] = {IdCompraPC, modeloAddCompra.getValueAt(avance,0).toString(), modeloAddCompra.getValueAt(avance,2).toString(), modeloAddCompra.getValueAt(avance,3).toString()};
+               cn.UID("Insert into detallecompra(IdCompra, CodBarra, Cantidad, CostoUnitario) values ("+Pdc[0]+",'"+Pdc[1]+"',"+Pdc[2]+","+Pdc[3]+")");
+
+               agregarProductoBD=false;
+           }
+           
+           //Si hay que modificar solo las cantidades y el costo
+           else{
+               
+               
+           }
+            
+            
+            
+            avance++;
+       }
+      
+      
+
+      
+      
+           
+           
+       
+        
+      
+        
+        
+    }//GEN-LAST:event_btnGuardarCompraActionPerformed
 
     public void agregarDetalle(){
         detalleCompra[0] = CodBarraPC;    
@@ -4818,9 +4969,6 @@ public void llenarComprasRealizadasFiltro() throws Exception{
     }
     
     public void limpiarCompra(){
-        txtIdCompra.setText("");
-        txtFechaCompra.setText("");
-        txtNumDocumento.setText("");
         txtCodBarraCompra.setText("");
         txtNombreProductoCompra.setText("");
         txtCantidadCompra.setText("");
@@ -4828,8 +4976,7 @@ public void llenarComprasRealizadasFiltro() throws Exception{
         txtCodBarraCompra.requestFocus();
     }
     
-    
-    
+        
 public boolean validarProductoRegistrado(String CodBarra) throws Exception{
     boolean v = false;
     String c = "";
@@ -4840,17 +4987,14 @@ public boolean validarProductoRegistrado(String CodBarra) throws Exception{
     while(r.next()){
         c = r.getString("CodBarra");
     }
-    
     if(c.isEmpty()){
         v = true;
     }else if (!c.isEmpty()){
         v = false;
     }
-    
-    
     return v;
 }  
-    
+//---------------------------------------------------Compras-----------------------------------------------------------------------    
     public void buscarProductos(){
     
     if(txtProductosBuscar.getText().isEmpty()){

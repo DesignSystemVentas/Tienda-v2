@@ -2,6 +2,7 @@ package controlador;
 // @author Daniel Murillo
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import modelo.Compra;
 
 public class ControladorCompra {
@@ -34,6 +35,20 @@ public class ControladorCompra {
         } 
         return mayor;
                 
+    }
+    
+    
+    public void Agregar(Object p[]) throws SQLException, ClassNotFoundException, ErrorTienda, ErrorTienda {
+        
+        try{
+        cn.conectar();      
+        cn.UID("INSERT INTO compra(IdCompra,IdProveedor,IdSucursal,Fecha,TipoCompra,NumDocumento,Subtotal,IVA,Percepcion,Total) VALUES(" + p[0] + "," + p[1] + "," + p[2] + ",'" + p[3] + "','" + p[4] +"','" + p[5] +"'," + p[6] +"," + p[7] +"," + p[8] +"," + p[9] +")");
+        } catch (Exception ex){
+            throw new ErrorTienda("Insertar" + ex.getMessage());
+        }finally{
+            cn.desconectar();    
+        }
+        
     }
    /* 
     public static void Agregar(Compra){
