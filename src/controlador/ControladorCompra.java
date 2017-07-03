@@ -50,6 +50,21 @@ public class ControladorCompra {
         }
         
     }
+    
+    
+    public ResultSet ObtenerDetalles(String IdCompra) throws ErrorTienda{
+         ResultSet d=null;
+         try {
+         cn.conectar();
+         d=cn.getValores("SELECT * FROM detallecompra Where IdCompra='"+IdCompra+"'");    
+         } catch (Exception e) {
+             throw new ErrorTienda("No logra obtener datos de Compras"); 
+         }finally{
+         //cn.desconectar();
+         }
+         return d;
+        
+    }
    /* 
     public static void Agregar(Compra){
         
