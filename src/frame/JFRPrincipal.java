@@ -2559,7 +2559,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtNombreProductoVender.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jpnRegistrarVenta.add(txtNombreProductoVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 300, 40));
 
-        txtCantidadVender.setText("1");
         txtCantidadVender.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtCantidadVender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -5267,6 +5266,13 @@ public void limpiarTablaCompra(){
     }//GEN-LAST:event_btnAgregarProductoVentaMouseExited
 
     private void btnAgregarProductoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaActionPerformed
+        
+        if(txtNombreProductoVender.getText().length()==0){
+            JOptionPane.showMessageDialog(null, "realize de nuevo el proceso");
+            txtCodigoBarraVender.requestFocus();
+            txtCantidadVender.setText("");
+        } else {
+        
         if(txtCantidadVender.getText().length()==0){
             JOptionPane.showMessageDialog(null, "debe ingresar la cantidad");
        }
@@ -5477,7 +5483,8 @@ public void limpiarTablaCompra(){
             txtTotalventaGravado.setText("$"+total);
         }
         //FINALIZADO (LIBRE)//                                    
-        }                            
+        } 
+        }
     }//GEN-LAST:event_btnAgregarProductoVentaActionPerformed
 
     private void txtCodigoBarraVenderKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoBarraVenderKeyPressed
