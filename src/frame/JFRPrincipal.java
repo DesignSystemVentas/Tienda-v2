@@ -57,17 +57,20 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     ControladorTipoPrecio cTipoPrecio = new ControladorTipoPrecio();
     String datosVenta[] = new String[7], CodigoBarraVender = "";
     String GReporteVenta[] = new String[5];
-    DecimalFormat df = new DecimalFormat("#.00");
+    DecimalFormat df = new DecimalFormat("00.00");
     //vaizcarra//
 
     //Todas las variables que agregue-Daniel
-    boolean cargarSucursalesFC, agregarDetalleModelo, validarPC, agregarProductoBD, agregarSubtotalDC, add;
+    boolean cargarSucursalesFC, agregarDetalleModelo, validarPC, agregarProductoBD, agregarSubtotalDC, add, addC;
     //Todos estos son para el momento de la compra con sus detalles
     Conexion cn = new Conexion();
     String costoUC="", IdCompraPC="",CodBarraPC="",NombrePC="",CantidadPC="", 
             CostoUnitarioPC="",IdSucursalPC="",sucursalPC="",SubtotalPC="", 
-            SubtotalCompra="", tipoCompra="", IdSucursalGC="", SucursalGC="", IdProveedorGC="", ProveedorGC="", ivaCompra="", percepcionCompra="";
+            SubtotalCompra="", tipoCompra="", IdSucursalGC="", SucursalGC="",
+            IdProveedorGC="", ProveedorGC="", ivaCompra="", percepcionCompra=""
+            , TotalCompra="", ivaAnterior="", percepcionAnterior="";
     String detalleCompra[] = new String[5];
+    String detalleCompraC[] = new String[5];
     int CantidadAnteriorPC, filaEliminar;
     double SubtotalAnteriorPC;
     //--
@@ -1755,12 +1758,24 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblNomProd.setForeground(new java.awt.Color(2, 13, 16));
         lblNomProd.setText("Producto:");
         jpnRegistroCompra.add(lblNomProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 70, 30));
+
+        txtNombreProductoCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreProductoCompraKeyPressed(evt);
+            }
+        });
         jpnRegistroCompra.add(txtNombreProductoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 140, 30));
 
         lblCantidad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblCantidad.setForeground(new java.awt.Color(0, 4, 5));
         lblCantidad.setText("Cantidad:");
         jpnRegistroCompra.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 70, 30));
+
+        txtCantidadCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCantidadCompraKeyPressed(evt);
+            }
+        });
         jpnRegistroCompra.add(txtCantidadCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 40, 30));
 
         jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
@@ -3040,6 +3055,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 lblIvaCompra.setVisible(true);
                 txtIvaCompra.setVisible(true);
                 txtPercepcionCompra.setVisible(true);
+                lblSubtotalCompra.setVisible(true);
+                txtSubtotalCompra.setVisible(true);
                 lbltxtTipoCompra.setText("Crédito Fiscal N°");
                 break;
                 
@@ -4310,8 +4327,6 @@ public void limpiarTablaCompra(){
             ControladorSucursal cs = new ControladorSucursal();
             
                     if (evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER){
-                        
-                        if(tipoCompra.equals("F")||tipoCompra.equals("L")){
                         IdCompraPC = txtIdCompra.getText();
                         CodBarraPC = txtCodBarraCompra.getText();
                         NombrePC = txtNombreProductoCompra.getText();
@@ -4338,9 +4353,26 @@ public void limpiarTablaCompra(){
                         if(modeloAddCompra.getRowCount()==0){
                         agregarDetalle();
                         SubtotalPC = String.valueOf(df.format(Double.parseDouble(CostoUnitarioPC)*Double.parseDouble(CantidadPC)));
+                       //Credito
+                        if(tipoCompra.equals("C")){
+                        ivaCompra = String.valueOf(df.format(Double.parseDouble(SubtotalPC)-(Double.parseDouble(SubtotalPC)/1.13)));
+                        System.out.println(""+ivaCompra);
+                        percepcionCompra = String.valueOf(df.format(Double.parseDouble(SubtotalPC)-(Double.parseDouble(SubtotalPC)/1.01))); 
+                        SubtotalPC = String.valueOf(df.format(Double.parseDouble(SubtotalPC)-Double.parseDouble(ivaCompra)-Double.parseDouble(percepcionCompra)));
+                        detalleCompra[4] = SubtotalPC;
+                        SubtotalCompra = SubtotalPC;
+                        TotalCompra = String.valueOf(df.format(Double.parseDouble(ivaCompra)+Double.parseDouble(percepcionCompra)+Double.parseDouble(SubtotalCompra)));
+                        addC = true;
+                        }
+                        //---------------
+                        else{
                         detalleCompra[4] = SubtotalPC;
                         SubtotalCompra = SubtotalPC;
                         add = true;
+                           
+                        }
+                        
+                        
                         }
                         //---------------------------------------------------------------------------------------------------
                         else{
@@ -4367,16 +4399,34 @@ public void limpiarTablaCompra(){
                                     SubtotalAnteriorPC = Double.parseDouble(modeloAddCompra.getValueAt(validar, 4).toString());
                                     modeloAddCompra.setValueAt(SubtotalAnteriorPC + (Double.parseDouble(detalleCompra[2])*Double.parseDouble(detalleCompra[3])), validar, 4);
                                     SubtotalPC = String.valueOf(SubtotalAnteriorPC + (Double.parseDouble(detalleCompra[2])*Double.parseDouble(detalleCompra[3])));
-                                    SubtotalCompra = String.valueOf(Double.parseDouble(SubtotalCompra) - SubtotalAnteriorPC + Double.parseDouble(SubtotalPC));
+                                    
+                                    //Credito
+//                                    if(tipoCompra.equals("C")){
+//                                    ivaCompra = String.valueOf(df.format(Double.parseDouble(ivaCompra)+(Double.parseDouble(SubtotalPC)-(Double.parseDouble(SubtotalPC)/1.13))));
+//                                        System.out.println("iva:"+ivaCompra);
+//                                    percepcionCompra = String.valueOf(df.format(Double.parseDouble(percepcionCompra)+(Double.parseDouble(SubtotalPC)-(Double.parseDouble(SubtotalPC)/1.01))));
+//                                        System.out.println("per:"+percepcionCompra);
+//                                    SubtotalPC = String.valueOf(Double.parseDouble(SubtotalPC)-Double.parseDouble(ivaCompra)-Double.parseDouble(percepcionCompra));
+//                                            System.out.println("Sub:"+SubtotalPC);
+//                                    SubtotalCompra = String.valueOf(Double.parseDouble(SubtotalCompra) - SubtotalAnteriorPC + Double.parseDouble(SubtotalPC));
+//                                        System.out.println("Subtotal:"+SubtotalCompra);
+//                                    TotalCompra = String.valueOf(df.format(Double.parseDouble(TotalCompra)+(Double.parseDouble(ivaCompra)+Double.parseDouble(percepcionCompra)+Double.parseDouble(SubtotalCompra))));
+//                                        System.out.println("Total:"+TotalCompra);
+//                                    }
+                                    //---------------------------------------------------------------------
+                                  
+                                    
                                     agregarSubtotalDC = false;
                                     limpiarDetalle();
                                     add = false;
+                                    addC = false;
                                     validarPC = false;
                                }
                                
                                else{
                                    JOptionPane.showMessageDialog(null, "El producto esta registrado con el costo de $"+modeloAddCompra.getValueAt(validar, 3).toString(), "EL COSTO DEL PRODUCTO NO COINCIDE",JOptionPane.ERROR_MESSAGE);
                                    add = false;
+                                   addC = false;
                                }                               
                                 
                             }
@@ -4390,30 +4440,68 @@ public void limpiarTablaCompra(){
                                 add = true;
                             }
                         }
-                                                
-                        if(add==true){
+                        
+
+
+                        if(tipoCompra.equals("C")){
+                            if(addC==true){
                         modeloAddCompra.addRow(detalleCompra); 
                         tblCompra.setModel(modeloAddCompra);
-                        txtTotalCompra.setText(SubtotalCompra);//Pongo el total actualizado
+                        txtPercepcionCompra.setText(percepcionCompra);
+                        txtIvaCompra.setText(ivaCompra);
+                        txtSubtotalCompra.setText(SubtotalCompra);//Pongo el total actualizado
+                        txtTotalCompra.setText(TotalCompra);
                         limpiarCompra();
                         limpiarDetalle();
+                        }
+                            else{
+                                
+                                
+                            }
                         }
                         else{
-                        tblCompra.setModel(modeloAddCompra);
-                        txtTotalCompra.setText(SubtotalCompra);//Pongo el total actualizado
-                        limpiarCompra();
-                        limpiarDetalle();
-                        }
-                  
-                    if(tipoCompra=="C"){
+                              if(add==true){
+                                  modeloAddCompra.addRow(detalleCompra); 
+                                  tblCompra.setModel(modeloAddCompra);
+                                  txtTotalCompra.setText(SubtotalCompra);//Pongo el total actualizado
+                                  limpiarCompra();
+                                  limpiarDetalle();
+                              }
+                              else{
+                                  tblCompra.setModel(modeloAddCompra);
+                                  txtTotalCompra.setText(SubtotalCompra);//Pongo el total actualizado
+                                  limpiarCompra();
+                                  limpiarDetalle();
+                              }  
                         
-                    }
-                   
                         }
+                     
+                        
+                        
+                       
+                          
+                        
+                        
+                        
+                        
+                       }
+                       
+                       
+                         
+                       
+                       
+                       
+                       }
+                       
+                       
+                       
+        
+                  
+                        
                 
                     
-                    }
-}
+                    
+
     }//GEN-LAST:event_txtCostoProductoCompraKeyPressed
 
     private void tblCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCompraMouseClicked
@@ -4442,6 +4530,12 @@ public void limpiarTablaCompra(){
     }//GEN-LAST:event_tblCompraMouseClicked
 
     private void btnGuardarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCompraActionPerformed
+
+        if(modeloAddCompra.getRowCount()==0){
+            JOptionPane.showMessageDialog(null, "No puede guardar una compra vacia","ERROR", JOptionPane.ERROR_MESSAGE);
+            txtNumDocumento.requestFocus();
+        }
+        else{
        ControladorCompra cpp= new ControladorCompra();
        ControladorProducto cpr = new ControladorProducto();
        ControladorProveedor cpv = new ControladorProveedor();
@@ -4612,24 +4706,11 @@ public void limpiarTablaCompra(){
                 }
             }
             
-            
-            
-            
-            
-            
-            
-            
-                
-               
-               
-               
-               
            }
-            
-            
-            
-            avance++;
+        avance++;
        }
+            
+        }
         
     }//GEN-LAST:event_btnGuardarCompraActionPerformed
 
@@ -5284,7 +5365,7 @@ public void limpiarTablaCompra(){
                 }
                 String Subt = String.valueOf((Double.parseDouble(Can))*(Double.parseDouble(Cos)));
                 
-                modeloDetalleCompra.addRow(new Object[]{IdCompra,Nom,Can,Cos,Subt});
+                modeloDetalleCompra.addRow(new Object[]{Cod,Nom,Can,Cos,Subt});
                 
             }
         } catch (SQLException ex) {
@@ -5302,11 +5383,26 @@ public void limpiarTablaCompra(){
 btnVerDetalle.setEnabled(false);
     }//GEN-LAST:event_btnAtrasDetalleCompraActionPerformed
 
+    private void txtNombreProductoCompraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProductoCompraKeyPressed
+        txtCantidadCompra.requestFocus();
+    }//GEN-LAST:event_txtNombreProductoCompraKeyPressed
+
+    private void txtCantidadCompraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadCompraKeyPressed
+        txtCostoProductoCompra.requestFocus();
+    }//GEN-LAST:event_txtCantidadCompraKeyPressed
+
     public void agregarDetalle(){
         detalleCompra[0] = CodBarraPC;    
         detalleCompra[1] = NombrePC;
         detalleCompra[2] = CantidadPC;
         detalleCompra[3] = CostoUnitarioPC; 
+    }
+    
+    public void agregarDetalleCredito(){
+        detalleCompraC[0] = CodBarraPC;    
+        detalleCompraC[1] = NombrePC;
+        detalleCompraC[2] = CantidadPC;
+        detalleCompraC[3] = CostoUnitarioPC; 
     }
     
     public void limpiarDetalle(){
