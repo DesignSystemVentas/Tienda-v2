@@ -4357,7 +4357,6 @@ public void limpiarTablaCompra(){
                        //Credito
                         if(tipoCompra.equals("C")){
                         ivaCompra = String.valueOf(df.format(Double.parseDouble(SubtotalPC)-(Double.parseDouble(SubtotalPC)/1.13)));
-                        System.out.println(""+ivaCompra);
                         percepcionCompra = String.valueOf(df.format(Double.parseDouble(SubtotalPC)-(Double.parseDouble(SubtotalPC)/1.01))); 
                         SubtotalPC = String.valueOf(df.format(Double.parseDouble(SubtotalPC)-Double.parseDouble(ivaCompra)-Double.parseDouble(percepcionCompra)));
                         detalleCompra[4] = SubtotalPC;
@@ -4398,22 +4397,20 @@ public void limpiarTablaCompra(){
                                     CantidadAnteriorPC = Integer.parseInt(modeloAddCompra.getValueAt(validar, 2).toString());
                                     modeloAddCompra.setValueAt((CantidadAnteriorPC + Integer.parseInt(detalleCompra[2])), validar, 2);
                                     SubtotalAnteriorPC = Double.parseDouble(modeloAddCompra.getValueAt(validar, 4).toString());
-                                    modeloAddCompra.setValueAt(SubtotalAnteriorPC + (Double.parseDouble(detalleCompra[2])*Double.parseDouble(detalleCompra[3])), validar, 4);
-                                    SubtotalPC = String.valueOf(SubtotalAnteriorPC + (Double.parseDouble(detalleCompra[2])*Double.parseDouble(detalleCompra[3])));
-                                    
+                                    modeloAddCompra.setValueAt(SubtotalAnteriorPC + (Double.parseDouble(detalleCompra[2])*Double.parseDouble(detalleCompra[3]))/1.13, validar, 4);
+                                    SubtotalPC = String.valueOf((SubtotalAnteriorPC + (Double.parseDouble(detalleCompra[2])*Double.parseDouble(detalleCompra[3])))/1.13);
+                                    System.out.println("SubtotalPC:"+SubtotalPC);
                                     //Credito
-//                                    if(tipoCompra.equals("C")){
-//                                    ivaCompra = String.valueOf(df.format(Double.parseDouble(ivaCompra)+(Double.parseDouble(SubtotalPC)-(Double.parseDouble(SubtotalPC)/1.13))));
-//                                        System.out.println("iva:"+ivaCompra);
-//                                    percepcionCompra = String.valueOf(df.format(Double.parseDouble(percepcionCompra)+(Double.parseDouble(SubtotalPC)-(Double.parseDouble(SubtotalPC)/1.01))));
-//                                        System.out.println("per:"+percepcionCompra);
-//                                    SubtotalPC = String.valueOf(Double.parseDouble(SubtotalPC)-Double.parseDouble(ivaCompra)-Double.parseDouble(percepcionCompra));
-//                                            System.out.println("Sub:"+SubtotalPC);
-//                                    SubtotalCompra = String.valueOf(Double.parseDouble(SubtotalCompra) - SubtotalAnteriorPC + Double.parseDouble(SubtotalPC));
-//                                        System.out.println("Subtotal:"+SubtotalCompra);
-//                                    TotalCompra = String.valueOf(df.format(Double.parseDouble(TotalCompra)+(Double.parseDouble(ivaCompra)+Double.parseDouble(percepcionCompra)+Double.parseDouble(SubtotalCompra))));
-//                                        System.out.println("Total:"+TotalCompra);
-//                                    }
+                                    if(tipoCompra.equals("C")){
+                                    ivaCompra = String.valueOf(df.format((Double.parseDouble(modeloAddCompra.getValueAt(validar, 2).toString())*Double.parseDouble(modeloAddCompra.getValueAt(validar, 3).toString())-(Double.parseDouble(SubtotalPC)))));
+                                        System.out.println("iva:"+ivaCompra);
+                                    percepcionCompra = String.valueOf(df.format((Double.parseDouble(modeloAddCompra.getValueAt(validar, 2).toString())*Double.parseDouble(modeloAddCompra.getValueAt(validar, 3).toString())- (Double.parseDouble(modeloAddCompra.getValueAt(validar, 2).toString())*Double.parseDouble(modeloAddCompra.getValueAt(validar, 3).toString())/1.01))));
+                                        System.out.println("per:"+percepcionCompra);
+                                    SubtotalCompra = String.valueOf(Double.parseDouble(SubtotalCompra) - SubtotalAnteriorPC + Double.parseDouble(SubtotalPC));
+                                        System.out.println("Subtotal:"+SubtotalCompra);
+                                    TotalCompra = String.valueOf(df.format(Double.parseDouble(TotalCompra)+(Double.parseDouble(ivaCompra)+Double.parseDouble(percepcionCompra)+Double.parseDouble(SubtotalCompra))));
+                                        System.out.println("Total:"+TotalCompra);
+                                    }
                                     //---------------------------------------------------------------------
                                   
                                     
@@ -4450,12 +4447,19 @@ public void limpiarTablaCompra(){
                         tblCompra.setModel(modeloAddCompra);
                         txtPercepcionCompra.setText(percepcionCompra);
                         txtIvaCompra.setText(ivaCompra);
-                        txtSubtotalCompra.setText(SubtotalCompra);//Pongo el total actualizado
+                        txtSubtotalCompra.setText(SubtotalCompra);//Pongo el subtotal actualizado
                         txtTotalCompra.setText(TotalCompra);
                         limpiarCompra();
                         limpiarDetalle();
                         }
                             else{
+                                  tblCompra.setModel(modeloAddCompra);
+                                  txtPercepcionCompra.setText(percepcionCompra);
+                                  txtIvaCompra.setText(ivaCompra);
+                                  txtSubtotalCompra.setText(SubtotalCompra);//Pongo el subtotal actualizado
+                                  txtTotalCompra.setText(TotalCompra);//Pongo el total actualizado
+                                  limpiarCompra();
+                                  limpiarDetalle();
                                 
                                 
                             }
