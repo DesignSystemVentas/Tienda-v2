@@ -494,7 +494,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores3 = new javax.swing.JLabel();
         lblListadoCompras = new javax.swing.JLabel();
         jSeparator35 = new javax.swing.JSeparator();
-        cmbFiltroSucursalCompra = new javax.swing.JComboBox<>();
+        cmbFiltroSucursalCompra = new javax.swing.JComboBox<String>();
         lblFiltrarCompra = new javax.swing.JLabel();
         jpnRegistroCompra = new javax.swing.JPanel();
         btnGuardarCompra = new javax.swing.JButton();
@@ -504,7 +504,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        cmbSucursalCompra = new javax.swing.JComboBox<>();
+        cmbSucursalCompra = new javax.swing.JComboBox<String>();
         lblSucursalCompra = new javax.swing.JLabel();
         txtIdCompra = new javax.swing.JTextField();
         lblIdCompra = new javax.swing.JLabel();
@@ -709,7 +709,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         tblMenuVentas = new javax.swing.JTable();
         lblSucursalMenuVenta = new javax.swing.JLabel();
-        cmbSucursalMenuVenta = new javax.swing.JComboBox();
+        cmbSucursalReporteVenta = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/iconos/lanzador.png")).getImage());
@@ -1601,7 +1601,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnCompras.add(lblListadoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 200, -1));
         jpnCompras.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 117, 200, 10));
 
-        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         cmbFiltroSucursalCompra.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFiltroSucursalCompraItemStateChanged(evt);
@@ -2810,12 +2810,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblSucursalMenuVenta.setText("Sucursal");
         jpnVerVentasporSucursal.add(lblSucursalMenuVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 180, -1));
 
-        cmbSucursalMenuVenta.addItemListener(new java.awt.event.ItemListener() {
+        cmbSucursalReporteVenta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbSucursalMenuVentaItemStateChanged(evt);
+                cmbSucursalReporteVentaItemStateChanged(evt);
             }
         });
-        jpnVerVentasporSucursal.add(cmbSucursalMenuVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 180, -1));
+        jpnVerVentasporSucursal.add(cmbSucursalReporteVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 180, -1));
 
         getContentPane().add(jpnVerVentasporSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -2849,6 +2849,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnVentas);
             Principal(false);
             Ventas(true);
+            cmbSucursalReporteVenta.removeAllItems();
+            cmbSucursalParametro.removeAllItems();
+            cmbUtilidadParametro.removeAllItems();                        
     }//GEN-LAST:event_btnVentasMouseEntered
 
     private void btnVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentasMouseExited
@@ -2856,6 +2859,42 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             Animacion.Animacion.mover_izquierda(0, -126, 1, 2, btnVentas);  
             Principal(true);
             Ventas(false);
+                     try {
+            rstCSucursal = cSucursal.Obtener();
+            rstTipoPrecio = cTipoPrecio.ObtenerTipoPrecio();             
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} catch (Exception ex) {           
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }           
+
+        try {
+            String IdSucursal = "";
+            int IdSucursalVenta = 0;
+            //Sucursal
+            while (rstCSucursal.next()) {
+                mSucursal.addElement(rstCSucursal.getString(2));                 
+                IdSucursal = IdSucursal + " "+rstCSucursal.getString(1); 
+                mLlenarIdS.addElement(rstCSucursal.getString(1));          
+            }
+            cmbSucursalParametro.setModel(mSucursal);
+            cmbSucursalReporteVenta.setModel(mSucursal); 
+            txtSucursalVentaParametro.setText(String.valueOf(mLlenarIdS.getElementAt(0))); 
+            IdSucursalVenta = Integer.parseInt(String.valueOf(mLlenarIdS.getElementAt(0)));
+            SaberSucursalVentas = IdSucursalVenta;
+            //Utilidad
+            String Porcentaje = "";
+            while (rstTipoPrecio.next()) {
+                mUtilidad.addElement(rstTipoPrecio.getString(2)); 
+                Porcentaje = Porcentaje + " "+rstTipoPrecio.getString(3); 
+                mLlenarPoU.addElement(rstTipoPrecio.getString(3));          
+            }
+            double PorcentajeVenta=0;
+            PorcentajeVenta = Double.parseDouble((String.valueOf(mLlenarPoU.getElementAt(0))));
+            saberTipoUtilidadVenta = PorcentajeVenta;
+            PorcentajeVenta = PorcentajeVenta *100;
+             txtUtilidadVentaParametro.setText(String.valueOf(PorcentajeVenta)+"%");
+            cmbUtilidadParametro.setModel(mUtilidad);
+        } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}//finalizado (recorrer)//
+        //finalizar()/llenado cmbSucursal, IdVenta y cmbUtilidad/ 
     }//GEN-LAST:event_btnVentasMouseExited
 
     private void btnProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseEntered
@@ -2934,52 +2973,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasProveedoresMouseClicked
 
     private void btnVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentasMouseClicked
-              apagado();        apagado2();
-        jpnMenuVentas.setVisible(true);         
-        //llenar cmbSucursal y cmbUtilidad//  
-         try {
-            rstCSucursal = cSucursal.Obtener();
-            rstTipoPrecio = cTipoPrecio.ObtenerTipoPrecio();             
-        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} catch (Exception ex) {           
-            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }           
-        //iniciar recorrer//
-        try {
-
-//            mSucursal=null;
-//            mUtilidad=null;
-//            mLlenarIdS=null;
-//            mLlenarPoU=null;
-
-            String IdSucursal = "";
-            int IdSucursalVenta = 0;
-            //Sucursal
-            while (rstCSucursal.next()) {
-                mSucursal.addElement(rstCSucursal.getString(2));                 
-                IdSucursal = IdSucursal + " "+rstCSucursal.getString(1); 
-                mLlenarIdS.addElement(rstCSucursal.getString(1));          
-            }
-            cmbSucursalParametro.setModel(mSucursal);
-            cmbSucursalMenuVenta.setModel(mSucursal); 
-            txtSucursalVentaParametro.setText(String.valueOf(mLlenarIdS.getElementAt(0))); 
-            IdSucursalVenta = Integer.parseInt(String.valueOf(mLlenarIdS.getElementAt(0)));
-            SaberSucursalVentas = IdSucursalVenta;
-            //Utilidad
-            String Porcentaje = "";
-            while (rstTipoPrecio.next()) {
-                mUtilidad.addElement(rstTipoPrecio.getString(2)); 
-                Porcentaje = Porcentaje + " "+rstTipoPrecio.getString(3); 
-                mLlenarPoU.addElement(rstTipoPrecio.getString(3));          
-            }
-            double PorcentajeVenta=0;
-            PorcentajeVenta = Double.parseDouble((String.valueOf(mLlenarPoU.getElementAt(0))));
-            saberTipoUtilidadVenta = PorcentajeVenta;
-            PorcentajeVenta = PorcentajeVenta *100;
-//            txtUtilidadVentaParametro.setText(String.valueOf(mLlenarPoU.getElementAt(0))); 
-             txtUtilidadVentaParametro.setText(String.valueOf(PorcentajeVenta)+"%");
-            cmbUtilidadParametro.setModel(mUtilidad);
-        } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}//finalizado (recorrer)//
-        //finalizar()/llenado cmbSucursal, IdVenta y cmbUtilidad/ 
+              apagado();      
+              apagado2();
+        jpnMenuVentas.setVisible(true);                
     }//GEN-LAST:event_btnVentasMouseClicked
 
     private void btnNuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProductoActionPerformed
@@ -4667,7 +4663,7 @@ public void limpiarTablaCompra(){
 //        manejarcmbVentas();
         jpnMenuVentas.setVisible(false);
         jpnVerVentasporSucursal.setVisible(true);
-        int IdSucursal = cmbSucursalMenuVenta.getSelectedIndex() + 1;
+        int IdSucursal = cmbSucursalReporteVenta.getSelectedIndex() + 1;
         try {
             rstControladorVenta = controladorventa.llenarVenta(1);
 
@@ -4832,13 +4828,13 @@ public void limpiarTablaCompra(){
         jpnReporteVentas.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void cmbSucursalMenuVentaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSucursalMenuVentaItemStateChanged
+    private void cmbSucursalReporteVentaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSucursalReporteVentaItemStateChanged
         rstControladorVenta = null;
         for(int i=0;i < MenuVenta.getRowCount();i++){
             MenuVenta.removeRow(i);
             i-=1;
         }
-        int IdSucursal = cmbSucursalMenuVenta.getSelectedIndex() + 1;
+        int IdSucursal = cmbSucursalReporteVenta.getSelectedIndex() + 1;
         try {
             rstControladorVenta = controladorventa.llenarVenta(IdSucursal);
 
@@ -4856,7 +4852,7 @@ public void limpiarTablaCompra(){
                 MenuVenta.addRow(datosVenta);
             }
         } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
-    }//GEN-LAST:event_cmbSucursalMenuVentaItemStateChanged
+    }//GEN-LAST:event_cmbSucursalReporteVentaItemStateChanged
 
     private void lblFechaVentaMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblFechaVentaMostrarActionPerformed
 
@@ -5642,8 +5638,8 @@ public void limpiarTablaProducto(){
     private javax.swing.JComboBox<String> cmbFiltroSucursalCompra;
     private javax.swing.JComboBox cmbProveedorCompra;
     private javax.swing.JComboBox<String> cmbSucursalCompra;
-    private javax.swing.JComboBox cmbSucursalMenuVenta;
     private javax.swing.JComboBox cmbSucursalParametro;
+    private javax.swing.JComboBox cmbSucursalReporteVenta;
     private javax.swing.JComboBox cmbTipoFacturaParametro;
     private javax.swing.JComboBox cmbUtilidadParametro;
     private javax.swing.JButton jButton2;
