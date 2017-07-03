@@ -2500,8 +2500,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtNombreProductoVender.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jpnRegistrarVenta.add(txtNombreProductoVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 300, 40));
 
-        txtCantidadVender.setText("  1");
+        txtCantidadVender.setText("1");
         txtCantidadVender.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtCantidadVender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadVenderActionPerformed(evt);
+            }
+        });
         jpnRegistrarVenta.add(txtCantidadVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 80, 40));
 
         btnAgregarProductoVenta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -5458,6 +5463,10 @@ public void limpiarTablaCompra(){
     private void btnAtrasDetalleCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasDetalleCompraActionPerformed
 btnVerDetalle.setEnabled(false);
     }//GEN-LAST:event_btnAtrasDetalleCompraActionPerformed
+
+    private void txtCantidadVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadVenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadVenderActionPerformed
 
     public void agregarDetalle(){
         detalleCompra[0] = CodBarraPC;    
