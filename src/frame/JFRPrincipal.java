@@ -62,6 +62,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     ResultSet rstControladorProducto = null;
     ResultSet rstCSucursal = null;
     ResultSet rstTipoPrecio = null;
+    
     ControladorVenta controladorventa = new ControladorVenta();
     ControladorProducto cp = new ControladorProducto();
     ControladorSucursal cSucursal = new ControladorSucursal();
@@ -79,13 +80,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             CostoUnitarioPC="",IdSucursalPC="",sucursalPC="",SubtotalPC="", 
             SubtotalCompra="", tipoCompra="", IdSucursalGC="", SucursalGC="",
             IdProveedorGC="", ProveedorGC="", ivaCompra="", percepcionCompra=""
-            , TotalCompra="", ivaAnterior="", percepcionAnterior="";
+            , TotalCompra="", ivaAnterior="", percepcionAnterior="", ivadc="", percepciondc="";
     String detalleCompra[] = new String[5];
     String detalleCompraC[] = new String[5];
     int CantidadAnteriorPC, filaEliminar;
     double SubtotalAnteriorPC;
     //--
-    ResultSet rsFiltroCompra, rsCompra, rsSucursalFC, rsMayorIdC, rsNameProd, rsDC;
+    ResultSet rsFiltroCompra, rsCompra, rsSucursalFC, rsMayorIdC, rsNameProd, rsDC, r;
     DefaultComboBoxModel modeloSucursalFC = new DefaultComboBoxModel();//Combo filtro sucursal
     
     //--------------------------------------------------------
@@ -508,7 +509,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores3 = new javax.swing.JLabel();
         lblListadoCompras = new javax.swing.JLabel();
         jSeparator35 = new javax.swing.JSeparator();
-        cmbFiltroSucursalCompra = new javax.swing.JComboBox<String>();
+        cmbFiltroSucursalCompra = new javax.swing.JComboBox<>();
         lblFiltrarCompra = new javax.swing.JLabel();
         jpnRegistroCompra = new javax.swing.JPanel();
         btnGuardarCompra = new javax.swing.JButton();
@@ -518,7 +519,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        cmbSucursalCompra = new javax.swing.JComboBox<String>();
+        cmbSucursalCompra = new javax.swing.JComboBox<>();
         lblSucursalCompra = new javax.swing.JLabel();
         txtIdCompra = new javax.swing.JTextField();
         lblIdCompra = new javax.swing.JLabel();
@@ -1621,7 +1622,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnCompras.add(lblListadoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 200, -1));
         jpnCompras.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 117, 200, 10));
 
-        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         cmbFiltroSucursalCompra.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFiltroSucursalCompraItemStateChanged(evt);
@@ -3076,7 +3077,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private void btnAgregarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCompraActionPerformed
         cargarProveedoresC=true;
         cargarSucursalesC = true;
-        cmbSucursalCompra.requestFocus(); 
         //Aca escribo para elegir antes el tipo de compra
         //Daniel-Inicio
         String[] list = {"Factura", "Crédito fiscal", "Libre"};
@@ -3090,6 +3090,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             case 0:
                 tipoCompra = "F" ;
                 bloquearIvaPercepcion();
+                txtNumDocumento.setText("");
+                cmbSucursalCompra.requestFocus();
                 lbltxtTipoCompra.setText("Factura N°");
                 break;
             
@@ -3101,12 +3103,22 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 txtPercepcionCompra.setVisible(true);
                 lblSubtotalCompra.setVisible(true);
                 txtSubtotalCompra.setVisible(true);
+               
+                txtIvaCompra.setText("");
+                txtPercepcionCompra.setText("");
+                txtSubtotalCompra.setText("");
+                txtTotalCompra.setText("");
+                txtNumDocumento.setText("");
+                limpiarCompra();
+                cmbSucursalCompra.requestFocus(); 
                 lbltxtTipoCompra.setText("Crédito Fiscal N°");
                 break;
                 
             case 2: 
                 tipoCompra = "L" ;
                 bloquearIvaPercepcion();
+                txtNumDocumento.setText("");
+                cmbSucursalCompra.requestFocus(); 
                 lbltxtTipoCompra.setText("Libre N°");
                 break;
         }
@@ -4264,6 +4276,13 @@ public void limpiarTablaCompra(){
            i-=1;
        }
 }
+
+public void limpiarTablaDetalleCompra(){
+ for (int i = 0; i < tblDetalleCompra.getRowCount(); i++) {
+           modeloDetalleCompra.removeRow(i);
+           i-=1;
+       }
+}
     
     private void cmbFiltroSucursalCompraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbFiltroSucursalCompraFocusGained
         if (cargarSucursalesFC==true){//Este metodo es la copia del otro que llena el combo con las sucursales, solo que en este caso sirve para filtrar las compras por sucursal -LoL-
@@ -4400,7 +4419,6 @@ public void limpiarTablaCompra(){
                        //Credito
                         if(tipoCompra.equals("C")){
                         ivaCompra = String.valueOf(df.format(Double.parseDouble(SubtotalPC)-(Double.parseDouble(SubtotalPC)/1.13)));
-                        System.out.println(""+ivaCompra);
                         percepcionCompra = String.valueOf(df.format(Double.parseDouble(SubtotalPC)-(Double.parseDouble(SubtotalPC)/1.01))); 
                         SubtotalPC = String.valueOf(df.format(Double.parseDouble(SubtotalPC)-Double.parseDouble(ivaCompra)-Double.parseDouble(percepcionCompra)));
                         detalleCompra[4] = SubtotalPC;
@@ -4434,32 +4452,41 @@ public void limpiarTablaCompra(){
                                     agregarSubtotalDC = true;
                                 }
                             }
-
+                            
+                            //Esto pasa si el producto ya esta en la compra y se repite
                             if(validarPC==true){
+                                //Si el costo es el mismo solo se modifica la cantidad y el subtotal
                                if(modeloAddCompra.getValueAt(validar, 3).toString().equals(txtCostoProductoCompra.getText())){
                                     agregarDetalle();
+                                
+                                    ivadc = String.valueOf(df.format((Integer.parseInt(modeloAddCompra.getValueAt(validar, 2).toString()) * Double.parseDouble(modeloAddCompra.getValueAt(validar, 3).toString())) - ((Integer.parseInt(modeloAddCompra.getValueAt(validar, 2).toString()) * Double.parseDouble(modeloAddCompra.getValueAt(validar, 3).toString()))/1.13)));
+                                    percepciondc = String.valueOf(df.format((Integer.parseInt(modeloAddCompra.getValueAt(validar, 2).toString()) * Double.parseDouble(modeloAddCompra.getValueAt(validar, 3).toString())) - ((Integer.parseInt(modeloAddCompra.getValueAt(validar, 2).toString()) * Double.parseDouble(modeloAddCompra.getValueAt(validar, 3).toString()))/1.01)));
                                     CantidadAnteriorPC = Integer.parseInt(modeloAddCompra.getValueAt(validar, 2).toString());
                                     modeloAddCompra.setValueAt((CantidadAnteriorPC + Integer.parseInt(detalleCompra[2])), validar, 2);
                                     SubtotalAnteriorPC = Double.parseDouble(modeloAddCompra.getValueAt(validar, 4).toString());
-                                    modeloAddCompra.setValueAt(SubtotalAnteriorPC + (Double.parseDouble(detalleCompra[2])*Double.parseDouble(detalleCompra[3])), validar, 4);
-                                    SubtotalPC = String.valueOf(SubtotalAnteriorPC + (Double.parseDouble(detalleCompra[2])*Double.parseDouble(detalleCompra[3])));
-                                    
+                                    modeloAddCompra.setValueAt(SubtotalAnteriorPC + df.format((Double.parseDouble(detalleCompra[2])*Double.parseDouble(detalleCompra[3]))/1.13), validar, 4);
+                                    SubtotalPC = String.valueOf(df.format(SubtotalAnteriorPC + ((Double.parseDouble(detalleCompra[2])*Double.parseDouble(detalleCompra[3]))/1.13)-(((Double.parseDouble(detalleCompra[2])*Double.parseDouble(detalleCompra[3])))-((Double.parseDouble(detalleCompra[2])*Double.parseDouble(detalleCompra[3]))/1.01))));
+                                    detalleCompra[4]=SubtotalPC;
+                                    modeloAddCompra.setValueAt( detalleCompra[4],validar, 4);
                                     //Credito
-//                                    if(tipoCompra.equals("C")){
-//                                    ivaCompra = String.valueOf(df.format(Double.parseDouble(ivaCompra)+(Double.parseDouble(SubtotalPC)-(Double.parseDouble(SubtotalPC)/1.13))));
-//                                        System.out.println("iva:"+ivaCompra);
-//                                    percepcionCompra = String.valueOf(df.format(Double.parseDouble(percepcionCompra)+(Double.parseDouble(SubtotalPC)-(Double.parseDouble(SubtotalPC)/1.01))));
-//                                        System.out.println("per:"+percepcionCompra);
-//                                    SubtotalPC = String.valueOf(Double.parseDouble(SubtotalPC)-Double.parseDouble(ivaCompra)-Double.parseDouble(percepcionCompra));
-//                                            System.out.println("Sub:"+SubtotalPC);
-//                                    SubtotalCompra = String.valueOf(Double.parseDouble(SubtotalCompra) - SubtotalAnteriorPC + Double.parseDouble(SubtotalPC));
-//                                        System.out.println("Subtotal:"+SubtotalCompra);
-//                                    TotalCompra = String.valueOf(df.format(Double.parseDouble(TotalCompra)+(Double.parseDouble(ivaCompra)+Double.parseDouble(percepcionCompra)+Double.parseDouble(SubtotalCompra))));
-//                                        System.out.println("Total:"+TotalCompra);
-//                                    }
-                                    //---------------------------------------------------------------------
-                                  
+                                    if(tipoCompra.equals("C")){
+                                    ivaAnterior = ivaCompra;    
+                                   
+                                    ivaAnterior = String.valueOf(df.format(Double.parseDouble(ivaAnterior) - Double.parseDouble(ivadc)));
                                     
+                                    ivaCompra = String.valueOf(df.format((Double.parseDouble(modeloAddCompra.getValueAt(validar, 2).toString())*Double.parseDouble(modeloAddCompra.getValueAt(validar, 3).toString())- (Double.parseDouble(modeloAddCompra.getValueAt(validar, 2).toString())*Double.parseDouble(modeloAddCompra.getValueAt(validar, 3).toString())/1.13))));
+                                                                      
+                                    ivaCompra = String.valueOf(df.format(Double.parseDouble(ivaAnterior) + Double.parseDouble(ivaCompra)));
+                                  
+                                    percepcionAnterior = percepcionCompra;
+                                     
+                                    percepcionAnterior = String.valueOf(df.format(Double.parseDouble(percepcionAnterior) - Double.parseDouble(percepciondc)));
+                                    
+                                    percepcionCompra = String.valueOf(df.format((Double.parseDouble(modeloAddCompra.getValueAt(validar, 2).toString())*Double.parseDouble(modeloAddCompra.getValueAt(validar, 3).toString())- (Double.parseDouble(modeloAddCompra.getValueAt(validar, 2).toString())*Double.parseDouble(modeloAddCompra.getValueAt(validar, 3).toString())/1.01))));
+                                   
+                                    percepcionCompra = String.valueOf(df.format(Double.parseDouble(percepcionAnterior) + Double.parseDouble(percepcionCompra)));
+                                    }
+                                    //---------------------------------------------------------------------
                                     agregarSubtotalDC = false;
                                     limpiarDetalle();
                                     add = false;
@@ -4477,29 +4504,76 @@ public void limpiarTablaCompra(){
                             //Complemento para agregar el detalle compra de otro producto al modelo
                             if(agregarSubtotalDC==true){
                                 agregarDetalle();
+                                
+                                if(tipoCompra.equals("C")){
+                                SubtotalPC = String.valueOf(df.format(Double.parseDouble(CostoUnitarioPC)*Double.parseDouble(CantidadPC)));  
+                                ivaAnterior = txtIvaCompra.getText();
+                                ivaCompra = String.valueOf(df.format(Double.parseDouble(SubtotalPC)-(Double.parseDouble(SubtotalPC)/1.13)));
+                                percepcionAnterior = txtPercepcionCompra.getText();
+                                percepcionCompra = String.valueOf(df.format(Double.parseDouble(SubtotalPC)-(Double.parseDouble(SubtotalPC)/1.01))); 
+                                SubtotalPC = String.valueOf(df.format(Double.parseDouble(SubtotalPC)-Double.parseDouble(ivaCompra)-Double.parseDouble(percepcionCompra)));
+                                detalleCompra[4] = SubtotalPC;   
+                                ivaCompra = String.valueOf(df.format(Double.parseDouble(ivaAnterior)+Double.parseDouble(ivaCompra)));
+                                percepcionCompra = String.valueOf(df.format(Double.parseDouble(percepcionAnterior)+Double.parseDouble(percepcionCompra)));
+                                addC=true;    
+                                }
+                                
+                                else{
                                 SubtotalPC = String.valueOf(df.format(Double.parseDouble(CostoUnitarioPC)* Double.parseDouble(CantidadPC)));
                                 detalleCompra[4] = SubtotalPC;
                                 SubtotalCompra = String.valueOf(df.format(Double.parseDouble(SubtotalCompra) + Double.parseDouble(SubtotalPC)));
                                 agregarSubtotalDC = false;
-                                add = true;
+                                add = true;  
+                                }
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                             }
                         }
                         
-
-
+                        
                         if(tipoCompra.equals("C")){
                             if(addC==true){
                         modeloAddCompra.addRow(detalleCompra); 
                         tblCompra.setModel(modeloAddCompra);
                         txtPercepcionCompra.setText(percepcionCompra);
-                        txtIvaCompra.setText(ivaCompra);
-                        txtSubtotalCompra.setText(SubtotalCompra);//Pongo el total actualizado
-                        txtTotalCompra.setText(TotalCompra);
+                        txtIvaCompra.setText(ivaCompra);   
+                       
+                        if(modeloAddCompra.getRowCount()==0){
+                        txtSubtotalCompra.setText(SubtotalCompra);//Pongo el subtotal actualizado
+                        txtTotalCompra.setText(TotalCompra);  
+                        }
+                        else{
+                            
+                      
+                            
+                        SubtotalCompra = String.valueOf(df.format(CalcularSubtotalCredito()));
+                        txtSubtotalCompra.setText(SubtotalCompra);//Pongo el subtotal actualizado
+                        TotalCompra = String.valueOf(df.format(Double.parseDouble(txtIvaCompra.getText()) + Double.parseDouble(txtPercepcionCompra.getText()) + Double.parseDouble(txtSubtotalCompra.getText())));
+                        txtTotalCompra.setText(TotalCompra);//Pongo el total actualizado 
+                        }
+                        
+                        
                         limpiarCompra();
                         limpiarDetalle();
                         }
+                            
+                            
                             else{
-                                
+                                  tblCompra.setModel(modeloAddCompra);
+                                  txtPercepcionCompra.setText(percepcionCompra);
+                                  txtIvaCompra.setText(ivaCompra);
+                                  SubtotalCompra = String.valueOf(df.format(CalcularSubtotalCredito()));
+                                  txtSubtotalCompra.setText(SubtotalCompra);//Pongo el subtotal actualizado
+                                  TotalCompra = String.valueOf(df.format(Double.parseDouble(txtIvaCompra.getText()) + Double.parseDouble(txtPercepcionCompra.getText()) + Double.parseDouble(txtSubtotalCompra.getText())));
+                                  txtTotalCompra.setText(TotalCompra);//Pongo el total actualizado
+                                  limpiarCompra();
+                                  limpiarDetalle();
                                 
                             }
                         }
@@ -4548,20 +4622,64 @@ public void limpiarTablaCompra(){
 
     }//GEN-LAST:event_txtCostoProductoCompraKeyPressed
 
+    public double CalcularSubtotalCredito() {
+        double Sub=0.0;
+        
+        for(int j=0;j<modeloAddCompra.getRowCount();j++){
+            Sub = Sub + Double.parseDouble(modeloAddCompra.getValueAt(j, 4).toString());
+        }
+        
+        return Sub;
+    }
+    
     private void tblCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCompraMouseClicked
       if(evt.getClickCount()== 2){
      
           filaEliminar = tblCompra.getSelectedRow();
          
           if(txtCodBarraCompra.getText().isEmpty()){
-                txtCodBarraCompra.setText(modeloAddCompra.getValueAt(filaEliminar, 0).toString());
-                txtNombreProductoCompra.setText(modeloAddCompra.getValueAt(filaEliminar, 1).toString());
-                txtCantidadCompra.setText(modeloAddCompra.getValueAt(filaEliminar, 2).toString());
-                txtCostoProductoCompra.setText(modeloAddCompra.getValueAt(filaEliminar, 3).toString());
-                SubtotalCompra = String.valueOf(df.format(Double.parseDouble(SubtotalCompra) - Double.parseDouble(modeloAddCompra.getValueAt(filaEliminar, 4).toString())));
-                txtTotalCompra.setText(SubtotalCompra);
+                cargarDatos();
+               
+             
+                
+            if(tipoCompra.equals("C")){
+                
+                ivaCompra = txtIvaCompra.getText(); 
+                ivadc = String.valueOf(df.format((Double.parseDouble(modeloAddCompra.getValueAt(filaEliminar, 2).toString())*Double.parseDouble(modeloAddCompra.getValueAt(filaEliminar, 3).toString())- (Double.parseDouble(modeloAddCompra.getValueAt(filaEliminar, 2).toString())*Double.parseDouble(modeloAddCompra.getValueAt(filaEliminar, 3).toString())/1.13))));
+
+                ivaCompra = String.valueOf(df.format(Double.parseDouble(ivaCompra) - Double.parseDouble(ivadc)));
+               
+                                  
+                percepcionCompra = txtPercepcionCompra.getText();
+              
+                percepciondc = String.valueOf(df.format((Double.parseDouble(modeloAddCompra.getValueAt(filaEliminar, 2).toString())*Double.parseDouble(modeloAddCompra.getValueAt(filaEliminar, 3).toString())- (Double.parseDouble(modeloAddCompra.getValueAt(filaEliminar, 2).toString())*Double.parseDouble(modeloAddCompra.getValueAt(filaEliminar, 3).toString())/1.01))));
+             
+                percepcionCompra = String.valueOf(df.format(Double.parseDouble(percepcionCompra) - Double.parseDouble(percepciondc)));
+                
+                
+                txtIvaCompra.setText(ivaCompra);
+                txtPercepcionCompra.setText(percepcionCompra);
+              
+              //  SubtotalCompra = String.valueOf(df.format(Double.parseDouble(SubtotalCompra) - Double.parseDouble(modeloAddCompra.getValueAt(filaEliminar, 4).toString())));
+              modeloAddCompra.removeRow(filaEliminar);
+              SubtotalCompra = String.valueOf(CalcularSubtotalCredito());
+              txtSubtotalCompra.setText(SubtotalCompra);
+                
+              TotalCompra = String.valueOf(df.format(Double.parseDouble(txtIvaCompra.getText()) + Double.parseDouble(txtPercepcionCompra.getText()) + Double.parseDouble(txtSubtotalCompra.getText())));
+              txtTotalCompra.setText(TotalCompra);
+               
+
+              
+                
+            } 
+            else{
                 modeloAddCompra.removeRow(filaEliminar);
-                tblCompra.setModel(modeloAddCompra);   
+                SubtotalCompra = String.valueOf(CalcularSubtotalCredito());
+                txtTotalCompra.setText(SubtotalCompra);
+            }
+              
+               tblCompra.setModel(modeloAddCompra);  
+                
       }
       else{
           JOptionPane.showMessageDialog(null, "Agregue el producto actual antes de eliminar otro");
@@ -4573,6 +4691,14 @@ public void limpiarTablaCompra(){
       
     }//GEN-LAST:event_tblCompraMouseClicked
 
+    public void cargarDatos(){
+        txtCodBarraCompra.setText(modeloAddCompra.getValueAt(filaEliminar, 0).toString());
+        txtNombreProductoCompra.setText(modeloAddCompra.getValueAt(filaEliminar, 1).toString());
+        txtCantidadCompra.setText(modeloAddCompra.getValueAt(filaEliminar, 2).toString());
+        txtCostoProductoCompra.setText(modeloAddCompra.getValueAt(filaEliminar, 3).toString());
+    }
+    
+    
     private void btnGuardarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCompraActionPerformed
 
         if(modeloAddCompra.getRowCount()==0){
@@ -4589,6 +4715,11 @@ public void limpiarTablaCompra(){
            ivaCompra = "0.0";
            percepcionCompra = "0.0";
        } 
+       
+       else{
+           ivaCompra = txtIvaCompra.getText();
+           percepcionCompra = txtPercepcionCompra.getText();
+       }
         
        //Encontrando el Id de la sucursal por medio del cmb
         IdSucursalGC = "";
@@ -4621,7 +4752,6 @@ public void limpiarTablaCompra(){
         try {
             while(rsDC.next()){
                 IdProveedorGC = rsDC.getString("IdProveedor");
-                System.out.println(""+IdProveedorGC);
             }
         } catch (SQLException ex) {
             Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -4644,10 +4774,9 @@ public void limpiarTablaCompra(){
         
       //----------------------------
       
-      
+      agregarProductoBD = false; 
       String vectorCodigo[] = new String [modeloAddCompra.getRowCount()];
        rsDC=null;
-       ResultSet r = null;
        int filas = modeloAddCompra.getRowCount();
        int avance=0;
        //Cargo todos los CodBarra en el vector
@@ -4657,7 +4786,7 @@ public void limpiarTablaCompra(){
       //------------------------
       
        while(filas>avance){
-                     
+                  
            try {
                agregarProductoBD = validarProductoRegistrado(vectorCodigo[avance]);
            } catch (Exception ex) {
@@ -4666,7 +4795,7 @@ public void limpiarTablaCompra(){
            //Para obtener el CostoUnitarioPC
            r = null;
            try {
-               r = cpr.Obtener(vectorCodigo[avance]);
+               r = cpr.BuscarProducto(vectorCodigo[avance]);
            } catch (Exception ex) {
                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
            }
@@ -4688,19 +4817,17 @@ public void limpiarTablaCompra(){
                } catch (Exception ex) {
                    Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                }
-               
                Object Ps[] = {IdSucursalGC,modeloAddCompra.getValueAt(avance,0).toString(),modeloAddCompra.getValueAt(avance,2).toString()};
-               cn.UID("Insert into inventario(IdSucursal, CodBarra, Cantidad) values ("+Ps[0]+",'"+Ps[1]+"',"+Ps[2]+")");
-               
+               cn.UID("Insert into inventario(IdSucursal, CodBarra, Cantidad) values ("+Ps[0]+",'"+Ps[1]+"',"+Ps[2]+");");
                Object Pdc[] = {IdCompraPC, modeloAddCompra.getValueAt(avance,0).toString(), modeloAddCompra.getValueAt(avance,2).toString(), modeloAddCompra.getValueAt(avance,3).toString()};
-               cn.UID("Insert into detallecompra(IdCompra, CodBarra, Cantidad, CostoUnitario) values ("+Pdc[0]+",'"+Pdc[1]+"',"+Pdc[2]+","+Pdc[3]+")");
+               cn.UID("Insert into detallecompra(IdCompra, CodBarra, Cantidad, CostoUnitario) values ("+Pdc[0]+",'"+Pdc[1]+"',"+Pdc[2]+","+Pdc[3]+");");
 
-               agregarProductoBD=false;
+              
            }
-           //Si hay que modificar solo las cantidades y el costo
-           else{
+           //Si hay que modificar solo las inventario.cantidad y el producto.costo
+           else if (agregarProductoBD==false){
             r = null;
-            r = cn.getValores("Select * from inventario where CodBarra='"+modeloAddCompra.getValueAt(avance, 0).toString()+"'");
+            r = cn.getValores("Select * from inventario where CodBarra='"+modeloAddCompra.getValueAt(avance, 0).toString()+"';");
             
             try {
                 while(r.next()){
@@ -4711,33 +4838,11 @@ public void limpiarTablaCompra(){
                 Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            //El producto solo se debe actualizar en la tabla inventario.Cantidad, la tabla producto y detallecompra
-            if(IdSucursalPC.equals(IdSucursalGC)){
-                CantidadPC = String.valueOf(Double.parseDouble(CantidadPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance, 2).toString()));
-                cn.UID("UPDATE inventario SET Cantidad='" + CantidadPC + "'WHERE CodBarra='" + modeloAddCompra.getValueAt(avance, 0) + "' AND IdSucursal='"+IdSucursalPC+"';");
-              
-                Object Pdc[] = {IdCompraPC, modeloAddCompra.getValueAt(avance,0).toString(), modeloAddCompra.getValueAt(avance,2).toString(), modeloAddCompra.getValueAt(avance,3).toString()};
-                cn.UID("Insert into detallecompra(IdCompra, CodBarra, Cantidad, CostoUnitario) values ("+Pdc[0]+",'"+Pdc[1]+"',"+Pdc[2]+","+Pdc[3]+")");
-
-                //para modificar el CostoUnitario de un producto
-                if(!CostoUnitarioPC.equals(modeloAddCompra.getValueAt(avance,3).toString())){
-                    CostoUnitarioPC = String.valueOf(df.format((Double.parseDouble(CostoUnitarioPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance,3).toString()))/2));
-                    Object Prm[] = {modeloAddCompra.getValueAt(avance,0).toString(),modeloAddCompra.getValueAt(avance,1).toString(),CostoUnitarioPC};
-                    try {  
-                        cpr.Modificar(Prm);
-                    } catch (Exception ex) {
-                        Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                //------------------------------------------------
-            }
-            
-            //----------------------------------------------------------------------------------------------------------------
             //Si es distinta sucursal
-            else{
-                cn.UID("Insert into inventario(IdSucursal, CodBarra, Cantidad) values ('"+IdSucursalGC+"','"+modeloAddCompra.getValueAt(avance, 0)+"','"+modeloAddCompra.getValueAt(avance, 2)+"')");
-                Object Pdc[] = {IdCompraPC, modeloAddCompra.getValueAt(avance,0).toString(), modeloAddCompra.getValueAt(avance,2).toString(), modeloAddCompra.getValueAt(avance,3).toString()};
-                cn.UID("Insert into detallecompra(IdCompra, CodBarra, Cantidad, CostoUnitario) values ("+Pdc[0]+",'"+Pdc[1]+"',"+Pdc[2]+","+Pdc[3]+")");
+            if (IdSucursalPC!=IdSucursalGC){
+                cn.UID("Insert into inventario(IdSucursal, CodBarra, Cantidad) values ('"+IdSucursalGC+"','"+modeloAddCompra.getValueAt(avance, 0)+"','"+modeloAddCompra.getValueAt(avance, 2)+"');");
+                Object Pd[] = {IdCompraPC, modeloAddCompra.getValueAt(avance,0).toString(), modeloAddCompra.getValueAt(avance,2).toString(), modeloAddCompra.getValueAt(avance,3).toString()};
+                cn.UID("Insert into detallecompra(IdCompra, CodBarra, Cantidad, CostoUnitario) values ("+Pd[0]+",'"+Pd[1]+"',"+Pd[2]+","+Pd[3]+");");
                // para modificar el CostoUnitario de un producto
                 if(!CostoUnitarioPC.equals(modeloAddCompra.getValueAt(avance,3).toString())){
                     CostoUnitarioPC = String.valueOf(df.format((Double.parseDouble(CostoUnitarioPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance,3).toString()))/2));
@@ -4749,11 +4854,38 @@ public void limpiarTablaCompra(){
                     }
                 }
             }
+            else if (IdSucursalPC.equals(IdSucursalGC)){
+                System.out.println("aqui si");
+                 //El producto solo se debe actualizar en la tabla inventario.Cantidad, la tabla producto y detallecompra
+                CantidadPC = String.valueOf(Double.parseDouble(CantidadPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance, 2).toString()));
+                cn.UID("Update inventario SET Cantidad= '" + CantidadPC + "' WHERE CodBarra= '" + modeloAddCompra.getValueAt(avance, 0).toString() + "' AND IdSucursal= '"+IdSucursalGC+"';");
+                Object Pdc[] = {IdCompraPC, modeloAddCompra.getValueAt(avance,0).toString(), modeloAddCompra.getValueAt(avance,2).toString(), modeloAddCompra.getValueAt(avance,3).toString()};
+                cn.UID("Insert into detallecompra(IdCompra, CodBarra, Cantidad, CostoUnitario) values ("+Pdc[0]+",'"+Pdc[1]+"',"+Pdc[2]+","+Pdc[3]+");");
+                //para modificar el CostoUnitario de un producto
+                if(!CostoUnitarioPC.equals(modeloAddCompra.getValueAt(avance,3).toString())){
+                    CostoUnitarioPC = String.valueOf(df.format((Double.parseDouble(CostoUnitarioPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance,3).toString()))/2));
+                    Object Prm[] = {modeloAddCompra.getValueAt(avance,0).toString(),modeloAddCompra.getValueAt(avance,1).toString(),CostoUnitarioPC};
+                    try {  
+                        cpr.Modificar(Prm);
+                    } catch (Exception ex) {
+                        Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                //------------------------------------------------
+           
+            }
+           
+            
+         
+            
+            
             
            }
         avance++;
        }
-            
+          
+       jpnRegistroCompra.setEnabled(false);
+       
         }
         
     }//GEN-LAST:event_btnGuardarCompraActionPerformed
@@ -5568,15 +5700,16 @@ public void limpiarTablaCompra(){
 
     private void btnVerDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDetalleActionPerformed
     //Método para cargar todos los detalleCompras  
+    limpiarTablaDetalleCompra();
     ResultSet dc = null;
     ResultSet dcNom = null;
     String Nom = "";
      ControladorCompra cp = new ControladorCompra();
      ControladorProducto cP = new ControladorProducto();
-                String IdCompra = modeloCompra.getValueAt(tblCompras.getSelectedRow(), 0).toString();
-                String IdProveedor = modeloCompra.getValueAt(tblCompras.getSelectedRow(), 1).toString();
-                String Fecha= modeloCompra.getValueAt(tblCompras.getSelectedRow(), 2).toString();
-                String Total = modeloCompra.getValueAt(tblCompras.getSelectedRow(), 3).toString();
+     String IdCompra = modeloCompra.getValueAt(tblCompras.getSelectedRow(), 0).toString();
+     String IdProveedor = modeloCompra.getValueAt(tblCompras.getSelectedRow(), 1).toString();
+     String Fecha= modeloCompra.getValueAt(tblCompras.getSelectedRow(), 2).toString();
+     String Total = modeloCompra.getValueAt(tblCompras.getSelectedRow(), 3).toString();
             txtCodBarraProductos1.setText(""+IdCompra);
             txtNombreProductos1.setText(""+IdProveedor);
             txtTotalCompraDetalle.setText(""+Total);
@@ -5615,16 +5748,21 @@ public void limpiarTablaCompra(){
     }//GEN-LAST:event_btnVerDetalleActionPerformed
 
     private void btnAtrasDetalleCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasDetalleCompraActionPerformed
-btnVerDetalle.setEnabled(false);
+        btnVerDetalle.setEnabled(false);
+        cmbFiltroSucursalCompra.requestFocus();
     }//GEN-LAST:event_btnAtrasDetalleCompraActionPerformed
 
 
     private void txtNombreProductoCompraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProductoCompraKeyPressed
-        txtCantidadCompra.requestFocus();
+          if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+          txtCantidadCompra.requestFocus();
+      }
     }//GEN-LAST:event_txtNombreProductoCompraKeyPressed
 
     private void txtCantidadCompraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadCompraKeyPressed
-        txtCostoProductoCompra.requestFocus();
+      if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+          txtCostoProductoCompra.requestFocus();
+      }
     }//GEN-LAST:event_txtCantidadCompraKeyPressed
 
     private void txtCantidadVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadVenderActionPerformed
