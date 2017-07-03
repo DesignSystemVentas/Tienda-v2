@@ -2559,7 +2559,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtNombreProductoVender.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jpnRegistrarVenta.add(txtNombreProductoVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 300, 40));
 
-        txtCantidadVender.setText("1");
         txtCantidadVender.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtCantidadVender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2596,11 +2595,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistrarVenta.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, -1, 10));
 
         txtCodigoBarraVender.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodigoBarraVenderKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoBarraVenderKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoBarraVenderKeyTyped(evt);
             }
         });
         jpnRegistrarVenta.add(txtCodigoBarraVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 120, 40));
@@ -4918,7 +4917,9 @@ public void limpiarTablaCompra(){
     }//GEN-LAST:event_btnHacerNuevaVentaMouseExited
 
     private void btnHacerNuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHacerNuevaVentaActionPerformed
-//Para poner la fecha
+          btnVender.setVisible(false);
+          txtCantidadVender.setEnabled(false);
+        //Para poner la fecha
         dia = calendar.get(Calendar.DATE);
         mes = calendar.get(Calendar.MONTH)+1;
         anio = calendar.get(Calendar.YEAR);
@@ -5323,7 +5324,7 @@ public void limpiarTablaCompra(){
                 }                
             }
         } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
-        }
+        }btnVender.setVisible(false);
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnAgregarProductoVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaMouseEntered
@@ -5335,6 +5336,18 @@ public void limpiarTablaCompra(){
     }//GEN-LAST:event_btnAgregarProductoVentaMouseExited
 
     private void btnAgregarProductoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaActionPerformed
+        
+        if(txtNombreProductoVender.getText().length()==0){
+            JOptionPane.showMessageDialog(null, "realize de nuevo el proceso");
+            txtCodigoBarraVender.requestFocus();
+            txtCantidadVender.setText("");
+        } else {
+        
+        if(txtCantidadVender.getText().length()==0){
+            JOptionPane.showMessageDialog(null, "debe ingresar la cantidad");
+       }
+        else{
+            btnVender.setVisible(true);
         tipoventa = 1;
         CodigoBarraVender = txtCodigoBarraVender.getText();
         int posicioncmbTipoFactura=cmbTipoFacturaParametro.getSelectedIndex();
@@ -5539,11 +5552,19 @@ public void limpiarTablaCompra(){
             txtSumas.setText("$"+total);
             txtTotalventaGravado.setText("$"+total);
         }
-        //FINALIZADO (LIBRE)//
+        //FINALIZADO (LIBRE)//                                    
+        } 
+        }
     }//GEN-LAST:event_btnAgregarProductoVentaActionPerformed
 
     private void txtCodigoBarraVenderKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoBarraVenderKeyPressed
-        if (evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER){
+        if (evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER){               
+            if(txtCodigoBarraVender.getText().length()==0){
+            JOptionPane.showMessageDialog(null, "debe ingresar el codigo del producto");
+            txtCodigoBarraVender.requestFocus();   
+            txtCantidadVender.setEnabled(false);
+       }
+        else{
             //busacado de nombre y precio//
             try {
                 rstControladorProducto = cp.buscarNYP((String)txtCodigoBarraVender.getText());
@@ -5556,8 +5577,10 @@ public void limpiarTablaCompra(){
                     txtNombreProductoVender.setText(rstControladorProducto.getString("Nombre"));
                 }
             } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
-            txtCantidadVender.requestFocus();
-        }//finalizado (buscado de nombre y precio)//
+            txtCantidadVender.requestFocus();    
+            txtCantidadVender.setEnabled(true);
+            }            
+               }
     }//GEN-LAST:event_txtCodigoBarraVenderKeyPressed
 
     private void txtNRCventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNRCventaActionPerformed
