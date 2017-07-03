@@ -4848,7 +4848,8 @@ public void limpiarTablaCompra(){
     }//GEN-LAST:event_btnHacerNuevaVentaMouseExited
 
     private void btnHacerNuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHacerNuevaVentaActionPerformed
-//Para poner la fecha
+          btnVender.setVisible(false);
+        //Para poner la fecha
         dia = calendar.get(Calendar.DATE);
         mes = calendar.get(Calendar.MONTH)+1;
         anio = calendar.get(Calendar.YEAR);
@@ -5253,7 +5254,7 @@ public void limpiarTablaCompra(){
                 }                
             }
         } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
-        }
+        }btnVender.setVisible(false);
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnAgregarProductoVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaMouseEntered
@@ -5265,6 +5266,7 @@ public void limpiarTablaCompra(){
     }//GEN-LAST:event_btnAgregarProductoVentaMouseExited
 
     private void btnAgregarProductoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaActionPerformed
+        btnVender.setVisible(true);
         tipoventa = 1;
         CodigoBarraVender = txtCodigoBarraVender.getText();
         int posicioncmbTipoFactura=cmbTipoFacturaParametro.getSelectedIndex();
