@@ -1,6 +1,7 @@
 
 package frame;
 
+import Reportes.VentasMes;
 import controlador.Conexion;
 import controlador.ControladorCompra;
 import controlador.ControladorProducto;
@@ -17,9 +18,11 @@ import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -27,9 +30,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -160,7 +171,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         mAgregarDVenta.addColumn("Codigo Barra");
         mAgregarDVenta.addColumn("Producto");
         mAgregarDVenta.addColumn("Cantidad");
-        mAgregarDVenta.addColumn("Costo");
+        mAgregarDVenta.addColumn("Precio unitario");
         mAgregarDVenta.addColumn("SubTotal");        
         tblRegistrarVenta.setModel(mAgregarDVenta);
         //para ReporteVenta
@@ -168,7 +179,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         ReporteVenta.addColumn("Documento");
         ReporteVenta.addColumn("Cliente");
         ReporteVenta.addColumn("NRC");
-        ReporteVenta.addColumn("TotalVentas");        
+        ReporteVenta.addColumn("Total");        
         tblReporteVentas.setModel(ReporteVenta);
         //VIZCARRA//
 
@@ -685,6 +696,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel63 = new javax.swing.JLabel();
         txtVentasGravadas = new javax.swing.JTextField();
         jLabel64 = new javax.swing.JLabel();
+        btnPDF = new javax.swing.JButton();
         jpnUtilidadMenuVentasParametros = new javax.swing.JPanel();
         jPanel52 = new javax.swing.JPanel();
         lblProveedores11 = new javax.swing.JLabel();
@@ -2736,6 +2748,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel64.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel64.setText("Ventas netas gravadas locales");
         jpnReporteVentas.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 400, -1, -1));
+
+        btnPDF.setText("PDF");
+        btnPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPDFActionPerformed(evt);
+            }
+        });
+        jpnReporteVentas.add(btnPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, -1, -1));
 
         getContentPane().add(jpnReporteVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -5762,6 +5782,28 @@ btnVerDetalle.setEnabled(false);
         //finalizar()/llenado cmbSucursal, IdVenta y cmbUtilidad/             
     }//GEN-LAST:event_btnVentasActionPerformed
 
+    private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
+                VentasMes rv;// Instaciamos la clase empleado
+        List <VentasMes>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
+        for(int i=0; i<tblReporteVentas.getRowCount(); i++){ // Iterena cada fila de la tabla
+            rv = new VentasMes(tblReporteVentas.getValueAt(i, 0).toString(),tblReporteVentas.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
+            tblReporteVentas.getValueAt(i, 2).toString(),tblReporteVentas.getValueAt(i, 3).toString(),tblReporteVentas.getValueAt(i,4).toString());
+            lista.add(rv); //Agregamos el objeto empleado a la lista
+        }
+        JasperReport reporte; // Instaciamos el objeto reporte
+//        C:\Users\Vizcarra\Desktop\MANANA\Tienda-v2\src\Reportes
+        String path = " C:\\Users\\Vizcarra\\Desktop\\MANANA\\Tienda-v2\\src\\Reportes\\ReporteVenta.jasper "; //Ponemos la localizacion del reporte creado
+        try {
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
+            JasperViewer viewer = new JasperViewer(jprint, false); //Se crea la vista del reportes
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Se declara con dispose_on_close para que no se cierre el programa cuando se cierre el reporte
+            viewer.setVisible(true); //Se vizualiza el reporte
+        } catch (JRException ex) {
+           
+        }
+    }//GEN-LAST:event_btnPDFActionPerformed
+
 
     public void agregarDetalle(){
         detalleCompra[0] = CodBarraPC;    
@@ -6096,6 +6138,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JButton btnNuevoProducto;
     private javax.swing.JButton btnNuevoSucursales;
     private javax.swing.JButton btnNuevoTipoPrecio;
+    private javax.swing.JButton btnPDF;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnProveedores1;
     private javax.swing.JButton btnRegresarPaeametroVentas;
