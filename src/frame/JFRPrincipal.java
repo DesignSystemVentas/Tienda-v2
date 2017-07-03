@@ -494,7 +494,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores3 = new javax.swing.JLabel();
         lblListadoCompras = new javax.swing.JLabel();
         jSeparator35 = new javax.swing.JSeparator();
-        cmbFiltroSucursalCompra = new javax.swing.JComboBox<String>();
+        cmbFiltroSucursalCompra = new javax.swing.JComboBox<>();
         lblFiltrarCompra = new javax.swing.JLabel();
         jpnRegistroCompra = new javax.swing.JPanel();
         btnGuardarCompra = new javax.swing.JButton();
@@ -504,7 +504,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        cmbSucursalCompra = new javax.swing.JComboBox<String>();
+        cmbSucursalCompra = new javax.swing.JComboBox<>();
         lblSucursalCompra = new javax.swing.JLabel();
         txtIdCompra = new javax.swing.JTextField();
         lblIdCompra = new javax.swing.JLabel();
@@ -1594,7 +1594,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnCompras.add(lblListadoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 200, -1));
         jpnCompras.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 117, 200, 10));
 
-        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         cmbFiltroSucursalCompra.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFiltroSucursalCompraItemStateChanged(evt);
@@ -1722,15 +1722,18 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.add(jPanel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 50));
 
         lblProveedor.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblProveedor.setForeground(new java.awt.Color(1, 1, 1));
         lblProveedor.setText("Proveedor:");
         jpnRegistroCompra.add(lblProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 90, 30));
 
         lblSubtotalCompra.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblSubtotalCompra.setForeground(new java.awt.Color(1, 4, 4));
         lblSubtotalCompra.setText("SubTotal:");
         jpnRegistroCompra.add(lblSubtotalCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 510, -1, 40));
         jpnRegistroCompra.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 580, 50, 40));
 
         lblCodBarraProd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCodBarraProd.setForeground(new java.awt.Color(1, 1, 1));
         lblCodBarraProd.setText("Código:");
         jpnRegistroCompra.add(lblCodBarraProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 80, 30));
 
@@ -1742,11 +1745,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.add(txtCodBarraCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 120, 30));
 
         lblNomProd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNomProd.setForeground(new java.awt.Color(2, 13, 16));
         lblNomProd.setText("Producto:");
         jpnRegistroCompra.add(lblNomProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 70, 30));
         jpnRegistroCompra.add(txtNombreProductoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 140, 30));
 
         lblCantidad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCantidad.setForeground(new java.awt.Color(0, 4, 5));
         lblCantidad.setText("Cantidad:");
         jpnRegistroCompra.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 70, 30));
         jpnRegistroCompra.add(txtCantidadCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 40, 30));
@@ -1760,6 +1765,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.add(jSeparator36, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 750, 10));
 
         lblCostoProductoCompra.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCostoProductoCompra.setForeground(new java.awt.Color(1, 1, 1));
         lblCostoProductoCompra.setText("Costo:");
         jpnRegistroCompra.add(lblCostoProductoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 194, 70, 20));
 
@@ -1774,10 +1780,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.add(txtIvaCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 520, 80, -1));
 
         lblIvaCompra.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        lblIvaCompra.setForeground(new java.awt.Color(1, 4, 4));
         lblIvaCompra.setText("IVA:");
         jpnRegistroCompra.add(lblIvaCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 520, -1, -1));
 
         lblPercepcionCompra.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        lblPercepcionCompra.setForeground(new java.awt.Color(1, 4, 4));
         lblPercepcionCompra.setText("Percepción:");
         jpnRegistroCompra.add(lblPercepcionCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 560, -1, -1));
 
@@ -1788,6 +1796,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.add(txtSubtotalCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 520, 90, -1));
 
         lblTotalCompra.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTotalCompra.setForeground(new java.awt.Color(1, 4, 4));
         lblTotalCompra.setText("TOTAL:");
         jpnRegistroCompra.add(lblTotalCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, 50, 40));
 
@@ -1799,6 +1808,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.add(txtNumDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 160, -1));
 
         lbltxtTipoCompra.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        lbltxtTipoCompra.setForeground(new java.awt.Color(1, 13, 17));
         lbltxtTipoCompra.setText("Tipo Compra:");
         jpnRegistroCompra.add(lbltxtTipoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
 
@@ -3050,6 +3060,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
+        limpiarTablaCompra();
         //-----------------------------
         //Para poner la fecha
         dia = calendar.get(Calendar.DATE);
@@ -4164,9 +4175,16 @@ public void llenarComprasRealizadasFiltro() throws Exception{
         }
 }
 
-    public void limpiarTablaComprasRealizadas(){
+public void limpiarTablaComprasRealizadas(){
  for (int i = 0; i < tblCompras.getRowCount(); i++) {
            modeloCompra.removeRow(i);
+           i-=1;
+       }
+}
+
+public void limpiarTablaCompra(){
+ for (int i = 0; i < tblCompra.getRowCount(); i++) {
+           modeloAddCompra.removeRow(i);
            i-=1;
        }
 }
@@ -4214,8 +4232,19 @@ public void llenarComprasRealizadasFiltro() throws Exception{
         String nombre = "";
         ControladorProducto cp = new ControladorProducto();
           if (evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER){
-            txtCantidadCompra.requestFocus();
-
+           
+                          
+            
+            for(int i=0; i<modeloAddCompra.getRowCount();i++){
+                              
+                                //Validar que el producto ya este en la tabla
+                                if(modeloAddCompra.getValueAt(i,0).toString().equals(txtCodBarraCompra.getText())){
+                                    txtNombreProductoCompra.setText(modeloAddCompra.getValueAt(i,1).toString());
+                                    break;
+                                }
+                            }
+            
+            
             try {
                 rsNameProd = cp.BuscarProducto(codigo);
                 
@@ -4240,7 +4269,15 @@ public void llenarComprasRealizadasFiltro() throws Exception{
                 txtNombreProductoCompra.setText(nombre);
                 txtCantidadCompra.setText("1");  
             }
-                      
+          
+            if(txtNombreProductoCompra.getText().isEmpty()){
+                txtNombreProductoCompra.requestFocus();
+            }
+            else{
+                txtCantidadCompra.requestFocus();
+            }
+            
+            
         } else if (evt.getKeyCode()==java.awt.event.KeyEvent.VK_DELETE){
         txtCodBarraCompra.setText("");
         txtNombreProductoCompra.setText("");                          
@@ -4471,6 +4508,22 @@ public void llenarComprasRealizadasFiltro() throws Exception{
            } catch (Exception ex) {
                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
            }
+           //Para obtener el CostoUnitarioPC
+           r = null;
+           try {
+               r = cpr.Obtener(vectorCodigo[avance]);
+           } catch (Exception ex) {
+               Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+           }
+    
+           try {
+               while(r.next()){
+                   CostoUnitarioPC = r.getString("Costo");
+               }
+           } catch (SQLException ex) {
+               Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           //-----------------------------------
            
            //Si hay que agregar un nuevo producto a la base de datos
            if(agregarProductoBD==true){
@@ -4489,9 +4542,69 @@ public void llenarComprasRealizadasFiltro() throws Exception{
 
                agregarProductoBD=false;
            }
-           
            //Si hay que modificar solo las cantidades y el costo
            else{
+            r = null;
+            r = cn.getValores("Select * from inventario where CodBarra='"+modeloAddCompra.getValueAt(avance, 0).toString()+"'");
+            
+            try {
+                while(r.next()){
+                   CantidadPC = r.getString("Cantidad");
+                   IdSucursalPC = r.getString("IdSucursal");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            //El producto solo se debe actualizar en la tabla inventario.Cantidad, la tabla producto y detallecompra
+            if(IdSucursalPC.equals(IdSucursalGC)){
+                CantidadPC = String.valueOf(Double.parseDouble(CantidadPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance, 2).toString()));
+                cn.UID("UPDATE inventario SET Cantidad='" + CantidadPC + "'WHERE CodBarra='" + modeloAddCompra.getValueAt(avance, 0) + "' AND IdSucursal='"+IdSucursalPC+"';");
+              
+                Object Pdc[] = {IdCompraPC, modeloAddCompra.getValueAt(avance,0).toString(), modeloAddCompra.getValueAt(avance,2).toString(), modeloAddCompra.getValueAt(avance,3).toString()};
+                cn.UID("Insert into detallecompra(IdCompra, CodBarra, Cantidad, CostoUnitario) values ("+Pdc[0]+",'"+Pdc[1]+"',"+Pdc[2]+","+Pdc[3]+")");
+
+                //para modificar el CostoUnitario de un producto
+                if(!CostoUnitarioPC.equals(modeloAddCompra.getValueAt(avance,3).toString())){
+                    CostoUnitarioPC = String.valueOf(df.format((Double.parseDouble(CostoUnitarioPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance,3).toString()))/2));
+                    Object Prm[] = {modeloAddCompra.getValueAt(avance,0).toString(),modeloAddCompra.getValueAt(avance,1).toString(),CostoUnitarioPC};
+                    try {  
+                        cpr.Modificar(Prm);
+                    } catch (Exception ex) {
+                        Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                //------------------------------------------------
+            }
+            
+            //----------------------------------------------------------------------------------------------------------------
+            //Si es distinta sucursal
+            else{
+                cn.UID("Insert into inventario(IdSucursal, CodBarra, Cantidad) values ('"+IdSucursalGC+"','"+modeloAddCompra.getValueAt(avance, 0)+"','"+modeloAddCompra.getValueAt(avance, 2)+"')");
+                Object Pdc[] = {IdCompraPC, modeloAddCompra.getValueAt(avance,0).toString(), modeloAddCompra.getValueAt(avance,2).toString(), modeloAddCompra.getValueAt(avance,3).toString()};
+                cn.UID("Insert into detallecompra(IdCompra, CodBarra, Cantidad, CostoUnitario) values ("+Pdc[0]+",'"+Pdc[1]+"',"+Pdc[2]+","+Pdc[3]+")");
+               // para modificar el CostoUnitario de un producto
+                if(!CostoUnitarioPC.equals(modeloAddCompra.getValueAt(avance,3).toString())){
+                    CostoUnitarioPC = String.valueOf(df.format((Double.parseDouble(CostoUnitarioPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance,3).toString()))/2));
+                    Object Prm[] = {modeloAddCompra.getValueAt(avance,0).toString(),modeloAddCompra.getValueAt(avance,1).toString(),CostoUnitarioPC};
+                    try {  
+                        cpr.Modificar(Prm);
+                    } catch (Exception ex) {
+                        Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+                
+               
+               
                
                
            }
@@ -4503,6 +4616,7 @@ public void llenarComprasRealizadasFiltro() throws Exception{
         
     }//GEN-LAST:event_btnGuardarCompraActionPerformed
 
+       
     private void btnHacerVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHacerVentaMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnHacerVentaMouseClicked

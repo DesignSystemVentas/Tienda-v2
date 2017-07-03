@@ -31,7 +31,6 @@ public class ControladorProducto {
      }
      
      public void Modificar(Object t[]) throws Exception{
-         
          try {
          cn.conectar();
          cn.UID("UPDATE producto SET Nombre='" + t[1] + "',Costo='" + t[2]+"'  WHERE CodBarra='" + t[0] + "'");
