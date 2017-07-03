@@ -497,7 +497,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores3 = new javax.swing.JLabel();
         lblListadoCompras = new javax.swing.JLabel();
         jSeparator35 = new javax.swing.JSeparator();
-        cmbFiltroSucursalCompra = new javax.swing.JComboBox<String>();
+        cmbFiltroSucursalCompra = new javax.swing.JComboBox<>();
         lblFiltrarCompra = new javax.swing.JLabel();
         jpnRegistroCompra = new javax.swing.JPanel();
         btnGuardarCompra = new javax.swing.JButton();
@@ -507,7 +507,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        cmbSucursalCompra = new javax.swing.JComboBox<String>();
+        cmbSucursalCompra = new javax.swing.JComboBox<>();
         lblSucursalCompra = new javax.swing.JLabel();
         txtIdCompra = new javax.swing.JTextField();
         lblIdCompra = new javax.swing.JLabel();
@@ -1604,7 +1604,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnCompras.add(lblListadoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 200, -1));
         jpnCompras.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 117, 200, 10));
 
-        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         cmbFiltroSucursalCompra.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFiltroSucursalCompraItemStateChanged(evt);
@@ -1748,6 +1748,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.add(lblCodBarraProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 80, 30));
 
         txtCodBarraCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodBarraCompraKeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodBarraCompraKeyPressed(evt);
             }
@@ -1772,6 +1775,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 70, 30));
 
         txtCantidadCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadCompraKeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCantidadCompraKeyPressed(evt);
             }
@@ -1792,6 +1798,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.add(lblCostoProductoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 194, 70, 20));
 
         txtCostoProductoCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCostoProductoCompraKeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCostoProductoCompraKeyPressed(evt);
             }
@@ -1823,6 +1832,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.add(lblTotalCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, 50, 40));
 
         txtNumDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumDocumentoKeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNumDocumentoKeyPressed(evt);
             }
@@ -2027,8 +2039,29 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             }
         });
         jpnNuevoProducto.add(btnSalirProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 500, 110, 30));
+
+        txtCodBarraProductos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodBarraProductosKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodBarraProductosKeyPressed(evt);
+            }
+        });
         jpnNuevoProducto.add(txtCodBarraProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 220, 30));
+
+        txtNombreProductos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreProductosKeyPressed(evt);
+            }
+        });
         jpnNuevoProducto.add(txtNombreProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 270, 30));
+
+        txtPrecioProductos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioProductosKeyTyped(evt);
+            }
+        });
         jpnNuevoProducto.add(txtPrecioProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 80, 30));
 
         jPanel46.setBackground(new java.awt.Color(0, 0, 0));
@@ -2466,6 +2499,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel49.add(lblFechaVentaMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 80, 30));
+
+        txtNuDocumentoVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNuDocumentoVentaKeyTyped(evt);
+            }
+        });
         jPanel49.add(txtNuDocumentoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 100, 30));
 
         jpnRegistrarVenta.add(jPanel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 100));
@@ -2522,6 +2561,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 txtCantidadVenderActionPerformed(evt);
             }
         });
+        txtCantidadVender.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadVenderKeyTyped(evt);
+            }
+        });
         jpnRegistrarVenta.add(txtCantidadVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 80, 40));
 
         btnAgregarProductoVenta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -2547,6 +2591,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistrarVenta.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, -1, 10));
 
         txtCodigoBarraVender.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoBarraVenderKeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoBarraVenderKeyPressed(evt);
             }
@@ -2587,7 +2634,18 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 txtNRCventaActionPerformed(evt);
             }
         });
+        txtNRCventa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNRCventaKeyTyped(evt);
+            }
+        });
         jpnRegistrarVenta.add(txtNRCventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 130, 80, 30));
+
+        txtNITventa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNITventaKeyTyped(evt);
+            }
+        });
         jpnRegistrarVenta.add(txtNITventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, 80, 30));
 
         lblCliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -5557,6 +5615,114 @@ btnVerDetalle.setEnabled(false);
     private void txtCantidadVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadVenderActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCantidadVenderActionPerformed
+
+    private void txtCodBarraCompraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodBarraCompraKeyTyped
+       char c = evt.getKeyChar();
+        if (!Character.isDigit(c) ) {
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_txtCodBarraCompraKeyTyped
+
+    private void txtCantidadCompraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadCompraKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) ) {
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_txtCantidadCompraKeyTyped
+
+    private void txtCostoProductoCompraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCostoProductoCompraKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && c != '.') {
+        getToolkit().beep();
+        evt.consume();
+        }
+        if (c == '.' && txtCostoProductoCompra.getText().contains(".")) {
+        evt.consume();
+        }
+    }//GEN-LAST:event_txtCostoProductoCompraKeyTyped
+
+    private void txtNumDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumDocumentoKeyTyped
+          char c = evt.getKeyChar();
+        if (!Character.isDigit(c) ) {
+        getToolkit().beep();
+        evt.consume();
+        }
+    
+    }//GEN-LAST:event_txtNumDocumentoKeyTyped
+
+    private void txtCodBarraProductosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodBarraProductosKeyTyped
+         char c = evt.getKeyChar();
+        if (!Character.isDigit(c) ) {
+        getToolkit().beep();
+        evt.consume();
+        }
+    
+    }//GEN-LAST:event_txtCodBarraProductosKeyTyped
+
+    private void txtPrecioProductosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioProductosKeyTyped
+      char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && c != '.') {
+        getToolkit().beep();
+        evt.consume();
+        }
+        if (c == '.' && txtPrecioProductos.getText().contains(".")) {
+        evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioProductosKeyTyped
+
+    private void txtNuDocumentoVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuDocumentoVentaKeyTyped
+      char c = evt.getKeyChar();
+        if (!Character.isDigit(c) ) {
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_txtNuDocumentoVentaKeyTyped
+
+    private void txtCodigoBarraVenderKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoBarraVenderKeyTyped
+       char c = evt.getKeyChar();
+        if (!Character.isDigit(c) ) {
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_txtCodigoBarraVenderKeyTyped
+
+    private void txtCantidadVenderKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadVenderKeyTyped
+       char c = evt.getKeyChar();
+        if (!Character.isDigit(c) ) {
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_txtCantidadVenderKeyTyped
+
+    private void txtNITventaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNITventaKeyTyped
+      char c = evt.getKeyChar();
+        if (!Character.isDigit(c) ) {
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_txtNITventaKeyTyped
+
+    private void txtNRCventaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNRCventaKeyTyped
+      char c = evt.getKeyChar();
+        if (!Character.isDigit(c) ) {
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_txtNRCventaKeyTyped
+
+    private void txtCodBarraProductosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodBarraProductosKeyPressed
+        if (evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER){
+        txtNombreProductos.requestFocus();
+        }
+    }//GEN-LAST:event_txtCodBarraProductosKeyPressed
+
+    private void txtNombreProductosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProductosKeyPressed
+        if (evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER){
+        txtPrecioProductos.requestFocus();
+        }
+    }//GEN-LAST:event_txtNombreProductosKeyPressed
 
 
     public void agregarDetalle(){
