@@ -5581,11 +5581,15 @@ btnVerDetalle.setEnabled(false);
 
 
     private void txtNombreProductoCompraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProductoCompraKeyPressed
-        txtCantidadCompra.requestFocus();
+          if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+          txtCantidadCompra.requestFocus();
+      }
     }//GEN-LAST:event_txtNombreProductoCompraKeyPressed
 
     private void txtCantidadCompraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadCompraKeyPressed
-        txtCostoProductoCompra.requestFocus();
+      if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+          txtCostoProductoCompra.requestFocus();
+      }
     }//GEN-LAST:event_txtCantidadCompraKeyPressed
 
     private void txtCantidadVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadVenderActionPerformed
