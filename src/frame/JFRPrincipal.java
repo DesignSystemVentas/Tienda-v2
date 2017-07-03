@@ -4660,7 +4660,11 @@ public void limpiarTablaCompra(){
     }//GEN-LAST:event_btnVerVentasMouseExited
 
     private void btnVerVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerVentasActionPerformed
-//        manejarcmbVentas();
+        for(int i=0;i < MenuVenta.getRowCount();i++){
+            MenuVenta.removeRow(i);
+            i-=1;
+        }
+
         jpnMenuVentas.setVisible(false);
         jpnVerVentasporSucursal.setVisible(true);
         int IdSucursal = cmbSucursalReporteVenta.getSelectedIndex() + 1;
@@ -4728,6 +4732,12 @@ public void limpiarTablaCompra(){
     }//GEN-LAST:event_btnHacerNuevaVentaMouseExited
 
     private void btnHacerNuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHacerNuevaVentaActionPerformed
+//Para poner la fecha
+        dia = calendar.get(Calendar.DATE);
+        mes = calendar.get(Calendar.MONTH)+1;
+        anio = calendar.get(Calendar.YEAR);
+        lblFechaVentaMostrar.setText(anio+"/"+mes+"/"+dia);
+        //------------------
         saberCodigoVenta();
         jpnUtilidadMenuVentasParametros.setVisible(false);
         jpnRegistrarVenta.setVisible(true);
@@ -4749,7 +4759,80 @@ public void limpiarTablaCompra(){
             lblNITventa.setVisible(false);
             lblNRCventa.setVisible(false);
             lblIVA.setVisible(false);
-            txtIVA.setVisible(false);
+            txtIVA.setVisible(false);            
+        }
+        int cantidadN=0, mayorN=0;           
+        int SaberNDocumento = cmbTipoFacturaParametro.getSelectedIndex();               
+        
+        if (SaberNDocumento==0) {
+            try {           
+            rstControladorVenta = controladorventa.NDocumento("FACTURA");
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} 
+        
+        try {                    
+           while (rstControladorVenta.next()) {
+                cantidadN = rstControladorVenta.getInt(1);
+                if (cantidadN != 0) {
+                    rstControladorVenta = null;
+                    try {
+                        //método en clase ventas
+                        rstControladorVenta = controladorventa.NDocumento("FACTURA");
+                    } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}                    
+                    while (rstControladorVenta.next()) {
+                        mayorN = rstControladorVenta.getInt(1) + 1;                                                     
+                        txtNuDocumentoVenta.setText(""+mayorN);                        
+                    }
+                } else if (cantidadN == 0) {
+                    txtNuDocumentoVenta.setText("1");
+                }                
+            }
+        } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
+        } else if (SaberNDocumento==1) {
+            try {           
+            rstControladorVenta = controladorventa.NDocumento("CREDITO FISCAL");
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} 
+        
+        try {                    
+           while (rstControladorVenta.next()) {
+                cantidadN = rstControladorVenta.getInt(1);
+                if (cantidadN != 0) {
+                    rstControladorVenta = null;
+                    try {
+                        //método en clase ventas
+                        rstControladorVenta = controladorventa.NDocumento("CREDITO FISCAL");
+                    } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}                    
+                    while (rstControladorVenta.next()) {
+                        mayorN = rstControladorVenta.getInt(1) + 1;                                                     
+                        txtNuDocumentoVenta.setText(""+mayorN);                        
+                    }
+                } else if (cantidadN == 0) {
+                    txtNuDocumentoVenta.setText("1");
+                }                
+            }
+        } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
+ 
+        } else if (SaberNDocumento==2) {            
+            try {           
+            rstControladorVenta = controladorventa.NDocumento("LIBRE");
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}         
+        try {                    
+           while (rstControladorVenta.next()) {
+                cantidadN = rstControladorVenta.getInt(1);
+                if (cantidadN != 0) {
+                    rstControladorVenta = null;
+                    try {
+                        //método en clase ventas
+                        rstControladorVenta = controladorventa.NDocumento("LIBRE");
+                    } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}                    
+                    while (rstControladorVenta.next()) {
+                        mayorN = rstControladorVenta.getInt(1) + 1;                                                     
+                        txtNuDocumentoVenta.setText(""+mayorN);                        
+                    }
+                } else if (cantidadN == 0) {
+                    txtNuDocumentoVenta.setText("1");
+                }                
+            }
+        } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
         }
     }//GEN-LAST:event_btnHacerNuevaVentaActionPerformed
 
@@ -4875,7 +4958,7 @@ public void limpiarTablaCompra(){
     }//GEN-LAST:event_btnVenderMousePressed
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        //Agrega cada item de detalle compra
+         //Agrega cada item de detalle compra
         int IdTipoPrecio = sabercmbUtilidadVenta + 1;
         int IdSucursal = sabercmbIdSucursal + 1;
         int IdVenta = Integer.parseInt(txtIdVenta.getText());
@@ -4977,6 +5060,84 @@ public void limpiarTablaCompra(){
         txtClienteVenta.setText("");
         txtCodigoBarraVender.requestFocus();
         saberCodigoVenta();
+        //Para poner la fecha
+        dia = calendar.get(Calendar.DATE);
+        mes = calendar.get(Calendar.MONTH)+1;
+        anio = calendar.get(Calendar.YEAR);
+        lblFechaVentaMostrar.setText(anio+"/"+mes+"/"+dia);
+        
+        int cantidadN=0, mayorN=0;           
+        int SaberNDocumento = cmbTipoFacturaParametro.getSelectedIndex();        
+        
+        if (SaberNDocumento==0) {
+            try {           
+            rstControladorVenta = controladorventa.NDocumento("FACTURA");
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} 
+        
+        try {                    
+           while (rstControladorVenta.next()) {
+                cantidadN = rstControladorVenta.getInt(1);
+                if (cantidadN != 0) {
+                    rstControladorVenta = null;
+                    try {
+                        //método en clase ventas
+                        rstControladorVenta = controladorventa.NDocumento("FACTURA");
+                    } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}                    
+                    while (rstControladorVenta.next()) {
+                        mayorN = rstControladorVenta.getInt(1) + 1;                                                     
+                        txtNuDocumentoVenta.setText(""+mayorN);                        
+                    }
+                } else if (cantidadN == 0) {
+                    txtNuDocumentoVenta.setText("1");
+                }                
+            }
+        } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
+        } else if (SaberNDocumento==1) {
+            try {           
+            rstControladorVenta = controladorventa.NDocumento("CREDITO FISCAL");
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} 
+        
+        try {                    
+           while (rstControladorVenta.next()) {
+                cantidadN = rstControladorVenta.getInt(1);
+                if (cantidadN != 0) {
+                    rstControladorVenta = null;
+                    try {
+                        //método en clase ventas
+                        rstControladorVenta = controladorventa.NDocumento("FACTURA");
+                    } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}                    
+                    while (rstControladorVenta.next()) {
+                        mayorN = rstControladorVenta.getInt(1) + 1;                                                     
+                        txtNuDocumentoVenta.setText(""+mayorN);                        
+                    }
+                } else if (cantidadN == 0) {
+                    txtNuDocumentoVenta.setText("1");
+                }                
+            }
+        } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
+        } else if (SaberNDocumento==2) {            
+            try {           
+            rstControladorVenta = controladorventa.NDocumento("FACTURA");
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}         
+        try {                    
+           while (rstControladorVenta.next()) {
+                cantidadN = rstControladorVenta.getInt(1);
+                if (cantidadN != 0) {
+                    rstControladorVenta = null;
+                    try {
+                        //método en clase ventas
+                        rstControladorVenta = controladorventa.NDocumento("LIBRE");
+                    } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}                    
+                    while (rstControladorVenta.next()) {
+                        mayorN = rstControladorVenta.getInt(1) + 1;                                                     
+                        txtNuDocumentoVenta.setText(""+mayorN);                        
+                    }
+                } else if (cantidadN == 0) {
+                    txtNuDocumentoVenta.setText("1");
+                }                
+            }
+        } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
+        }
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnAgregarProductoVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaMouseEntered

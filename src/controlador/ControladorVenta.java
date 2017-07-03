@@ -47,7 +47,13 @@ public class ControladorVenta {
             throw new ErrorTienda("Obtener IdVenta" + ex.getMessage());            
         }
    }
-
-    
-    
+public ResultSet NDocumento(String TipoVenta) throws ErrorTienda {        
+        
+        try{
+        Conexion cn = new Conexion();        
+        return (cn.getValores("SELECT COUNT(NDocumento) FROM venta WHERE TipoVenta = '" + TipoVenta + "'"));
+        } catch (Exception ex){
+            throw new ErrorTienda("Obtener IdVenta" + ex.getMessage());            
+        }
+        }    
 }
