@@ -2636,8 +2636,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores9.setBackground(new java.awt.Color(255, 255, 255));
         lblProveedores9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblProveedores9.setForeground(new java.awt.Color(255, 255, 255));
-        lblProveedores9.setText("REPORTE VENTAS MES");
-        jPanel51.add(lblProveedores9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 240, 50));
+        lblProveedores9.setText("Reporte de ventas por mes");
+        jPanel51.add(lblProveedores9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 260, 50));
 
         jpnReporteVentas.add(jPanel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 70));
 
@@ -2756,7 +2756,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores13.setBackground(new java.awt.Color(255, 255, 255));
         lblProveedores13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblProveedores13.setForeground(new java.awt.Color(255, 255, 255));
-        lblProveedores13.setText("MES");
+        lblProveedores13.setText("Mes");
         jPanel54.add(lblProveedores13, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 150, 50));
 
         jpnVentasReporteParametro.add(jPanel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 70));
@@ -2792,8 +2792,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores12.setBackground(new java.awt.Color(255, 255, 255));
         lblProveedores12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblProveedores12.setForeground(new java.awt.Color(255, 255, 255));
-        lblProveedores12.setText("VENTAS EFECTUADAS");
-        jPanel53.add(lblProveedores12, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 210, 50));
+        lblProveedores12.setText("Ventas efectuadas");
+        jPanel53.add(lblProveedores12, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 190, 50));
 
         jpnVerVentasporSucursal.add(jPanel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 70));
 
