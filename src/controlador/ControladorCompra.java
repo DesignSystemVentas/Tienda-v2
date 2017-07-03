@@ -42,7 +42,7 @@ public class ControladorCompra {
         
         try{
         cn.conectar();      
-        cn.UID("INSERT INTO compra(IdCompra,IdProveedor,IdSucursal,Fecha,TipoCompra,NumDocumento,Subtotal,IVA,Percepcion,Total) VALUES(" + p[0] + "," + p[1] + "," + p[2] + ",'" + p[3] + "','" + p[4] +"','" + p[5] +"'," + p[6] +"," + p[7] +"," + p[8] +"," + p[9] +")");
+        cn.UID("INSERT INTO compra(IdCompra,IdProveedor,IdSucursal,Fecha,TipoCompra,NumDocumento,Subtotal,IVA,Percepcion,Total) VALUES(" + p[0] + "," + p[1] + "," + p[2] + ",'" + p[3] + "','" + p[4] +"','" + p[5] +"'," + p[6] +"," + p[7] +"," + p[8] +"," + p[9] +");");
         } catch (Exception ex){
             throw new ErrorTienda("Insertar" + ex.getMessage());
         }finally{
