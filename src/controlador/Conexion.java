@@ -18,7 +18,7 @@ public class Conexion {
     
    private String url = "jdbc:mysql://localhost:3306/tienda2";
     private String login = "root"; //Administrador de MySQL
-    private String password = "12345";
+    private String password = "";
     private Connection cnx = null;
     private Statement sttm = null;
     private ResultSet rst = null;
