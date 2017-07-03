@@ -51,6 +51,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     ResultSet rstControladorProducto = null;
     ResultSet rstCSucursal = null;
     ResultSet rstTipoPrecio = null;
+    
     ControladorVenta controladorventa = new ControladorVenta();
     ControladorProducto cp = new ControladorProducto();
     ControladorSucursal cSucursal = new ControladorSucursal();
@@ -74,7 +75,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     int CantidadAnteriorPC, filaEliminar;
     double SubtotalAnteriorPC;
     //--
-    ResultSet rsFiltroCompra, rsCompra, rsSucursalFC, rsMayorIdC, rsNameProd, rsDC;
+    ResultSet rsFiltroCompra, rsCompra, rsSucursalFC, rsMayorIdC, rsNameProd, rsDC, r;
     DefaultComboBoxModel modeloSucursalFC = new DefaultComboBoxModel();//Combo filtro sucursal
     
     //--------------------------------------------------------
@@ -4652,7 +4653,8 @@ public void limpiarTablaDetalleCompra(){
                 
             } 
             else{
-                SubtotalCompra = String.valueOf(df.format(Double.parseDouble(SubtotalCompra) - Double.parseDouble(modeloAddCompra.getValueAt(filaEliminar, 4).toString())));
+                modeloAddCompra.removeRow(filaEliminar);
+                SubtotalCompra = String.valueOf(CalcularSubtotalCredito());
                 txtTotalCompra.setText(SubtotalCompra);
             }
               
@@ -4752,10 +4754,9 @@ public void limpiarTablaDetalleCompra(){
         
       //----------------------------
       
-      
+      agregarProductoBD = false; 
       String vectorCodigo[] = new String [modeloAddCompra.getRowCount()];
        rsDC=null;
-       ResultSet r = null;
        int filas = modeloAddCompra.getRowCount();
        int avance=0;
        //Cargo todos los CodBarra en el vector
@@ -4765,7 +4766,7 @@ public void limpiarTablaDetalleCompra(){
       //------------------------
       
        while(filas>avance){
-                     
+                  
            try {
                agregarProductoBD = validarProductoRegistrado(vectorCodigo[avance]);
            } catch (Exception ex) {
@@ -4774,7 +4775,7 @@ public void limpiarTablaDetalleCompra(){
            //Para obtener el CostoUnitarioPC
            r = null;
            try {
-               r = cpr.Obtener(vectorCodigo[avance]);
+               r = cpr.BuscarProducto(vectorCodigo[avance]);
            } catch (Exception ex) {
                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
            }
@@ -4803,41 +4804,22 @@ public void limpiarTablaDetalleCompra(){
 
               
            }
-           //Si hay que modificar solo las cantidades y el costo
+           //Si hay que modificar solo las inventario.cantidad y el producto.costo
            else if (agregarProductoBD==false){
             r = null;
-            r = cn.getValores("Select * from inventario where CodBarra='"+modeloAddCompra.getValueAt(avance, 0).toString()+"' and IdSucursal = '"+IdSucursalGC+"';");
+            r = cn.getValores("Select * from inventario where CodBarra='"+modeloAddCompra.getValueAt(avance, 0).toString()+"';");
             
             try {
                 while(r.next()){
                    CantidadPC = r.getString("Cantidad");
+                   IdSucursalPC = r.getString("IdSucursal");
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
-           
             
-            //El producto solo se debe actualizar en la tabla inventario.Cantidad, la tabla producto y detallecompra
-                CantidadPC = String.valueOf(Double.parseDouble(CantidadPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance, 2).toString()));
-                cn.UID("Update inventario SET Cantidad= '" + CantidadPC + "' WHERE CodBarra= '" + modeloAddCompra.getValueAt(avance, 0).toString() + "' AND IdSucursal= '"+IdSucursalPC+"';");
-                Object Pdc[] = {IdCompraPC, modeloAddCompra.getValueAt(avance,0).toString(), modeloAddCompra.getValueAt(avance,2).toString(), modeloAddCompra.getValueAt(avance,3).toString()};
-                cn.UID("Insert into detallecompra(IdCompra, CodBarra, Cantidad, CostoUnitario) values ("+Pdc[0]+",'"+Pdc[1]+"',"+Pdc[2]+","+Pdc[3]+");");
-                //para modificar el CostoUnitario de un producto
-                if(!CostoUnitarioPC.equals(modeloAddCompra.getValueAt(avance,3).toString())){
-                    CostoUnitarioPC = String.valueOf(df.format((Double.parseDouble(CostoUnitarioPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance,3).toString()))/2));
-                    Object Prm[] = {modeloAddCompra.getValueAt(avance,0).toString(),modeloAddCompra.getValueAt(avance,1).toString(),CostoUnitarioPC};
-                    try {  
-                        cpr.Modificar(Prm);
-                    } catch (Exception ex) {
-                        Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                //------------------------------------------------
-           
-            
-            //----------------------------------------------------------------------------------------------------------------
             //Si es distinta sucursal
-            if (CantidadPC.isEmpty()){
+            if (IdSucursalPC!=IdSucursalGC){
                 cn.UID("Insert into inventario(IdSucursal, CodBarra, Cantidad) values ('"+IdSucursalGC+"','"+modeloAddCompra.getValueAt(avance, 0)+"','"+modeloAddCompra.getValueAt(avance, 2)+"');");
                 Object Pd[] = {IdCompraPC, modeloAddCompra.getValueAt(avance,0).toString(), modeloAddCompra.getValueAt(avance,2).toString(), modeloAddCompra.getValueAt(avance,3).toString()};
                 cn.UID("Insert into detallecompra(IdCompra, CodBarra, Cantidad, CostoUnitario) values ("+Pd[0]+",'"+Pd[1]+"',"+Pd[2]+","+Pd[3]+");");
@@ -4852,6 +4834,29 @@ public void limpiarTablaDetalleCompra(){
                     }
                 }
             }
+            else if (IdSucursalPC.equals(IdSucursalGC)){
+                System.out.println("aqui si");
+                 //El producto solo se debe actualizar en la tabla inventario.Cantidad, la tabla producto y detallecompra
+                CantidadPC = String.valueOf(Double.parseDouble(CantidadPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance, 2).toString()));
+                cn.UID("Update inventario SET Cantidad= '" + CantidadPC + "' WHERE CodBarra= '" + modeloAddCompra.getValueAt(avance, 0).toString() + "' AND IdSucursal= '"+IdSucursalGC+"';");
+                Object Pdc[] = {IdCompraPC, modeloAddCompra.getValueAt(avance,0).toString(), modeloAddCompra.getValueAt(avance,2).toString(), modeloAddCompra.getValueAt(avance,3).toString()};
+                cn.UID("Insert into detallecompra(IdCompra, CodBarra, Cantidad, CostoUnitario) values ("+Pdc[0]+",'"+Pdc[1]+"',"+Pdc[2]+","+Pdc[3]+");");
+                //para modificar el CostoUnitario de un producto
+                if(!CostoUnitarioPC.equals(modeloAddCompra.getValueAt(avance,3).toString())){
+                    CostoUnitarioPC = String.valueOf(df.format((Double.parseDouble(CostoUnitarioPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance,3).toString()))/2));
+                    Object Prm[] = {modeloAddCompra.getValueAt(avance,0).toString(),modeloAddCompra.getValueAt(avance,1).toString(),CostoUnitarioPC};
+                    try {  
+                        cpr.Modificar(Prm);
+                    } catch (Exception ex) {
+                        Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                //------------------------------------------------
+           
+            }
+           
+            
+         
             
             
             
