@@ -497,7 +497,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores3 = new javax.swing.JLabel();
         lblListadoCompras = new javax.swing.JLabel();
         jSeparator35 = new javax.swing.JSeparator();
-        cmbFiltroSucursalCompra = new javax.swing.JComboBox<>();
+        cmbFiltroSucursalCompra = new javax.swing.JComboBox<String>();
         lblFiltrarCompra = new javax.swing.JLabel();
         jpnRegistroCompra = new javax.swing.JPanel();
         btnGuardarCompra = new javax.swing.JButton();
@@ -507,7 +507,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        cmbSucursalCompra = new javax.swing.JComboBox<>();
+        cmbSucursalCompra = new javax.swing.JComboBox<String>();
         lblSucursalCompra = new javax.swing.JLabel();
         txtIdCompra = new javax.swing.JTextField();
         lblIdCompra = new javax.swing.JLabel();
@@ -712,7 +712,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         tblMenuVentas = new javax.swing.JTable();
         lblSucursalMenuVenta = new javax.swing.JLabel();
-        cmbSucursalMenuVenta = new javax.swing.JComboBox();
+        cmbSucursalReporteVenta = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/iconos/lanzador.png")).getImage());
@@ -1604,7 +1604,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnCompras.add(lblListadoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 200, -1));
         jpnCompras.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 117, 200, 10));
 
-        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         cmbFiltroSucursalCompra.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFiltroSucursalCompraItemStateChanged(evt);
@@ -2515,8 +2515,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtNombreProductoVender.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jpnRegistrarVenta.add(txtNombreProductoVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 300, 40));
 
-        txtCantidadVender.setText("  1");
+        txtCantidadVender.setText("1");
         txtCantidadVender.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtCantidadVender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadVenderActionPerformed(evt);
+            }
+        });
         jpnRegistrarVenta.add(txtCantidadVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 80, 40));
 
         btnAgregarProductoVenta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -2646,8 +2651,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores9.setBackground(new java.awt.Color(255, 255, 255));
         lblProveedores9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblProveedores9.setForeground(new java.awt.Color(255, 255, 255));
-        lblProveedores9.setText("REPORTE VENTAS MES");
-        jPanel51.add(lblProveedores9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 240, 50));
+        lblProveedores9.setText("Reporte de ventas por mes");
+        jPanel51.add(lblProveedores9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 260, 50));
 
         jpnReporteVentas.add(jPanel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 70));
 
@@ -2766,7 +2771,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores13.setBackground(new java.awt.Color(255, 255, 255));
         lblProveedores13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblProveedores13.setForeground(new java.awt.Color(255, 255, 255));
-        lblProveedores13.setText("MES");
+        lblProveedores13.setText("Mes");
         jPanel54.add(lblProveedores13, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 150, 50));
 
         jpnVentasReporteParametro.add(jPanel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 70));
@@ -2802,8 +2807,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores12.setBackground(new java.awt.Color(255, 255, 255));
         lblProveedores12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblProveedores12.setForeground(new java.awt.Color(255, 255, 255));
-        lblProveedores12.setText("VENTAS EFECTUADAS");
-        jPanel53.add(lblProveedores12, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 210, 50));
+        lblProveedores12.setText("Ventas efectuadas");
+        jPanel53.add(lblProveedores12, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 190, 50));
 
         jpnVerVentasporSucursal.add(jPanel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 70));
 
@@ -2825,12 +2830,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblSucursalMenuVenta.setText("Sucursal");
         jpnVerVentasporSucursal.add(lblSucursalMenuVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 180, -1));
 
-        cmbSucursalMenuVenta.addItemListener(new java.awt.event.ItemListener() {
+        cmbSucursalReporteVenta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbSucursalMenuVentaItemStateChanged(evt);
+                cmbSucursalReporteVentaItemStateChanged(evt);
             }
         });
-        jpnVerVentasporSucursal.add(cmbSucursalMenuVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 180, -1));
+        jpnVerVentasporSucursal.add(cmbSucursalReporteVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 180, -1));
 
         getContentPane().add(jpnVerVentasporSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -2864,6 +2869,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnVentas);
             Principal(false);
             Ventas(true);
+            cmbSucursalReporteVenta.removeAllItems();
+            cmbSucursalParametro.removeAllItems();
+            cmbUtilidadParametro.removeAllItems();                        
     }//GEN-LAST:event_btnVentasMouseEntered
 
     private void btnVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentasMouseExited
@@ -2871,6 +2879,42 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             Animacion.Animacion.mover_izquierda(0, -126, 1, 2, btnVentas);  
             Principal(true);
             Ventas(false);
+                     try {
+            rstCSucursal = cSucursal.Obtener();
+            rstTipoPrecio = cTipoPrecio.ObtenerTipoPrecio();             
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} catch (Exception ex) {           
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }           
+
+        try {
+            String IdSucursal = "";
+            int IdSucursalVenta = 0;
+            //Sucursal
+            while (rstCSucursal.next()) {
+                mSucursal.addElement(rstCSucursal.getString(2));                 
+                IdSucursal = IdSucursal + " "+rstCSucursal.getString(1); 
+                mLlenarIdS.addElement(rstCSucursal.getString(1));          
+            }
+            cmbSucursalParametro.setModel(mSucursal);
+            cmbSucursalReporteVenta.setModel(mSucursal); 
+            txtSucursalVentaParametro.setText(String.valueOf(mLlenarIdS.getElementAt(0))); 
+            IdSucursalVenta = Integer.parseInt(String.valueOf(mLlenarIdS.getElementAt(0)));
+            SaberSucursalVentas = IdSucursalVenta;
+            //Utilidad
+            String Porcentaje = "";
+            while (rstTipoPrecio.next()) {
+                mUtilidad.addElement(rstTipoPrecio.getString(2)); 
+                Porcentaje = Porcentaje + " "+rstTipoPrecio.getString(3); 
+                mLlenarPoU.addElement(rstTipoPrecio.getString(3));          
+            }
+            double PorcentajeVenta=0;
+            PorcentajeVenta = Double.parseDouble((String.valueOf(mLlenarPoU.getElementAt(0))));
+            saberTipoUtilidadVenta = PorcentajeVenta;
+            PorcentajeVenta = PorcentajeVenta *100;
+             txtUtilidadVentaParametro.setText(String.valueOf(PorcentajeVenta)+"%");
+            cmbUtilidadParametro.setModel(mUtilidad);
+        } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}//finalizado (recorrer)//
+        //finalizar()/llenado cmbSucursal, IdVenta y cmbUtilidad/ 
     }//GEN-LAST:event_btnVentasMouseExited
 
     private void btnProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseEntered
@@ -2949,52 +2993,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasProveedoresMouseClicked
 
     private void btnVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentasMouseClicked
-              apagado();        apagado2();
-        jpnMenuVentas.setVisible(true);         
-        //llenar cmbSucursal y cmbUtilidad//  
-         try {
-            rstCSucursal = cSucursal.Obtener();
-            rstTipoPrecio = cTipoPrecio.ObtenerTipoPrecio();             
-        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} catch (Exception ex) {           
-            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }           
-        //iniciar recorrer//
-        try {
-
-//            mSucursal=null;
-//            mUtilidad=null;
-//            mLlenarIdS=null;
-//            mLlenarPoU=null;
-
-            String IdSucursal = "";
-            int IdSucursalVenta = 0;
-            //Sucursal
-            while (rstCSucursal.next()) {
-                mSucursal.addElement(rstCSucursal.getString(2));                 
-                IdSucursal = IdSucursal + " "+rstCSucursal.getString(1); 
-                mLlenarIdS.addElement(rstCSucursal.getString(1));          
-            }
-            cmbSucursalParametro.setModel(mSucursal);
-            cmbSucursalMenuVenta.setModel(mSucursal); 
-            txtSucursalVentaParametro.setText(String.valueOf(mLlenarIdS.getElementAt(0))); 
-            IdSucursalVenta = Integer.parseInt(String.valueOf(mLlenarIdS.getElementAt(0)));
-            SaberSucursalVentas = IdSucursalVenta;
-            //Utilidad
-            String Porcentaje = "";
-            while (rstTipoPrecio.next()) {
-                mUtilidad.addElement(rstTipoPrecio.getString(2)); 
-                Porcentaje = Porcentaje + " "+rstTipoPrecio.getString(3); 
-                mLlenarPoU.addElement(rstTipoPrecio.getString(3));          
-            }
-            double PorcentajeVenta=0;
-            PorcentajeVenta = Double.parseDouble((String.valueOf(mLlenarPoU.getElementAt(0))));
-            saberTipoUtilidadVenta = PorcentajeVenta;
-            PorcentajeVenta = PorcentajeVenta *100;
-//            txtUtilidadVentaParametro.setText(String.valueOf(mLlenarPoU.getElementAt(0))); 
-             txtUtilidadVentaParametro.setText(String.valueOf(PorcentajeVenta)+"%");
-            cmbUtilidadParametro.setModel(mUtilidad);
-        } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}//finalizado (recorrer)//
-        //finalizar()/llenado cmbSucursal, IdVenta y cmbUtilidad/ 
+              apagado();      
+              apagado2();
+        jpnMenuVentas.setVisible(true);                
     }//GEN-LAST:event_btnVentasMouseClicked
 
     private void btnNuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProductoActionPerformed
@@ -4745,10 +4746,14 @@ public void limpiarTablaCompra(){
     }//GEN-LAST:event_btnVerVentasMouseExited
 
     private void btnVerVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerVentasActionPerformed
-//        manejarcmbVentas();
+        for(int i=0;i < MenuVenta.getRowCount();i++){
+            MenuVenta.removeRow(i);
+            i-=1;
+        }
+
         jpnMenuVentas.setVisible(false);
         jpnVerVentasporSucursal.setVisible(true);
-        int IdSucursal = cmbSucursalMenuVenta.getSelectedIndex() + 1;
+        int IdSucursal = cmbSucursalReporteVenta.getSelectedIndex() + 1;
         try {
             rstControladorVenta = controladorventa.llenarVenta(1);
 
@@ -4813,6 +4818,12 @@ public void limpiarTablaCompra(){
     }//GEN-LAST:event_btnHacerNuevaVentaMouseExited
 
     private void btnHacerNuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHacerNuevaVentaActionPerformed
+//Para poner la fecha
+        dia = calendar.get(Calendar.DATE);
+        mes = calendar.get(Calendar.MONTH)+1;
+        anio = calendar.get(Calendar.YEAR);
+        lblFechaVentaMostrar.setText(anio+"/"+mes+"/"+dia);
+        //------------------
         saberCodigoVenta();
         jpnUtilidadMenuVentasParametros.setVisible(false);
         jpnRegistrarVenta.setVisible(true);
@@ -4834,7 +4845,80 @@ public void limpiarTablaCompra(){
             lblNITventa.setVisible(false);
             lblNRCventa.setVisible(false);
             lblIVA.setVisible(false);
-            txtIVA.setVisible(false);
+            txtIVA.setVisible(false);            
+        }
+        int cantidadN=0, mayorN=0;           
+        int SaberNDocumento = cmbTipoFacturaParametro.getSelectedIndex();               
+        
+        if (SaberNDocumento==0) {
+            try {           
+            rstControladorVenta = controladorventa.NDocumento("FACTURA");
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} 
+        
+        try {                    
+           while (rstControladorVenta.next()) {
+                cantidadN = rstControladorVenta.getInt(1);
+                if (cantidadN != 0) {
+                    rstControladorVenta = null;
+                    try {
+                        //método en clase ventas
+                        rstControladorVenta = controladorventa.NDocumento("FACTURA");
+                    } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}                    
+                    while (rstControladorVenta.next()) {
+                        mayorN = rstControladorVenta.getInt(1) + 1;                                                     
+                        txtNuDocumentoVenta.setText(""+mayorN);                        
+                    }
+                } else if (cantidadN == 0) {
+                    txtNuDocumentoVenta.setText("1");
+                }                
+            }
+        } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
+        } else if (SaberNDocumento==1) {
+            try {           
+            rstControladorVenta = controladorventa.NDocumento("CREDITO FISCAL");
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} 
+        
+        try {                    
+           while (rstControladorVenta.next()) {
+                cantidadN = rstControladorVenta.getInt(1);
+                if (cantidadN != 0) {
+                    rstControladorVenta = null;
+                    try {
+                        //método en clase ventas
+                        rstControladorVenta = controladorventa.NDocumento("CREDITO FISCAL");
+                    } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}                    
+                    while (rstControladorVenta.next()) {
+                        mayorN = rstControladorVenta.getInt(1) + 1;                                                     
+                        txtNuDocumentoVenta.setText(""+mayorN);                        
+                    }
+                } else if (cantidadN == 0) {
+                    txtNuDocumentoVenta.setText("1");
+                }                
+            }
+        } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
+ 
+        } else if (SaberNDocumento==2) {            
+            try {           
+            rstControladorVenta = controladorventa.NDocumento("LIBRE");
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}         
+        try {                    
+           while (rstControladorVenta.next()) {
+                cantidadN = rstControladorVenta.getInt(1);
+                if (cantidadN != 0) {
+                    rstControladorVenta = null;
+                    try {
+                        //método en clase ventas
+                        rstControladorVenta = controladorventa.NDocumento("LIBRE");
+                    } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}                    
+                    while (rstControladorVenta.next()) {
+                        mayorN = rstControladorVenta.getInt(1) + 1;                                                     
+                        txtNuDocumentoVenta.setText(""+mayorN);                        
+                    }
+                } else if (cantidadN == 0) {
+                    txtNuDocumentoVenta.setText("1");
+                }                
+            }
+        } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
         }
     }//GEN-LAST:event_btnHacerNuevaVentaActionPerformed
 
@@ -4913,13 +4997,13 @@ public void limpiarTablaCompra(){
         jpnReporteVentas.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void cmbSucursalMenuVentaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSucursalMenuVentaItemStateChanged
+    private void cmbSucursalReporteVentaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSucursalReporteVentaItemStateChanged
         rstControladorVenta = null;
         for(int i=0;i < MenuVenta.getRowCount();i++){
             MenuVenta.removeRow(i);
             i-=1;
         }
-        int IdSucursal = cmbSucursalMenuVenta.getSelectedIndex() + 1;
+        int IdSucursal = cmbSucursalReporteVenta.getSelectedIndex() + 1;
         try {
             rstControladorVenta = controladorventa.llenarVenta(IdSucursal);
 
@@ -4937,7 +5021,7 @@ public void limpiarTablaCompra(){
                 MenuVenta.addRow(datosVenta);
             }
         } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
-    }//GEN-LAST:event_cmbSucursalMenuVentaItemStateChanged
+    }//GEN-LAST:event_cmbSucursalReporteVentaItemStateChanged
 
     private void lblFechaVentaMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblFechaVentaMostrarActionPerformed
 
@@ -4960,7 +5044,7 @@ public void limpiarTablaCompra(){
     }//GEN-LAST:event_btnVenderMousePressed
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        //Agrega cada item de detalle compra
+         //Agrega cada item de detalle compra
         int IdTipoPrecio = sabercmbUtilidadVenta + 1;
         int IdSucursal = sabercmbIdSucursal + 1;
         int IdVenta = Integer.parseInt(txtIdVenta.getText());
@@ -5062,6 +5146,84 @@ public void limpiarTablaCompra(){
         txtClienteVenta.setText("");
         txtCodigoBarraVender.requestFocus();
         saberCodigoVenta();
+        //Para poner la fecha
+        dia = calendar.get(Calendar.DATE);
+        mes = calendar.get(Calendar.MONTH)+1;
+        anio = calendar.get(Calendar.YEAR);
+        lblFechaVentaMostrar.setText(anio+"/"+mes+"/"+dia);
+        
+        int cantidadN=0, mayorN=0;           
+        int SaberNDocumento = cmbTipoFacturaParametro.getSelectedIndex();        
+        
+        if (SaberNDocumento==0) {
+            try {           
+            rstControladorVenta = controladorventa.NDocumento("FACTURA");
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} 
+        
+        try {                    
+           while (rstControladorVenta.next()) {
+                cantidadN = rstControladorVenta.getInt(1);
+                if (cantidadN != 0) {
+                    rstControladorVenta = null;
+                    try {
+                        //método en clase ventas
+                        rstControladorVenta = controladorventa.NDocumento("FACTURA");
+                    } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}                    
+                    while (rstControladorVenta.next()) {
+                        mayorN = rstControladorVenta.getInt(1) + 1;                                                     
+                        txtNuDocumentoVenta.setText(""+mayorN);                        
+                    }
+                } else if (cantidadN == 0) {
+                    txtNuDocumentoVenta.setText("1");
+                }                
+            }
+        } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
+        } else if (SaberNDocumento==1) {
+            try {           
+            rstControladorVenta = controladorventa.NDocumento("CREDITO FISCAL");
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} 
+        
+        try {                    
+           while (rstControladorVenta.next()) {
+                cantidadN = rstControladorVenta.getInt(1);
+                if (cantidadN != 0) {
+                    rstControladorVenta = null;
+                    try {
+                        //método en clase ventas
+                        rstControladorVenta = controladorventa.NDocumento("FACTURA");
+                    } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}                    
+                    while (rstControladorVenta.next()) {
+                        mayorN = rstControladorVenta.getInt(1) + 1;                                                     
+                        txtNuDocumentoVenta.setText(""+mayorN);                        
+                    }
+                } else if (cantidadN == 0) {
+                    txtNuDocumentoVenta.setText("1");
+                }                
+            }
+        } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
+        } else if (SaberNDocumento==2) {            
+            try {           
+            rstControladorVenta = controladorventa.NDocumento("FACTURA");
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}         
+        try {                    
+           while (rstControladorVenta.next()) {
+                cantidadN = rstControladorVenta.getInt(1);
+                if (cantidadN != 0) {
+                    rstControladorVenta = null;
+                    try {
+                        //método en clase ventas
+                        rstControladorVenta = controladorventa.NDocumento("LIBRE");
+                    } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}                    
+                    while (rstControladorVenta.next()) {
+                        mayorN = rstControladorVenta.getInt(1) + 1;                                                     
+                        txtNuDocumentoVenta.setText(""+mayorN);                        
+                    }
+                } else if (cantidadN == 0) {
+                    txtNuDocumentoVenta.setText("1");
+                }                
+            }
+        } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
+        }
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnAgregarProductoVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaMouseEntered
@@ -5383,6 +5545,7 @@ public void limpiarTablaCompra(){
 btnVerDetalle.setEnabled(false);
     }//GEN-LAST:event_btnAtrasDetalleCompraActionPerformed
 
+
     private void txtNombreProductoCompraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProductoCompraKeyPressed
         txtCantidadCompra.requestFocus();
     }//GEN-LAST:event_txtNombreProductoCompraKeyPressed
@@ -5390,6 +5553,11 @@ btnVerDetalle.setEnabled(false);
     private void txtCantidadCompraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadCompraKeyPressed
         txtCostoProductoCompra.requestFocus();
     }//GEN-LAST:event_txtCantidadCompraKeyPressed
+
+    private void txtCantidadVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadVenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadVenderActionPerformed
+
 
     public void agregarDetalle(){
         detalleCompra[0] = CodBarraPC;    
@@ -5738,8 +5906,8 @@ public void limpiarTablaProducto(){
     private javax.swing.JComboBox<String> cmbFiltroSucursalCompra;
     private javax.swing.JComboBox cmbProveedorCompra;
     private javax.swing.JComboBox<String> cmbSucursalCompra;
-    private javax.swing.JComboBox cmbSucursalMenuVenta;
     private javax.swing.JComboBox cmbSucursalParametro;
+    private javax.swing.JComboBox cmbSucursalReporteVenta;
     private javax.swing.JComboBox cmbTipoFacturaParametro;
     private javax.swing.JComboBox cmbUtilidadParametro;
     private javax.swing.JButton jButton2;
