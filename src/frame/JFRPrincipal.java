@@ -111,6 +111,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     DefaultTableModel modeloSucursal = new DefaultTableModel();
     DefaultTableModel modeloParametro = new DefaultTableModel();
     DefaultTableModel modeloProducto = new DefaultTableModel();
+    DefaultTableModel modeloProveedor2 = new DefaultTableModel();
+    
    
     //****** COMPRAS *******
     boolean cargarSucursalesC=false;
@@ -516,7 +518,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores3 = new javax.swing.JLabel();
         lblListadoCompras = new javax.swing.JLabel();
         jSeparator35 = new javax.swing.JSeparator();
-        cmbFiltroSucursalCompra = new javax.swing.JComboBox<String>();
+        cmbFiltroSucursalCompra = new javax.swing.JComboBox<>();
         lblFiltrarCompra = new javax.swing.JLabel();
         jpnRegistroCompra = new javax.swing.JPanel();
         btnGuardarCompra = new javax.swing.JButton();
@@ -526,7 +528,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        cmbSucursalCompra = new javax.swing.JComboBox<String>();
+        cmbSucursalCompra = new javax.swing.JComboBox<>();
         lblSucursalCompra = new javax.swing.JLabel();
         txtIdCompra = new javax.swing.JTextField();
         lblIdCompra = new javax.swing.JLabel();
@@ -813,6 +815,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnProductosMouseEntered(evt);
+            }
+        });
+        btnProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductosActionPerformed(evt);
             }
         });
         jpnSubMenu.add(btnProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(-126, 120, 180, 40));
@@ -1630,7 +1637,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnCompras.add(lblListadoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 200, -1));
         jpnCompras.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 117, 200, 10));
 
-        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         cmbFiltroSucursalCompra.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFiltroSucursalCompraItemStateChanged(evt);
@@ -3410,7 +3417,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProveedores1MouseExited
 
     private void btnProveedores1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedores1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnProveedores1ActionPerformed
              
 
@@ -6053,6 +6060,10 @@ public void limpiarTablaDetalleCompra(){
 
     }//GEN-LAST:event_btnEliminarProductoVentaActionPerformed
 
+    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProductosActionPerformed
+
 
     public void agregarDetalle(){
         detalleCompra[0] = CodBarraPC;    
@@ -6215,6 +6226,36 @@ public void limpiarTablaParametro(){
            i-=1;
        }
 }
+public void llenarProveedor2() throws Exception{
+    ControladorProveedor tp = new ControladorProveedor();
+    limpiarTablaProveedor2();
+    ResultSet rs=null;
+    ResultSet rs2=null;
+    rs=tp.Obtener();
+    if (!rs.isBeforeFirst()) { 
+             System.out.println("No existe"); 
+}    else{
+         try {
+            while (rs.next()) {
+                String id = rs.getString("IdProveedor");
+                String nombre = rs.getString("Nombre");
+                String telefono = rs.getString("Telefono");
+                String dire=rs.getString("Direccion");
+                String nit = rs.getString("NIT");
+                String nrc = rs.getString("NRC");
+                String email = rs.getString("Email");
+//                
+//                rs2=tp.ObtenerSucursal(sucu);
+//                String nombreSucursal=rs2.getString("nombre");
+                modeloProveedor2.addRow(new String[]{id, nombre, telefono, dire, nit, nrc, email});
+                System.out.println("puso el modelo Producto");       
+            }
+        } catch (Exception e) {
+            throw  new ErrorTienda("No logra poner el modelo Producto()");
+        }
+        tblProveedores.setModel(modeloProveedor2);
+         }   
+}  
 
 public void llenarProducto() throws Exception{
     ControladorProducto tp=new ControladorProducto();
@@ -6292,6 +6333,12 @@ public void buscarProducto(String C) throws Exception{
         }
         jtblProductos.setModel(modeloProducto);
          }
+}
+public void limpiarTablaProveedor2(){
+ for (int i = 0; i < tblProveedores.getRowCount(); i++) {
+           modeloProveedor2.removeRow(i);
+           i-=1;
+       }
 }
 
 public void limpiarTablaProducto(){

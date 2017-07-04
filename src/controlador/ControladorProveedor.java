@@ -36,7 +36,7 @@ public class ControladorProveedor {
         } 
         return datos;
     }
-    
+   
 
 Conexion cn= new Conexion();
 
@@ -127,9 +127,8 @@ public class ProveedorControlador {
         // cn.desconectar();
          }
          return d;
-     }
+      } 
      
-    
     
 }
 
