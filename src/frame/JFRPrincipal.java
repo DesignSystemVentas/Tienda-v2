@@ -1774,11 +1774,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.add(lblCodBarraProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 80, 30));
 
         txtCodBarraCompra.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodBarraCompraKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodBarraCompraKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodBarraCompraKeyTyped(evt);
             }
         });
         jpnRegistroCompra.add(txtCodBarraCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 120, 30));
@@ -5027,6 +5027,7 @@ public void limpiarTablaDetalleCompra(){
     private void btnHacerNuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHacerNuevaVentaActionPerformed
           btnVender.setVisible(false);
           txtCantidadVender.setEnabled(false);
+          txtCodBarraCompra.requestFocus();
         //Para poner la fecha
         dia = calendar.get(Calendar.DATE);
         mes = calendar.get(Calendar.MONTH)+1;
@@ -5058,7 +5059,7 @@ public void limpiarTablaDetalleCompra(){
         }
         int cantidadN=0, mayorN=0;           
         int SaberNDocumento = cmbTipoFacturaParametro.getSelectedIndex();               
-        
+        //si es venta con factura
         if (SaberNDocumento==0) {
             try {           
             rstControladorVenta = controladorventa.NDocumento("FACTURA");
@@ -5082,7 +5083,9 @@ public void limpiarTablaDetalleCompra(){
                 }                
             }
         } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
-        } else if (SaberNDocumento==1) {
+        }
+        //si es venta con credito fiscal
+               else if (SaberNDocumento==1) {
             try {           
             rstControladorVenta = controladorventa.NDocumento("CREDITO FISCAL");
         } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} 
@@ -5105,7 +5108,7 @@ public void limpiarTablaDetalleCompra(){
                 }                
             }
         } catch (SQLException ex) {JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);}//TERMINA METODO PARA BUSCAR IDCOMPRA       
- 
+ // si es venta libre
         } else if (SaberNDocumento==2) {            
             try {           
             rstControladorVenta = controladorventa.NDocumento("LIBRE");
