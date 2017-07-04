@@ -11,10 +11,6 @@ public class VentasMes {
         this.Total = Total;
     }
 
-    public String getDia() {
-        return Dia;
-    }
-
     public String getDocumento() {
         return Documento;
     }
@@ -31,7 +27,7 @@ public class VentasMes {
         return Total;
     }
 
-    public void setDiao(String Dia) {
+    public void setDia(String Dia) {
         this.Dia = Dia;
     }
 
@@ -43,12 +39,9 @@ public class VentasMes {
         this.Cliente = Cliente;
     }
 
-    public void setNRC(String NRC) {
-        this.NRC = NRC;
-    }
-
     public void setTotal(String Total) {
         this.Total = Total;
     }
-       
+
+    
 }

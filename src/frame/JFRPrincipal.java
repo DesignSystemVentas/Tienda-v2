@@ -22,7 +22,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -46,6 +48,9 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Jose Lopez Garcia
  */
+
+
+
 public final class JFRPrincipal extends javax.swing.JFrame {
           //vizcarra//
     Date date = new Date();
@@ -58,6 +63,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     int SaberSucursalVentas=0;
     double Punitario = 0, TotalGravadoVenta=0, TotalVenta=0, SubTotalVenta;   
     boolean encontrar;
+    int Generar=0;
     ResultSet rstControladorVenta = null;
     ResultSet rstControladorProducto = null;
     ResultSet rstCSucursal = null;
@@ -5128,7 +5134,7 @@ public void limpiarTablaDetalleCompra(){
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jpnReporteVentas.setVisible(true);
         jpnVentasReporteParametro.setVisible(false);
-        int Generar=0;
+        
         if (cmbFechasVenta.getSelectedIndex()==0) {
             Generar =1;
         }
@@ -5184,18 +5190,17 @@ public void limpiarTablaDetalleCompra(){
         } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
 
         int filas = tblReporteVentas.getRowCount(), iteracion=0;
-        double  TotalReporteVentas = 0, TotalReporteVentaIVA = 0, TotalReporteVentasGravadas = 0;
+        double  TotalReporteVentas = 0, TotalSinIVA=0, TotalReporteVentaIVA = 0, TotalReporteVentasGravadas = 0;
         while (iteracion<filas){
             TotalReporteVentas = TotalReporteVentas + Double.parseDouble(String.valueOf(tblReporteVentas.getValueAt(iteracion, 4)));
             iteracion++;
         }
-        TotalReporteVentaIVA = TotalReporteVentas * 1.13;
-        TotalReporteVentaIVA = TotalReporteVentaIVA - TotalReporteVentas;
-        TotalReporteVentasGravadas = TotalReporteVentaIVA + TotalReporteVentas;
-
-        txtVentasNetas.setText("$"+ (df.format(TotalReporteVentas)));
+        TotalReporteVentasGravadas = TotalReporteVentas + TotalReporteVentaIVA;
+        TotalSinIVA = TotalReporteVentas / 1.13;
+        TotalReporteVentaIVA = TotalReporteVentas - TotalSinIVA;  
+        txtVentasNetas.setText("$"+ (df.format(TotalSinIVA)));
         txtImpuestosVentas.setText("$"+ (df.format(TotalReporteVentaIVA)));
-        txtVentasGravadas.setText("$"+ (df.format(TotalReporteVentasGravadas)));
+        txtVentasGravadas.setText("$"+ (df.format(TotalReporteVentas)));
         jpnMenuVentas.setVisible(false);
         jpnReporteVentas.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -5962,24 +5967,20 @@ public void limpiarTablaDetalleCompra(){
     }//GEN-LAST:event_btnVentasActionPerformed
 
     private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
-                VentasMes rv;// Instaciamos la clase empleado
-        List <VentasMes>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
-        for(int i=0; i<tblReporteVentas.getRowCount(); i++){ // Iterena cada fila de la tabla
-            rv = new VentasMes(tblReporteVentas.getValueAt(i, 0).toString(),tblReporteVentas.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
-            tblReporteVentas.getValueAt(i, 2).toString(),tblReporteVentas.getValueAt(i, 3).toString(),tblReporteVentas.getValueAt(i,4).toString());
-            lista.add(rv); //Agregamos el objeto empleado a la lista
-        }
-        JasperReport reporte; // Instaciamos el objeto reporte
-//        C:\Users\Vizcarra\Desktop\MANANA\Tienda-v2\src\Reportes
-        String path = " C:\\Users\\Vizcarra\\Desktop\\MANANA\\Tienda-v2\\src\\Reportes\\ReporteVenta.jasper "; //Ponemos la localizacion del reporte creado
+        JasperReport jr = null;
+        String path = "C:\\Users\\Vizcarra\\Desktop\\MANANA\\Tienda-v2\\src\\Reportes\\ReporteVentas.jasper"; //Ponemos la localizacion del reporte creado
+        Conexion cn = new Conexion();
         try {
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
-            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
-            JasperViewer viewer = new JasperViewer(jprint, false); //Se crea la vista del reportes
-            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Se declara con dispose_on_close para que no se cierre el programa cuando se cierre el reporte
-            viewer.setVisible(true); //Se vizualiza el reporte
+            Map parametro = new HashMap();
+            parametro.put("Generar", Generar);
+            jr= (JasperReport) JRLoader.loadObjectFromFile(path);
+            JasperPrint  jp = JasperFillManager.fillReport(jr, parametro, cn.conectar());
+            JasperViewer jv = new JasperViewer(jp);
+            jv.setVisible(true);
+            jv.setTitle("Ventas Realizada");
+        
         } catch (JRException ex) {
-           
+            
         }
     }//GEN-LAST:event_btnPDFActionPerformed
 
