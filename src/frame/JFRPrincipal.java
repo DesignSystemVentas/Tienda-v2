@@ -230,11 +230,19 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         modeloProducto.addColumn("Costo");
         modeloProducto.addColumn("Sucursal");
         modeloProducto.addColumn("Existencia");
-        
+        //llenador de proveedores
+        modeloProveedor2.addColumn("IdProveedor");
+        modeloProveedor2.addColumn("Nombre");
+        modeloProveedor2.addColumn("Telefono");
+        modeloProveedor2.addColumn("Direccion");
+        modeloProveedor2.addColumn("NIT");
+        modeloProveedor2.addColumn("NRC");
+        modeloProveedor2.addColumn("Email");
         
         
         tblCompra.setModel(modeloAddCompra);
         tblCompras.setModel(modeloCompra);
+        tblProveedores.setModel(modeloProveedor2);
         tblDetalleCompra.setModel(modeloDetalleCompra);
         jtblTipoDePrecio.setModel(modeloTipoPrecio);
         jtblParametros.setModel(modeloParametro);
@@ -1142,13 +1150,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         };
         tblProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "idProveedor", "Nombre", "Teléfono", "Dirección", "NIT"
+                "idProveedor", "Nombre", "Teléfono", "Dirección", "NIT", "NRC", "Email"
             }
         ));
         tblProveedores.getTableHeader().setReorderingAllowed(false);
@@ -3392,6 +3400,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         apagado();
         Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnProveedores1);  
         apagado2();
+        try {
+            llenarProveedor2();
+        } catch (Exception ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         jpnProveedores.setVisible(true); 
     }//GEN-LAST:event_btnProveedores1MouseClicked
 
@@ -6237,17 +6250,17 @@ public void llenarProveedor2() throws Exception{
 }    else{
          try {
             while (rs.next()) {
-                String id = rs.getString("IdProveedor");
-                String nombre = rs.getString("Nombre");
-                String telefono = rs.getString("Telefono");
-                String dire=rs.getString("Direccion");
-                String nit = rs.getString("NIT");
-                String nrc = rs.getString("NRC");
-                String email = rs.getString("Email");
+                String IdProveedor = rs.getString("IdProveedor");
+                String Nombre = rs.getString("Nombre");
+                String Telefono = rs.getString("Telefono");
+                String Direccion =rs.getString("Direccion");
+                String NIT = rs.getString("NIT");
+                String NRC = rs.getString("NRC");
+                String Email = rs.getString("Email");
 //                
 //                rs2=tp.ObtenerSucursal(sucu);
 //                String nombreSucursal=rs2.getString("nombre");
-                modeloProveedor2.addRow(new String[]{id, nombre, telefono, dire, nit, nrc, email});
+                modeloProveedor2.addRow(new String[]{IdProveedor, Nombre, Telefono, Direccion, NIT, NRC, Email});
                 System.out.println("puso el modelo Producto");       
             }
         } catch (Exception e) {
