@@ -124,6 +124,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     DefaultComboBoxModel mUtilidad = new DefaultComboBoxModel(); 
     DefaultComboBoxModel mLlenarPoU = new DefaultComboBoxModel(); 
     DefaultComboBoxModel modeloSucursalRV = new DefaultComboBoxModel(); 
+    DefaultTableModel modEliminar;
     //vizcarra//
 
     private boolean modificarProducto;
@@ -685,6 +686,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtGiroVenta = new javax.swing.JTextField();
         lblGiroVenta = new javax.swing.JLabel();
         btnRegresarPaeametroVentas = new javax.swing.JButton();
+        btnEliminarProductoVenta = new javax.swing.JButton();
         jpnReporteVentas = new javax.swing.JPanel();
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane8 = new javax.swing.JScrollPane();
@@ -1967,11 +1969,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
         btnEliminarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnEliminarProductoMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnEliminarProductoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarProductoMouseExited(evt);
             }
         });
         btnEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -2697,7 +2699,25 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnRegresarPaeametroVentasActionPerformed(evt);
             }
         });
-        jpnRegistrarVenta.add(btnRegresarPaeametroVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, 110, 40));
+        jpnRegistrarVenta.add(btnRegresarPaeametroVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 110, 40));
+
+        btnEliminarProductoVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
+        btnEliminarProductoVenta.setToolTipText("Eliminar Productos Seleccionados");
+        btnEliminarProductoVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarProductoVenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarProductoVentaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarProductoVentaMouseExited(evt);
+            }
+        });
+        btnEliminarProductoVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProductoVentaActionPerformed(evt);
+            }
+        });
+        jpnRegistrarVenta.add(btnEliminarProductoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 540, 110, 30));
 
         getContentPane().add(jpnRegistrarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -5963,6 +5983,72 @@ public void limpiarTablaDetalleCompra(){
         }
     }//GEN-LAST:event_btnPDFActionPerformed
 
+    private void btnEliminarProductoVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarProductoVentaMouseEntered
+        btnEliminarProductoVenta.setIcon(new ImageIcon(getClass().getResource("/iconos/eliminarB.png")));
+    }//GEN-LAST:event_btnEliminarProductoVentaMouseEntered
+
+    private void btnEliminarProductoVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarProductoVentaMouseExited
+        btnEliminarProductoVenta.setIcon(new ImageIcon(getClass().getResource("/iconos/eliminar.png")));
+    }//GEN-LAST:event_btnEliminarProductoVentaMouseExited
+
+    private void btnEliminarProductoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoVentaActionPerformed
+        int posEliminar=-1;
+        posEliminar= tblRegistrarVenta.getSelectedRow();
+
+        if (posEliminar>=0) {
+            if (JOptionPane.showConfirmDialog(null,"¿Esta seguro que desea eliminar el registro?" ,"Advertencia",JOptionPane.YES_NO_OPTION)==0) {
+                modEliminar=(DefaultTableModel) tblRegistrarVenta.getModel();
+                modEliminar.removeRow(posEliminar);
+                //para venta con factura
+                if (cmbTipoFacturaParametro.getSelectedIndex()==0) {
+                    int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
+            double total=0;
+            while (iteracion<filas){
+                total+=Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
+                iteracion++;
+            }
+            txtSumas.setText("$"+total);
+            txtTotalventaGravado.setText("$"+total);
+            //para venta con credito fiscal
+                } else if (cmbTipoFacturaParametro.getSelectedIndex()==1) {
+                    int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
+            double total=0;
+            while (iteracion<filas){
+                total+=Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
+                iteracion++;
+            }
+            double TotalGravadoVentaIVA=0, TotalGravadoVentamasIVA=0, TotalVentaGravadoAgregar=0;
+            TotalGravadoVentaIVA = total * 1.13;
+            TotalGravadoVentaIVA = TotalGravadoVentaIVA - total;
+            TotalGravadoVentaIVA = Double.parseDouble(df.format(TotalGravadoVentaIVA));
+            TotalVentaGravadoAgregar = total + TotalGravadoVentaIVA;
+            TotalVentaGravadoAgregar = Double.parseDouble(df.format(TotalVentaGravadoAgregar));
+
+            txtSumas.setText("$"+total);
+            txtIVA.setText("$"+TotalGravadoVentaIVA);
+            txtTotalventaGravado.setText("$"+TotalVentaGravadoAgregar);
+            //para venta libre
+                } else if (cmbTipoFacturaParametro.getSelectedIndex()==1) {
+                                int filas = tblRegistrarVenta.getRowCount(), iteracion=0;
+            double total=0;
+            while (iteracion<filas){
+                total+=Double.parseDouble(String.valueOf(tblRegistrarVenta.getValueAt(iteracion, 4)));
+                iteracion++;
+            }
+            double TotalGravadoFiscalIVA=0, TotalGravadoFiscalP=0;
+            TotalGravadoFiscalIVA = total * 1.13;
+            TotalGravadoFiscalIVA = TotalGravadoFiscalIVA - total;
+            txtSumas.setText("$"+total);
+            txtTotalventaGravado.setText("$"+total);
+                }
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnEliminarProductoVentaActionPerformed
+
 
     public void agregarDetalle(){
         detalleCompra[0] = CodBarraPC;    
@@ -6277,6 +6363,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JButton btnCancelarTipoPrecio;
     private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnEliminarProducto;
+    private javax.swing.JButton btnEliminarProductoVenta;
     private javax.swing.JButton btnEliminarProveedor;
     private javax.swing.JButton btnEliminarSucursales;
     private javax.swing.JButton btnEliminarTipoPrecio;
