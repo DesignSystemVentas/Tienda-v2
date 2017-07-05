@@ -369,6 +369,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnUtilidadMenuVentasParametros.setVisible(false);
         jpnVentasReporteParametro.setVisible(false);
         jpnVerVentasporSucursal.setVisible(false);
+        
     }
        //VIZCARRA//
     public void saberCodigoVenta(){
@@ -575,8 +576,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblFechaCompra = new javax.swing.JLabel();
         txtFechaCompra = new javax.swing.JTextField();
         jpnProductos = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jtblProductos = new javax.swing.JTable();
         btnNuevoProducto = new javax.swing.JButton();
         btnBuscarProducto = new javax.swing.JButton();
         btnModificarProducto = new javax.swing.JButton();
@@ -585,10 +584,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jSeparator14 = new javax.swing.JSeparator();
         lblProveedores4 = new javax.swing.JLabel();
         jSeparator25 = new javax.swing.JSeparator();
-        jLabel15 = new javax.swing.JLabel();
         txtProductosBuscar = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jSeparator37 = new javax.swing.JSeparator();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtblProductos = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         jpnNuevoProducto = new javax.swing.JPanel();
         btnAgregarNuevoProducto = new javax.swing.JButton();
         btnSalirProductos = new javax.swing.JButton();
@@ -1932,43 +1934,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         jpnProductos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jtblProductos =new javax.swing.JTable(){
-            public boolean isCellEditable(int rowIndex, int colIndex){
-                return false;
-            }
-        };
-        jtblProductos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Código de Barra", "Nombre", "Costo", "Inventario"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jtblProductos.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(jtblProductos);
-
-        jpnProductos.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 650, 260));
-
         btnNuevoProducto.setBackground(new java.awt.Color(0, 0, 0));
         btnNuevoProducto.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevoProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo3.png"))); // NOI18N
@@ -2048,15 +2013,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores4.setBackground(new java.awt.Color(255, 255, 255));
         lblProveedores4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblProveedores4.setForeground(new java.awt.Color(255, 255, 255));
-        lblProveedores4.setText("Productos");
-        jPanel43.add(lblProveedores4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 110, 30));
+        lblProveedores4.setText("Productos en inventario");
+        jPanel43.add(lblProveedores4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 340, 30));
 
         jpnProductos.add(jPanel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 50));
-        jpnProductos.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 186, 160, -1));
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel15.setText("Listado de los Productos:");
-        jpnProductos.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+        jpnProductos.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 142, 670, 20));
 
         txtProductosBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2077,6 +2038,46 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel3.setText("Producto a buscar:");
         jpnProductos.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
         jpnProductos.add(jSeparator37, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 96, 120, 20));
+
+        jtblProductos =new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
+        jtblProductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Código de Barra", "Nombre", "Costo", "Inventario"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtblProductos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(jtblProductos);
+
+        jTabbedPane1.addTab("Listado de los productos en inventario", jScrollPane3);
+        jTabbedPane1.addTab("Productos Registrados", jPanel1);
+
+        jpnProductos.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 660, 360));
 
         getContentPane().add(jpnProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -6435,6 +6436,31 @@ public void buscarProducto(String C) throws Exception{
         jtblProductos.setModel(modeloProducto);
          }
 }
+
+public void buscarProductoInv(String C) throws Exception{
+ ControladorProducto tp=new ControladorProducto();
+    limpiarTablaProducto();
+    ResultSet rs=null;
+    rs=tp.Buscar(C);
+    if (!rs.isBeforeFirst()) { 
+             System.out.println("No existe"); 
+}    else{
+         try {
+            while (rs.next()) {
+                String CodBarra = rs.getString("CodBarra");
+                String Nombre = rs.getString("Nombre");
+                String Costo = rs.getString("Costo");
+                 String sucu=rs.getString("IdSucursal");
+                String existencia=rs.getString("Cantidad");
+                modeloProducto.addRow(new String[]{CodBarra,Nombre,Costo,sucu,existencia});
+                System.out.println("puso el modelo Producto");       
+            }
+        } catch (Exception e) {
+            throw  new ErrorTienda("No logra poner el modelo Producto del metodo buscarpro(param)");
+        }
+        jtblProductos.setModel(modeloProducto);
+         }
+}
 public void limpiarTablaProveedor2(){
  for (int i = 0; i < tblProveedores.getRowCount(); i++) {
            modeloProveedor2.removeRow(i);
@@ -6562,7 +6588,6 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -6615,6 +6640,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel42;
@@ -6677,6 +6703,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel jpnAdministracion;
     private javax.swing.JPanel jpnAgregarProv;
     private javax.swing.JPanel jpnBarraMenu;
