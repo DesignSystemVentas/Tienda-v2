@@ -6212,7 +6212,7 @@ public void limpiarTablaDetalleCompra(){
         try {
             Map parametro = new HashMap();
             parametro.put("Generar", Generar);
-            jr= (JasperReport) JRLoader.loadObjectFromFile(path);
+            jr= (JasperReport) JRLoader.loadObjectFromFile("ReporteVentas.jasper");
             JasperPrint  jp = JasperFillManager.fillReport(jr, parametro, cn.conectar());
             JasperViewer jv = new JasperViewer(jp);
             jv.setVisible(true);
