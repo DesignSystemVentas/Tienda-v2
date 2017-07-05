@@ -3088,7 +3088,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel61.setText("VM14    Vizcarra Montes, Angel ");
         acercaDe.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, -1, -1));
 
-        jLabel65.setText("LE10     Lima Estrada, Melvin Josue");
+        jLabel65.setText("LE10001     Lima Estrada, Melvin Josue");
         acercaDe.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, -1, -1));
 
         getContentPane().add(acercaDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 450));
