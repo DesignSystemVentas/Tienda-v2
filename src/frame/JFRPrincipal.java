@@ -369,6 +369,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnUtilidadMenuVentasParametros.setVisible(false);
         jpnVentasReporteParametro.setVisible(false);
         jpnVerVentasporSucursal.setVisible(false);
+        
     }
        //VIZCARRA//
     public void saberCodigoVenta(){
@@ -2048,8 +2049,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores4.setBackground(new java.awt.Color(255, 255, 255));
         lblProveedores4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblProveedores4.setForeground(new java.awt.Color(255, 255, 255));
-        lblProveedores4.setText("Productos");
-        jPanel43.add(lblProveedores4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 110, 30));
+        lblProveedores4.setText("Productos en inventario");
+        jPanel43.add(lblProveedores4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 340, 30));
 
         jpnProductos.add(jPanel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 50));
         jpnProductos.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 186, 160, -1));
@@ -6387,6 +6388,31 @@ public void llenarProducto(String producto) throws Exception{
 } 
 
 public void buscarProducto(String C) throws Exception{
+ ControladorProducto tp=new ControladorProducto();
+    limpiarTablaProducto();
+    ResultSet rs=null;
+    rs=tp.Buscar(C);
+    if (!rs.isBeforeFirst()) { 
+             System.out.println("No existe"); 
+}    else{
+         try {
+            while (rs.next()) {
+                String CodBarra = rs.getString("CodBarra");
+                String Nombre = rs.getString("Nombre");
+                String Costo = rs.getString("Costo");
+                 String sucu=rs.getString("IdSucursal");
+                String existencia=rs.getString("Cantidad");
+                modeloProducto.addRow(new String[]{CodBarra,Nombre,Costo,sucu,existencia});
+                System.out.println("puso el modelo Producto");       
+            }
+        } catch (Exception e) {
+            throw  new ErrorTienda("No logra poner el modelo Producto del metodo buscarpro(param)");
+        }
+        jtblProductos.setModel(modeloProducto);
+         }
+}
+
+public void buscarProductoInv(String C) throws Exception{
  ControladorProducto tp=new ControladorProducto();
     limpiarTablaProducto();
     ResultSet rs=null;

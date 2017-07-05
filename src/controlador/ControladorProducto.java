@@ -70,6 +70,21 @@ public class ControladorProducto {
          return d;
      }
      
+     public ResultSet BuscarInv(String p) throws Exception{
+         ResultSet d=null;
+         try {
+         cn.conectar();
+         d=cn.getValores("select * from producto where CodBarra like '%"+p+"%' or Nombre like '%"+p+"%';");    
+         //select * from producto P,inventario I where P.CodBarra like "%123%" and I.CodBarra like "%123%"
+         } catch (Exception e) {
+          //  cn.desconectar();
+             throw new ErrorTienda("no logra obtener datos producto");  
+         }finally{
+         
+         }
+         return d;
+     }
+     
      public ResultSet BuscarProducto(String codigo) throws Exception{
          ResultSet d=null;
          try {
