@@ -4069,9 +4069,9 @@ if(decide==0){
     private void btnAgregarNuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarNuevoProductoActionPerformed
         ControladorProducto ctp= new ControladorProducto();
 
-                String id = txtCodBarraProductos.getText();
-                String nombre = txtNombreProductos.getText();
-                String direccion = txtPrecioProductos.getText();
+                String id = txtCodBarraProductos.getText().toUpperCase();
+                String nombre = txtNombreProductos.getText().toUpperCase();
+                String direccion = txtPrecioProductos.getText().toUpperCase();
                 ;
                
                 
@@ -6059,7 +6059,7 @@ public void limpiarTablaDetalleCompra(){
 
     private void txtCodBarraProductosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodBarraProductosKeyTyped
          char c = evt.getKeyChar();
-        if (!Character.isDigit(c) ) {
+        if (!Character.isLetterOrDigit(c) ) {
         getToolkit().beep();
         evt.consume();
         }
