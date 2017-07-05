@@ -5424,7 +5424,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel61">
           <Properties>
-            <Property name="text" type="java.lang.String" value="VM14    Vizcarra Montes, Angel "/>
+            <Property name="text" type="java.lang.String" value="VM14045    Vizcarra Montes, Miguel Angel"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
