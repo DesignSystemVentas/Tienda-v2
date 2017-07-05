@@ -537,7 +537,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores3 = new javax.swing.JLabel();
         lblListadoCompras = new javax.swing.JLabel();
         jSeparator35 = new javax.swing.JSeparator();
-        cmbFiltroSucursalCompra = new javax.swing.JComboBox<>();
+        cmbFiltroSucursalCompra = new javax.swing.JComboBox<String>();
         lblFiltrarCompra = new javax.swing.JLabel();
         jpnRegistroCompra = new javax.swing.JPanel();
         btnGuardarCompra = new javax.swing.JButton();
@@ -547,7 +547,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        cmbSucursalCompra = new javax.swing.JComboBox<>();
+        cmbSucursalCompra = new javax.swing.JComboBox<String>();
         lblSucursalCompra = new javax.swing.JLabel();
         txtIdCompra = new javax.swing.JTextField();
         lblIdCompra = new javax.swing.JLabel();
@@ -1680,7 +1680,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnCompras.add(lblListadoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 200, -1));
         jpnCompras.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 117, 200, 10));
 
-        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         cmbFiltroSucursalCompra.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFiltroSucursalCompraItemStateChanged(evt);
@@ -5532,7 +5532,27 @@ public void limpiarTablaDetalleCompra(){
             JOptionPane.showMessageDialog(null, "debe ingresar la cantidad");
        }
         else{
-            btnVender.setVisible(true);
+            
+            
+            //busacado de nombre y precio//
+            int CantidadInventario = 0;
+            try {
+                rstControladorProducto = cp.ObtenerCantidad((String)txtCodigoBarraVender.getText());
+            } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
+            try {
+                while (rstControladorProducto.next()){
+                    //guardar en una variable en precio del producto buscado desde la base de datos
+                    String PrecioUnitario = rstControladorProducto.getString("Cantidad");
+                    CantidadInventario = Integer.parseInt(PrecioUnitario);                    
+                }
+            } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
+            
+         //SABER SI LA CANTIDAD INGRESADA SOBRE PASA LO REAL//   
+            if (CantidadInventario < Integer.parseInt(txtCantidadVender.getText())) {
+                JOptionPane.showMessageDialog(null, "la cantidad sobrepasa el inventario, porfavor haga lo de nuevo "+CantidadInventario);
+                txtCodigoBarraVender.requestFocus();
+            } else{
+                btnVender.setVisible(true);
         tipoventa = 1;
         CodigoBarraVender = txtCodigoBarraVender.getText();
         int posicioncmbTipoFactura=cmbTipoFacturaParametro.getSelectedIndex();
@@ -5738,6 +5758,11 @@ public void limpiarTablaDetalleCompra(){
             txtTotalventaGravado.setText("$"+total);
         }
         //FINALIZADO (LIBRE)//                                    
+            }
+            
+            
+            
+            
         } 
         }
     }//GEN-LAST:event_btnAgregarProductoVentaActionPerformed
@@ -5981,7 +6006,7 @@ public void limpiarTablaDetalleCompra(){
     }//GEN-LAST:event_txtNombreProductosKeyPressed
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-            jpnRegistrarVenta.setVisible(false);
+       jpnRegistrarVenta.setVisible(false);
         lblFechaVentaMostrar.setText("");
         txtIdVenta.setText("");
         txtNuDocumentoVenta.setText("");
@@ -6002,7 +6027,7 @@ public void limpiarTablaDetalleCompra(){
             mAgregarDVenta.removeRow(i);
             i-=1;
         }
-        cmbSucursalReporteVenta.removeAllItems();
+            cmbSucursalReporteVenta.removeAllItems();
             cmbSucursalParametro.removeAllItems();
             cmbUtilidadParametro.removeAllItems(); 
                      try {
