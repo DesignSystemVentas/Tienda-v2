@@ -3796,8 +3796,8 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
     private void btnGuardarTipoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarTipoPrecioActionPerformed
         ControladorTipoPrecio ctp= new ControladorTipoPrecio();
 
-                String id = txtIdTipoPrecio.getText();
-                String nombre = txtNombreTipoPrecio.getText();
+                String id = txtIdTipoPrecio.getText().toUpperCase();
+                String nombre = txtNombreTipoPrecio.getText().toUpperCase();
                 Double utilidad= Double.parseDouble(txtUtilidadTipoPrecio.getText());
                 
                 Object P[]={id,nombre,utilidad};
@@ -3846,10 +3846,10 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
     private void btnGuardarSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarSucursalActionPerformed
         ControladorSucursal ctp= new ControladorSucursal();
 
-                String id = txtIdSucursal.getText();
-                String nombre = txtNombreSucursal.getText();
-                String direccion = txtDireccionSucursal.getText();
-                String telefono = txtTelefonoSucursal.getText();
+                String id = txtIdSucursal.getText().toUpperCase();
+                String nombre = txtNombreSucursal.getText().toUpperCase();
+                String direccion = txtDireccionSucursal.getText().toUpperCase();
+                String telefono = txtTelefonoSucursal.getText().toUpperCase();
                
                 
                 Object P[]={id,nombre,direccion,telefono};
@@ -3942,9 +3942,9 @@ if(decide==0){
     private void btnGuardarParametroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarParametroActionPerformed
         Parametro p= new Parametro();
 
-                String id = txtIdParametro.getText();
-                String nombre = txtNombreParametro.getText();
-                String valor=txtParametroParametro.getText();
+                String id = txtIdParametro.getText().toUpperCase();
+                String nombre = txtNombreParametro.getText().toUpperCase();
+                String valor=txtParametroParametro.getText().toUpperCase();
                 
                 Object P[]={id,nombre,valor};
         
@@ -4116,6 +4116,18 @@ if(decide==0){
             txtCodBarraProductos.setEditable(false);
              txtNombreProductos.setEditable(false);
              txtPrecioProductos.setEditable(false);
+             jpnNuevoProducto.setVisible(false);
+            jpnProductos.setVisible(true);
+             txtCodBarraProductos.setText("");
+        txtNombreProductos.setText("");
+        txtPrecioProductos.setText("");
+        try {
+            llenarProducto();
+            llenarProducto2();
+        } catch (Exception ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnAgregarNuevoProductoActionPerformed
 
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
@@ -4144,7 +4156,12 @@ if(decide==0){
 
 }else{
 }
-
+try {
+            llenarProducto();
+            llenarProducto2();
+        } catch (Exception ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEliminarProductoActionPerformed
 
     private void btnAgregarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProveedorActionPerformed
