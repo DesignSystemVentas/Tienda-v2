@@ -58,8 +58,23 @@ public class ControladorProducto {
      public ResultSet Buscar(String p) throws Exception{
          ResultSet d=null;
          try {
+         cn.conectar();         
+         d=cn.getValores("select * from producto P, inventario I WHERE (P.CodBarra like '%"+p+"%' and I.CodBarra like '%"+p+"%') or (I.CodBarra=(select P.CodBarra producto WHERE Nombre like '%"+p+"%'));");
+         //select * from producto P,inventario I where P.CodBarra like "%123%" and I.CodBarra like "%123%"
+         } catch (Exception e) {
+            cn.desconectar();
+             throw new ErrorTienda("no logra obtener datos producto");  
+         }finally{
+         
+         }
+         return d;
+     }
+     
+     public ResultSet Buscar2(String p) throws Exception{
+         ResultSet d=null;
+         try {
          cn.conectar();
-         d=cn.getValores("select * from producto P, inventario I where (P.CodBarra like '%"+p+"%' and I.CodBarra like '%"+p+"%') or (I.CodBarra=(select P.CodBarra producto where Nombre like '%"+p+"%'));");    
+         d=cn.getValores("select * from producto where CodBarra like '%"+p+"%' or Nombre like '%"+p+"%';");    
          //select * from producto P,inventario I where P.CodBarra like "%123%" and I.CodBarra like "%123%"
          } catch (Exception e) {
           //  cn.desconectar();
@@ -111,6 +126,20 @@ public class ControladorProducto {
          }
          return d;
      }
+     
+          public ResultSet Obtener2() throws Exception{
+     ResultSet d=null;
+         try {
+         cn.conectar();
+         d=cn.getValores("select * from producto;");    
+         } catch (Exception e) {
+            cn.desconectar();
+             throw new ErrorTienda("no logra obtener datos producto ");  
+         }finally{
+         
+         }
+         return d;
+     }
      //VIZCARRA//     
      public ResultSet buscarNYP(String CodBarra) throws ErrorTienda {
          Conexion cn = new Conexion();
@@ -120,7 +149,16 @@ public class ControladorProducto {
             cn.desconectar();
             throw new ErrorTienda("Insertar" + ex.getMessage());
         }        
-    }     
+    } 
+       public ResultSet ObtenerCantidad(String CodBarra) throws ErrorTienda {        
+        
+        try{
+        Conexion cn = new Conexion();        
+        return (cn.getValores("SELECT Cantidad FROM inventario WHERE CodBarra = '" + CodBarra + "'"));
+        } catch (Exception ex){
+            throw new ErrorTienda("Obtener IdVenta" + ex.getMessage());            
+        }
+        }
      //VIZCARRA//
  public ResultSet ObtenerSucursal(String p) throws Exception{
      ResultSet d=null;
@@ -135,10 +173,4 @@ public class ControladorProducto {
          }
          return d;
      }
-
-
-
-
-
 }
-

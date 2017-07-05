@@ -80,5 +80,9 @@ public class Conexion {
         }
         return link;
     }
+
+    public Connection getConexion() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
  
 }

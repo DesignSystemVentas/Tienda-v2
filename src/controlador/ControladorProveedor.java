@@ -36,7 +36,7 @@ public class ControladorProveedor {
         } 
         return datos;
     }
-    
+   
 
 Conexion cn= new Conexion();
 
@@ -77,7 +77,7 @@ public class ProveedorControlador {
         Conexion cn = new Conexion();
         try{
         cn.conectar();  
-        cn.UID("INSERT INTO proveedor(IdProveedor,Nombre,Telefono,Direccion,NIT) VALUES(" +P[0]+ "," + P[1] + ",'" + P[2] + "','" + P[3]+ "')");
+        cn.UID("INSERT INTO proveedor(IdProveedor, Nombre, Telefono, Direccion, NIT, NRC, Email) VALUES(" +P[0]+ ",'" + P[1] + "','" + P[2] + "','" + P[3]+"','"+P[4]+"',"+P[5]+",'"+P[6]+ "');");
         System.out.println("se agrego con exito");
         } catch (Exception ex){
             throw new ErrorTienda("Insertar" + ex.getMessage());
@@ -127,9 +127,21 @@ public class ProveedorControlador {
         // cn.desconectar();
          }
          return d;
-     }
+      } 
+      
+      public ResultSet mayorRegistro() throws ErrorTienda {
+         ResultSet mayor = null;
+        try{
+        cn.conectar();     
+        mayor = cn.getValores("SELECT MAX(IdProveedor) FROM proveedor");
+        } catch (Exception e){
+            cn.desconectar();
+            throw new ErrorTienda("No logra obtener datos de proveedores");        
+        } 
+        return mayor;
+                
+    }
      
-    
     
 }
 
