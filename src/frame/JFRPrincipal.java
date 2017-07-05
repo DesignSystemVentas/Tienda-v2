@@ -2658,17 +2658,17 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/vender.png"))); // NOI18N
         btnVender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVender.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnVenderMousePressed(evt);
+            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVenderMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnVenderMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnVenderMouseExited(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnVenderMousePressed(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVenderMouseEntered(evt);
             }
         });
         btnVender.addActionListener(new java.awt.event.ActionListener() {
@@ -5467,7 +5467,7 @@ public void limpiarTablaDetalleCompra(){
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
          //Agrega cada item de detalle compra
         int IdTipoPrecio = sabercmbUtilidadVenta + 1;
-        int IdSucursal = sabercmbIdSucursal + 1;
+        int IdSucursal = Integer.parseInt(txtSucursalVentaParametro.getText());
         int IdVenta = Integer.parseInt(txtIdVenta.getText());
 
         if (cmbTipoFacturaParametro.getSelectedIndex()==0) {
