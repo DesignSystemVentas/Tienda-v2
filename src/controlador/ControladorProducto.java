@@ -175,6 +175,17 @@ public class ControladorProducto {
             throw new ErrorTienda("Obtener IdVenta" + ex.getMessage());            
         }
         }
+       public ResultSet SaberCodBarraPoS(String CodBarra, int IdSucursal) throws ErrorTienda {        
+        
+        try{
+        Conexion cn = new Conexion();        
+        return (cn.getValores("SELECT CodBarra FROM inventario WHERE CodBarra = '" + CodBarra + "' ANd IdSucursal = '" +IdSucursal+"'"));
+        } catch (Exception ex){
+            throw new ErrorTienda("Obtener IdVenta" + ex.getMessage());            
+        }
+        }
+       
+       
      //VIZCARRA//
  public ResultSet ObtenerSucursal(String p) throws Exception{
      ResultSet d=null;

@@ -77,6 +77,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     String datosVenta[] = new String[7], CodigoBarraVender = "";
     String GReporteVenta[] = new String[5];
     DecimalFormat df = new DecimalFormat("00.00");
+    DecimalFormat df4 = new DecimalFormat("00.00");
     //vaizcarra//
 
     //Todas las variables que agregue-Daniel
@@ -540,7 +541,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores3 = new javax.swing.JLabel();
         lblListadoCompras = new javax.swing.JLabel();
         jSeparator35 = new javax.swing.JSeparator();
-        cmbFiltroSucursalCompra = new javax.swing.JComboBox<>();
+        cmbFiltroSucursalCompra = new javax.swing.JComboBox<String>();
         lblFiltrarCompra = new javax.swing.JLabel();
         jpnRegistroCompra = new javax.swing.JPanel();
         btnGuardarCompra = new javax.swing.JButton();
@@ -550,7 +551,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        cmbSucursalCompra = new javax.swing.JComboBox<>();
+        cmbSucursalCompra = new javax.swing.JComboBox<String>();
         lblSucursalCompra = new javax.swing.JLabel();
         txtIdCompra = new javax.swing.JTextField();
         lblIdCompra = new javax.swing.JLabel();
@@ -1718,7 +1719,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnCompras.add(lblListadoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 200, -1));
         jpnCompras.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 117, 200, 10));
 
-        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         cmbFiltroSucursalCompra.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFiltroSucursalCompraItemStateChanged(evt);
@@ -5992,8 +5993,21 @@ public void limpiarTablaDetalleCompra(){
             txtCantidadVender.setEnabled(false);
        }
         else{
-            //busacado de nombre y precio//
+                
+                String CodBarraxS = "";
+                            try {
+                rstControladorProducto = cp.SaberCodBarraPoS((String)txtCodigoBarraVender.getText(), SaberSucursalVentas);
+            } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
             try {
+                while (rstControladorProducto.next()){
+                    //guardar en una variable en precio del producto buscado desde la base de datos
+                    CodBarraxS = rstControladorProducto.getString("CodBarra");                                        
+                }
+            } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
+                
+            
+            if (CodBarraxS.equals(txtCodigoBarraVender.getText())) {                                         
+                    try {
                 rstControladorProducto = cp.buscarNYP((String)txtCodigoBarraVender.getText());
             } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
             try {
@@ -6002,10 +6016,19 @@ public void limpiarTablaDetalleCompra(){
                     String PrecioUnitario = rstControladorProducto.getString("Costo");
                     Punitario = Double.parseDouble(PrecioUnitario);
                     txtNombreProductoVender.setText(rstControladorProducto.getString("Nombre"));
+                    txtCantidadVender.requestFocus();
                 }
-            } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
-            txtCantidadVender.requestFocus();    
-            txtCantidadVender.setEnabled(true);
+            } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}              
+            txtCantidadVender.setEnabled(true);                
+                    
+                }else {
+                JOptionPane.showMessageDialog(null, "Producto no existente en sucursal " +SaberSucursalVentas);
+                txtCodigoBarraVender.setText("");
+                txtCodigoBarraVender.requestFocus();
+                txtNombreProductoVender.setText("");                                
+                //busacado de nombre y precio//
+            
+            }                                                        
             }            
                }
     }//GEN-LAST:event_txtCodigoBarraVenderKeyPressed
