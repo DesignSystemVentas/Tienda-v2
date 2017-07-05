@@ -612,6 +612,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jSeparator26 = new javax.swing.JSeparator();
         jSeparator34 = new javax.swing.JSeparator();
         jSeparator39 = new javax.swing.JSeparator();
+        jLabel66 = new javax.swing.JLabel();
         jpnDetalleCompra = new javax.swing.JPanel();
         txtCodBarraProductos1 = new javax.swing.JTextField();
         txtNombreProductos1 = new javax.swing.JTextField();
@@ -2224,6 +2225,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnNuevoProducto.add(jSeparator34, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, 40, 30));
         jpnNuevoProducto.add(jSeparator39, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 50, 20));
 
+        jLabel66.setFont(new java.awt.Font("DejaVu Sans", 0, 8)); // NOI18N
+        jLabel66.setText("Escanee un codigo de barra");
+        jpnNuevoProducto.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, -1, -1));
+
         getContentPane().add(jpnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
         jpnDetalleCompra.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -2658,17 +2663,17 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/vender.png"))); // NOI18N
         btnVender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVender.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnVenderMousePressed(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVenderMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVenderMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnVenderMouseExited(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnVenderMouseEntered(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnVenderMousePressed(evt);
             }
         });
         btnVender.addActionListener(new java.awt.event.ActionListener() {
@@ -3996,8 +4001,9 @@ if(decide==0){
     private void btnModificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarProductoActionPerformed
         ControladorProducto cpp= new ControladorProducto();
                modificarProducto=true;
-              
-                String id = modeloProducto2.getValueAt(jtblProductos2.getSelectedRow(), 0).toString();
+             
+             try {
+            String id = modeloProducto2.getValueAt(jtblProductos2.getSelectedRow(), 0).toString();
                 //String inventario = modeloProducto.getValueAt(jtblProductos.getSelectedRow(), 1).toString();
                 String nombre= modeloProducto2.getValueAt(jtblProductos2.getSelectedRow(), 1).toString();
                 String costo = modeloProducto2.getValueAt(jtblProductos2.getSelectedRow(), 2).toString();
@@ -4007,6 +4013,15 @@ if(decide==0){
             txtPrecioProductos.setText(""+costo);
                 jpnProductos.setVisible(false);
                 jpnNuevoProducto.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "seleccion un producto antes de continuar");
+        }
+ 
+              
+              
+             
+               
+                
     }//GEN-LAST:event_btnModificarProductoActionPerformed
 
     private void txtProductosBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductosBuscarActionPerformed
@@ -4130,9 +4145,14 @@ if(decide==0){
             ControladorProducto cpp= new ControladorProducto();
         TableModel tableModel = jtblProductos2.getModel();
     Object mostrar=modeloProducto2.getValueAt(jtblProductos2.getSelectedRow(), 0);     
-//    Object P[]={mostrar};
+        
     
-int decide=JOptionPane.showConfirmDialog(null, "Desea borrar el producto:" +modeloProducto2.getValueAt(jtblProductos2.getSelectedRow(), 1));
+        ResultSet rs;
+        try {
+            rs = cpp.Obtener(mostrar.toString());
+            if (!rs.isBeforeFirst()) { 
+             System.out.println("No existe en inventario se puede eliminar"); 
+             int decide=JOptionPane.showConfirmDialog(null, "Desea borrar el producto:" +modeloProducto2.getValueAt(jtblProductos2.getSelectedRow(), 1));
 
 
 if(decide==0){
@@ -4158,6 +4178,16 @@ try {
         } catch (Exception ex) {
             Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
+            }    else{
+            JOptionPane.showMessageDialog(null, "El producto: "+mostrar+" no puede eliminarse esta en inventario");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    
+    
+
     }//GEN-LAST:event_btnEliminarProductoActionPerformed
 
     private void btnAgregarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProveedorActionPerformed
@@ -6844,6 +6874,7 @@ public void limpiarTablaProducto2(){
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
