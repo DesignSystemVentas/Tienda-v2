@@ -1769,8 +1769,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.add(lblNomProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 70, 30));
 
         txtNombreProductoCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreProductoCompraKeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNombreProductoCompraKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreProductoCompraKeyReleased(evt);
             }
         });
         jpnRegistroCompra.add(txtNombreProductoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 140, 30));
@@ -5899,6 +5905,16 @@ public void limpiarTablaDetalleCompra(){
         } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}//finalizado (recorrer)//
         //finalizar()/llenado cmbSucursal, IdVenta y cmbUtilidad/             
     }//GEN-LAST:event_btnVentasActionPerformed
+
+    private void txtNombreProductoCompraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProductoCompraKeyTyped
+    }//GEN-LAST:event_txtNombreProductoCompraKeyTyped
+
+    private void txtNombreProductoCompraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProductoCompraKeyReleased
+                Character c = evt.getKeyChar();
+                if(Character.isLetter(c)) {
+                    evt.setKeyChar(Character.toUpperCase(c));
+                }
+    }//GEN-LAST:event_txtNombreProductoCompraKeyReleased
 
 
     public void agregarDetalle(){
