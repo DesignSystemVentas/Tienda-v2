@@ -77,6 +77,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     String datosVenta[] = new String[7], CodigoBarraVender = "";
     String GReporteVenta[] = new String[5];
     DecimalFormat df = new DecimalFormat("00.00");
+    DecimalFormat df4 = new DecimalFormat("00.00");
     //vaizcarra//
 
     //Todas las variables que agregue-Daniel
@@ -5962,15 +5963,8 @@ public void limpiarTablaDetalleCompra(){
             } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
                 
             
-            if (CodBarraxS.equals(txtCodigoBarraVender.getText())) {
-                    JOptionPane.showMessageDialog(null, "Producto excstente");                                                            
-                }else {
-                JOptionPane.showMessageDialog(null, "Producto no existente en sucursal " +SaberSucursalVentas);
-                txtCodigoBarraVender.setText("");
-                txtCodigoBarraVender.requestFocus();
-                txtNombreProductoVender.setText("");                                
-                //busacado de nombre y precio//
-            try {
+            if (CodBarraxS.equals(txtCodigoBarraVender.getText())) {                                         
+                    try {
                 rstControladorProducto = cp.buscarNYP((String)txtCodigoBarraVender.getText());
             } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}
             try {
@@ -5979,9 +5973,18 @@ public void limpiarTablaDetalleCompra(){
                     String PrecioUnitario = rstControladorProducto.getString("Costo");
                     Punitario = Double.parseDouble(PrecioUnitario);
                     txtNombreProductoVender.setText(rstControladorProducto.getString("Nombre"));
+                    txtCantidadVender.requestFocus();
                 }
             } catch (SQLException ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);}              
             txtCantidadVender.setEnabled(true);                
+                    
+                }else {
+                JOptionPane.showMessageDialog(null, "Producto no existente en sucursal " +SaberSucursalVentas);
+                txtCodigoBarraVender.setText("");
+                txtCodigoBarraVender.requestFocus();
+                txtNombreProductoVender.setText("");                                
+                //busacado de nombre y precio//
+            
             }                                                        
             }            
                }
