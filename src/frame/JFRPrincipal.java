@@ -419,6 +419,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnAdministacion = new javax.swing.JButton();
         btnProveedores1 = new javax.swing.JButton();
         btnHome = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jpnPrincipal = new javax.swing.JPanel();
         jpnPrimero = new javax.swing.JPanel();
         lbl3 = new javax.swing.JLabel();
@@ -539,7 +540,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblProveedores3 = new javax.swing.JLabel();
         lblListadoCompras = new javax.swing.JLabel();
         jSeparator35 = new javax.swing.JSeparator();
-        cmbFiltroSucursalCompra = new javax.swing.JComboBox<String>();
+        cmbFiltroSucursalCompra = new javax.swing.JComboBox<>();
         lblFiltrarCompra = new javax.swing.JLabel();
         jpnRegistroCompra = new javax.swing.JPanel();
         btnGuardarCompra = new javax.swing.JButton();
@@ -549,7 +550,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblCompra = new javax.swing.JTable();
         txtTotalCompra = new javax.swing.JTextField();
         jPanel39 = new javax.swing.JPanel();
-        cmbSucursalCompra = new javax.swing.JComboBox<String>();
+        cmbSucursalCompra = new javax.swing.JComboBox<>();
         lblSucursalCompra = new javax.swing.JLabel();
         txtIdCompra = new javax.swing.JTextField();
         lblIdCompra = new javax.swing.JLabel();
@@ -761,6 +762,19 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblMenuVentas = new javax.swing.JTable();
         lblSucursalMenuVenta = new javax.swing.JLabel();
         cmbSucursalReporteVenta = new javax.swing.JComboBox();
+        acercaDe = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel56 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
+        jLabel65 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/iconos/lanzador.png")).getImage());
@@ -914,7 +928,15 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnHomeMouseClicked(evt);
             }
         });
-        jpnBarraMenu.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 540, -1, -1));
+        jpnBarraMenu.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, -1, -1));
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/acercade.png"))); // NOI18N
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+        jpnBarraMenu.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 160, 30));
 
         getContentPane().add(jpnBarraMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 190, 600));
 
@@ -1686,7 +1708,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnCompras.add(lblListadoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 200, -1));
         jpnCompras.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 117, 200, 10));
 
-        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        cmbFiltroSucursalCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         cmbFiltroSucursalCompra.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFiltroSucursalCompraItemStateChanged(evt);
@@ -3021,6 +3043,55 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnVerVentasporSucursal.add(cmbSucursalReporteVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 180, -1));
 
         getContentPane().add(jpnVerVentasporSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
+
+        acercaDe.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Bitstream Charter", 1, 24)); // NOI18N
+        jLabel2.setText("TEORIA DE SISTEMAS I 2017");
+        acercaDe.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 360, -1));
+
+        jButton1.setText("X");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        acercaDe.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 510, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        jLabel15.setText("TIENDA-abc");
+        acercaDe.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, -1, -1));
+
+        jLabel20.setText("Universidad de El Salvador");
+        acercaDe.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("DejaVu Sans", 1, 13)); // NOI18N
+        jLabel21.setText("Docente Responsable:    ");
+        acercaDe.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
+
+        jLabel22.setFont(new java.awt.Font("DejaVu Sans", 3, 13)); // NOI18N
+        jLabel22.setText("Alumnos:");
+        acercaDe.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, -1, -1));
+
+        jLabel26.setText("Ing. Alexander Calderon Peraza ");
+        acercaDe.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, -1, -1));
+
+        jLabel35.setText("GG13008 Gómez Guinea, Sigfrido Ernesto");
+        acercaDe.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, -1, -1));
+
+        jLabel56.setText("IR13002  Ibañez Rodriguez, Ronald Eduardo");
+        acercaDe.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, -1, -1));
+
+        jLabel60.setText("MA14002  Murillo Aguilar, Daniel Alberto");
+        acercaDe.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, -1, -1));
+
+        jLabel61.setText("VM14    Vizcarra Montes, Angel ");
+        acercaDe.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, -1, -1));
+
+        jLabel65.setText("LE10001     Lima Estrada, Melvin Josue");
+        acercaDe.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, -1, -1));
+
+        getContentPane().add(acercaDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 450));
 
         pack();
         setLocationRelativeTo(null);
@@ -6107,7 +6178,8 @@ public void limpiarTablaDetalleCompra(){
 
     private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
         JasperReport jr = null;
-        String path = "C:\\Users\\Vizcarra\\Desktop\\MANANA\\Tienda-v2\\src\\Reportes\\ReporteVentas.jasper"; //Ponemos la localizacion del reporte creado
+        //String path = "/home/sigfrid/Documentos/tienda2.0/Tienda-v2/src/Reportes"; //Ponemos la localizacion del reporte creado
+       String path = "C:\\Users\\Vizcarra\\Desktop\\MANANA\\Tienda-v2\\src\\Reportes\\ReporteVentas.jasper"; //Ponemos la localizacion del reporte creado
         Conexion cn = new Conexion();
         try {
             Map parametro = new HashMap();
@@ -6200,6 +6272,20 @@ public void limpiarTablaDetalleCompra(){
     private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailKeyTyped
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+       acercaDe.setVisible(false);
+      
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        apagado();
+        //Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnProveedores1);  
+        apagado2();
+         acercaDe.setVisible(true);
+         
+    }//GEN-LAST:event_jButton3MouseClicked
 
 
     public void agregarDetalle(){
@@ -6595,6 +6681,7 @@ public void limpiarTablaProducto2(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Utilidad1;
+    private javax.swing.JPanel acercaDe;
     private javax.swing.JButton btnAdministacion;
     private javax.swing.JButton btnAgregarCompra;
     private javax.swing.JButton btnAgregarNuevoProducto;
@@ -6650,20 +6737,28 @@ public void limpiarTablaProducto2(){
     private javax.swing.JComboBox cmbSucursalReporteVenta;
     private javax.swing.JComboBox cmbTipoFacturaParametro;
     private javax.swing.JComboBox cmbUtilidadParametro;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -6673,6 +6768,7 @@ public void limpiarTablaProducto2(){
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
@@ -6695,13 +6791,17 @@ public void limpiarTablaProducto2(){
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
