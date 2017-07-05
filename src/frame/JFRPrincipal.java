@@ -3269,8 +3269,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 tipoCompra = "F" ;
                 bloquearIvaPercepcion();
                 txtNumDocumento.setText("");
+                txtTotalCompra.setText("");
                 cmbSucursalCompra.requestFocus();
                 lbltxtTipoCompra.setText("Factura N°");
+                cmbSucursalCompra.setEnabled(true);
+                cmbProveedorCompra.setEnabled(true);
                 break;
             
             case 1:
@@ -3290,14 +3293,19 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 limpiarCompra();
                 cmbSucursalCompra.requestFocus(); 
                 lbltxtTipoCompra.setText("Crédito Fiscal N°");
+                cmbSucursalCompra.setEnabled(true);
+                cmbProveedorCompra.setEnabled(true);
                 break;
                 
             case 2: 
                 tipoCompra = "L" ;
                 bloquearIvaPercepcion();
                 txtNumDocumento.setText("");
+                txtTotalCompra.setText("");
                 cmbSucursalCompra.requestFocus(); 
                 lbltxtTipoCompra.setText("Libre N°");
+                cmbSucursalCompra.setEnabled(true);
+                cmbProveedorCompra.setEnabled(true);
                 break;
         }
         //Daniel-Fin        
@@ -3681,19 +3689,7 @@ if(decide==0){
 
     private void cmbSucursalCompraItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSucursalCompraItemStateChanged
         int posicionSucur=cmbSucursalCompra.getSelectedIndex();
-                if(evt.getStateChange()==ItemEvent.SELECTED){
-                 int n = JOptionPane.showConfirmDialog(null, "¿Esta seguro?.\nPerderá todos los datos registrados en la compra actual","ADVERTENCIA",JOptionPane.OK_CANCEL_OPTION);
-                 if(n==JOptionPane.OK_OPTION){
-                     limpiarDetalle();
-                     limpiarCompra();
-                     limpiarTablaComprasRealizadas();
-                     txtNumDocumento.requestFocus();
-                 }
-                 else if (n==JOptionPane.CANCEL_OPTION){
-                     cmbSucursalCompra.setSelectedIndex(posicionSucur);
-                 }
-                 
-                }
+         
                 
     }//GEN-LAST:event_cmbSucursalCompraItemStateChanged
 
@@ -3796,8 +3792,8 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
     private void btnGuardarTipoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarTipoPrecioActionPerformed
         ControladorTipoPrecio ctp= new ControladorTipoPrecio();
 
-                String id = txtIdTipoPrecio.getText();
-                String nombre = txtNombreTipoPrecio.getText();
+                String id = txtIdTipoPrecio.getText().toUpperCase();
+                String nombre = txtNombreTipoPrecio.getText().toUpperCase();
                 Double utilidad= Double.parseDouble(txtUtilidadTipoPrecio.getText());
                 
                 Object P[]={id,nombre,utilidad};
@@ -3846,10 +3842,10 @@ ControladorTipoPrecio cp= new ControladorTipoPrecio();
     private void btnGuardarSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarSucursalActionPerformed
         ControladorSucursal ctp= new ControladorSucursal();
 
-                String id = txtIdSucursal.getText();
-                String nombre = txtNombreSucursal.getText();
-                String direccion = txtDireccionSucursal.getText();
-                String telefono = txtTelefonoSucursal.getText();
+                String id = txtIdSucursal.getText().toUpperCase();
+                String nombre = txtNombreSucursal.getText().toUpperCase();
+                String direccion = txtDireccionSucursal.getText().toUpperCase();
+                String telefono = txtTelefonoSucursal.getText().toUpperCase();
                
                 
                 Object P[]={id,nombre,direccion,telefono};
@@ -3942,9 +3938,9 @@ if(decide==0){
     private void btnGuardarParametroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarParametroActionPerformed
         Parametro p= new Parametro();
 
-                String id = txtIdParametro.getText();
-                String nombre = txtNombreParametro.getText();
-                String valor=txtParametroParametro.getText();
+                String id = txtIdParametro.getText().toUpperCase();
+                String nombre = txtNombreParametro.getText().toUpperCase();
+                String valor=txtParametroParametro.getText().toUpperCase();
                 
                 Object P[]={id,nombre,valor};
         
@@ -4116,6 +4112,18 @@ if(decide==0){
             txtCodBarraProductos.setEditable(false);
              txtNombreProductos.setEditable(false);
              txtPrecioProductos.setEditable(false);
+             jpnNuevoProducto.setVisible(false);
+            jpnProductos.setVisible(true);
+             txtCodBarraProductos.setText("");
+        txtNombreProductos.setText("");
+        txtPrecioProductos.setText("");
+        try {
+            llenarProducto();
+            llenarProducto2();
+        } catch (Exception ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnAgregarNuevoProductoActionPerformed
 
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
@@ -4144,7 +4152,12 @@ if(decide==0){
 
 }else{
 }
-
+try {
+            llenarProducto();
+            llenarProducto2();
+        } catch (Exception ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEliminarProductoActionPerformed
 
     private void btnAgregarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProveedorActionPerformed
@@ -4613,8 +4626,7 @@ public void limpiarTablaDetalleCompra(){
             ControladorSucursal cs = new ControladorSucursal();
             
                     if (evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER){
-                               cmbSucursalCompra.setEnabled(false);
-                               cmbProveedorCompra.setEnabled(false);
+                              
                         IdCompraPC = txtIdCompra.getText();
                         CodBarraPC = txtCodBarraCompra.getText();
                         NombrePC = txtNombreProductoCompra.getText();
@@ -4820,11 +4832,7 @@ public void limpiarTablaDetalleCompra(){
                         }
                      
                         
-                        
-                       
-                          
-                        
-                        
+                    
                         
                         
                        }
@@ -4842,7 +4850,7 @@ public void limpiarTablaDetalleCompra(){
                   
                         
                 
-                    
+                 
                     
 
     }//GEN-LAST:event_txtCostoProductoCompraKeyPressed
@@ -5052,35 +5060,22 @@ public void limpiarTablaDetalleCompra(){
            //Si hay que modificar solo las inventario.cantidad y el producto.costo
            else if (agregarProductoBD==false){
             r = null;
-            r = cn.getValores("Select * from inventario where CodBarra='"+modeloAddCompra.getValueAt(avance, 0).toString()+"';");
+            r = cn.getValores("Select * from inventario where CodBarra='"+modeloAddCompra.getValueAt(avance, 0).toString()+"' and IdSucursal='"+IdSucursalGC+"';");
             
             try {
                 while(r.next()){
+                   
                    CantidadPC = r.getString("Cantidad");
                    IdSucursalPC = r.getString("IdSucursal");
+                   
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             //Si es distinta sucursal
-            if (IdSucursalPC!=IdSucursalGC){
-                cn.UID("Insert into inventario(IdSucursal, CodBarra, Cantidad) values ('"+IdSucursalGC+"','"+modeloAddCompra.getValueAt(avance, 0)+"','"+modeloAddCompra.getValueAt(avance, 2)+"');");
-                Object Pd[] = {IdCompraPC, modeloAddCompra.getValueAt(avance,0).toString(), modeloAddCompra.getValueAt(avance,2).toString(), modeloAddCompra.getValueAt(avance,3).toString()};
-                cn.UID("Insert into detallecompra(IdCompra, CodBarra, Cantidad, CostoUnitario) values ("+Pd[0]+",'"+Pd[1]+"',"+Pd[2]+","+Pd[3]+");");
-               // para modificar el CostoUnitario de un producto
-                if(!CostoUnitarioPC.equals(modeloAddCompra.getValueAt(avance,3).toString())){
-                    CostoUnitarioPC = String.valueOf(df.format((Double.parseDouble(CostoUnitarioPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance,3).toString()))/2));
-                    Object Prm[] = {modeloAddCompra.getValueAt(avance,0).toString(),modeloAddCompra.getValueAt(avance,1).toString(),CostoUnitarioPC};
-                    try {  
-                        cpr.Modificar(Prm);
-                    } catch (Exception ex) {
-                        Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-            else if (IdSucursalPC.equals(IdSucursalGC)){
-                System.out.println("aqui si");
+            
+            if (IdSucursalPC.equals(IdSucursalGC)){
                  //El producto solo se debe actualizar en la tabla inventario.Cantidad, la tabla producto y detallecompra
                 CantidadPC = String.valueOf(Double.parseDouble(CantidadPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance, 2).toString()));
                 cn.UID("Update inventario SET Cantidad= '" + CantidadPC + "' WHERE CodBarra= '" + modeloAddCompra.getValueAt(avance, 0).toString() + "' AND IdSucursal= '"+IdSucursalGC+"';");
@@ -5098,6 +5093,22 @@ public void limpiarTablaDetalleCompra(){
                 }
                 //------------------------------------------------
            
+            }
+            
+            else {
+                cn.UID("Insert into inventario(IdSucursal, CodBarra, Cantidad) values ('"+IdSucursalGC+"','"+modeloAddCompra.getValueAt(avance, 0)+"','"+modeloAddCompra.getValueAt(avance, 2)+"');");
+                Object Pd[] = {IdCompraPC, modeloAddCompra.getValueAt(avance,0).toString(), modeloAddCompra.getValueAt(avance,2).toString(), modeloAddCompra.getValueAt(avance,3).toString()};
+                cn.UID("Insert into detallecompra(IdCompra, CodBarra, Cantidad, CostoUnitario) values ("+Pd[0]+",'"+Pd[1]+"',"+Pd[2]+","+Pd[3]+");");
+               // para modificar el CostoUnitario de un producto
+                if(!CostoUnitarioPC.equals(modeloAddCompra.getValueAt(avance,3).toString())){
+                    CostoUnitarioPC = String.valueOf(df.format((Double.parseDouble(CostoUnitarioPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance,3).toString()))/2));
+                    Object Prm[] = {modeloAddCompra.getValueAt(avance,0).toString(),modeloAddCompra.getValueAt(avance,1).toString(),CostoUnitarioPC};
+                    try {  
+                        cpr.Modificar(Prm);
+                    } catch (Exception ex) {
+                        Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
            
             
