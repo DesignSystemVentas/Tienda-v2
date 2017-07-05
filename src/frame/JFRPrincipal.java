@@ -613,6 +613,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jSeparator34 = new javax.swing.JSeparator();
         jSeparator39 = new javax.swing.JSeparator();
         jLabel66 = new javax.swing.JLabel();
+        cmbNuevoProductoSucursal = new javax.swing.JComboBox<>();
+        jLabel67 = new javax.swing.JLabel();
+        jLabel68 = new javax.swing.JLabel();
+        txtCantidadNuevoProducto = new javax.swing.JTextField();
         jpnDetalleCompra = new javax.swing.JPanel();
         txtCodBarraProductos1 = new javax.swing.JTextField();
         txtNombreProductos1 = new javax.swing.JTextField();
@@ -842,6 +846,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnComprasMouseEntered(evt);
             }
         });
+        btnCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprasActionPerformed(evt);
+            }
+        });
         jpnSubMenu.add(btnCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(-126, 20, 180, 40));
 
         btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/productos.png"))); // NOI18N
@@ -870,11 +879,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVentasMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnVentasMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnVentasMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVentasMouseEntered(evt);
             }
         });
         btnVentas.addActionListener(new java.awt.event.ActionListener() {
@@ -2229,6 +2238,22 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel66.setText("Escanee un codigo de barra");
         jpnNuevoProducto.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, -1, -1));
 
+        cmbNuevoProductoSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jpnNuevoProducto.add(cmbNuevoProductoSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, -1, -1));
+
+        jLabel67.setText("Sucursal:");
+        jpnNuevoProducto.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, -1, -1));
+
+        jLabel68.setText("Cantidad:");
+        jpnNuevoProducto.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, -1, -1));
+
+        txtCantidadNuevoProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCantidadNuevoProductoKeyPressed(evt);
+            }
+        });
+        jpnNuevoProducto.add(txtCantidadNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 80, -1));
+
         getContentPane().add(jpnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
         jpnDetalleCompra.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -3232,6 +3257,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtCodBarraProductos.setText("");
         txtNombreProductos.setText("");
         txtPrecioProductos.setText("");
+        llenarCmbProductoSucursal();
+         txtCantidadNuevoProducto.setEnabled(true);
+            cmbNuevoProductoSucursal.setEnabled(true);
         
     }//GEN-LAST:event_btnNuevoProductoActionPerformed
 
@@ -4009,6 +4037,8 @@ if(decide==0){
                 String costo = modeloProducto2.getValueAt(jtblProductos2.getSelectedRow(), 2).toString();
             txtCodBarraProductos.setText(""+id);
             txtNombreProductos.setText(""+nombre);
+            txtCantidadNuevoProducto.setEnabled(false);
+            cmbNuevoProductoSucursal.setEnabled(false);
             
             txtPrecioProductos.setText(""+costo);
                 jpnProductos.setVisible(false);
@@ -4083,15 +4113,19 @@ if(decide==0){
                 String id = txtCodBarraProductos.getText().toUpperCase();
                 String nombre = txtNombreProductos.getText().toUpperCase();
                 String direccion = txtPrecioProductos.getText().toUpperCase();
-                ;
+                String idsucursal= ""+cmbNuevoProductoSucursal.getSelectedIndex()+1;
+                String cantidad=txtCantidadNuevoProducto.getText();
+                
                
                 
                 Object P[]={id,nombre,direccion};
+                Object I[]={idsucursal,id,cantidad};
         
          
             if(modificarProducto==true){
                 try {
                     ctp.Modificar(P);
+                    
                 } catch (Exception ex) {
                     Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -4106,6 +4140,15 @@ if(decide==0){
             }else{
                 try {
                     ctp.Agregar(P);
+                    
+                    
+                } catch (Exception ex) {
+                    Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    ctp.Agregari(I);
+                    
+                    
                 } catch (Exception ex) {
                     Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -6365,6 +6408,21 @@ public void limpiarTablaDetalleCompra(){
          
     }//GEN-LAST:event_jButton3MouseClicked
 
+    private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnComprasActionPerformed
+
+    private void txtCantidadNuevoProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadNuevoProductoKeyPressed
+        char c=evt.getKeyChar();
+        if(Character.isDigit(c)){
+            
+        }else{
+        evt.consume();
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadNuevoProductoKeyPressed
+
 
 
     public void agregarDetalle(){
@@ -6708,7 +6766,30 @@ public void limpiarTablaProducto2(){
            i-=1;
        }
 }
-    
+   public void llenarCmbProductoSucursal(){
+   
+
+        //limpiar la tabla
+        cmbNuevoProductoSucursal.removeAllItems();
+             
+                     try {
+                         ResultSet rs=cSucursal.Obtener();
+                          DefaultComboBoxModel modeloProductoSucursal= new DefaultComboBoxModel();
+          while (rs.next()) {
+                modeloProductoSucursal.addElement(rs.getString(2));                 
+                 
+                
+                 //modeloProductoSucursal.addElement(rs.getString(1));  
+                
+            }
+          cmbNuevoProductoSucursal.setModel(modeloProductoSucursal);
+                        
+        } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} catch (Exception ex) {           
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }           
+
+        
+   } 
     
     
     
@@ -6810,6 +6891,7 @@ public void limpiarTablaProducto2(){
     private javax.swing.ButtonGroup btngFiltroProductos;
     private javax.swing.JComboBox cmbFechasVenta;
     private javax.swing.JComboBox<String> cmbFiltroSucursalCompra;
+    private javax.swing.JComboBox<String> cmbNuevoProductoSucursal;
     private javax.swing.JComboBox cmbProveedorCompra;
     private javax.swing.JComboBox<String> cmbSucursalCompra;
     private javax.swing.JComboBox cmbSucursalParametro;
@@ -6882,6 +6964,8 @@ public void limpiarTablaProducto2(){
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
@@ -7067,6 +7151,7 @@ public void limpiarTablaProducto2(){
     private javax.swing.JPanel tjpnlTipoPrecio;
     private javax.swing.JTabbedPane tpnlAdministracion;
     private javax.swing.JTextField txtCantidadCompra;
+    private javax.swing.JTextField txtCantidadNuevoProducto;
     private javax.swing.JTextField txtCantidadVender;
     private javax.swing.JTextField txtClienteVenta;
     private javax.swing.JTextField txtCodBarraCompra;

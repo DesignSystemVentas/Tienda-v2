@@ -30,6 +30,22 @@ public class ControladorProducto {
      
      }
      
+     
+     public void Agregari(Object p[]) throws Exception{
+
+         try {
+            cn.conectar();
+            cn.UID("INSERT into inventario(IdSucursal,CodBarra,Cantidad) Values('"+p[0]+"','"+p[1]+"',"+p[2]+");");
+            
+            cn.desconectar();   
+         } catch (Exception e) {
+             throw new ErrorTienda("no logra ingresar producto");
+         }finally{
+         cn.desconectar();
+         } 
+         
+     
+     }
      public void Modificar(Object t[]) throws Exception{
          try {
          cn.conectar();
