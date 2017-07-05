@@ -6178,7 +6178,7 @@ public void limpiarTablaDetalleCompra(){
 
     private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
         JasperReport jr = null;
-        //String path = "/home/sigfrid/Documentos/tienda2.0/Tienda-v2/src/Reportes"; //Ponemos la localizacion del reporte creado
+        //String path = "/home/sigfrid/Documentos/tienda2.0/Tienda-v2/src/Reportes/"; //Ponemos la localizacion del reporte creado
        String path = "C:\\Users\\Vizcarra\\Desktop\\MANANA\\Tienda-v2\\src\\Reportes\\ReporteVentas.jasper"; //Ponemos la localizacion del reporte creado
         Conexion cn = new Conexion();
         try {
