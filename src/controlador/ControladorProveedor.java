@@ -77,7 +77,7 @@ public class ProveedorControlador {
         Conexion cn = new Conexion();
         try{
         cn.conectar();  
-        cn.UID("INSERT INTO proveedor(IdProveedor,Nombre,Telefono,Direccion,NIT) VALUES(" +P[0]+ "," + P[1] + ",'" + P[2] + "','" + P[3]+ "')");
+        cn.UID("INSERT INTO proveedor(IdProveedor,Nombre,Telefono,Direccion,NIT, NRC, Email) VALUES(" +P[0]+ "," + P[1] + ",'" + P[2] + "','" + P[3]+"','"+P[4]+"','"+P[5]+"','"+P[6]+ "')");
         System.out.println("se agrego con exito");
         } catch (Exception ex){
             throw new ErrorTienda("Insertar" + ex.getMessage());

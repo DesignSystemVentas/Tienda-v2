@@ -482,6 +482,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jSeparator17 = new javax.swing.JSeparator();
         jSeparator18 = new javax.swing.JSeparator();
         jSeparator19 = new javax.swing.JSeparator();
+        txtNRC = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        txtEmail = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jSeparator9 = new javax.swing.JSeparator();
         jpnModificarProveedor = new javax.swing.JPanel();
         btnGuardarModificarProveedor = new javax.swing.JButton();
         btnAtrasModificarProveedor = new javax.swing.JButton();
@@ -1241,14 +1247,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 txtDireccionProveedorKeyTyped(evt);
             }
         });
-        jpnAgregarProv.add(txtDireccionProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 410, 30));
+        jpnAgregarProv.add(txtDireccionProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 410, 30));
 
         txtNIT.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNITKeyTyped(evt);
             }
         });
-        jpnAgregarProv.add(txtNIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 230, 30));
+        jpnAgregarProv.add(txtNIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, 230, 30));
 
         txtNombreProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtNombreProveedor.addActionListener(new java.awt.event.ActionListener() {
@@ -1261,7 +1267,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 txtNombreProveedorKeyTyped(evt);
             }
         });
-        jpnAgregarProv.add(txtNombreProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 410, 30));
+        jpnAgregarProv.add(txtNombreProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 410, 30));
 
         txtTelefonoProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1273,7 +1279,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 txtTelefonoProveedorKeyTyped(evt);
             }
         });
-        jpnAgregarProv.add(txtTelefonoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 230, 30));
+        jpnAgregarProv.add(txtTelefonoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 230, 30));
 
         jPanel45.setBackground(new java.awt.Color(0, 0, 0));
         jPanel45.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1298,23 +1304,47 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("Nombre:");
-        jpnAgregarProv.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, 20));
+        jpnAgregarProv.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, 20));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setText("Teléfono:");
-        jpnAgregarProv.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, 20));
+        jpnAgregarProv.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, -1, 20));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("Dirección:");
-        jpnAgregarProv.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, 20));
+        jpnAgregarProv.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, 20));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("NIT:");
-        jpnAgregarProv.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, -1, 20));
-        jpnAgregarProv.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 30, 10));
-        jpnAgregarProv.add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 50, 10));
-        jpnAgregarProv.add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, 10));
-        jpnAgregarProv.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 60, 10));
+        jpnAgregarProv.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, 20));
+        jpnAgregarProv.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 30, 10));
+        jpnAgregarProv.add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 50, 10));
+        jpnAgregarProv.add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 60, 10));
+        jpnAgregarProv.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 60, 10));
+
+        txtNRC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNRCKeyTyped(evt);
+            }
+        });
+        jpnAgregarProv.add(txtNRC, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, 230, 30));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel16.setText("NRC:");
+        jpnAgregarProv.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, -1, 20));
+        jpnAgregarProv.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 30, 10));
+
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmailKeyTyped(evt);
+            }
+        });
+        jpnAgregarProv.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 310, 30));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel19.setText("Email:");
+        jpnAgregarProv.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, -1, 20));
+        jpnAgregarProv.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 30, 10));
 
         getContentPane().add(jpnAgregarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -4002,18 +4032,22 @@ if(decide==0){
     private void btnAgregarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProveedorActionPerformed
         jpnProveedores.setVisible(false);
                 jpnAgregarProv.setVisible(true);
+         
     }//GEN-LAST:event_btnAgregarProveedorActionPerformed
 
     private void btnGuardarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProveedorActionPerformed
          ControladorProveedor cpp= new ControladorProveedor();
 
 //        int id = Integer.parseInt(txtIDProveedor.getText());
+        String id = txtIDProveedor.getText();
         String nombre  = txtNombreProveedor.getText();
         String telefono= txtTelefonoProveedor.getText();
         String direccion = txtDireccionProveedor.getText();
         String NIT = txtNIT.getText();
+        String NRC = txtNRC.getText();
+        String Email = txtEmail.getText();
 //        Object P[]={id,nombre,telefono, direccion, NIT};
-        Object P[]={nombre,telefono, direccion, NIT};
+        Object P[]={id, nombre,telefono, direccion, NIT, NRC, Email};
         try {
 
             cpp.AgregarP(P);
@@ -4022,6 +4056,10 @@ if(decide==0){
             txtTelefonoProveedor.setText("");
             txtDireccionProveedor.setText("");
             txtNIT.setText("");
+            txtNRC.setText("");
+            txtEmail.setText("");
+          
+          
             JOptionPane.showMessageDialog(null, "agregado con exito");
             jpnAgregarProv.setVisible(false);
             jpnProveedores.setVisible(true);
@@ -4033,7 +4071,11 @@ if(decide==0){
         } catch (ErrorTienda ex) {
             Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        llenarTablaProveedoresP();
+        try { 
+            llenarProveedor2();
+        } catch (Exception ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         }
 
@@ -4059,7 +4101,7 @@ if(decide==0){
 //                }
 //            } catch (SQLException ex) {
 //                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+ //          }
     }//GEN-LAST:event_btnGuardarProveedorActionPerformed
 
     private void txtNombreProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProveedorActionPerformed
@@ -6077,6 +6119,14 @@ public void limpiarTablaDetalleCompra(){
         // TODO add your handling code here:
     }//GEN-LAST:event_btnProductosActionPerformed
 
+    private void txtNRCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNRCKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNRCKeyTyped
+
+    private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailKeyTyped
+
 
     public void agregarDetalle(){
         detalleCompra[0] = CodBarraPC;    
@@ -6475,8 +6525,10 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -6584,7 +6636,9 @@ public void limpiarTablaProducto(){
     private javax.swing.JSeparator jSeparator47;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JPanel jpnAdministracion;
     private javax.swing.JPanel jpnAgregarProv;
     private javax.swing.JPanel jpnBarraMenu;
@@ -6707,6 +6761,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel txtDireccionActualProveedor;
     private javax.swing.JTextField txtDireccionProveedor;
     private javax.swing.JTextField txtDireccionSucursal;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFechaCompra;
     private javax.swing.JTextField txtGiroVenta;
     private javax.swing.JTextField txtIDProveedor;
@@ -6721,6 +6776,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JTextField txtIvaCompra;
     private javax.swing.JTextField txtNIT;
     private javax.swing.JTextField txtNITventa;
+    private javax.swing.JTextField txtNRC;
     private javax.swing.JTextField txtNRCventa;
     private javax.swing.JLabel txtNitActualProveedor;
     private javax.swing.JLabel txtNombreActualProveedor1;
