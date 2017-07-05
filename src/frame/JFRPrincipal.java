@@ -4142,9 +4142,11 @@ if(decide==0){
     }//GEN-LAST:event_btnAgregarNuevoProductoActionPerformed
 
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
-            ControladorProducto cpp= new ControladorProducto();
+     ControladorProducto cpp= new ControladorProducto();
         TableModel tableModel = jtblProductos2.getModel();
-    Object mostrar=modeloProducto2.getValueAt(jtblProductos2.getSelectedRow(), 0);     
+    
+        try {
+        Object mostrar=modeloProducto2.getValueAt(jtblProductos2.getSelectedRow(), 0); 
         
     
         ResultSet rs;
@@ -4185,7 +4187,12 @@ try {
             Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     
-    
+            
+        } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "seleccion antes de continuar");
+        }
+        
+
     
 
     }//GEN-LAST:event_btnEliminarProductoActionPerformed
