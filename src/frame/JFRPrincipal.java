@@ -152,7 +152,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tHeadParametro = jtblParametros.getTableHeader();
         tHeadSucursal = jtblSucursales.getTableHeader();
         tHeadProducto = jtblProductos.getTableHeader();
-        
+        tHeadProducto = jtblProductos2.getTableHeader();
         
         cabezera();
         ventas = compras = productos = proveedores = apagado = false;
@@ -253,6 +253,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jtblParametros.setModel(modeloParametro);
         jtblSucursales.setModel(modeloSucursal);
         jtblProductos.setModel(modeloProducto);
+        jtblProductos2.setModel(modeloProducto2);
         
             modificarTipoPrecio=false;
             txtIdTipoPrecio.setEditable(false);
@@ -576,10 +577,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblFechaCompra = new javax.swing.JLabel();
         txtFechaCompra = new javax.swing.JTextField();
         jpnProductos = new javax.swing.JPanel();
-        btnNuevoProducto = new javax.swing.JButton();
         btnBuscarProducto = new javax.swing.JButton();
-        btnModificarProducto = new javax.swing.JButton();
-        btnEliminarProducto = new javax.swing.JButton();
         jPanel43 = new javax.swing.JPanel();
         jSeparator14 = new javax.swing.JSeparator();
         lblProveedores4 = new javax.swing.JLabel();
@@ -591,6 +589,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jtblProductos = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtblProductos2 = new javax.swing.JTable();
+        btnNuevoProducto = new javax.swing.JButton();
+        btnModificarProducto = new javax.swing.JButton();
+        btnEliminarProducto = new javax.swing.JButton();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         jpnNuevoProducto = new javax.swing.JPanel();
         btnAgregarNuevoProducto = new javax.swing.JButton();
         btnSalirProductos = new javax.swing.JButton();
@@ -1934,25 +1938,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         jpnProductos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnNuevoProducto.setBackground(new java.awt.Color(0, 0, 0));
-        btnNuevoProducto.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuevoProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo3.png"))); // NOI18N
-        btnNuevoProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNuevoProducto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnNuevoProductoMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnNuevoProductoMouseEntered(evt);
-            }
-        });
-        btnNuevoProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoProductoActionPerformed(evt);
-            }
-        });
-        jpnProductos.add(btnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, 110, 30));
-
         btnBuscarProducto.setBackground(new java.awt.Color(0, 0, 0));
         btnBuscarProducto.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscar.png"))); // NOI18N
@@ -1969,40 +1954,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             }
         });
         jpnProductos.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 110, 30));
-
-        btnModificarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
-        btnModificarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnModificarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnModificarProductoMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnModificarProductoMouseEntered(evt);
-            }
-        });
-        btnModificarProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarProductoActionPerformed(evt);
-            }
-        });
-        jpnProductos.add(btnModificarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 510, 110, 30));
-
-        btnEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
-        btnEliminarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEliminarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEliminarProductoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnEliminarProductoMouseExited(evt);
-            }
-        });
-        btnEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarProductoActionPerformed(evt);
-            }
-        });
-        jpnProductos.add(btnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 510, 110, 30));
 
         jPanel43.setBackground(new java.awt.Color(0, 0, 0));
         jPanel43.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -2075,9 +2026,81 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jtblProductos);
 
         jTabbedPane1.addTab("Listado de los productos en inventario", jScrollPane3);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jtblProductos2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jtblProductos2);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 320));
+
+        btnNuevoProducto.setBackground(new java.awt.Color(0, 0, 0));
+        btnNuevoProducto.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevoProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo3.png"))); // NOI18N
+        btnNuevoProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevoProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnNuevoProductoMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnNuevoProductoMouseEntered(evt);
+            }
+        });
+        btnNuevoProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoProductoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 110, 30));
+
+        btnModificarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
+        btnModificarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnModificarProductoMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarProductoMouseEntered(evt);
+            }
+        });
+        btnModificarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarProductoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnModificarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 110, 30));
+
+        btnEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
+        btnEliminarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarProductoMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarProductoMouseEntered(evt);
+            }
+        });
+        btnEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProductoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 110, 30));
+
         jTabbedPane1.addTab("Productos Registrados", jPanel1);
 
-        jpnProductos.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 660, 360));
+        jpnProductos.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 660, 420));
+        jpnProductos.add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 490, -1, -1));
 
         getContentPane().add(jpnProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -3145,6 +3168,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnProductos.setVisible(true);
          try {
             llenarProducto();
+            llenarProducto2();
         } catch (Exception ex) {
             Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("No logro poner el modelo producto");
@@ -3888,10 +3912,10 @@ if(decide==0){
         ControladorProducto cpp= new ControladorProducto();
                modificarProducto=true;
               
-                String id = modeloProducto.getValueAt(jtblProductos.getSelectedRow(), 0).toString();
+                String id = modeloProducto2.getValueAt(jtblProductos2.getSelectedRow(), 0).toString();
                 //String inventario = modeloProducto.getValueAt(jtblProductos.getSelectedRow(), 1).toString();
-                String nombre= modeloProducto.getValueAt(jtblProductos.getSelectedRow(), 1).toString();
-                String costo = modeloProducto.getValueAt(jtblProductos.getSelectedRow(), 2).toString();
+                String nombre= modeloProducto2.getValueAt(jtblProductos2.getSelectedRow(), 1).toString();
+                String costo = modeloProducto2.getValueAt(jtblProductos2.getSelectedRow(), 2).toString();
             txtCodBarraProductos.setText(""+id);
             txtNombreProductos.setText(""+nombre);
             
@@ -3906,6 +3930,7 @@ if(decide==0){
        String C=txtPrecioProductos.getText();
         try {
             buscarProducto(C);
+            buscarProducto2(C);
         } catch (Exception ex) {
             Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Se cago al obtener la busqueda");
@@ -3923,6 +3948,7 @@ if(decide==0){
              
             try {
                 buscarProducto(txtProductosBuscar.getText());
+                buscarProducto2(txtProductosBuscar.getText());
             } catch (Exception ex) {
                 Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("Se cago buscnado el producto");
@@ -4008,11 +4034,11 @@ if(decide==0){
 
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
             ControladorProducto cpp= new ControladorProducto();
-        TableModel tableModel = jtblProductos.getModel();
-    Object mostrar=modeloProducto.getValueAt(jtblProductos.getSelectedRow(), 0);     
+        TableModel tableModel = jtblProductos2.getModel();
+    Object mostrar=modeloProducto2.getValueAt(jtblProductos2.getSelectedRow(), 0);     
 //    Object P[]={mostrar};
     
-int decide=JOptionPane.showConfirmDialog(null, "Desea borrar el producto:" +modeloProducto.getValueAt(jtblProductos.getSelectedRow(), 1));
+int decide=JOptionPane.showConfirmDialog(null, "Desea borrar el producto:" +modeloProducto2.getValueAt(jtblProductos2.getSelectedRow(), 1));
 
 
 if(decide==0){
@@ -4286,6 +4312,7 @@ txtNuevoNIT.requestFocus();
         if(!txtProductosBuscar.getText().isEmpty()){
             try {
                 buscarProducto(txtProductosBuscar.getText());
+                buscarProducto2(txtProductosBuscar.getText());
             } catch (Exception ex) {
                 Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("Se cago buscnado el producto");
@@ -6362,6 +6389,34 @@ public void llenarProducto() throws Exception{
         jtblProductos.setModel(modeloProducto);
          }   
 }  
+
+public void llenarProducto2() throws Exception{
+  ControladorProducto tp=new ControladorProducto();
+    limpiarTablaProducto2();
+    ResultSet rs=null;
+    
+    rs=tp.Obtener2();
+    if (!rs.isBeforeFirst()) { 
+             System.out.println("No existe"); 
+}    else{
+         try {
+            while (rs.next()) {
+                String CodBarra = rs.getString("CodBarra");
+                String Nombre = rs.getString("Nombre");
+                String Costo = rs.getString("Costo");
+
+                modeloProducto2.addRow(new String[]{CodBarra,Nombre,Costo});
+                System.out.println("puso el modelo Producto");       
+            }
+        } catch (Exception e) {
+            throw  new ErrorTienda("No logra poner el modelo Producto()");
+        }
+        jtblProductos2.setModel(modeloProducto2);
+         }  
+    
+}
+
+
 public void llenarProducto(String producto) throws Exception{
     ControladorProducto tp=new ControladorProducto();
     limpiarTablaProducto();
@@ -6412,28 +6467,27 @@ public void buscarProducto(String C) throws Exception{
          }
 }
 
-public void buscarProductoInv(String C) throws Exception{
+public void buscarProducto2(String C) throws Exception{
  ControladorProducto tp=new ControladorProducto();
-    limpiarTablaProducto();
-    ResultSet rs=null;
-    rs=tp.Buscar(C);
-    if (!rs.isBeforeFirst()) { 
+    limpiarTablaProducto2();
+    ResultSet rs2=null;
+    rs2=tp.Buscar2(C);
+    if (!rs2.isBeforeFirst()) { 
              System.out.println("No existe"); 
 }    else{
          try {
-            while (rs.next()) {
-                String CodBarra = rs.getString("CodBarra");
-                String Nombre = rs.getString("Nombre");
-                String Costo = rs.getString("Costo");
-                 String sucu=rs.getString("IdSucursal");
-                String existencia=rs.getString("Cantidad");
-                modeloProducto.addRow(new String[]{CodBarra,Nombre,Costo,sucu,existencia});
+            while (rs2.next()) {
+                String CodBarra = rs2.getString("CodBarra");
+                String Nombre = rs2.getString("Nombre");
+                String Costo = rs2.getString("Costo");
+                 
+                modeloProducto2.addRow(new String[]{CodBarra,Nombre,Costo});
                 System.out.println("puso el modelo Producto");       
             }
         } catch (Exception e) {
             throw  new ErrorTienda("No logra poner el modelo Producto del metodo buscarpro(param)");
         }
-        jtblProductos.setModel(modeloProducto);
+        jtblProductos2.setModel(modeloProducto2);
          }
 }
 public void limpiarTablaProveedor2(){
@@ -6446,6 +6500,13 @@ public void limpiarTablaProveedor2(){
 public void limpiarTablaProducto(){
  for (int i = 0; i < jtblProductos.getRowCount(); i++) {
            modeloProducto.removeRow(i);
+           i-=1;
+       }
+}
+
+public void limpiarTablaProducto2(){
+ for (int i = 0; i < jtblProductos2.getRowCount(); i++) {
+           modeloProducto2.removeRow(i);
            i-=1;
        }
 }
@@ -6615,6 +6676,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel39;
@@ -6632,6 +6694,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JPanel jPanel53;
     private javax.swing.JPanel jPanel54;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -6708,6 +6771,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JScrollPane jscpTipoDePrecio;
     private javax.swing.JTable jtblParametros;
     private javax.swing.JTable jtblProductos;
+    private javax.swing.JTable jtblProductos2;
     private javax.swing.JTable jtblSucursales;
     private javax.swing.JTable jtblTipoDePrecio;
     private javax.swing.JLabel lbl11;

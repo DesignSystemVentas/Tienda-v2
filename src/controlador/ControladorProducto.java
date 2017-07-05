@@ -70,7 +70,7 @@ public class ControladorProducto {
          return d;
      }
      
-     public ResultSet BuscarInv(String p) throws Exception{
+     public ResultSet Buscar2(String p) throws Exception{
          ResultSet d=null;
          try {
          cn.conectar();
@@ -118,6 +118,20 @@ public class ControladorProducto {
          try {
          cn.conectar();
          d=cn.getValores("select * from producto P , inventario I where P.CodBarra  = I.CodBarra;");    
+         } catch (Exception e) {
+            cn.desconectar();
+             throw new ErrorTienda("no logra obtener datos producto ");  
+         }finally{
+         
+         }
+         return d;
+     }
+     
+          public ResultSet Obtener2() throws Exception{
+     ResultSet d=null;
+         try {
+         cn.conectar();
+         d=cn.getValores("select * from producto;");    
          } catch (Exception e) {
             cn.desconectar();
              throw new ErrorTienda("no logra obtener datos producto ");  
