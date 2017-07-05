@@ -4318,6 +4318,14 @@ txtNuevoNIT.requestFocus();
                 System.out.println("Se cago buscnado el producto");
             }
             
+        }else{
+            try {
+                llenarProducto();
+                llenarProducto2();
+            } catch (Exception ex) {
+                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
         }
     }//GEN-LAST:event_btnBuscarProductoMouseClicked
 //----------------------------------------------COMPRAS-------------------------------------------------------------------
