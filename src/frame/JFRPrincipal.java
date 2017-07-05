@@ -611,13 +611,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jSeparator13 = new javax.swing.JSeparator();
         jSeparator26 = new javax.swing.JSeparator();
-        jSeparator34 = new javax.swing.JSeparator();
         jSeparator39 = new javax.swing.JSeparator();
         jLabel66 = new javax.swing.JLabel();
-        cmbNuevoProductoSucursal = new javax.swing.JComboBox<>();
-        jLabel67 = new javax.swing.JLabel();
-        jLabel68 = new javax.swing.JLabel();
-        txtCantidadNuevoProducto = new javax.swing.JTextField();
         jpnDetalleCompra = new javax.swing.JPanel();
         txtCodBarraProductos1 = new javax.swing.JTextField();
         txtNombreProductos1 = new javax.swing.JTextField();
@@ -2232,28 +2227,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnNuevoProducto.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 60, 40));
         jpnNuevoProducto.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 100, 10));
         jpnNuevoProducto.add(jSeparator26, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 315, 70, 20));
-        jpnNuevoProducto.add(jSeparator34, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, 40, 30));
         jpnNuevoProducto.add(jSeparator39, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 50, 20));
 
         jLabel66.setFont(new java.awt.Font("DejaVu Sans", 0, 8)); // NOI18N
         jLabel66.setText("Escanee un codigo de barra");
         jpnNuevoProducto.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, -1, -1));
-
-        cmbNuevoProductoSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jpnNuevoProducto.add(cmbNuevoProductoSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, -1, -1));
-
-        jLabel67.setText("Sucursal:");
-        jpnNuevoProducto.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, -1, -1));
-
-        jLabel68.setText("Cantidad:");
-        jpnNuevoProducto.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, -1, -1));
-
-        txtCantidadNuevoProducto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCantidadNuevoProductoKeyPressed(evt);
-            }
-        });
-        jpnNuevoProducto.add(txtCantidadNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 80, -1));
 
         getContentPane().add(jpnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -3259,8 +3237,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtNombreProductos.setText("");
         txtPrecioProductos.setText("");
         llenarCmbProductoSucursal();
-         txtCantidadNuevoProducto.setEnabled(true);
-            cmbNuevoProductoSucursal.setEnabled(true);
+         
         
     }//GEN-LAST:event_btnNuevoProductoActionPerformed
 
@@ -4038,8 +4015,7 @@ if(decide==0){
                 String costo = modeloProducto2.getValueAt(jtblProductos2.getSelectedRow(), 2).toString();
             txtCodBarraProductos.setText(""+id);
             txtNombreProductos.setText(""+nombre);
-            txtCantidadNuevoProducto.setEnabled(false);
-            cmbNuevoProductoSucursal.setEnabled(false);
+            
             
             txtPrecioProductos.setText(""+costo);
                 jpnProductos.setVisible(false);
@@ -4114,13 +4090,12 @@ if(decide==0){
                 String id = txtCodBarraProductos.getText().toUpperCase();
                 String nombre = txtNombreProductos.getText().toUpperCase();
                 String direccion = txtPrecioProductos.getText().toUpperCase();
-                String idsucursal= ""+cmbNuevoProductoSucursal.getSelectedIndex()+1;
-                String cantidad=txtCantidadNuevoProducto.getText();
+                
                 
                
                 
                 Object P[]={id,nombre,direccion};
-                Object I[]={idsucursal,id,cantidad};
+                
         
          
             if(modificarProducto==true){
@@ -4146,13 +4121,7 @@ if(decide==0){
                 } catch (Exception ex) {
                     Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                try {
-                    ctp.Agregari(I);
-                    
-                    
-                } catch (Exception ex) {
-                    Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
             txtCodBarraProductos.setText("");
              txtNombreProductos.setText("");
              txtPrecioProductos.setText("");
@@ -5140,14 +5109,17 @@ public void limpiarTablaDetalleCompra(){
            }
            //Si hay que modificar solo las inventario.cantidad y el producto.costo
            else if (agregarProductoBD==false){
+               System.out.println("aqui si");
+               String can = "";
+               String idS="";
             r = null;
             r = cn.getValores("Select * from inventario where CodBarra='"+modeloAddCompra.getValueAt(avance, 0).toString()+"' and IdSucursal='"+IdSucursalGC+"';");
             
             try {
                 while(r.next()){
                    
-                   CantidadPC = r.getString("Cantidad");
-                   IdSucursalPC = r.getString("IdSucursal");
+                   can = r.getString("Cantidad");
+                   idS = r.getString("IdSucursal");
                    
                 }
             } catch (SQLException ex) {
@@ -5155,10 +5127,12 @@ public void limpiarTablaDetalleCompra(){
             }
             
             //Si es distinta sucursal
-            
-            if (IdSucursalPC.equals(IdSucursalGC)){
+               System.out.println(""+can);
+               System.out.println(""+idS);
+            if (!can.isEmpty()){
+                System.out.println("aca ");
                  //El producto solo se debe actualizar en la tabla inventario.Cantidad, la tabla producto y detallecompra
-                CantidadPC = String.valueOf(Double.parseDouble(CantidadPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance, 2).toString()));
+                CantidadPC = String.valueOf(Double.parseDouble(can)+Double.parseDouble(modeloAddCompra.getValueAt(avance, 2).toString()));
                 cn.UID("Update inventario SET Cantidad= '" + CantidadPC + "' WHERE CodBarra= '" + modeloAddCompra.getValueAt(avance, 0).toString() + "' AND IdSucursal= '"+IdSucursalGC+"';");
                 Object Pdc[] = {IdCompraPC, modeloAddCompra.getValueAt(avance,0).toString(), modeloAddCompra.getValueAt(avance,2).toString(), modeloAddCompra.getValueAt(avance,3).toString()};
                 cn.UID("Insert into detallecompra(IdCompra, CodBarra, Cantidad, CostoUnitario) values ("+Pdc[0]+",'"+Pdc[1]+"',"+Pdc[2]+","+Pdc[3]+");");
@@ -5176,12 +5150,16 @@ public void limpiarTablaDetalleCompra(){
            
             }
             
-            else {
+            else if (can.isEmpty()){
+                System.out.println("esto si");
+                
                 cn.UID("Insert into inventario(IdSucursal, CodBarra, Cantidad) values ('"+IdSucursalGC+"','"+modeloAddCompra.getValueAt(avance, 0)+"','"+modeloAddCompra.getValueAt(avance, 2)+"');");
+
                 Object Pd[] = {IdCompraPC, modeloAddCompra.getValueAt(avance,0).toString(), modeloAddCompra.getValueAt(avance,2).toString(), modeloAddCompra.getValueAt(avance,3).toString()};
                 cn.UID("Insert into detallecompra(IdCompra, CodBarra, Cantidad, CostoUnitario) values ("+Pd[0]+",'"+Pd[1]+"',"+Pd[2]+","+Pd[3]+");");
-               // para modificar el CostoUnitario de un producto
-                if(!CostoUnitarioPC.equals(modeloAddCompra.getValueAt(avance,3).toString())){
+                
+                     
+                    if(!CostoUnitarioPC.equals(modeloAddCompra.getValueAt(avance,3).toString())){
                     CostoUnitarioPC = String.valueOf(df.format((Double.parseDouble(CostoUnitarioPC)+Double.parseDouble(modeloAddCompra.getValueAt(avance,3).toString()))/2));
                     Object Prm[] = {modeloAddCompra.getValueAt(avance,0).toString(),modeloAddCompra.getValueAt(avance,1).toString(),CostoUnitarioPC};
                     try {  
@@ -5190,6 +5168,10 @@ public void limpiarTablaDetalleCompra(){
                         Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+                
+               
+               // para modificar el CostoUnitario de un producto
+               
             }
            
             
@@ -6435,17 +6417,6 @@ public void limpiarTablaDetalleCompra(){
         // TODO add your handling code here:
     }//GEN-LAST:event_btnComprasActionPerformed
 
-    private void txtCantidadNuevoProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadNuevoProductoKeyPressed
-        char c=evt.getKeyChar();
-        if(Character.isDigit(c)){
-            
-        }else{
-        evt.consume();
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadNuevoProductoKeyPressed
-
 
 
     public void agregarDetalle(){
@@ -6793,7 +6764,7 @@ public void limpiarTablaProducto2(){
    
 
         //limpiar la tabla
-        cmbNuevoProductoSucursal.removeAllItems();
+        
              
                      try {
                          ResultSet rs=cSucursal.Obtener();
@@ -6805,7 +6776,7 @@ public void limpiarTablaProducto2(){
                  //modeloProductoSucursal.addElement(rs.getString(1));  
                 
             }
-          cmbNuevoProductoSucursal.setModel(modeloProductoSucursal);
+          
                         
         } catch (ErrorTienda ex) {Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);} catch (Exception ex) {           
             Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -6914,7 +6885,6 @@ public void limpiarTablaProducto2(){
     private javax.swing.ButtonGroup btngFiltroProductos;
     private javax.swing.JComboBox cmbFechasVenta;
     private javax.swing.JComboBox<String> cmbFiltroSucursalCompra;
-    private javax.swing.JComboBox<String> cmbNuevoProductoSucursal;
     private javax.swing.JComboBox cmbProveedorCompra;
     private javax.swing.JComboBox<String> cmbSucursalCompra;
     private javax.swing.JComboBox cmbSucursalParametro;
@@ -6987,8 +6957,6 @@ public void limpiarTablaProducto2(){
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
-    private javax.swing.JLabel jLabel67;
-    private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
@@ -7043,7 +7011,6 @@ public void limpiarTablaProducto2(){
     private javax.swing.JSeparator jSeparator31;
     private javax.swing.JSeparator jSeparator32;
     private javax.swing.JSeparator jSeparator33;
-    private javax.swing.JSeparator jSeparator34;
     private javax.swing.JSeparator jSeparator35;
     private javax.swing.JSeparator jSeparator36;
     private javax.swing.JSeparator jSeparator37;
@@ -7174,7 +7141,6 @@ public void limpiarTablaProducto2(){
     private javax.swing.JPanel tjpnlTipoPrecio;
     private javax.swing.JTabbedPane tpnlAdministracion;
     private javax.swing.JTextField txtCantidadCompra;
-    private javax.swing.JTextField txtCantidadNuevoProducto;
     private javax.swing.JTextField txtCantidadVender;
     private javax.swing.JTextField txtClienteVenta;
     private javax.swing.JTextField txtCodBarraCompra;

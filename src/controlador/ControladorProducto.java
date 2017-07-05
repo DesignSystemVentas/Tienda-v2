@@ -118,7 +118,7 @@ public class ControladorProducto {
      ResultSet d=null;
          try {
          cn.conectar();
-         d=cn.getValores("select * from producto P, inventario I where P.CodBarra ='"+p+"' and  I.CodBarra='"+p+"';");    
+         d=cn.getValores("select * from producto P where P.CodBarra ='"+p+"';");    
          } catch (Exception e) {
              cn.desconectar();
              throw new ErrorTienda("no logra obtener datos producto ");  
