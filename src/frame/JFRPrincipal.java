@@ -5477,14 +5477,16 @@ public void limpiarTablaDetalleCompra(){
                 Conexion cn = new Conexion();//
                 cn.UID("INSERT INTO detalleventa (IdVenta, CodBarra, Cantidad, PrecioUnitario) VALUES ('" +IdVenta+ "','" +tblRegistrarVenta.getValueAt(i, 0)+ "','"
                     +tblRegistrarVenta.getValueAt(i, 2)+ "','" + posicionprecio + "')");
-                cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblRegistrarVenta.getValueAt(i, 2)+ "'  WHERE IdSucursal='" + IdSucursal + "'");
+                cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblRegistrarVenta.getValueAt(i, 2)+ "'  WHERE CodBarra='" +tblRegistrarVenta.getValueAt(i, 0)+ "'  AND IdSucursal ='"+SaberSucursalVentas+"'");
+                
             }
         }else{
             for(int i=0;i < tblRegistrarVenta.getRowCount();i++){
                 Conexion cn = new Conexion();//
                 cn.UID("INSERT INTO detalleventa (IdVenta, CodBarra, Cantidad, PrecioUnitario) VALUES ('" +IdVenta+ "','" +tblRegistrarVenta.getValueAt(i, 0)+ "','"
                     +tblRegistrarVenta.getValueAt(i, 2)+ "','" +tblRegistrarVenta.getValueAt(i, 3)+  "')");
-                cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblRegistrarVenta.getValueAt(i, 2)+ "'  WHERE CodBarra='" +tblRegistrarVenta.getValueAt(i, 0)+ "' AND IdSucursal ='"+IdSucursal+"'");
+//                cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblRegistrarVenta.getValueAt(i, 2)+ "'");
+                cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblRegistrarVenta.getValueAt(i, 2)+ "'  WHERE CodBarra='" +tblRegistrarVenta.getValueAt(i, 0)+ "'  AND IdSucursal ='"+SaberSucursalVentas+"'");
             }
         }
         //TERMINAR DE AGREGAR//
