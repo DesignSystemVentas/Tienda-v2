@@ -1123,11 +1123,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnEliminarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
         btnEliminarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnEliminarProveedorMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnEliminarProveedorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarProveedorMouseExited(evt);
             }
         });
         btnEliminarProveedor.addActionListener(new java.awt.event.ActionListener() {
@@ -1388,11 +1388,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnGuardarModificarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardarprov.png"))); // NOI18N
         btnGuardarModificarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardarModificarProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnGuardarModificarProveedorMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnGuardarModificarProveedorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGuardarModificarProveedorMouseExited(evt);
             }
         });
         btnGuardarModificarProveedor.addActionListener(new java.awt.event.ActionListener() {
@@ -1677,11 +1677,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVerDetalleMouseClicked(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnVerDetalleMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnVerDetalleMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVerDetalleMouseExited(evt);
             }
         });
         btnVerDetalle.addActionListener(new java.awt.event.ActionListener() {
@@ -1733,11 +1733,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnGuardarCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardarprov.png"))); // NOI18N
         btnGuardarCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardarCompra.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnGuardarCompraMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnGuardarCompraMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGuardarCompraMouseExited(evt);
             }
         });
         btnGuardarCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -5079,6 +5079,15 @@ public void limpiarTablaDetalleCompra(){
                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
            }
            //-----------------------------------
+      
+           System.out.println(""+CostoUnitarioPC);
+           
+           
+           
+           
+           
+           
+           
            
            //Si hay que agregar un nuevo producto a la base de datos
            if(agregarProductoBD==true){
@@ -5132,7 +5141,7 @@ public void limpiarTablaDetalleCompra(){
                 //------------------------------------------------
            
             }
-            
+           //agregar que este en la tabla producto 
             else {
                 cn.UID("Insert into inventario(IdSucursal, CodBarra, Cantidad) values ('"+IdSucursalGC+"','"+modeloAddCompra.getValueAt(avance, 0)+"','"+modeloAddCompra.getValueAt(avance, 2)+"');");
                 Object Pd[] = {IdCompraPC, modeloAddCompra.getValueAt(avance,0).toString(), modeloAddCompra.getValueAt(avance,2).toString(), modeloAddCompra.getValueAt(avance,3).toString()};
@@ -5979,12 +5988,11 @@ public void limpiarTablaDetalleCompra(){
             txtCantidadVender.setEnabled(true);                
                     
                 }else {
-                JOptionPane.showMessageDialog(null, "Producto no existente en sucursal " +SaberSucursalVentas);
+                JOptionPane.showMessageDialog(null, "Producto no existente en esta sucursal: " +SaberSucursalVentas);
                 txtCodigoBarraVender.setText("");
                 txtCodigoBarraVender.requestFocus();
                 txtNombreProductoVender.setText("");                                
-                //busacado de nombre y precio//
-            
+                //busacado de nombre y precio//            
             }                                                        
             }            
                }
