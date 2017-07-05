@@ -68,6 +68,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     ResultSet rstControladorProducto = null;
     ResultSet rstCSucursal = null;
     ResultSet rstTipoPrecio = null;
+    ResultSet rsMayorIdProv =null;
     
     ControladorVenta controladorventa = new ControladorVenta();
     ControladorProducto cp = new ControladorProducto();
@@ -3994,8 +3995,8 @@ if(decide==0){
             } catch (Exception ex) {
                 Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
-      modificarProducto=false;
-           txtCodBarraProductos.setEditable(false);
+            modificarProducto=false;
+            txtCodBarraProductos.setEditable(false);
              txtNombreProductos.setEditable(false);
              txtPrecioProductos.setEditable(false);
     }//GEN-LAST:event_btnAgregarNuevoProductoActionPerformed
@@ -4032,6 +4033,17 @@ if(decide==0){
     private void btnAgregarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProveedorActionPerformed
         jpnProveedores.setVisible(false);
                 jpnAgregarProv.setVisible(true);
+                ControladorProveedor cp = new ControladorProveedor();
+        try {
+           rsMayorIdProv = cp.mayorRegistro();
+            if(rsMayorIdProv.next()) {
+            txtIDProveedor.setText(""+(rsMayorIdProv.getInt(1)+1));
+}
+        } catch (ErrorTienda ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
          
     }//GEN-LAST:event_btnAgregarProveedorActionPerformed
 
@@ -4047,6 +4059,7 @@ if(decide==0){
         String NRC = txtNRC.getText();
         String Email = txtEmail.getText();
 //        Object P[]={id,nombre,telefono, direccion, NIT};
+//JOptionPane.showMessageDialog(null, id + " "+nombre + " "+telefono + " "+direccion + " "+NIT + " "+NRC + " "+Email);
         Object P[]={id, nombre,telefono, direccion, NIT, NRC, Email};
         try {
 
@@ -4064,11 +4077,7 @@ if(decide==0){
             jpnAgregarProv.setVisible(false);
             jpnProveedores.setVisible(true);
 
-        } catch (SQLException ex) {
-            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ErrorTienda ex) {
+        } catch (SQLException | ClassNotFoundException | ErrorTienda ex) {
             Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         try { 
@@ -4077,10 +4086,10 @@ if(decide==0){
             Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        }
+     }
 
         public void llenarTablaProveedoresP()
-        {
+      {
 //            limpiarTablaProveedores();
             Conexion cn = new Conexion();
             cn.conectar();
@@ -4110,7 +4119,7 @@ if(decide==0){
     }//GEN-LAST:event_txtNombreProveedorActionPerformed
 
     private void btnAtrasProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasProveedoresActionPerformed
-                txtIDProveedor.setText("");
+        txtIDProveedor.setText("");
         txtNombreProveedor.setText("");
         txtTelefonoProveedor.setText("");
         txtDireccionProveedor.setText("");
