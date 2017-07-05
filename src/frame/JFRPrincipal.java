@@ -406,9 +406,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         btngFiltroProductos = new javax.swing.ButtonGroup();
-        jpnBarraSuperior = new javax.swing.JPanel();
-        lblBotonCerrar = new javax.swing.JLabel();
-        lblLogo = new javax.swing.JLabel();
         jpnBarraMenu = new javax.swing.JPanel();
         lblMenu = new javax.swing.JLabel();
         jpnSubMenu = new javax.swing.JPanel();
@@ -576,8 +573,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblFechaCompra = new javax.swing.JLabel();
         txtFechaCompra = new javax.swing.JTextField();
         jpnProductos = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jtblProductos = new javax.swing.JTable();
         btnNuevoProducto = new javax.swing.JButton();
         btnBuscarProducto = new javax.swing.JButton();
         btnModificarProducto = new javax.swing.JButton();
@@ -590,6 +585,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtProductosBuscar = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jSeparator37 = new javax.swing.JSeparator();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtblProductos = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         jpnNuevoProducto = new javax.swing.JPanel();
         btnAgregarNuevoProducto = new javax.swing.JButton();
         btnSalirProductos = new javax.swing.JButton();
@@ -677,6 +676,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtNombreSucursal = new javax.swing.JTextField();
         txtDireccionSucursal = new javax.swing.JTextField();
         txtTelefonoSucursal = new javax.swing.JTextField();
+        jpnBarraSuperior = new javax.swing.JPanel();
+        lblBotonCerrar = new javax.swing.JLabel();
+        lblLogo = new javax.swing.JLabel();
         jpnRegistrarVenta = new javax.swing.JPanel();
         jPanel49 = new javax.swing.JPanel();
         lblProveedores7 = new javax.swing.JLabel();
@@ -762,39 +764,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jpnBarraSuperior.setBackground(new java.awt.Color(0, 0, 0));
-        jpnBarraSuperior.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
-        jpnBarraSuperior.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jpnBarraSuperiorMouseDragged(evt);
-            }
-        });
-        jpnBarraSuperior.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jpnBarraSuperiorMousePressed(evt);
-            }
-        });
-        jpnBarraSuperior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblBotonCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/exit32.png"))); // NOI18N
-        lblBotonCerrar.setToolTipText("Salir");
-        lblBotonCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblBotonCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblBotonCerrarMouseClicked(evt);
-            }
-        });
-        jpnBarraSuperior.add(lblBotonCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, 30, 50));
-
-        lblLogo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblLogo.setForeground(new java.awt.Color(255, 255, 255));
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lanzador.png"))); // NOI18N
-        lblLogo.setText("Tienda ABC");
-        lblLogo.setToolTipText("");
-        jpnBarraSuperior.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 180, 50));
-
-        getContentPane().add(jpnBarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 55));
 
         jpnBarraMenu.setBackground(new java.awt.Color(176, 6, 6));
         jpnBarraMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1933,43 +1902,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         jpnProductos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jtblProductos =new javax.swing.JTable(){
-            public boolean isCellEditable(int rowIndex, int colIndex){
-                return false;
-            }
-        };
-        jtblProductos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Código de Barra", "Nombre", "Costo", "Inventario"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jtblProductos.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(jtblProductos);
-
-        jpnProductos.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 650, 260));
-
         btnNuevoProducto.setBackground(new java.awt.Color(0, 0, 0));
         btnNuevoProducto.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevoProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo3.png"))); // NOI18N
@@ -2053,11 +1985,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jPanel43.add(lblProveedores4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 340, 30));
 
         jpnProductos.add(jPanel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 50));
-        jpnProductos.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 186, 160, -1));
+        jpnProductos.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 146, 660, 10));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel15.setText("Listado de los Productos:");
-        jpnProductos.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+        jpnProductos.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
         txtProductosBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2078,6 +2010,46 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel3.setText("Producto a buscar:");
         jpnProductos.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
         jpnProductos.add(jSeparator37, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 96, 120, 20));
+
+        jtblProductos =new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
+        jtblProductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Código de Barra", "Nombre", "Costo", "Inventario"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtblProductos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(jtblProductos);
+
+        jTabbedPane1.addTab("Listado de los productos en inventario", jScrollPane3);
+        jTabbedPane1.addTab("Productos Registrados", jPanel1);
+
+        jpnProductos.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 690, 330));
 
         getContentPane().add(jpnProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -2533,6 +2505,39 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tpnlAdministracion.addTab("Sucursales", tjpnlSucursales);
 
         jpnAdministracion.add(tpnlAdministracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 720, 520));
+
+        jpnBarraSuperior.setBackground(new java.awt.Color(0, 0, 0));
+        jpnBarraSuperior.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        jpnBarraSuperior.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jpnBarraSuperiorMouseDragged(evt);
+            }
+        });
+        jpnBarraSuperior.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jpnBarraSuperiorMousePressed(evt);
+            }
+        });
+        jpnBarraSuperior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblBotonCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/exit32.png"))); // NOI18N
+        lblBotonCerrar.setToolTipText("Salir");
+        lblBotonCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblBotonCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBotonCerrarMouseClicked(evt);
+            }
+        });
+        jpnBarraSuperior.add(lblBotonCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, 30, 50));
+
+        lblLogo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblLogo.setForeground(new java.awt.Color(255, 255, 255));
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lanzador.png"))); // NOI18N
+        lblLogo.setText("Tienda ABC");
+        lblLogo.setToolTipText("");
+        jpnBarraSuperior.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 180, 50));
+
+        jpnAdministracion.add(jpnBarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 55));
 
         getContentPane().add(jpnAdministracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 650));
 
@@ -6616,6 +6621,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel42;
@@ -6678,6 +6684,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel jpnAdministracion;
     private javax.swing.JPanel jpnAgregarProv;
     private javax.swing.JPanel jpnBarraMenu;
