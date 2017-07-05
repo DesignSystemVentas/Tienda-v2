@@ -1867,8 +1867,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnRegistroCompra.add(lblNomProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 70, 30));
 
         txtNombreProductoCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreProductoCompraKeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNombreProductoCompraKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreProductoCompraKeyReleased(evt);
             }
         });
         jpnRegistroCompra.add(txtNombreProductoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 140, 30));
@@ -3675,8 +3681,20 @@ if(decide==0){
 
     private void cmbSucursalCompraItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSucursalCompraItemStateChanged
         int posicionSucur=cmbSucursalCompra.getSelectedIndex();
-                txtNumDocumento.requestFocus();
-
+                if(evt.getStateChange()==ItemEvent.SELECTED){
+                 int n = JOptionPane.showConfirmDialog(null, "¿Esta seguro?.\nPerderá todos los datos registrados en la compra actual","ADVERTENCIA",JOptionPane.OK_CANCEL_OPTION);
+                 if(n==JOptionPane.OK_OPTION){
+                     limpiarDetalle();
+                     limpiarCompra();
+                     limpiarTablaComprasRealizadas();
+                     txtNumDocumento.requestFocus();
+                 }
+                 else if (n==JOptionPane.CANCEL_OPTION){
+                     cmbSucursalCompra.setSelectedIndex(posicionSucur);
+                 }
+                 
+                }
+                
     }//GEN-LAST:event_cmbSucursalCompraItemStateChanged
 
     private void cmbSucursalCompraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbSucursalCompraFocusGained
@@ -4024,9 +4042,6 @@ if(decide==0){
                 Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("Se cago buscnado el producto");
             }
-            
-        
-            
         
         }
     }//GEN-LAST:event_txtProductosBuscarKeyReleased
@@ -4594,10 +4609,12 @@ public void limpiarTablaDetalleCompra(){
     private void txtCostoProductoCompraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCostoProductoCompraKeyPressed
         agregarDetalleModelo = true;
         if(agregarDetalleModelo==true){
-        
+     
             ControladorSucursal cs = new ControladorSucursal();
             
                     if (evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER){
+                               cmbSucursalCompra.setEnabled(false);
+                               cmbProveedorCompra.setEnabled(false);
                         IdCompraPC = txtIdCompra.getText();
                         CodBarraPC = txtCodBarraCompra.getText();
                         NombrePC = txtNombreProductoCompra.getText();
@@ -6176,6 +6193,17 @@ public void limpiarTablaDetalleCompra(){
         //finalizar()/llenado cmbSucursal, IdVenta y cmbUtilidad/             
     }//GEN-LAST:event_btnVentasActionPerformed
 
+
+    private void txtNombreProductoCompraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProductoCompraKeyTyped
+    }//GEN-LAST:event_txtNombreProductoCompraKeyTyped
+
+    private void txtNombreProductoCompraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProductoCompraKeyReleased
+                Character c = evt.getKeyChar();
+                if(Character.isLetter(c)) {
+                    evt.setKeyChar(Character.toUpperCase(c));
+                }
+    }//GEN-LAST:event_txtNombreProductoCompraKeyReleased
+
     private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
         JasperReport jr = null;
         //String path = "/home/sigfrid/Documentos/tienda2.0/Tienda-v2/src/Reportes/"; //Ponemos la localizacion del reporte creado
@@ -6184,7 +6212,7 @@ public void limpiarTablaDetalleCompra(){
         try {
             Map parametro = new HashMap();
             parametro.put("Generar", Generar);
-            jr= (JasperReport) JRLoader.loadObjectFromFile(path);
+            jr= (JasperReport) JRLoader.loadObjectFromFile("ReporteVentas.jasper");
             JasperPrint  jp = JasperFillManager.fillReport(jr, parametro, cn.conectar());
             JasperViewer jv = new JasperViewer(jp);
             jv.setVisible(true);
@@ -6286,6 +6314,7 @@ public void limpiarTablaDetalleCompra(){
          acercaDe.setVisible(true);
          
     }//GEN-LAST:event_jButton3MouseClicked
+
 
 
     public void agregarDetalle(){
