@@ -601,6 +601,21 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jSeparator26 = new javax.swing.JSeparator();
         jSeparator34 = new javax.swing.JSeparator();
         jSeparator39 = new javax.swing.JSeparator();
+        jpnProductoInventario = new javax.swing.JPanel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jtblProductos1 = new javax.swing.JTable();
+        btnNuevoProducto1 = new javax.swing.JButton();
+        btnBuscarProducto1 = new javax.swing.JButton();
+        btnModificarProducto1 = new javax.swing.JButton();
+        btnEliminarProducto1 = new javax.swing.JButton();
+        jPanel55 = new javax.swing.JPanel();
+        jSeparator15 = new javax.swing.JSeparator();
+        lblProveedores10 = new javax.swing.JLabel();
+        jSeparator29 = new javax.swing.JSeparator();
+        jLabel20 = new javax.swing.JLabel();
+        txtProductosBuscar2 = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jSeparator45 = new javax.swing.JSeparator();
         jpnDetalleCompra = new javax.swing.JPanel();
         txtCodBarraProductos1 = new javax.swing.JTextField();
         txtNombreProductos1 = new javax.swing.JTextField();
@@ -2169,6 +2184,156 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnNuevoProducto.add(jSeparator39, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 50, 20));
 
         getContentPane().add(jpnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
+
+        jpnProductoInventario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jtblProductos =new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
+        jtblProductos1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Código de Barra", "Nombre", "Costo", "Inventario"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtblProductos1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane10.setViewportView(jtblProductos1);
+
+        jpnProductoInventario.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 650, 260));
+
+        btnNuevoProducto1.setBackground(new java.awt.Color(0, 0, 0));
+        btnNuevoProducto1.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevoProducto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevo3.png"))); // NOI18N
+        btnNuevoProducto1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevoProducto1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnNuevoProducto1MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnNuevoProducto1MouseEntered(evt);
+            }
+        });
+        btnNuevoProducto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoProducto1ActionPerformed(evt);
+            }
+        });
+        jpnProductoInventario.add(btnNuevoProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, 110, 30));
+
+        btnBuscarProducto1.setBackground(new java.awt.Color(0, 0, 0));
+        btnBuscarProducto1.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarProducto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscar.png"))); // NOI18N
+        btnBuscarProducto1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarProducto1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarProducto1MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBuscarProducto1MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBuscarProducto1MouseEntered(evt);
+            }
+        });
+        jpnProductoInventario.add(btnBuscarProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 110, 30));
+
+        btnModificarProducto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
+        btnModificarProducto1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificarProducto1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnModificarProducto1MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarProducto1MouseEntered(evt);
+            }
+        });
+        btnModificarProducto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarProducto1ActionPerformed(evt);
+            }
+        });
+        jpnProductoInventario.add(btnModificarProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 510, 110, 30));
+
+        btnEliminarProducto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
+        btnEliminarProducto1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarProducto1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarProducto1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarProducto1MouseExited(evt);
+            }
+        });
+        btnEliminarProducto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProducto1ActionPerformed(evt);
+            }
+        });
+        jpnProductoInventario.add(btnEliminarProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 510, 110, 30));
+
+        jPanel55.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel55.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jSeparator15.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel55.add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 20, 50));
+
+        lblProveedores10.setBackground(new java.awt.Color(255, 255, 255));
+        lblProveedores10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblProveedores10.setForeground(new java.awt.Color(255, 255, 255));
+        lblProveedores10.setText("Productos");
+        jPanel55.add(lblProveedores10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 110, 30));
+
+        jpnProductoInventario.add(jPanel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 50));
+        jpnProductoInventario.add(jSeparator29, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 186, 160, -1));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel20.setText("Listado de los Productos:");
+        jpnProductoInventario.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+
+        txtProductosBuscar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProductosBuscar2ActionPerformed(evt);
+            }
+        });
+        txtProductosBuscar2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtProductosBuscar2KeyTyped(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtProductosBuscar2KeyReleased(evt);
+            }
+        });
+        jpnProductoInventario.add(txtProductosBuscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 430, 30));
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel21.setText("Producto a buscar:");
+        jpnProductoInventario.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
+        jpnProductoInventario.add(jSeparator45, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 96, 120, 20));
+
+        getContentPane().add(jpnProductoInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
         jpnDetalleCompra.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jpnDetalleCompra.add(txtCodBarraProductos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 230, 30));
@@ -6136,6 +6301,66 @@ public void limpiarTablaDetalleCompra(){
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailKeyTyped
 
+    private void btnNuevoProducto1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoProducto1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNuevoProducto1MouseExited
+
+    private void btnNuevoProducto1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoProducto1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNuevoProducto1MouseEntered
+
+    private void btnNuevoProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProducto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNuevoProducto1ActionPerformed
+
+    private void btnBuscarProducto1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarProducto1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarProducto1MouseClicked
+
+    private void btnBuscarProducto1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarProducto1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarProducto1MouseExited
+
+    private void btnBuscarProducto1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarProducto1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarProducto1MouseEntered
+
+    private void btnModificarProducto1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarProducto1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarProducto1MouseExited
+
+    private void btnModificarProducto1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarProducto1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarProducto1MouseEntered
+
+    private void btnModificarProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarProducto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarProducto1ActionPerformed
+
+    private void btnEliminarProducto1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarProducto1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarProducto1MouseEntered
+
+    private void btnEliminarProducto1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarProducto1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarProducto1MouseExited
+
+    private void btnEliminarProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProducto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarProducto1ActionPerformed
+
+    private void txtProductosBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductosBuscar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProductosBuscar2ActionPerformed
+
+    private void txtProductosBuscar2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProductosBuscar2KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProductosBuscar2KeyTyped
+
+    private void txtProductosBuscar2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProductosBuscar2KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProductosBuscar2KeyReleased
+
 
     public void agregarDetalle(){
         detalleCompra[0] = CodBarraPC;    
@@ -6480,12 +6705,14 @@ public void limpiarTablaProducto(){
     private javax.swing.JButton btnAtrasModificarProveedor;
     private javax.swing.JButton btnAtrasProveedores;
     private javax.swing.JButton btnBuscarProducto;
+    private javax.swing.JButton btnBuscarProducto1;
     private javax.swing.JButton btnCancelarCompra;
     private javax.swing.JButton btnCancelarParametro;
     private javax.swing.JButton btnCancelarSucursal;
     private javax.swing.JButton btnCancelarTipoPrecio;
     private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnEliminarProducto;
+    private javax.swing.JButton btnEliminarProducto1;
     private javax.swing.JButton btnEliminarProductoVenta;
     private javax.swing.JButton btnEliminarProveedor;
     private javax.swing.JButton btnEliminarSucursales;
@@ -6501,10 +6728,12 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel btnHome;
     private javax.swing.JButton btnModificarParametro;
     private javax.swing.JButton btnModificarProducto;
+    private javax.swing.JButton btnModificarProducto1;
     private javax.swing.JButton btnModificarProveedor;
     private javax.swing.JButton btnModificarSucursal;
     private javax.swing.JButton btnModificarTipoPrecio;
     private javax.swing.JButton btnNuevoProducto;
+    private javax.swing.JButton btnNuevoProducto1;
     private javax.swing.JButton btnNuevoSucursales;
     private javax.swing.JButton btnNuevoTipoPrecio;
     private javax.swing.JButton btnPDF;
@@ -6538,6 +6767,8 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -6601,7 +6832,9 @@ public void limpiarTablaProducto(){
     private javax.swing.JPanel jPanel52;
     private javax.swing.JPanel jPanel53;
     private javax.swing.JPanel jPanel54;
+    private javax.swing.JPanel jPanel55;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -6615,6 +6848,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator14;
+    private javax.swing.JSeparator jSeparator15;
     private javax.swing.JSeparator jSeparator16;
     private javax.swing.JSeparator jSeparator17;
     private javax.swing.JSeparator jSeparator18;
@@ -6625,6 +6859,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JSeparator jSeparator26;
     private javax.swing.JSeparator jSeparator27;
     private javax.swing.JSeparator jSeparator28;
+    private javax.swing.JSeparator jSeparator29;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator30;
     private javax.swing.JSeparator jSeparator31;
@@ -6642,6 +6877,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JSeparator jSeparator42;
     private javax.swing.JSeparator jSeparator43;
     private javax.swing.JSeparator jSeparator44;
+    private javax.swing.JSeparator jSeparator45;
     private javax.swing.JSeparator jSeparator47;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
@@ -6660,6 +6896,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JPanel jpnNuevoProducto;
     private javax.swing.JPanel jpnPrimero;
     private javax.swing.JPanel jpnPrincipal;
+    private javax.swing.JPanel jpnProductoInventario;
     private javax.swing.JPanel jpnProductos;
     private javax.swing.JPanel jpnProveedores;
     private javax.swing.JPanel jpnQuinto;
@@ -6677,6 +6914,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JScrollPane jscpTipoDePrecio;
     private javax.swing.JTable jtblParametros;
     private javax.swing.JTable jtblProductos;
+    private javax.swing.JTable jtblProductos1;
     private javax.swing.JTable jtblSucursales;
     private javax.swing.JTable jtblTipoDePrecio;
     private javax.swing.JLabel lbl11;
@@ -6732,6 +6970,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JLabel lblNomProd;
     private javax.swing.JLabel lblPercepcionCompra;
     private javax.swing.JLabel lblProveedor;
+    private javax.swing.JLabel lblProveedores10;
     private javax.swing.JLabel lblProveedores11;
     private javax.swing.JLabel lblProveedores12;
     private javax.swing.JLabel lblProveedores13;
@@ -6808,6 +7047,7 @@ public void limpiarTablaProducto(){
     private javax.swing.JTextField txtPrecioProductos;
     private javax.swing.JTextField txtProductosBuscar;
     private javax.swing.JTextField txtProductosBuscar1;
+    private javax.swing.JTextField txtProductosBuscar2;
     private javax.swing.JTextField txtSubtotalCompra;
     private javax.swing.JTextField txtSucursalVentaParametro;
     private javax.swing.JTextField txtSumas;
